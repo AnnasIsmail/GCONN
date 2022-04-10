@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/GCONN/static/css/main.7dfb3f74.css",
+    "main.js": "/GCONN/static/js/main.d0be5034.js",
+    "static/js/787.99e8ab3c.chunk.js": "/GCONN/static/js/787.99e8ab3c.chunk.js",
+    "static/media/logo-gconn-nobackground.png": "/GCONN/static/media/logo-gconn-nobackground.b32f3548e8b6073120ea.png",
+    "index.html": "/GCONN/index.html",
+    "main.7dfb3f74.css.map": "/GCONN/static/css/main.7dfb3f74.css.map",
+    "main.d0be5034.js.map": "/GCONN/static/js/main.d0be5034.js.map",
+    "787.99e8ab3c.chunk.js.map": "/GCONN/static/js/787.99e8ab3c.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.7dfb3f74.css",
+    "static/js/main.d0be5034.js"
+  ]
+}
