@@ -1,16 +1,15 @@
 {
   "files": {
-    "main.css": "/GCONN/static/css/main.7dfb3f74.css",
-    "main.js": "/GCONN/static/js/main.d0be5034.js",
+    "main.css": "/GCONN/static/css/main.e27254fd.css",
+    "main.js": "/GCONN/static/js/main.105ef9da.js",
     "static/js/787.99e8ab3c.chunk.js": "/GCONN/static/js/787.99e8ab3c.chunk.js",
-    "static/media/logo-gconn-nobackground.png": "/GCONN/static/media/logo-gconn-nobackground.b32f3548e8b6073120ea.png",
     "index.html": "/GCONN/index.html",
-    "main.7dfb3f74.css.map": "/GCONN/static/css/main.7dfb3f74.css.map",
-    "main.d0be5034.js.map": "/GCONN/static/js/main.d0be5034.js.map",
+    "main.e27254fd.css.map": "/GCONN/static/css/main.e27254fd.css.map",
+    "main.105ef9da.js.map": "/GCONN/static/js/main.105ef9da.js.map",
     "787.99e8ab3c.chunk.js.map": "/GCONN/static/js/787.99e8ab3c.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.7dfb3f74.css",
-    "static/js/main.d0be5034.js"
+    "static/css/main.e27254fd.css",
+    "static/js/main.105ef9da.js"
   ]
 }
