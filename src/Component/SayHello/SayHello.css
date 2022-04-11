@@ -1,0 +1,14 @@
+.say-hello{
+    color: white;
+    padding: 30px 0 0 30px ;
+}
+
+.say-hello h1{
+    font-size: 25px;
+    font-weight: 700;
+}
+
+.say-hello h3{
+    font-size: 16px;
+    margin-top: -7px;
+}

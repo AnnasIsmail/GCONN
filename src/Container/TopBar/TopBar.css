@@ -1,0 +1,8 @@
+.top-bar{
+    position: fixed;
+    left: 220px;
+    right: 80px;
+    width: auto;
+    display: flex;
+    justify-content: space-between;
+}

@@ -1,0 +1,46 @@
+.profile{
+    color: white;
+    width: auto;
+    display: grid;
+    grid-template-columns: auto auto auto;
+    height: 60px;
+    column-gap: 10px;
+    align-items: center;
+    padding-top: 30px;
+}
+
+.profile:hover{
+    cursor: pointer;
+}
+
+.profile img:nth-child(1){
+    height: 60px;
+}
+
+.profile img:nth-child(3){
+    width: 35px;
+    margin: -5px 0 0 -7px;
+}
+
+.profile h1{
+    font-weight: 600;
+    font-size: 20px;
+}
+
+.profile h2{
+    font-size: 40px;
+}
+
+.profile div{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.profile div div{
+    width: 15px;
+    height: 15px;
+    background-color: #00D709;
+    color: #00D709;
+    border-radius: 50%;
+}
