@@ -1,15 +1,24 @@
 {
   "files": {
-    "main.css": "/GCONN/static/css/main.e27254fd.css",
-    "main.js": "/GCONN/static/js/main.105ef9da.js",
+    "main.css": "/GCONN/static/css/main.7dfb3f74.css",
+    "main.js": "/GCONN/static/js/main.f50a9b74.js",
     "static/js/787.99e8ab3c.chunk.js": "/GCONN/static/js/787.99e8ab3c.chunk.js",
+    "static/media/logo-gconn-nobackground.png": "/GCONN/static/media/logo-gconn-nobackground.b32f3548e8b6073120ea.png",
+    "static/media/Shop_fill.svg": "/GCONN/static/media/Shop_fill.aa2a4e8bf1663ff4aa6ed8bbea26123a.svg",
+    "static/media/Shop.svg": "/GCONN/static/media/Shop.dc0e6cbd8154de15413d673108cd59ee.svg",
     "index.html": "/GCONN/index.html",
-    "main.e27254fd.css.map": "/GCONN/static/css/main.e27254fd.css.map",
-    "main.105ef9da.js.map": "/GCONN/static/js/main.105ef9da.js.map",
+    "static/media/Home_fill.svg": "/GCONN/static/media/Home_fill.620fd8260f55311fde64d1be6307e1ef.svg",
+    "static/media/Log_In.svg": "/GCONN/static/media/Log_In.ac7be0d4d490d542b07278041a63a097.svg",
+    "static/media/Home.svg": "/GCONN/static/media/Home.d66509f87b3c607fcbd7edaf399d90af.svg",
+    "static/media/Sign_Up_fill.svg": "/GCONN/static/media/Sign_Up_fill.073d6f5b8d85d489730b9ecd8b72659a.svg",
+    "static/media/Sign_Up.svg": "/GCONN/static/media/Sign_Up.638f4b79bd2b607d75697110334a337e.svg",
+    "static/media/Log_In_fill.svg": "/GCONN/static/media/Log_In_fill.f6d4779da76b5a667e681287f591b6bb.svg",
+    "main.7dfb3f74.css.map": "/GCONN/static/css/main.7dfb3f74.css.map",
+    "main.f50a9b74.js.map": "/GCONN/static/js/main.f50a9b74.js.map",
     "787.99e8ab3c.chunk.js.map": "/GCONN/static/js/787.99e8ab3c.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.e27254fd.css",
-    "static/js/main.105ef9da.js"
+    "static/css/main.7dfb3f74.css",
+    "static/js/main.f50a9b74.js"
   ]
 }
