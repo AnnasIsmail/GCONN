@@ -1,4 +1,5 @@
 {
+  "homepage": "https://annasismail.github.io/GCONN/",
   "name": "gconn-web",
   "version": "0.1.0",
   "private": true,
@@ -10,9 +11,12 @@
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-scripts": "5.0.0",
+    "save-dev": "^0.0.1-security",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
+    "predeploy" : "npm run build",
+    "deploy" : "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
