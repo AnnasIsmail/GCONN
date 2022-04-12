@@ -5,6 +5,7 @@ body {
   background-color: rgba(0, 7, 43, 1);
   margin: 0;
   padding: 0;
+  color: white !important;
 }
 
 *{
