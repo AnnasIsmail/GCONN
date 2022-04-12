@@ -2,14 +2,24 @@ import React from "react";
 import './SayHello.css';
 
 function TopBar(props){
-    let [date, setDate] = React.useState(new Date().toLocaleTimeString());
+    let [date, setDate] = React.useState(null);
+    let dateNow =()=> {
+        let date = new Date();
+        const month = ['JAN','FEB','MAR','APR','MAY','JUN','JUL','AUG','SEP','OCT','NOV','DES'];
+        setDate(`${date.getDate()} ${month[date.getMonth()]} ${date.getFullYear()}-${date.toLocaleTimeString()}`);
+    }
+
+    React.useEffect(()=>{
+        dateNow();
+    })
+
     setInterval(() => {
-        setDate(new Date().toLocaleTimeString());
+        dateNow();
     }, 1000);
     return(
         <div className="say-hello">
             <h1>Hello, {props.Username} </h1>
-            <h3>Server Time : {date}  </h3>
+            <h3>Date-Time : {date}  </h3>
         </div>
     );
 };
