@@ -1,3 +1,4 @@
+import React from 'react';
 import HomeIcon from '../../image/icon/home';
 import LogInIcon from '../../image/icon/logIn';
 import MarketIcon from '../../image/icon/market';
@@ -8,7 +9,7 @@ import './NavbarBeforeLogin.css';
 function NavbarBeforeLogin(){
 
     return(
-        <div className='navbar'>
+        <div id='navbar' className='navbar'>
             <div className='logo-gconn-before-navbar'>
                 <img src={logoGconn} alt="" />
                 <span>

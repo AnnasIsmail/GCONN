@@ -1,0 +1,55 @@
+.ProfileChat{
+    color: white;
+    width: auto;
+    display: grid;
+    grid-template-columns: 60px 66px auto;
+    height: auto;
+    column-gap: 10px;
+    align-items: center;
+    padding: 10px 0 0 10px;
+}
+
+.ProfileChat:hover{
+    cursor: pointer;
+}
+
+.ProfileChat img:nth-child(1){
+    width: 50px;
+    transform: rotate(-90deg);
+}
+
+.ProfileChat img:nth-child(2){
+    height: 66px;
+}
+
+.ProfileChat h1{
+    font-weight: 600;
+    font-size: 20px;
+    width: fit-content;
+}
+
+.ProfileChat h2{
+    font-size: 40px;
+}
+
+.ProfileChat div{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.ProfileChat div div{
+    width: 15px;
+    height: 15px;
+    background-color: #00D709;
+    color: #00D709;
+    border-radius: 50%;
+}
+
+.ProfileChat .garis{
+    height: 0;
+    overflow: hidden;
+    border-bottom: 3px solid white;
+    padding-top: 10px;
+    width: 100%;
+}

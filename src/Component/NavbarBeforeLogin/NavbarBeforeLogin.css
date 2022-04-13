@@ -1,21 +1,18 @@
 .logo-gconn-before-navbar{
     padding-top: 30px;
     color: white;
-    display: flex;
-    gap: 5px;
-    width: 90%;
-    margin: auto;
-    justify-content: space-evenly;
-    align-items: center;
+    display: grid;
+    grid-template-columns: 40% 1fr; 
+    padding-left: 20px;
 }
 
 .logo-gconn-before-navbar img{
-    width: 50px;
-    height: 50px;
+    width: 40px;
+    height: 40px;
 }
 
 .logo-gconn-before-navbar h1{
-    font-weight: 700 ;
+    font-weight: bold ;
     font-size: 30px;
     padding-bottom: -10px;
 }
@@ -32,29 +29,31 @@
 }
 
 .navbar .main{
-    margin-top: 30%;
+    margin-top: 70px;
     display: grid;
-    grid-template-columns: 1fr;
+    grid-template-columns: auto;
     row-gap: 30px;
 }
 
 .navbar .main div{
     color: white;
     display: grid;
-    grid-template-columns: 20% 50%;
+    grid-template-columns: 20% 100px;
     justify-content: center;
     font-size: 22px;
     column-gap: 30px;
+    padding-left: 20px;
 }
 
 .navbar .main div img{
-    width: 100%;
+    width: 40px;
 }
 
 .navbar .main div h3{
     margin: 0;
     font-weight: 300;
     margin-top: 5px;
+    width: fit-content;
 }
 
 .navbar .main div:hover{
@@ -73,3 +72,4 @@
 .navbar .main .klik h3{
     font-weight: 600;
 }
+
