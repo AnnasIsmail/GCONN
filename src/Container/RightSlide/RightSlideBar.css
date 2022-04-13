@@ -1,13 +1,31 @@
 .RightSideBar{
-    background: rgba(28, 52, 173, 0.9);
-    border-radius: 16px;
+    background: linear-gradient(18deg, rgba(28,52,173,0.23012955182072825) 0%, rgba(28,52,173,1) 100%);
+    border-radius: 10px;
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
     backdrop-filter: blur(5px);
     -webkit-backdrop-filter: blur(5px);
     border: 1px solid rgba(28, 52, 173, 0.3);
     position: fixed;
     width: 400px;
-    right: 0;
+    right: -330px;
     top: 10px;
     bottom: 10px;
+}
+
+#hrRightsideBar{
+    height: 0;
+    background-color: aliceblue;
+    margin: 0;
+    padding: 0;
+}
+
+.RightSideBar span hr{
+    max-height: 0.5px;
+    color: white;
+    opacity: 1;
+    max-width: 370px;
+    width: 40px;
+    margin-bottom: 10px;
+    margin-left: 15px;
+    transition: width 1s;
 }
