@@ -3,6 +3,8 @@
     left: 220px;
     right: 90px;
     width: auto;
+    height: 90px;
+    overflow: hidden;
     display: flex;
     justify-content: space-between;
 }

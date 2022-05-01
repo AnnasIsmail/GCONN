@@ -9,7 +9,7 @@ function Chat(props){
                 <h1>{props.nama}</h1>
                 <h2>{props.lastChat}</h2>
             </span>
-            <span className="notif">{props.notification}</span>
+            {props.notification >= 100? <span className="notif tigaDigit">{props.notification}</span>:props.notification >= 10 ? <span className="notif duaDigit">{props.notification}</span> : <span className="notif satuDigit">{props.notification}</span>}
         </div>
     );
 }

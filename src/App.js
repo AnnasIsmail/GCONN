@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
-import PhotoCarousel from './Component/PhotoCarousel/PhotoCarousel';
 import LeftSideBar from './Container/LeftSideBar/LeftSideBar';
+import MainContainer from './Container/MainContainer/MainContainer';
 import RightSlideBar from './Container/RightSlide/RightSlideBar';
 import TopBar from './Container/TopBar/TopBar';
 
@@ -11,7 +11,7 @@ function App() {
     <div className="App">
       <LeftSideBar />
       <TopBar />
-      <PhotoCarousel />
+      <MainContainer />
       <RightSlideBar />
     </div>
   );

@@ -27,7 +27,23 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 100%;
-    margin: 9px;
-    font-size: 15px;
+    border-radius: 50%;
+}
+
+.satuDigit{
+    /* margin: 15px 10px; */
+    padding: 0;
+    width: 8;
+    margin: 5px 5px ; 
+    font-size: 18px;
+}
+
+.duaDigit{
+    margin: 5px 5px ; 
+    font-size: 16px;
+}
+
+.tigaDigit{
+    margin: 5px 5px;
+    font-size: 14px;
 }
