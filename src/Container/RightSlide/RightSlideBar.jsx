@@ -9,12 +9,26 @@ function RightSlideBar(){
         <div className="RightSideBar">
            <ProfileChat Username='Ansellma Putri' />
            <span id="hrRightSlide"><hr className="hrRightSlide" /></span>
-           <Chat source={source} alt='photo-profil' nama='Joko Santo' lastChat='Yaudah 550k deh' notification='200' />
-           <Chat source={source} alt='photo-profil' nama='Joko Santo' lastChat='Yaudah 550k deh' notification='99' />
-           <Chat source={source} alt='photo-profil' nama='Joko Santo' lastChat='Yaudah 550k deh' notification='3' />
-           <Chat source={source} alt='photo-profil' nama='Joko Santo' lastChat='Yaudah 550k deh' notification='3' />
-           <Chat source={source} alt='photo-profil' nama='Joko Santo' lastChat='Yaudah 550k deh' notification='3' />
-           <Chat source={source} alt='photo-profil' nama='Joko Santo' lastChat='Yaudah 550k deh' notification='3' />
+           <div className="container-chat">
+                <Chat source={source} alt='photo-profil' nama='Joko Santo' lastChat='Yaudah 550k deh' notification='200' />
+                <Chat source={source} alt='photo-profil' nama='Joko Santo' lastChat='Yaudah 550k deh' notification='99' />
+                <Chat source={source} alt='photo-profil' nama='Joko Santo' lastChat='Yaudah 550k deh' notification='3' />
+                <Chat source={source} alt='photo-profil' nama='Joko Santo' lastChat='Yaudah 550k deh' notification='3' />
+                <Chat source={source} alt='photo-profil' nama='Joko Santo' lastChat='Yaudah 550k deh' notification='3' />
+                <Chat source={source} alt='photo-profil' nama='Joko Santo' lastChat='Yaudah 550k deh' notification='3' />
+                <Chat source={source} alt='photo-profil' nama='Joko Santo' lastChat='Yaudah 550k deh' notification='3' />
+                <Chat source={source} alt='photo-profil' nama='Joko Santo' lastChat='Yaudah 550k deh' notification='3' />
+                <Chat source={source} alt='photo-profil' nama='Joko Santo' lastChat='Yaudah 550k deh' notification='3' />
+                <Chat source={source} alt='photo-profil' nama='Joko Santo' lastChat='Yaudah 550k deh' notification='3' />
+                <Chat source={source} alt='photo-profil' nama='Joko Santo' lastChat='Yaudah 550k deh' notification='3' />
+                <Chat source={source} alt='photo-profil' nama='Joko Santo' lastChat='Yaudah 550k deh' notification='3' />
+                <Chat source={source} alt='photo-profil' nama='Joko Santo' lastChat='Yaudah 550k deh' notification='3' />
+                <Chat source={source} alt='photo-profil' nama='Joko Santo' lastChat='Yaudah 550k deh' notification='3' />
+                <Chat source={source} alt='photo-profil' nama='Joko Santo' lastChat='Yaudah 550k deh' notification='3' />
+                <Chat source={source} alt='photo-profil' nama='Joko Santo' lastChat='Yaudah 550k deh' notification='3' />
+                <Chat source={source} alt='photo-profil' nama='Joko Santo' lastChat='Yaudah 550k deh' notification='3' />
+                <Chat source={source} alt='photo-profil' nama='Joko Santo' lastChat='Yaudah 550k deh' notification='3' />
+           </div>
         </div>
     );
 }

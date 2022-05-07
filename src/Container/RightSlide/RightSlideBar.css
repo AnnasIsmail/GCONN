@@ -10,11 +10,13 @@
     right: -330px;
     top: 10px;
     bottom: 10px;
+    display: flex;
+    flex-direction: column;
 }
 
 #hrRightsideBar{
     height: 0;
-    background-color: aliceblue;
+    background-color: rgb(255, 255, 255);
     margin: 0;
     padding: 0;
 }
@@ -25,7 +27,11 @@
     opacity: 1;
     max-width: 370px;
     width: 40px;
-    margin-bottom: 10px;
-    margin-left: 15px;
+    margin: 0 0 10px 15px;
     transition: width 1s;
+}
+
+.container-chat{
+    overflow: auto;
+
 }

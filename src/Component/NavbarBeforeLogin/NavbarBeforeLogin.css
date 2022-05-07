@@ -4,6 +4,7 @@
     display: grid;
     grid-template-columns: 40% 1fr; 
     padding-left: 20px;
+    cursor: pointer;
 }
 
 .logo-gconn-before-navbar img{
@@ -60,12 +61,13 @@
     cursor: pointer;
 }
 
-.navbar .main span{
-    color: none;
-    border-bottom: 1.5px solid white;
-    width: 80%;
+.navbar .main hr{
+    max-height: 0.5px;
+    color: white;
+    opacity: 1;
     margin: auto;
-    height: 0;
+    margin-left: 20px;
+    width: 45px;
     overflow: hidden;
 }
 

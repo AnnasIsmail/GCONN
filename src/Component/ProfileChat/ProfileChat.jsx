@@ -8,18 +8,23 @@ function ProfileChat(props){
 
     React.useEffect(()=>{
         $('#buttonClosedChat').click(()=>{
-            if( $('.RightSideBar').css('right') === '10px'){
-                $('.RightSideBar').animate({'right':'-330px'},1000);
-                $('#buttonClosedChat').css('animation','animasiButtonChatClosed 1s');
-                $('#buttonClosedChat').removeClass('ButtonChatOpen');
-                $('#buttonClosedChat').addClass('ButtonChatClosed');
-                $('.hrRightSlide').css('width','40px');
+
+            let RightSideBar = $('.RightSideBar');
+            let ButtonClosedChat = $('#buttonClosedChat');
+            let hrRightSideBar = $('.hrRightSlide');
+
+            if( RightSideBar.css('right') === '10px'){
+                RightSideBar.animate({'right':'-330px'},1000);
+                ButtonClosedChat.css('animation','animasiButtonChatClosed 1s');
+                ButtonClosedChat.removeClass('ButtonChatOpen');
+                ButtonClosedChat.addClass('ButtonChatClosed');
+                hrRightSideBar.css('width','40px');
             }else{
-                $('.RightSideBar').animate({'right':'10px'},1000);
-                $('#buttonClosedChat').css('animation','animasiButtonChatOpen 1s');
-                $('#buttonClosedChat').removeClass('ButtonChatClosed');
-                $('#buttonClosedChat').addClass('ButtonChatOpen');
-                $('.hrRightSlide').css('width','370px');
+                RightSideBar.animate({'right':'10px'},1000);
+                ButtonClosedChat.css('animation','animasiButtonChatOpen 1s');
+                ButtonClosedChat.removeClass('ButtonChatClosed');
+                ButtonClosedChat.addClass('ButtonChatOpen');
+                hrRightSideBar.css('width','370px');
             }
         });
     });

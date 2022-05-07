@@ -1,6 +1,12 @@
 .LeftSideBar{
     background: linear-gradient(18deg, rgba(28,52,173,0.23012955182072825) 0%, rgba(28,52,173,1) 100%);
     position: fixed;
-    height: 100%;
-    width: 220px;
+    width: 80px;
+    overflow: hidden;
+    top: 10px;
+    bottom: 10px;
+    border-radius: 10px;
+    left: 10px;
+    z-index: 5;
 }
+
