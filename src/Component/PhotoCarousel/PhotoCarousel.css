@@ -1,10 +1,7 @@
 
 .carousel{
-    width: 800px;
-    /* height: 450px; */
-    position: absolute;
-    /* left: 250px; */
-    /* top: 100px; */
+    /* width: 70%; */
+    /* position: absolute; */
     border-radius: 15px;
     overflow: hidden;
 }

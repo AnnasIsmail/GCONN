@@ -13,23 +13,23 @@ function LeftSideBar(){
         LeftSideBar.hover(function(){
             $(this).animate({'width': '220px'}, 500);
             hrNav.animate({'width': '170px'}, 500);
-            topBar.animate({'left': '220px'}, 500);
+            // topBar.animate({'left': '220px'}, 500);
         },function(){
             $(this).animate({'width': '80px'}, 500);
             hrNav.animate({'width': '45px'}, 500);
-            topBar.animate({'left': '80px'}, 500);
+            // topBar.animate({'left': '80px'}, 500);
             $(this).clearQueue();
             hrNav.clearQueue();
-            topBar.clearQueue();
+            // topBar.clearQueue();
         });
 
         LeftSideBar.mouseleave(function(){
             $(this).animate({'width': '80px'}, 500);
             hrNav.animate({'width': '45px'}, 500);
-            topBar.animate({'left': '80px'}, 500);
+            // topBar.animate({'left': '80px'}, 500);
             $(this).clearQueue();
             hrNav.clearQueue();
-            topBar.clearQueue();
+            // topBar.clearQueue();
         });
     });
 

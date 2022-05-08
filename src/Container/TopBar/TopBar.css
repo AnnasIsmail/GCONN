@@ -1,9 +1,10 @@
 .top-bar{
     position: fixed;
-    left: 220px;
-    right: 90px;
-    width: auto;
+    left: 0;
+    right: 0;
+    width: 70vw;
     height: 90px;
+    margin: auto;
     overflow: hidden;
     display: flex;
     justify-content: space-between;

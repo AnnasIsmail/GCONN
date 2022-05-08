@@ -1,0 +1,13 @@
+.available-game-container{
+    margin: auto;
+    width: 100%;
+}
+
+.available-game-container h1{
+    font-size: 30px;
+}
+
+.container-available-game-container{
+    display: flex;
+    gap: 15px;
+}

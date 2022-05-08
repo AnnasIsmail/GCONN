@@ -10,22 +10,24 @@ function ProfileChat(props){
         $('#buttonClosedChat').click(()=>{
 
             let RightSideBar = $('.RightSideBar');
-            let ButtonClosedChat = $('#buttonClosedChat');
+            let ButtonClosedChat = $(this);
             let hrRightSideBar = $('.hrRightSlide');
+            hrRightSideBar.animate({'width':'370px'},100);
+            RightSideBar.animate({'right':'10px'},500);
 
-            if( RightSideBar.css('right') === '10px'){
-                RightSideBar.animate({'right':'-330px'},1000);
-                ButtonClosedChat.css('animation','animasiButtonChatClosed 1s');
-                ButtonClosedChat.removeClass('ButtonChatOpen');
-                ButtonClosedChat.addClass('ButtonChatClosed');
-                hrRightSideBar.css('width','40px');
-            }else{
-                RightSideBar.animate({'right':'10px'},1000);
-                ButtonClosedChat.css('animation','animasiButtonChatOpen 1s');
-                ButtonClosedChat.removeClass('ButtonChatClosed');
-                ButtonClosedChat.addClass('ButtonChatOpen');
-                hrRightSideBar.css('width','370px');
-            }
+            // if( RightSideBar.css('right') === '10px'){
+            //     hrRightSideBar.animate({'width':'40px'},500);
+            //     RightSideBar.animate({'right':'-330px'},500);
+            //     ButtonClosedChat.css('animation','animasiButtonChatClosed 1s');
+            //     ButtonClosedChat.removeClass('ButtonChatOpen');
+            //     ButtonClosedChat.addClass('ButtonChatClosed');
+            // }else{
+            //     hrRightSideBar.animate({'width':'370px'},500);
+            //     RightSideBar.animate({'right':'10px'},500);
+            //     ButtonClosedChat.css('animation','animasiButtonChatOpen 1s');
+            //     ButtonClosedChat.removeClass('ButtonChatClosed');
+            //     ButtonClosedChat.addClass('ButtonChatOpen');
+            // }
         });
     });
 
