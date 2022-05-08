@@ -14,21 +14,14 @@
     flex-direction: column;
 }
 
-#hrRightsideBar{
-    height: 0;
-    background-color: rgb(255, 255, 255);
-    margin: 0;
-    padding: 0;
-}
-
-.RightSideBar span hr{
+.RightSideBar hr{
     max-height: 0.5px;
     color: white;
     opacity: 1;
-    max-width: 370px;
+    margin: 0;
+    margin-left: 15px;
     width: 40px;
-    margin: 0 0 10px 15px;
-    transition: width 1s;
+    overflow: hidden;
 }
 
 .container-chat{

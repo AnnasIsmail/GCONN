@@ -1,0 +1,57 @@
+.header-chat{
+    color: white;
+    width: auto;
+    display: grid;
+    grid-template-columns: auto auto auto;
+    grid-template-rows: 40px;
+    height: auto;
+    column-gap: 10px;
+    align-items: center;
+    padding: 10px;
+}
+
+.header-chat h1{
+    font-weight: 600;
+    font-size: 20px;
+    width: fit-content;
+    margin-bottom: 3px;
+    text-align: center;
+    width: 100%;
+}
+
+.header-chat :nth-child(3){
+    display: grid;
+    justify-content: end;
+}
+
+.ButtonChatOpen{
+    transform: rotate(-90deg) ;
+    animation: animasiButtonChatOpen 0.5s;
+    cursor: pointer;
+}
+
+.ButtonChatClosed{
+    transform: rotate(90deg);
+    animation: animasiButtonChatClosed 0.5s;
+    cursor: pointer;
+}
+
+@keyframes animasiButtonChatClosed {
+    from{
+        transform: rotate(-90deg);
+    }
+    to{
+        transform: rotate(90deg);
+    }
+}
+
+@keyframes animasiButtonChatOpen {
+    from{
+        transform: rotate(90deg);
+    }
+    to{
+        transform: rotate(-90deg);
+    }
+}
+
+
