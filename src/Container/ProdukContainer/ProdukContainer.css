@@ -1,0 +1,38 @@
+.produk-container{
+    padding-top: 10px;
+}
+
+.produk-container .name-produk-container{
+    font-size: 30px !important;
+    width: 100%;
+}
+
+.produk-container .menu{
+    border: none;
+    background: none;
+    width: 100%;
+    justify-content: center;
+}
+
+.produk-container .item{
+    background-color: #1C34AD !important;
+    color: white !important;
+    font-weight: bold !important;
+    font-size: 17px !important;
+    border: #13288c 1px solid;
+}
+
+.produk-container .active{
+    background-color: #1d2e87 !important;
+}
+
+.produk-container .item:first-child{
+    border-radius: 10px 0 0 10px !important;
+    background-color: #13288c !important;
+}
+
+
+.produk-container .item:last-child{
+    border-radius: 0 10px 10px 0 !important;
+    background-color: #13288c !important;
+}

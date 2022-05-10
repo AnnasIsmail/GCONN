@@ -5,16 +5,16 @@ import './Filter.css';
 
 const game = [
     { key: 1, text: 'Mobile Legend', value: 'Mobile Legend' },
-    { key: 1, text: 'PUBG', value: 'PUBG' },
-    { key: 1, text: 'Valorant', value: 'Valorant' },
+    { key: 2, text: 'PUBG', value: 'PUBG' },
+    { key: 3, text: 'Valorant', value: 'Valorant' },
   ]
 
   const sort = [
       { key: 1, text: 'New', value: 'New' },
-    { key: 1, text: 'Most suitable', value: 'Most suitable' },
-    { key: 1, text: 'Highest Price', value: 'Highest Price' },
-    { key: 1, text: 'Lowest Price', value: 'Lowest Price' },
-    { key: 1, text: 'Review', value: 'Review' },
+    { key: 2, text: 'Most suitable', value: 'Most suitable' },
+    { key: 3, text: 'Highest Price', value: 'Highest Price' },
+    { key: 4, text: 'Lowest Price', value: 'Lowest Price' },
+    { key: 5, text: 'Review', value: 'Review' },
     ]
 
 function Filter(){
