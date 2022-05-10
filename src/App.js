@@ -9,9 +9,9 @@ function App() {
 
   return (
     <div className="App">
+      <TopBar page='market' login='false' />
+      <MainContainer additionalClass='market-main-container'/>
       <LeftSideBar />
-      <TopBar />
-      <MainContainer />
       <RightSlideBar />
     </div>
   );

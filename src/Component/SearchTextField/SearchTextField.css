@@ -1,0 +1,35 @@
+.search-text-field{
+    background: linear-gradient(18deg, rgba(28,52,173,0.23012955182072825) 0%, rgba(28,52,173,1) 100%);
+    padding: 5px 10px 5px 10PX;
+    width: 30VW;
+    margin: auto 0;
+    border-radius: 30px;
+    font-weight: normal;
+    display: grid;
+    grid-template-columns: 30px 1fr 90px;
+    align-items: center;
+    gap: 5px;
+    cursor: text;
+}
+
+.search-text-field input{
+    font-weight: 300 !important;
+    width: 100%;
+    background-color: transparent;
+    padding: 5px;
+    border: none;
+    color: white;
+    font-size: 17px;
+}
+
+.search-text-field input:focus { 
+    outline: none; 
+}
+
+.search-button{
+    background-color: rgb(0, 7, 41);
+    border-radius: 20px;
+    font-size: 16px;
+    padding: 3px 0;
+    font-weight: 500;
+}

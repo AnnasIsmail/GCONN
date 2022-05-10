@@ -1,20 +1,25 @@
 .main-container{
     position: absolute;
-    width: 70vw;
+    width: 75vw;
     height: auto;
     margin: auto;
     left: 0;
     right: 0;
-    top: 90px;
+    top: 80px;
     margin-top: 10px;
     bottom: 10px;
     overflow: auto;
 }
 
-.home{
+.home-main-container{
     display: grid;
     grid-template-columns: 70% 1fr;
     grid-template-rows: 50% 1fr;
-    gap: 10px;
+    gap: 20px;
     
+}
+
+.market-main-container{
+    display: flex;
+    flex-direction: column;
 }

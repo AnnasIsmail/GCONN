@@ -16,7 +16,7 @@ body {
   vertical-align: baseline;
   font-size: 0;
   font: inherit;
-  font-family: 'Poppins' !important;
+  /* font-family: 'Poppins' !important; */
 }
 
 ::-webkit-scrollbar {

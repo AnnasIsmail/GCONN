@@ -30,7 +30,9 @@ function HeaderChat(props){
     return(
             <div className='header-chat'>
                 <img id='buttonClosedChat' className='ButtonChatClosed' src={ArrowDown} alt="" />
-                <h1>Message</h1>
+                <div>
+                    <h1>Message</h1>
+                </div>
                 <div>
                     <SearchIcon className='search-icon-header-chat' />
                 </div>

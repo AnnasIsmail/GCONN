@@ -24,6 +24,10 @@
     justify-content: end;
 }
 
+.header-chat :nth-child(3) :nth-child(1){
+    cursor: pointer;
+}
+
 .ButtonChatOpen{
     transform: rotate(-90deg) ;
     animation: animasiButtonChatOpen 0.5s;

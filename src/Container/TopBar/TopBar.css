@@ -2,10 +2,18 @@
     position: fixed;
     left: 0;
     right: 0;
-    width: 70vw;
-    height: 90px;
+    width: 75vw;
+    height: 80px;
     margin: auto;
     overflow: hidden;
     display: flex;
     justify-content: space-between;
+}
+
+.sign-in{
+    background: linear-gradient(18deg, rgba(28,52,173,0.23012955182072825) 0%, rgba(28,52,173,1) 100%);
+    padding: 5px 4vw;
+    margin: auto 0;
+    border-radius: 10px;
+    font-weight: normal;
 }
