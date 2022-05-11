@@ -10,13 +10,18 @@ body {
 }
 
 *{
+  /* font-family: 'Poppins' !important; */
   margin: 0;
   padding: 0;
   border: 0;
   vertical-align: baseline;
   font-size: 0;
   font: inherit;
-  /* font-family: 'Poppins' !important; */
+}
+
+
+h1,h2,h3,h4,h5,h6,p,b,a{
+  font-family: 'Poppins' !important;
 }
 
 ::-webkit-scrollbar {

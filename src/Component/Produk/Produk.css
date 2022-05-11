@@ -1,0 +1,14 @@
+.produk .card{
+    background-color: #1C34AD !important;
+    border-radius: 10px;
+    width: auto !important;
+}
+
+.produk .card .button-container{
+    display: flex;
+    justify-content: space-around;
+}
+
+.produk .card .button-container .btn :nth-child(1){
+    margin: 0 !important;
+}

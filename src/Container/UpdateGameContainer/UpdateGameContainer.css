@@ -11,12 +11,10 @@
     padding: 10px 0 5px 10px;
     font-size: 30px;
     margin: 0;
+    text-align: left;
 }
 
 .container-update-game-container{
-    /* position: absolute; */
-    /* top: 55px; */
-    /* bottom: 0; */
     width: 100%;
     border-radius: 15px;
     overflow: auto;

@@ -10,7 +10,7 @@ function TopBar(props){
         <div>
         {
         (props.login === 'true')?
-            (props.page ==='home')?
+            (props.page ==='home-top-bar')?
             <div className="top-bar">
                 <SayHello Username="Anselma Putri" /><Profile Username="Anselma Putri" /> 
             </div>
@@ -19,13 +19,13 @@ function TopBar(props){
                 
             </div>
         :
-            (props.page === 'home')?
+            (props.page === 'home-top-bar')?
             <div className="top-bar">
                 <SayHello Username="Please Do Sign In or Sign Up" /><Button text='Sign In' additionalClass='sign-in'/> 
             </div>
-            :(props.page === 'market')?
+            :(props.page === 'market-top-bar')?
             <div className="top-bar">
-                <SearchTextField /> <Button text='Sign In' additionalClass='sign-in'/> 
+                <SearchTextField /> <Button text='Sign In' additionalClass='sign-in-button'/> 
             </div>
             :
             <div className="top-bar">

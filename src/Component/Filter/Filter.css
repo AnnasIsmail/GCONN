@@ -63,6 +63,10 @@
     width: 200px;
 }
 
+.filter .advance-filter :nth-child(2){
+    cursor: pointer;
+}
+
 .container-combo-box{
     display: grid;
     grid-template-columns: auto auto;

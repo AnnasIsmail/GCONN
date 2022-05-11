@@ -23,3 +23,12 @@
     display: flex;
     flex-direction: column;
 }
+
+.sign-in-main-container{
+    top: 0px;
+    display: grid;
+    grid-template-columns:  50% fit-content(400px);
+    justify-content: space-around;
+    grid-template-rows: 50% 1fr;
+    gap: 50px;
+}

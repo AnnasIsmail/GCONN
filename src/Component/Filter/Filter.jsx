@@ -46,7 +46,7 @@ function Filter(){
             </div>
             <div className="advance-filter">
                 <FilterIcon />
-                <label htmlFor="">Advance Filter</label>
+                <label>Advance Filter</label>
             </div>
         </div>
     );

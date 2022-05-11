@@ -10,7 +10,7 @@ function App() {
   return (
     <div className="App">
       <TopBar page='market' login='false' />
-      <MainContainer additionalClass='market-main-container'/>
+      <MainContainer additionalClass='sign-in-main-container'/>
       <LeftSideBar />
       <RightSlideBar />
     </div>
