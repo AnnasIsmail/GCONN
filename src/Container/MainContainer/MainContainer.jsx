@@ -2,6 +2,7 @@ import React from "react";
 import Filter from "../../Component/Filter/Filter";
 import PhotoCarousel from '../../Component/PhotoCarousel/PhotoCarousel';
 import SignIn from "../../Component/SignIn/SignIn";
+import SignUp from "../../Component/SignUp/SignUp";
 import AvailableGameContainer from '../AvailableGameContainer/AvailableGameContainer';
 import ProdukContainer from "../ProdukContainer/ProdukContainer";
 import UpdateGameContainer from "../UpdateGameContainer/UpdateGameContainer";
@@ -20,13 +21,20 @@ function MainContainer(props){
             : (props.additionalClass === 'market-main-container')?
             <div className={`main-container ${props.additionalClass}`}>
                 <Filter />
-                <ProdukContainer name='Valorant' />
-                <ProdukContainer name='Valorant' />
-                <ProdukContainer name='Valorant' />
+                <>
+                    <ProdukContainer name='Valorant' />
+                    <ProdukContainer name='Valorant' />
+                    <ProdukContainer name='Valorant' />
+                </>
             </div>
             : (props.additionalClass === 'sign-in-main-container')?
             <div className={`main-container ${props.additionalClass}`}>
                 <SignIn />
+                <UpdateGameContainer />
+            </div>
+            : (props.additionalClass === 'sign-up-main-container')?
+            <div className={`main-container ${props.additionalClass}`}>
+                <SignUp />
                 <UpdateGameContainer />
             </div>
             :

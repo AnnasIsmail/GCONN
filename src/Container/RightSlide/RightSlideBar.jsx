@@ -3,11 +3,13 @@ import Chat from "../../Component/Chat/Chat";
 import HeaderChat from "../../Component/HeaderChat/HeaderChat";
 import './RightSlideBar.css';
 
-function RightSlideBar(){
+function RightSlideBar(props){
     const source = 'https://cdn.discordapp.com/attachments/900594253850349568/963634922017423360/Avatar.png'
     return(
+        <>
+        {(props.login === 'true')?
         <div className="RightSideBar">
-           <HeaderChat Username='Ansellma Putri' />
+           <HeaderChat />
            <hr className="hrRightSlideBar" />
            <div className="container-chat">
                 <Chat source={source} alt='photo-profil' nama='Joko Santo' lastChat='Yaudah 550k deh' notification='200' />
@@ -30,6 +32,12 @@ function RightSlideBar(){
                 <Chat source={source} alt='photo-profil' nama='Joko Santo' lastChat='Yaudah 550k deh' notification='3' />
            </div>
         </div>
+    : 
+    <div>
+    
+    </div>   
+    }
+    </>
     );
 }
 

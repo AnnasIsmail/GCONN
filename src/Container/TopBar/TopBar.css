@@ -5,7 +5,7 @@
     width: 75vw;
     height: 80px;
     margin: auto;
-    overflow: hidden;
+    /* overflow: hidden; */
     display: flex;
     justify-content: space-between;
 }

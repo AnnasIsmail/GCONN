@@ -1,9 +1,10 @@
 import $ from 'jquery';
 import React from 'react';
+import NavbarAfterLogin from '../../Component/NavbarAfterLogin/NavbarAfterLogin';
 import NavbarBeforeLogin from '../../Component/NavbarBeforeLogin/NavbarBeforeLogin';
 import './LeftSideBar.css';
 
-function LeftSideBar(){
+function LeftSideBar(props){
 
     React.useEffect(function(){
         let hrNav =  $('.hrNavbar');
@@ -35,7 +36,11 @@ function LeftSideBar(){
 
     return(
     <div className='LeftSideBar' id='LeftSideBar'>
+        {(props.login === 'true')?
+        <NavbarAfterLogin />
+        :
         <NavbarBeforeLogin />
+        }
     </div>
     );
 }

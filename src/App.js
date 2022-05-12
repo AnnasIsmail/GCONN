@@ -9,10 +9,10 @@ function App() {
 
   return (
     <div className="App">
-      <TopBar page='market' login='false' />
-      <MainContainer additionalClass='sign-in-main-container'/>
-      <LeftSideBar />
-      <RightSlideBar />
+      <MainContainer additionalClass='market-main-container'/>
+      <TopBar page='home-top-bar' login='true' />
+      <LeftSideBar login='true' />
+      <RightSlideBar login='true' />
     </div>
   );
 }

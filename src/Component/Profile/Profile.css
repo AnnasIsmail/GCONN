@@ -32,16 +32,24 @@
     font-size: 40px;
 }
 
-.profile div{
+.profile div:nth-child(2){
     display: flex;
     align-items: center;
     gap: 5px;
 }
 
-.profile div div{
+.profile span div :nth-child(1){
     width: 15px;
     height: 15px;
     background-color: #00D709;
     color: #00D709;
     border-radius: 50%;
+}
+
+.profile .ui.dropdown>.dropdown.icon:before{
+    display: none;
+}
+
+.ui.dropdown .menu {
+    width: 254px !important;
 }

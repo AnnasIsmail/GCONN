@@ -1,6 +1,6 @@
 import React from "react";
-import { Button, Card } from 'react-bootstrap';
-import { Icon } from 'semantic-ui-react';
+import { Card } from 'react-bootstrap';
+import { Button, Icon } from 'semantic-ui-react';
 import './Produk.css';
 
 function Produk(props){
@@ -12,9 +12,24 @@ function Produk(props){
                 <Card.Title>{props.header}</Card.Title>
                 <Card.Text>{props.price}</Card.Text>
                 <div className="button-container">
-                    <Button variant="primary"><Icon name="favorite" /></Button>
-                    <Button variant="primary"><Icon name="chat" /></Button>
-                    <Button variant="primary"><Icon name="share alternate" /></Button>
+                <Button animated='vertical'>
+                    <Button.Content hidden>Favorite</Button.Content>
+                    <Button.Content visible>
+                        <Icon name='favorite' />
+                    </Button.Content>
+                </Button>
+                <Button animated='vertical'>
+                    <Button.Content hidden>Chat</Button.Content>
+                    <Button.Content visible>
+                        <Icon name='chat' />
+                    </Button.Content>
+                </Button>
+                <Button animated='vertical'>
+                    <Button.Content hidden>Share</Button.Content>
+                    <Button.Content visible>
+                        <Icon name='share alternate' />
+                    </Button.Content>
+                </Button>
                 </div>
             </Card.Body>
         </Card>
