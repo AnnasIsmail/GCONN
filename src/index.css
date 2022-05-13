@@ -28,7 +28,7 @@ body {
             user-select: none; 
 }
 
-h1,h2,h3,h4,h5,h6,p,b,a{
+h1,h2,h3,h4,h5,h6,p,b,a,div{
   font-family: 'Poppins' !important;
 }
 

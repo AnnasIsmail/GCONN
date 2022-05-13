@@ -20,7 +20,7 @@ function ProdukContainer(props){
                 firstItem={null}
                 lastItem={null}
                 siblingRange={1}
-                totalPages={10}
+                totalPages={3}
                 onPageChange={function(event, value){console.log(value.activePage); }}
             />
             

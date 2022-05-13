@@ -1,0 +1,20 @@
+.header-my-store{
+
+}
+
+.header-my-store :nth-child(1) img{
+    border-radius: 50%;
+    padding-bottom: 10px;
+    width: 200px;
+}
+
+.header-my-store .content{
+    color: white !important;
+    font-size: 30px;
+}
+
+.header-my-store span{
+    color: white !important;
+    font-size: 20px;
+    font-weight: 400;
+}

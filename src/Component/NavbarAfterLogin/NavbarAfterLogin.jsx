@@ -18,10 +18,10 @@ function NavbarBeforeLogin(){
             </span>
             <div className='main'>
                 <div ><HomeIcon diKlik="false" /> <h3>Home</h3></div>
-                <div className='klik'><MarketIcon diKlik="true" /> <h3>Market</h3></div>
+                <div><MarketIcon diKlik="false" /> <h3>Market</h3></div>
                 <div><StarIcon diKlik="false" /> <h3>Favourite</h3></div>
                 <hr className='hrNavbar' />
-                <div><StoreIcon diKlik="false" /> <h3>My Store</h3></div>
+                <div className='klik'><StoreIcon diKlik="true" /> <h3>My Store</h3></div>
             </div>
         </div>
     );

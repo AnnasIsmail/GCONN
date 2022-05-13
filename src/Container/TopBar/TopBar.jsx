@@ -14,6 +14,10 @@ function TopBar(props){
             <div className="top-bar">
                 <SayHello Username="Anselma Putri" /><Profile Username="Anselma Putri" /> 
             </div>
+            :(props.page === 'market-top-bar')?
+            <div className="top-bar">
+                <SearchTextField /><Profile Username="Anselma Putri" />  
+            </div>
             :
             <div className="top-bar">
                 

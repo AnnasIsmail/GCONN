@@ -9,8 +9,8 @@ function App() {
 
   return (
     <div className="App">
-      <MainContainer additionalClass='market-main-container'/>
-      <TopBar page='home-top-bar' login='true' />
+      <MainContainer additionalClass='my-store-main-container'/>
+      <TopBar page='market-top-bar' login='true' />
       <LeftSideBar login='true' />
       <RightSlideBar login='true' />
     </div>

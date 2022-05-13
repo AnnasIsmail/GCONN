@@ -22,9 +22,16 @@ function Profile(props){
                 <Dropdown.Header icon="user" content="Profile" />
                 <Dropdown.Divider />
                 <Dropdown.Item  icon="edit" text="Edit Profile" description="2 new" />
-                <Dropdown.Item  icon="setting" text="Settings" description="2 new" />
+                <Dropdown.Item  icon="bell" text="Notification" description="2 new" />
+                <Dropdown.Item  icon="favorite" text="Favorite" description="2 new" />
                 <Dropdown.Divider />
-                <Dropdown.Item  icon="sign-out alternate" text="Sign Out" description="2 new" />
+                <Dropdown.Header icon="tag" content="Seller" />
+                <Dropdown.Divider />
+                <Dropdown.Item  icon="edit" text="Edit Seller Profile" description="2 new" />
+                <Dropdown.Item  icon="bell" text="Notification" description="2 new" />
+                <Dropdown.Divider />
+                <Dropdown.Item  icon="setting" text="Settings" />
+                <Dropdown.Item  icon="sign-out alternate" text="Sign Out" />
                 </Dropdown.Menu>
             </Dropdown>
     );

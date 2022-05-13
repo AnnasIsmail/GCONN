@@ -46,6 +46,4 @@
     grid-template-columns: repeat(auto-fit, 250px);
     gap: 10px;
     padding: 20px 0;
-    max-height: calc(100% - 140px);
-    overflow: auto;
 }

@@ -21,7 +21,12 @@
 .market-main-container{
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: 60px calc(100% - 140px);
+    grid-template-rows: 60px calc(100vh - 160px);
+}
+
+.container-market-main-container{
+    display: grid;
+    overflow: auto;
 }
 
 .sign-in-main-container , .sign-up-main-container{
@@ -36,3 +41,4 @@
     grid-template-rows: 50% 1fr;
     gap: 50px;
 }
+
