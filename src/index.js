@@ -11,8 +11,8 @@ const root = createRoot(container);
 root.render(  
     <BrowserRouter>
         <Routes>
-            <Route path='/' element={<App />} />
-            <Route path='/coba' element={<App />} />
+            <Route path='/' element={<App login='true' page='home' />} />
+            <Route path='/market' element={<App login='true' page='market' />} />
         </Routes>
         
     </BrowserRouter>

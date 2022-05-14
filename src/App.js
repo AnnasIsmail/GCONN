@@ -9,10 +9,10 @@ function App(props) {
 
   return (
     <div className="App">
-      <MainContainer additionalClass='sign-up-main-container'/>
-      <TopBar page='sign-in-top-bar' login='true' />
-      <LeftSideBar login='true' />
-      <RightSlideBar login='true' />
+      <MainContainer additionalClass={`${props.page}-main-container`}/>
+      <TopBar page={`${props.page}-top-bar`} login={props.login} />
+      <LeftSideBar login={props.login} />
+      <RightSlideBar login={props.login} />
     </div>
   );
 }
