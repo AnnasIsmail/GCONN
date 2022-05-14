@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import HomeIcon from '../../image/icon/home';
 import MarketIcon from '../../image/icon/market';
 import StarIcon from '../../image/icon/star';
@@ -17,7 +18,7 @@ function NavbarBeforeLogin(){
                 </span>
             </span>
             <div className='main'>
-                <div ><HomeIcon diKlik="false" /> <h3>Home</h3></div>
+                <Link className="link" to="/coba"><HomeIcon diKlik="false" /> <h3>Home</h3></Link>
                 <div><MarketIcon diKlik="false" /> <h3>Market</h3></div>
                 <div><StarIcon diKlik="false" /> <h3>Favourite</h3></div>
                 <hr className='hrNavbar' />

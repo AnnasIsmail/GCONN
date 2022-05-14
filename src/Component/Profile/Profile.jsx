@@ -25,7 +25,7 @@ function Profile(props){
                 <Dropdown.Item  icon="bell" text="Notification" description="2 new" />
                 <Dropdown.Item  icon="favorite" text="Favorite" description="2 new" />
                 <Dropdown.Divider />
-                <Dropdown.Header icon="tag" content="Seller" />
+                <Dropdown.Header icon="shopping bag" content="Seller" />
                 <Dropdown.Divider />
                 <Dropdown.Item  icon="edit" text="Edit Seller Profile" description="2 new" />
                 <Dropdown.Item  icon="bell" text="Notification" description="2 new" />

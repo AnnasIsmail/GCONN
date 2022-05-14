@@ -36,7 +36,7 @@
     row-gap: 30px;
 }
 
-.navbar .main div{
+.navbar .main .link{
     color: white;
     display: grid;
     grid-template-columns: 20% 100px;
@@ -45,13 +45,14 @@
     font-size: 23px;
     column-gap: 30px;
     padding-left: 20px;
+    text-decoration: none;
 }
 
-.navbar .main div img{
+.navbar .main .link img{
     width: 40px;
 }
 
-.navbar .main div h3{
+.navbar .main .link h3{
     margin: 0;
     font-weight: 400;
     font-size: 20px;
@@ -59,7 +60,7 @@
     width: fit-content;
 }
 
-.navbar .main div:hover{
+.navbar .main .link:hover{
     cursor: pointer;
 }
 
