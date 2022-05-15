@@ -5,7 +5,7 @@ import signUpFill from './svg file/Sign_Up_fill.svg';
 function SignUpIcon(props){
     let ret = <img src={signUp} alt='Sign-Up-Icon' />
 
-    if(props.diKlik === "true"){
+    if(props.diKlik){
         ret = <img src={signUpFill} alt='Sign-Up-Icon' />
     }
     return(

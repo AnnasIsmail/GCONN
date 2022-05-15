@@ -7,7 +7,7 @@ function RightSlideBar(props){
     const source = 'https://cdn.discordapp.com/attachments/900594253850349568/963634922017423360/Avatar.png'
     return(
         <>
-        {(props.login === 'true')?
+        {(props.login)?
         <div className="RightSideBar">
            <HeaderChat />
            <hr className="hrRightSlideBar" />

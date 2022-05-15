@@ -5,7 +5,7 @@ import store from './svg file/Store.svg';
 function StoreIcon(props){
     let ret = <img src={store} alt='Store-Icon' />
 
-    if(props.diKlik === "true"){
+    if(props.diKlik){
         ret = <img src={storeFill} alt='Store-Icon' />
     }
     return(

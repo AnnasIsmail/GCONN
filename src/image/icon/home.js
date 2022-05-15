@@ -4,7 +4,7 @@ import homeFill from './svg file/Home_fill.svg';
 
 function HomeIcon(props){
     let ret = <img src={home} alt='Home-Icon' />
-    if(props.diKlik === "true"){
+    if(props.diKlik){
         ret = <img src={homeFill} alt='Home-Icon' />
     }
     return(

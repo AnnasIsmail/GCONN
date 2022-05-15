@@ -5,7 +5,7 @@ import loginFill from './svg file/Log_In_fill.svg';
 function LogInIcon(props){
     let ret = <img src={login} alt='Login-Icon' />
 
-    if(props.diKlik === "true"){
+    if(props.diKlik){
         ret = <img src={loginFill} alt='Login-Icon' />
         
     }
