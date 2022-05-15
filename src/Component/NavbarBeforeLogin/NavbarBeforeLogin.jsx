@@ -1,4 +1,6 @@
 import React from 'react';
+import { findDOMNode } from 'react-dom';
+import { Link } from "react-router-dom";
 import HomeIcon from '../../image/icon/home';
 import LogInIcon from '../../image/icon/logIn';
 import MarketIcon from '../../image/icon/market';
@@ -8,6 +10,9 @@ import './NavbarBeforeLogin.css';
 
 function NavbarBeforeLogin(){
 
+    function diklik(e){
+        console.log(findDOMNode(e.parent));
+    }
     return(
         <div id='navbar' className='navbar'>
             <div className='logo-gconn-before-navbar'>
@@ -18,11 +23,11 @@ function NavbarBeforeLogin(){
                 </span>
             </div>
             <div className='main'>
-                <div ><HomeIcon diKlik={false} /> <h3>Home</h3></div>
-                <div><MarketIcon diKlik={false} /> <h3>Market</h3></div>
+                <Link className="link" to="/" onClick={diklik}><HomeIcon diKlik={false} /> <h3>Home</h3></Link>
+                <Link className="link" to="/market"><MarketIcon diKlik={false} /> <h3>Market</h3></Link>
                 <hr className='hrNavbar' />
-                <div ><LogInIcon diKlik={false} /> <h3>Sign In</h3></div>
-                <div className='klik'><SignUpIcon diKlik="true" /> <h3>Sign Up</h3></div>
+                <Link className="link" to="/sign-in" ><LogInIcon diKlik={false} /> <h3>Sign In</h3></Link>
+                <Link className="link" to="/sign-up" ><SignUpIcon diKlik={false} /> <h3>Sign Up</h3></Link>
             </div>
         </div>
     );

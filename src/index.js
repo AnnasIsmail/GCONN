@@ -11,8 +11,12 @@ const root = createRoot(container);
 root.render(  
     <BrowserRouter>
         <Routes>
-            <Route path='/' element={<App login={true} page='home' />} />
-            <Route path='/market' element={<App login={true} page='market' />} />
+            <Route path='/' element={<App login={false} page='home' />} />
+            <Route path='/market' element={<App login={false} page='market' />} />
+            <Route path='/favorite' element={<App login={false} page='favorite' />} />
+            <Route path='/mystore' element={<App login={false} page='my-store' />} />
+            <Route path='sign-in' element={<App login={false} page='sign-in' />} />
+            <Route path='sign-up' element={<App login={false} page='sign-up' />} />
         </Routes>
         
     </BrowserRouter>

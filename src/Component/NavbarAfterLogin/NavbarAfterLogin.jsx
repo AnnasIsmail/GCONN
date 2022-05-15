@@ -18,7 +18,7 @@ function NavbarBeforeLogin(){
                 </span>
             </span>
             <div className='main'>
-                <Link className="link" to="/" ><HomeIcon diKlik={false} /> <h3>Home</h3></Link>
+                <Link className="link" to="/"><HomeIcon diKlik={false} /> <h3>Home</h3></Link>
                 <Link className="link" to='/market' ><MarketIcon diKlik={false} /> <h3>Market</h3></Link>
                 <Link className="link" to='/favorite' ><StarIcon diKlik={false} /> <h3>Favourite</h3></Link>
                 <hr className='hrNavbar' />
