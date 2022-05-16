@@ -11,7 +11,7 @@ function App(props) {
     <div className="App">
       <MainContainer additionalClass={`${props.page}-main-container`}/>
       <TopBar page={`${props.page}-top-bar`} login={props.login} />
-      <LeftSideBar login={props.login} />
+      <LeftSideBar login={props.login} page={props.page}/>
       <RightSlideBar login={props.login} />
     </div>
   );

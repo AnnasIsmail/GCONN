@@ -36,10 +36,10 @@
     row-gap: 30px;
 }
 
-.navbar .main div{
+.navbar .main .link{
     color: white;
     display: grid;
-    grid-template-columns: 20% 100px;
+    grid-template-columns: auto 100px;
     justify-content: center;
     align-items: center;
     font-size: 23px;
@@ -47,19 +47,19 @@
     padding-left: 20px;
 }
 
-.navbar .main div img{
+.navbar .main .link img{
     width: 40px;
 }
 
-.navbar .main div h3{
+.navbar .main .link h3{
     margin: 0;
     font-weight: 400;
-    font-size: 20px;
+    font-size: 22px;
     margin-top: 5px;
     width: fit-content;
 }
 
-.navbar .main div:hover{
+.navbar .main .link:hover{
     cursor: pointer;
 }
 
@@ -73,7 +73,7 @@
     overflow: hidden;
 }
 
-.navbar .main .klik h3{
-    font-weight: 700;
+.klik {
+    font-weight: 700 !important;
 }
 

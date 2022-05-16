@@ -37,9 +37,9 @@ function LeftSideBar(props){
     return(
     <div className='LeftSideBar' id='LeftSideBar'>
         {(props.login)?
-        <NavbarAfterLogin />
+        <NavbarAfterLogin page={props.page} />
         :
-        <NavbarBeforeLogin />
+        <NavbarBeforeLogin page={props.page} />
         }
     </div>
     );

@@ -36,7 +36,7 @@
     row-gap: 30px;
 }
 
-.navbar .main .link{
+/* .navbar .main .link{
     color: white;
     display: grid;
     grid-template-columns: 20% 100px;
@@ -50,7 +50,7 @@
 
 .navbar .main .link img{
     width: 40px;
-}
+} */
 
 .navbar .main .link h3{
     margin: 0;
