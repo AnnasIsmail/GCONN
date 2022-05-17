@@ -1,6 +1,6 @@
 import React from "react";
 import { Dropdown, Input, Label } from 'semantic-ui-react';
-import FilterIcon from "../../image/icon/Filter";
+import AdvanceFilterContainer from "../../Container/AdvanceFilterContainer/AdvanceFilterContainer";
 import './Filter.css';
 
 const game = [
@@ -44,10 +44,7 @@ function Filter(){
                 <label htmlFor="game" >SORT BY</label>
                 <Dropdown className="dropdown-filter" onChange={function(event, {value}){console.log(value); }} clearable options={sort} selection placeholder="Not Be Sorting" />
             </div>
-            <div className="advance-filter">
-                <FilterIcon />
-                <label>Advance Filter</label>
-            </div>
+            <AdvanceFilterContainer />
         </div>
     );
 }

@@ -1,0 +1,9 @@
+.advance-filter .menu{
+    display: none;
+}
+
+.advance-filter .tab{
+    margin: 0;
+    border: none;
+    box-shadow: none;
+}

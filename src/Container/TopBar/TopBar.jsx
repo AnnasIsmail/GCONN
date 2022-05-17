@@ -18,6 +18,10 @@ function TopBar(props){
             <div className="top-bar">
                 <SearchTextField /><Profile Username="Anselma Putri" />  
             </div>
+            :(props.page === 'my-profile-top-bar')?
+            <div className="top-bar">
+                <div></div> <Profile Username="Anselma Putri" />  
+            </div>
             :
             <div className="top-bar">
                 

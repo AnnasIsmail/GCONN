@@ -1,0 +1,24 @@
+.modal{
+    color: black !important;
+}
+
+.modal .modal-header{
+    padding: 5px 15px;
+    border: none;
+}
+
+.modal .modal-header h1{
+    text-align: center;
+    width: 100%;
+    font-size: 30px;
+    margin: 0;
+}
+
+.modal .modal-body{
+     
+}
+
+.modal .modal-footer{
+    border: none;
+
+}

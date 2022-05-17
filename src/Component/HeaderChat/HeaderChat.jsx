@@ -18,11 +18,17 @@ function HeaderChat(props){
                 ButtonClosedChat.removeClass('ButtonChatOpen');
                 ButtonClosedChat.addClass('ButtonChatClosed');
                 RightSideBar.animate({'right':'-330px'},500);
+                RightSideBar.clearQueue();
+                ButtonClosedChat.clearQueue();
+                hrRightSideBar.clearQueue();
             }else{
                 hrRightSideBar.animate({'width':'365px'},500);
                 RightSideBar.animate({'right':'10px'},500);
                 ButtonClosedChat.removeClass('ButtonChatClosed');
                 ButtonClosedChat.addClass('ButtonChatOpen');
+                RightSideBar.clearQueue();
+                ButtonClosedChat.clearQueue();
+                hrRightSideBar.clearQueue();
             }
         });
     });
