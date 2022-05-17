@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { Dropdown } from 'semantic-ui-react';
 import ArrowDown from '../../image/icon/svg file/arrow_down.svg';
 import photoAnsel from '../../image/image ansell.png';
@@ -21,7 +22,8 @@ function Profile(props){
                 <Dropdown.Menu>
                 <Dropdown.Header icon="user" content="Profile" />
                 <Dropdown.Divider />
-                <Dropdown.Item  icon="edit" text="Edit Profile" description="2 new" />
+                <Dropdown.Item  icon="edit" text="Edit Profile" description="2 new" onClick={()=>document.getElementById('linkToMyProfile').click()} />
+                <Link id='linkToMyProfile' to='/myprofile'></Link>
                 <Dropdown.Item  icon="bell" text="Notification" description="2 new" />
                 <Dropdown.Item  icon="favorite" text="Favorite" description="2 new" />
                 <Dropdown.Divider />
