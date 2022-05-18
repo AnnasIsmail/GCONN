@@ -7,6 +7,17 @@
     border: none;
 }
 
+.modal-90w{
+    max-width: 80% !important;
+    min-width: 80% !important;
+}
+
+.modal-content{
+    width: 80% !important;
+    min-width: 920px !important;
+    margin: auto;
+}
+
 .modal .modal-header h1{
     text-align: center;
     width: 100%;
@@ -15,10 +26,10 @@
 }
 
 .modal .modal-body{
-     
+     display: grid;
 }
 
 .modal .modal-footer{
     border: none;
-
+    
 }

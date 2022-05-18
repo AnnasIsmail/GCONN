@@ -30,11 +30,8 @@ function AdvanceFilterContainer(){
           <AdvanceFilter />
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            Close
-          </Button>
           <Button variant="primary" onClick={handleClose}>
-            Save Changes
+            Show Result
           </Button>
         </Modal.Footer>
       </Modal>
