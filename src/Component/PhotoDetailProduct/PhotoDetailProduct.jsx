@@ -6,14 +6,17 @@ import coba3 from "./assets/coba3.png";
 import './PhotoDetailProduct.css';
 
 function PhotoDetailProduct(){
-    const source = [coba1 , coba2 , coba3];
+    const sourceImage = [coba1 , coba2 , coba3];
+    const sourcePreview = React.useState(source[1])
     const [visible , setVisible] = React.useState(false);
     return(
         <div className="photo-detail-product">
-            <Transition visible={visible} animation='fly up' duration={300}>
-              <Image size='small' src={coba1} />
-          </Transition>
-            <button onClick={()=>setVisible(true)}>klik</button>
+            <Transition visible={true} animation='fly up' duration={300}>
+                <Image size='small' src={coba1} />
+            </Transition>
+            <div className="container-photo-detail-produk">
+                {sourceImage.map}
+            </div>
         </div>
     )
 }

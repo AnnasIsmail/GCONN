@@ -5,6 +5,7 @@ import PhotoCarousel from '../../Component/PhotoCarousel/PhotoCarousel';
 import SignIn from "../../Component/SignIn/SignIn";
 import SignUp from "../../Component/SignUp/SignUp";
 import AvailableGameContainer from '../AvailableGameContainer/AvailableGameContainer';
+import DetailProductContainer from "../DetailProductContainer/DetailProductContainer";
 import MyProfileContainer from "../MyProfileContainer/MyProfileContainer";
 import MyStoreContainer from "../MyStoreContainer/MyStoreContainer";
 import ProdukContainer from "../ProdukContainer/ProdukContainer";
@@ -40,6 +41,10 @@ function MainContainer(props){
             : (props.additionalClass === 'my-store-main-container')?
             <div className={`main-container ${props.additionalClass}`}>
                 <MyStoreContainer />
+            </div>
+            :(props.additionalClass === 'detail-produk-main-container')?
+            <div className={`main-container ${props.additionalClass}`}>
+                <DetailProductContainer />
             </div>
             :(props.additionalClass === 'my-profile-main-container')?
             <div className={`main-container ${props.additionalClass}`}>
