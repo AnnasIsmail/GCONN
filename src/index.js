@@ -16,6 +16,8 @@ root.render(
             <Route path='/favorite' element={<App login={true} page='favorite' />} />
             <Route path='/mystore' element={<App login={true} page='my-store' />} />
             <Route path='/myprofile' element={<App login={true} page='my-profile' />} />
+            <Route path='/choosegamesell' element={<App login={true} page='choose-game-sell' />} />
+            <Route path='/choosegamesell/:game' element={<App login={true} page='sell-account' />} />
             <Route path='sign-in' element={<App login={true} page='sign-in' />} />
             <Route path='sign-up' element={<App login={true} page='sign-up' />} />
         </Routes>

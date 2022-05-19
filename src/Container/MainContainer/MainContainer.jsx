@@ -1,4 +1,5 @@
 import React from "react";
+import ChooseGameSell from "../../Component/ChooseGameSell/ChooseGameSell";
 import Filter from "../../Component/Filter/Filter";
 import PhotoCarousel from '../../Component/PhotoCarousel/PhotoCarousel';
 import SignIn from "../../Component/SignIn/SignIn";
@@ -7,6 +8,7 @@ import AvailableGameContainer from '../AvailableGameContainer/AvailableGameConta
 import MyProfileContainer from "../MyProfileContainer/MyProfileContainer";
 import MyStoreContainer from "../MyStoreContainer/MyStoreContainer";
 import ProdukContainer from "../ProdukContainer/ProdukContainer";
+import SellAccountContainer from "../SellAccountContainer/SellAccountContainer";
 import UpdateGameContainer from "../UpdateGameContainer/UpdateGameContainer";
 import './MainContainer.css';
 
@@ -42,6 +44,14 @@ function MainContainer(props){
             :(props.additionalClass === 'my-profile-main-container')?
             <div className={`main-container ${props.additionalClass}`}>
                 <MyProfileContainer />
+            </div>
+            :(props.additionalClass === 'choose-game-sell-main-container')?
+            <div className={`main-container ${props.additionalClass}`}>
+                <ChooseGameSell />
+            </div>
+            :(props.additionalClass === 'sell-account-main-container')?
+            <div className={`main-container ${props.additionalClass}`}>
+                <SellAccountContainer />
             </div>
             :(props.additionalClass === 'sign-in-main-container')?
             <div className={`main-container ${props.additionalClass}`}>

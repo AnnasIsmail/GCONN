@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { Dropdown } from 'semantic-ui-react';
 import ArrowDown from '../../image/icon/svg file/arrow_down.svg';
 import photoAnsel from '../../image/image ansell.png';
@@ -16,22 +16,27 @@ function Profile(props){
             <img src={ArrowDown} alt="" />
         </div>
     )
+        
+    const navigasi = useNavigate();
+    
+    const NavigateTo =(to)=>{
+        navigasi(to)
+    }
+
 
     return(
             <Dropdown className='noselect' trigger={profileContainer} >
                 <Dropdown.Menu>
                 <Dropdown.Header icon="user" content="Profile" />
                 <Dropdown.Divider />
-                <Dropdown.Item  icon="edit" text="Edit Profile" description="2 new" onClick={()=>document.getElementById('linkToMyProfile').click()} />
-                <Link id='linkToMyProfile' to='/myprofile'></Link>
+                <Dropdown.Item  icon="edit" text="Edit Profile" description="2 new" onClick={()=>NavigateTo('/myprofile')} />
                 <Dropdown.Item  icon="bell" text="Notification" description="2 new" />
                 <Dropdown.Divider />
                 <Dropdown.Header icon="shopping bag" content="Seller" />
                 <Dropdown.Divider />
-                <Dropdown.Item  icon="edit" text="Edit Seller Profile" description="2 new" onClick={()=>document.getElementById('linkToMyStore').click()} />
-                <Link id='linkToMyStore' to='/mystore'></Link>
+                <Dropdown.Item  icon="edit" text="Edit Seller Profile" description="2 new" onClick={()=>NavigateTo('/mystore')} />
                 <Dropdown.Item  icon="bell" text="Notification" description="2 new" />
-                <Dropdown.Item  icon="tag" text="Sell Account" description="2 new" />
+                <Dropdown.Item  icon="tag" text="Sell Account" description="2 new" onClick={()=>NavigateTo('/choosegamesell')} />
                 <Dropdown.Divider />
                 <Dropdown.Header icon="bullhorn" content="Status" />
                 <Dropdown.Divider />

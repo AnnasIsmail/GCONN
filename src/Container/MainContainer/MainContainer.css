@@ -42,3 +42,12 @@
     gap: 50px;
 }
 
+.choose-game-sell-main-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.sell-account-main-container{
+    text-align: center;
+}
