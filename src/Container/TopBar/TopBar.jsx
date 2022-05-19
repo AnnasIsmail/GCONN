@@ -10,7 +10,7 @@ function TopBar(props){
         <div>
         {
         (props.login)?
-            (props.page ==='home-top-bar')?
+            (props.page ==='home-top-bar' || props.page ==='sell-account-top-bar')?
             <div className="top-bar">
                 <SayHello Username="Anselma Putri" /><Profile Username="Anselma Putri" /> 
             </div>

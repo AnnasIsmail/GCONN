@@ -1,0 +1,18 @@
+.sell-account-main-container .container-submit-button{
+    display: flex;
+    justify-content:space-around;
+    gap: 15px;
+}
+
+.sell-account-main-container .container-submit-button .btn{
+    padding: 5px 35px;
+    font-size: 20px;
+    border-radius: 50px;
+    font-weight: 600;
+    width: 15vw;
+    min-width: 150px;
+}
+
+.sell-account-main-container h1{
+    text-align: center;
+}

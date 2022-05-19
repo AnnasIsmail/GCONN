@@ -1,0 +1,47 @@
+.single-column{
+    display: grid;
+}
+
+.double-column{
+    display: grid;
+    grid-template-columns: 49% 49%;
+    gap: 10px;
+    justify-content: space-around;
+}
+
+.sell-account-valorant .right , .sell-account-valorant .left{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.sell-account-valorant .dropdown-size .dropdown , .sell-account-valorant .input{
+    width: 100% !important;
+}
+
+.sell-account-valorant .ui.dropdown>.dropdown.icon:before {
+    right: 10px;
+    position: absolute
+}
+
+.sell-account-valorant .segment{
+    display: grid;
+}
+
+.container-image-sell-account-valorant{
+    display: flex !important;
+    overflow: auto;
+    gap: 10px;
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.container-image-sell-account-valorant .image{
+    width: calc(60%/2) !important;
+    border-radius: 5px;
+}
+
+.container-image-sell-account-valorant .icon{
+    cursor: pointer !important;
+}

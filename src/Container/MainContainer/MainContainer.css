@@ -49,5 +49,12 @@
 }
 
 .sell-account-main-container{
-    text-align: center;
+    background: linear-gradient(18deg, rgba(28,52,173,0.23012955182072825) 0%, rgba(28,52,173,1) 100%);
+    border-radius: 15px;
+    padding: 10px 15px;
+    bottom: auto !important;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    overflow: visible;
 }

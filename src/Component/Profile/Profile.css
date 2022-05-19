@@ -46,8 +46,8 @@
     border-radius: 50%;
 }
 
-.profile .ui.dropdown>.dropdown.icon:before{
-    display: none;
+.top-bar .ui.dropdown>.dropdown.icon:before{
+    display: none !important; 
 }
 
 .ui.dropdown .menu {
