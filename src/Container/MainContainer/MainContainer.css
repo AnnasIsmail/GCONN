@@ -58,3 +58,12 @@
     gap: 20px;
     overflow: visible;
 }
+
+.detail-produk-main-container{
+    background: linear-gradient(18deg, rgba(28,52,173,0.23012955182072825) 0%, rgba(28,52,173,1) 100%);
+    display: grid;
+    grid-template-columns: 55% 1fr;
+    gap: 10px;
+    padding: 20px;
+    border-radius: 15px;
+}

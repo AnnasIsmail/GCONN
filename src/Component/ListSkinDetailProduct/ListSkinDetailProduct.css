@@ -1,0 +1,29 @@
+.list-skin-detail-product {
+    margin-top: 20px;
+}
+
+.list-skin-detail-product h4{
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.list-skin-detail-product a{
+    text-decoration: none;
+}
+
+.container-list-skin-detail-product{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px , 1fr));
+    justify-content: space-evenly;
+    gap: 10px;
+}
+
+.container-list-skin-detail-product .label{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+}
+
+.ui.label:last-child , .ui.label:first-child{
+    margin: 0 .14285714em !important;
+}

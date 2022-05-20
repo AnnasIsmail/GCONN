@@ -1,8 +1,30 @@
 .photo-detail-product{
+    overflow: hidden;
+    /* background-color: aqua; */
+}
 
+.photo-detail-product img{
+    border-radius: 10px;
+}
+
+.container-control-container-photo-detail-product{
+    display: grid;
+    grid-template-columns: auto auto auto;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.container-control-container-photo-detail-product .left{
+    margin-top: 5px;
+}
+
+.container-control-container-photo-detail-product .right{
+    margin-bottom: 5px;
 }
 
 .container-photo-detail-product{
     display: flex;
     flex-direction: row;
+    gap: 7px;
+    overflow: hidden;
 }
