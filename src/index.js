@@ -13,6 +13,7 @@ root.render(
         <Routes>
             <Route path='/' element={<App login={true} page='home' />} />
             <Route path='/market' element={<App login={true} page='market' />} />
+            <Route path='/detailproduk' element={<App login={true} page='detail-produk' />} />
             <Route path='/favorite' element={<App login={true} page='favorite' />} />
             <Route path='/mystore' element={<App login={true} page='my-store' />} />
             <Route path='/myprofile' element={<App login={true} page='my-profile' />} />

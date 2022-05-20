@@ -7,15 +7,17 @@ import './PhotoDetailProduct.css';
 
 function PhotoDetailProduct(){
     const sourceImage = [coba1 , coba2 , coba3];
-    const sourcePreview = React.useState(source[1])
+    const [sourcePreview , setSourcePreview]  = React.useState(sourceImage[1])
     const [visible , setVisible] = React.useState(false);
     return(
         <div className="photo-detail-product">
             <Transition visible={true} animation='fly up' duration={300}>
-                <Image size='small' src={coba1} />
+                <Image size='big' src={sourcePreview} />
             </Transition>
-            <div className="container-photo-detail-produk">
-                {sourceImage.map}
+            <div className="container-photo-detail-product">
+                {sourceImage.map((src , index)=>{
+                    return(<Image key={index} src={src} size='small' onClick={()=>setSourcePreview(src)} />)
+                })}
             </div>
         </div>
     )

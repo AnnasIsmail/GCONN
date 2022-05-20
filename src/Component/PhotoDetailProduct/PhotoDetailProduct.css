@@ -1,0 +1,8 @@
+.photo-detail-product{
+
+}
+
+.container-photo-detail-product{
+    display: flex;
+    flex-direction: row;
+}

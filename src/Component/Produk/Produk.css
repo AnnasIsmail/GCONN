@@ -1,27 +1,39 @@
-.produk {
-    cursor: pointer;
-}
 
 .produk .card{
     background-color: #1C34AD !important;
-    border-radius: 10px;
+    border-radius: 10px 10px 0 0 ;
     width: auto !important;
+    cursor: pointer;
 }
 
-.produk .card-title{
+.produk .card-body{
+    padding: 10px 10px 0 10px ;
+}
+
+.produk .card-text{
     height: 42px;
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
+    white-space: wrap;
+    word-break: break-all;
+    margin-bottom: 5px;
 }
 
-.produk .card .button-container{
+.produk .card-title{
+    margin-bottom: 10px;
+}
+
+.produk .button-container{
     display: flex;
     justify-content: space-around;
+    background-color: #1C34AD !important;
+    border-radius: 0 0 10px 10px ;
+    padding: 0 10px 10px 10px ;
 }
 
-.produk .card .button-container .btn :nth-child(1){
+.produk .button-container .btn :nth-child(1){
     margin: 0 !important;
 }
