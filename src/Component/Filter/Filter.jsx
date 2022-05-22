@@ -22,7 +22,7 @@ function Filter(){
         <div className="filter">
             <div>
                 <label htmlFor="game" >GAME</label>
-                <Dropdown className="dropdown-filter" onChange={function(event, {value}){console.log(value); }} clearable options={game} selection placeholder="All Game" />
+                <Dropdown className="dropdown-filter" clearable options={game} selection placeholder="All Game" />
             </div>
             <div>
                 <label htmlFor="minimum-price">MINIMUM PRICE</label>

@@ -16,29 +16,34 @@ function Produk(props){
             <Card.Img variant="top" src={props.src} />
             <Card.Body>
                 <Card.Text>{props.header}</Card.Text>
-                <Card.Title>{props.price}</Card.Title>
+                <Card.Subtitle>Valorant</Card.Subtitle>
+                <Card.Title>Rp.{props.price}.00</Card.Title>
             </Card.Body>
         </Card>
+            {(props.footer === false)?
+            <></>
+            :
                 <div className="button-container">
                     <Button animated='vertical' onClick={()=>console.log('masuk BUT')}>
                         <Button.Content hidden>Favorite</Button.Content>
                         <Button.Content visible>
-                            <Icon name='favorite' />
+                            <Icon inverted color='grey' name='favorite' />
                         </Button.Content>
                     </Button>
                     <Button animated='vertical'>
                         <Button.Content hidden>Chat</Button.Content>
                         <Button.Content visible>
-                            <Icon name='chat' />
+                            <Icon inverted color='grey' name='chat' />
                         </Button.Content>
                     </Button>
                     <Button animated='vertical'>
                         <Button.Content hidden>Share</Button.Content>
                         <Button.Content visible>
-                            <Icon name='share alternate' />
+                            <Icon inverted color='grey' name='share alternate' />
                         </Button.Content>
                     </Button>
                 </div>
+            }
              </div>
     );
 }

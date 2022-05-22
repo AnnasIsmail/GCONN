@@ -16,12 +16,14 @@
     grid-template-columns: 70% 1fr;
     grid-template-rows: 50% 1fr;
     gap: 20px;
+    min-width: 860px;
 }
 
 .market-main-container{
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: 60px calc(100vh - 160px);
+    min-width: 1100px;
 }
 
 .container-market-main-container{
@@ -43,6 +45,7 @@
 }
 
 .choose-game-sell-main-container{
+    top: 0;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -59,11 +62,16 @@
     overflow: visible;
 }
 
-.detail-produk-main-container{
+.detail-product-main-container{
     background: linear-gradient(18deg, rgba(28,52,173,0.23012955182072825) 0%, rgba(28,52,173,1) 100%);
-    display: grid;
-    grid-template-columns: 55% 1fr;
-    gap: 10px;
     padding: 20px;
     border-radius: 15px;
+    display: grid;
+    justify-content: space-evenly;
+    grid-template-rows: auto auto;
+    gap: 20px;
+}
+
+.payment-main-container{
+    padding: 20px;
 }

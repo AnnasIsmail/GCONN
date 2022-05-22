@@ -1,4 +1,5 @@
 import React from "react";
+import CloseButton from 'react-bootstrap/CloseButton';
 import { Button, Dropdown, Header, Image, Input, Segment } from 'semantic-ui-react';
 import DropdownSkinValorant from "../DropdownSkinValorant/DropdownSkinValorant";
 import coba1 from "./assets/coba1.png";
@@ -63,21 +64,18 @@ function SellAccountPUBG(){
                             {/* <Icon name='pdf file outline' />
                             No documents are listed for this customer. */}
                         <div className="container-image-sell-account-valorant">
-                        <Image
-                                fluid
-                                label={{ as: 'a', corner: 'right', icon: 'close' }}
-                                src={coba1}
-                            />
-                            <Image
-                                fluid
-                                label={{ as: 'a', corner: 'right', icon: 'close' }}
-                                src={coba2}
-                            />
-                            <Image
-                                fluid
-                                label={{ as: 'a', corner: 'right', icon: 'close' }}
-                                src={coba3}
-                            />
+                            <span>
+                                <Image src={coba1} />
+                                <CloseButton aria-label="Hide" />
+                            </span>
+                            <span>
+                                <Image src={coba2} />
+                                <CloseButton aria-label="Hide" />
+                            </span>
+                            <span>
+                                <Image src={coba3} />
+                                <CloseButton aria-label="Hide" />
+                            </span>
                         </div>
                             </Header>
                             <Button primary>Add Document</Button>

@@ -1,0 +1,3 @@
+.content-detail-product-container .list-skin-detail-product .agent{
+    grid-template-columns: repeat(auto-fit, minmax(150px , 1fr));
+}

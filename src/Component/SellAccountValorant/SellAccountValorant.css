@@ -19,6 +19,10 @@
     width: 100% !important;
 }
 
+.sell-account-valorant .dropdown-size .dropdown .clear{
+    width: 22px !important;
+}
+
 .sell-account-valorant .ui.dropdown>.dropdown.icon:before {
     right: 10px;
     position: absolute
@@ -38,10 +42,18 @@
 }
 
 .container-image-sell-account-valorant .image{
-    width: calc(60%/2) !important;
     border-radius: 5px;
 }
 
-.container-image-sell-account-valorant .icon{
+.container-image-sell-account-valorant span{ 
+    width: calc(60%/2) !important;
     cursor: pointer !important;
+    display: grid;
+    width: fit-content;
+}
+
+.container-image-sell-account-valorant span .btn-close{
+    position: absolute;
+    background-color: aliceblue;
+    border-radius: 7px;
 }

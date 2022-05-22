@@ -2,7 +2,9 @@ body {
   margin: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: rgba(0, 7, 43, 1);
+  /* background-color: rgba(0, 7, 43, 1); */
+  /* background-image: linear-gradient(to bottom, #102973, #04235f, #001c4b, #001538, #010a26); */
+  background-image: url('background.svg');
   margin: 0;
   padding: 0;
   font-family: 'Poppins' !important;

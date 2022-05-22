@@ -14,7 +14,7 @@ function TopBar(props){
             <div className="top-bar">
                 <SayHello Username="Anselma Putri" /><Profile Username="Anselma Putri" /> 
             </div>
-            :(props.page === 'market-top-bar' || props.page === 'favorite-top-bar' || props.page === 'my-store-top-bar' || props.page === 'detail-produk-top-bar')?
+            :(props.page === 'market-top-bar' || props.page === 'favorite-top-bar' || props.page === 'my-store-top-bar' || props.page === 'detail-produk-top-bar' || props.page === 'detail-product-top-bar' || props.page === 'payment-top-bar')?
             <div className="top-bar">
                 <SearchTextField /><Profile Username="Anselma Putri" />  
             </div>

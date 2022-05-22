@@ -8,6 +8,7 @@ import AvailableGameContainer from '../AvailableGameContainer/AvailableGameConta
 import DetailProductContainer from "../DetailProductContainer/DetailProductContainer";
 import MyProfileContainer from "../MyProfileContainer/MyProfileContainer";
 import MyStoreContainer from "../MyStoreContainer/MyStoreContainer";
+import PaymentContainer from "../PaymentContainer/PaymentContainer";
 import ProdukContainer from "../ProdukContainer/ProdukContainer";
 import SellAccountContainer from "../SellAccountContainer/SellAccountContainer";
 import UpdateGameContainer from "../UpdateGameContainer/UpdateGameContainer";
@@ -28,8 +29,6 @@ function MainContainer(props){
                 <Filter />
                 <div className="container-market-main-container">
                     <ProdukContainer name='Valorant' />
-                    <ProdukContainer name='Valorant' />
-                    <ProdukContainer name='Valorant' />
                 </div>
             </div>
             : (props.additionalClass === 'favorite-main-container')?
@@ -42,9 +41,13 @@ function MainContainer(props){
             <div className={`main-container ${props.additionalClass}`}>
                 <MyStoreContainer />
             </div>
-            :(props.additionalClass === 'detail-produk-main-container')?
+            :(props.additionalClass === 'detail-product-main-container')?
             <div className={`main-container ${props.additionalClass}`}>
                 <DetailProductContainer />
+            </div>
+            :(props.additionalClass === 'payment-main-container')?
+            <div className={`main-container ${props.additionalClass}`}>
+                <PaymentContainer />
             </div>
             :(props.additionalClass === 'my-profile-main-container')?
             <div className={`main-container ${props.additionalClass}`}>

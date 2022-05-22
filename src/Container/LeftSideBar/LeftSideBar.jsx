@@ -12,18 +12,20 @@ function LeftSideBar(props){
         let LeftSideBar = $("#LeftSideBar");
 
         LeftSideBar.hover(function(){
-            $(this).animate({'width': '220px'}, 300);
-            hrNav.animate({'width': '170px'}, 300);
+            $(this).animate({'width': '200px'}, 300);
+            hrNav.animate({'width': '160px'}, 300);
+            $(this).clearQueue();
+            hrNav.clearQueue();
         },function(){
-            $(this).animate({'width': '80px'}, 300);
-            hrNav.animate({'width': '45px'}, 300);
+            $(this).animate({'width': '60px'}, 300);
+            hrNav.animate({'width': '30px'}, 300);
             $(this).clearQueue();
             hrNav.clearQueue();
         });
 
         LeftSideBar.mouseleave(function(){
-            $(this).animate({'width': '80px'}, 300);
-            hrNav.animate({'width': '45px'}, 300);
+            $(this).animate({'width': '60px'}, 300);
+            hrNav.animate({'width': '30px'}, 300);
             $(this).clearQueue();
             hrNav.clearQueue();
         });

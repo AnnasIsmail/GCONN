@@ -24,6 +24,6 @@
     align-items: center;
 }
 
-.ui.label:last-child , .ui.label:first-child{
+.container-list-skin-detail-product .ui.label:last-child , .container-list-skin-detail-product .ui.label:first-child{
     margin: 0 .14285714em !important;
 }

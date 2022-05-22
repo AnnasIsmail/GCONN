@@ -1,7 +1,11 @@
 .LeftSideBar{
-    background: linear-gradient(18deg, rgba(28,52,173,0.23012955182072825) 0%, rgba(28,52,173,1) 100%);
+    background: rgba( 28, 52, 173, 0.8 );
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    backdrop-filter: blur( 18px );
+    -webkit-backdrop-filter: blur( 18px );
+    border-radius: 10px;
     position: fixed;
-    width: 80px;
+    width: 60px;
     overflow: hidden;
     top: 10px;
     bottom: 10px;

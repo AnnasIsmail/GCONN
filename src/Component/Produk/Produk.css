@@ -11,7 +11,7 @@
 }
 
 .produk .card-text{
-    height: 42px;
+    height: 38px;
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
@@ -20,10 +20,20 @@
     white-space: wrap;
     word-break: break-all;
     margin-bottom: 5px;
+    font-size: 16px;
+    font-weight: 450;
+    line-height: 1.2;
 }
 
 .produk .card-title{
     margin-bottom: 10px;
+    font-weight: 600;
+    font-size: 19px;
+}
+
+.produk .card-subtitle{
+    font-weight: 300;
+    padding: 2px 0 7px 0;
 }
 
 .produk .button-container{
@@ -36,4 +46,13 @@
 
 .produk .button-container .btn :nth-child(1){
     margin: 0 !important;
+}
+
+.produk .button-container .button{
+    background-color: #2444E3;
+    color: #DCDDDE;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    width: 70px;
+  /* background: rgba(28, 52, 173, 0.77); */
+  z-index: inherit;
 }

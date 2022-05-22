@@ -1,0 +1,55 @@
+.payment-container{
+    background: linear-gradient(18deg, rgba(28,52,173,0.23012955182072825) 0%, rgba(28,52,173,1) 100%);
+    border-radius: 15px;
+    padding: 10px 20px 20px 20px;
+    max-width: 500px;
+    margin: auto;
+}
+
+.payment-container .header{
+    text-align: center;
+}
+
+.payment-container .content-payment-container{
+    margin-top: 25px;
+    display: flex;
+    flex-direction: column;
+}
+
+.content-payment-container .card{
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.content-payment-container .card img{
+    border-radius: 10px;
+}
+
+.content-payment-container .card-body{
+    padding: 10px 0 0 0 ;
+}
+
+.payment-container .content-payment-container h6{
+    margin-top: 30px;
+}
+
+.payment-container .content-payment-container .input , .payment-container .content-payment-container .dropdown{
+    width: 100% !important;
+}
+
+.payment-container .content-payment-container .icon{
+    width: 22px !important;
+}
+
+.payment-container .content-payment-container .ui.dropdown>.dropdown.icon:before {
+    right: 10px;
+    position: absolute
+}
+
+.payment-container .content-payment-container .fade{
+    margin-top: 20px;
+    opacity: 1;
+    height: 45px;
+    background-color: #1935C2;
+    color: #DCDDDE;
+}

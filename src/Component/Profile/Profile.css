@@ -47,9 +47,11 @@
 }
 
 .top-bar .ui.dropdown>.dropdown.icon:before{
-    display: none !important; 
+    display: none !important;
 }
 
-.ui.dropdown .menu {
+.top-bar .ui.dropdown .menu {
     width: 254px !important;
+    z-index: 20;
+    position: absolute !important;
 }
