@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import { Dropdown } from 'semantic-ui-react';
+import { Dropdown, Icon } from 'semantic-ui-react';
 import ArrowDown from '../../image/icon/svg file/arrow_down.svg';
 import photoAnsel from '../../image/image ansell.png';
 import './Profile.css';
@@ -11,7 +11,7 @@ function Profile(props){
             <img src={photoAnsel} alt="" />
             <span>
                 <h1>{props.Username}</h1>
-                <div><div></div> Online</div>
+                <div className='status'><Icon name="circle" color='green' />Online</div>
             </span>
             <img src={ArrowDown} alt="" />
         </div>

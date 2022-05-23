@@ -25,11 +25,11 @@ function DetailProductContainer(){
                     <div className="descripption">
                         <h3>AKUN MURAH MERIAH butuh uang dan spek laptop tidak memadai</h3>
                         <h2>Rp. 2.000.000.00</h2>
-                        <h5>Email Status: Verifed</h5>
-                        <h5>Region: Asia</h5>
-                        <h5>Change Name Status: Available</h5>
-                        <h5>Total VP: 22.500 VP</h5>
-                        <h5>Rank: Gold 2</h5>
+                        <h5><b>Email Status:</b> Verifed</h5>
+                        <h5><b>Region:</b> Asia</h5>
+                        <h5><b>Change Name Status:</b> Available</h5>
+                        <h5><b>Total VP:</b> 22.500 VP</h5>
+                        <h5><b>Rank:</b> Gold 2</h5>
                         <ListAgentDetailProduct />
                     </div>
                     <div className="button-container">

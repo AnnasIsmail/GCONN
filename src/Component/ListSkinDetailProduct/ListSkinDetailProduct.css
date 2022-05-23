@@ -13,15 +13,18 @@
 
 .container-list-skin-detail-product{
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px , 1fr));
-    justify-content: space-evenly;
+    grid-template-columns: repeat(auto-fit, minmax(150px , 1fr));
+    justify-content: space-between;
     gap: 10px;
 }
 
-.container-list-skin-detail-product .label{
+.content-detail-product-container .list-skin-detail-product .label {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    /* grid-template-columns: 1fr 1fr; */
     align-items: center;
+    justify-content: center;
+    gap: 10px;
+    text-align: center;
 }
 
 .container-list-skin-detail-product .ui.label:last-child , .container-list-skin-detail-product .ui.label:first-child{

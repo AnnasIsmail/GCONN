@@ -63,7 +63,13 @@
 }
 
 .detail-product-main-container{
-    background: linear-gradient(18deg, rgba(28,52,173,0.23012955182072825) 0%, rgba(28,52,173,1) 100%);
+    background: rgba(28, 52, 173, 0.1);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(13.1px);
+    -webkit-backdrop-filter: blur(13.1px);
+    border: 1px solid rgba(28, 52, 173, 0.32);
+
     padding: 20px;
     border-radius: 15px;
     display: grid;

@@ -1,3 +1,9 @@
 .content-detail-product-container .list-skin-detail-product .agent{
-    grid-template-columns: repeat(auto-fit, minmax(150px , 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(120px , 1fr));
+}
+
+.content-detail-product-container .agent .label{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-content: center;
 }
