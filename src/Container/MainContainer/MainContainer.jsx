@@ -34,8 +34,6 @@ function MainContainer(props){
             : (props.additionalClass === 'favorite-main-container')?
             <div className={`main-container ${props.additionalClass}`}>
                     <ProdukContainer name='Valorant' />
-                    <ProdukContainer name='Valorant' />
-                    <ProdukContainer name='Valorant' />
             </div>
             : (props.additionalClass === 'my-store-main-container')?
             <div className={`main-container ${props.additionalClass}`}>

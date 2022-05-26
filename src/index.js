@@ -11,17 +11,17 @@ const root = createRoot(container);
 root.render(  
     <BrowserRouter>
         <Routes>
-            <Route path='/' element={<App login={true} page='home' />} />
-            <Route path='/market' element={<App login={true} page='market' />} />
-            <Route path='/detailproduk' element={<App login={true} page='detail-product' />} />
-            <Route path='/detailproduk/payment' element={<App login={true} page='payment' />} />
-            <Route path='/favorite' element={<App login={true} page='favorite' />} />
-            <Route path='/mystore' element={<App login={true} page='my-store' />} />
-            <Route path='/myprofile' element={<App login={true} page='my-profile' />} />
-            <Route path='/choosegamesell' element={<App login={true} page='choose-game-sell' />} />
-            <Route path='/choosegamesell/:game' element={<App login={true} page='sell-account' />} />
-            <Route path='sign-in' element={<App login={true} page='sign-in' />} />
-            <Route path='sign-up' element={<App login={true} page='sign-up' />} />
+            <Route path='/' element={<App  page='home' />} />
+            <Route path='/market' element={<App  page='market' />} />
+            <Route path='/detailproduk' element={<App  page='detail-product' />} />
+            <Route path='/detailproduk/payment' element={<App  page='payment' />} />
+            <Route path='/favorite' element={<App  page='favorite' />} />
+            <Route path='/mystore' element={<App  page='my-store' />} />
+            <Route path='/myprofile' element={<App  page='my-profile' />} />
+            <Route path='/choosegamesell' element={<App  page='choose-game-sell' />} />
+            <Route path='/choosegamesell/:game' element={<App  page='sell-account' />} />
+            <Route path='sign-in' element={<App page='sign-in' />} />
+            <Route path='sign-up' element={<App  page='sign-up' />} />
         </Routes>
         
     </BrowserRouter>

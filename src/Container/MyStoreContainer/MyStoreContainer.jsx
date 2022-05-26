@@ -1,7 +1,9 @@
 import React from "react";
 import { Tab } from 'semantic-ui-react';
 import HeaderMyStore from "../../Component/HeaderMyStore/HeaderMyStore";
+import OrderCustomerContainer from "../OrderCustomerContainer/OrderCustomerContainer";
 import ProdukContainer from "../ProdukContainer/ProdukContainer";
+import ReviewCustomerContainer from "../ReviewCustomerContainer/ReviewCustomerContainer";
 import image from './assets/1.png';
 import './MyStoreContainer.css';
 
@@ -13,17 +15,19 @@ function MyStoreContainer(){
                   render: () =>                 
                   <div className="container-my-store-main-container">
                     <ProdukContainer name='Valorant' />
-                    <ProdukContainer name='Valorant' />
-                    <ProdukContainer name='Valorant' />
                 </div>,
                 },
                 {
                   menuItem: 'Order Customer',
-                  render: () => <Tab.Pane attached={false}>Tab 2 Content</Tab.Pane>,
+                  render: () => 
+                  <OrderCustomerContainer />
+                  ,
                 },
                 {
                   menuItem: 'Review Customer',
-                  render: () => <Tab.Pane attached={false}>Tab 3 Content</Tab.Pane>,
+                  render: () => 
+                  <ReviewCustomerContainer />
+                  ,
                 },
               ]
 

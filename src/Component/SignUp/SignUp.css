@@ -10,6 +10,11 @@
 
 .sign-up Form{
     background: linear-gradient(18deg, rgba(28,52,173,0.23012955182072825) 0%, rgba(28,52,173,1) 100%);
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    backdrop-filter: blur( 20px );
+    -webkit-backdrop-filter: blur( 20px );
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+
     padding: 20px 30px;
     border-radius: 20px;
     display: grid;
@@ -66,6 +71,7 @@
     border-radius: 0 12px 12px 0 !important;
     display: grid;
     align-items: center;
+    background-color: #2444E3;
 }
 
 .sign-up .label :nth-child(1){
@@ -79,7 +85,23 @@
     justify-content: space-around;
 }
 
-.sign-up .container-button-sign-up :nth-child(1){
+.sign-up .container-button-sign-up .button{
     margin: 0;
     font-size: 18px;
+    font-weight: 600;
+    font-family: 'Poppins' !important;
+    color: #DCDDDE;
+    background-color: #2444E3;
+}
+
+.sign-up .ui.basic.red.label{
+    /* margin-top: 0 !important; */
+    display:inline-block !important;
+    border-radius: 5px !important;
+    font-weight: 500;
+    height: 28px;
+}
+
+.sign-up .ui.form .field{
+    margin-bottom: 0;
 }

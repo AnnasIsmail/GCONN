@@ -1,13 +1,23 @@
 .payment-container{
-    background: linear-gradient(18deg, rgba(28,52,173,0.23012955182072825) 0%, rgba(28,52,173,1) 100%);
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(13.1px);
+    -webkit-backdrop-filter: blur(13.1px);
+    border: 1px solid rgba(28, 52, 173, 0.32);
+
     border-radius: 15px;
     padding: 10px 20px 20px 20px;
-    max-width: 500px;
+    max-width: 600px;
     margin: auto;
 }
 
 .payment-container .header{
     text-align: center;
+    margin: 0;
+    height: 40px;
+    font-size: 35px;
+    font-weight: 600;
 }
 
 .payment-container .content-payment-container{

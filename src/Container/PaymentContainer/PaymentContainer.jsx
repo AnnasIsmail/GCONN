@@ -29,7 +29,7 @@ function PaymentContainer(){
             <div className="content-payment-container">
                     {/* <PhotoDetailProduct /> */}
                     {/* <h3>AKUN MURAH MERIAH butuh uang dan spek laptop tidak memadai</h3> */}
-                    <Produk src={gambarValorant} header='AKUN MURAH MERIAH butuh uang dan spek laptop tidak memadai' price='Rp.650.000.00' footer={false} />
+                    <Produk src={gambarValorant} header='AKUN MURAH MERIAH butuh uang dan spek laptop tidak memadai' price='650.000' footer={false} />
 
                     <h6>Choose Payment Type</h6>
                     <Dropdown clearable options={PaymentType} onChange={getPaymentMethod} selection placeholder="None" />

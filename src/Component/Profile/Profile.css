@@ -46,7 +46,14 @@
 }
 
 .top-bar .ui.dropdown .menu {
+    background: rgba(255, 255, 255, 0.7);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(13.1px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid rgba(28, 52, 173, 0.32);
+
     width: 254px !important;
     z-index: 20;
     position: absolute !important;
+    margin-top: 4px;
 }
