@@ -12,7 +12,6 @@ function ProdukContainer(props){
         .then((response) => response.json())
         .then((res)=>{
             account = res
-            console.log(account);
             load();
         });
     },[]);
@@ -21,7 +20,7 @@ function ProdukContainer(props){
     function load(){
         setContent(
         account.map((data , index)=>{
-            return <Produk src={data.photo[0]} header={data.header} price='650.000' />
+            return <Produk key={index} src={data.photo[0]} header={data.header} price={data.price} id={data.id} />
         })
         );
     }

@@ -13,8 +13,8 @@ root.render(
         <Routes>
             <Route path='/' element={<App  page='home' />} />
             <Route path='/market' element={<App  page='market' />} />
-            <Route path='/detailproduk' element={<App  page='detail-product' />} />
-            <Route path='/detailproduk/payment' element={<App  page='payment' />} />
+            <Route path='/detailproduk:id' element={<App  page='detail-product' />} />
+            <Route path='/detailproduk:id/payment' element={<App  page='payment' />} />
             <Route path='/favorite' element={<App  page='favorite' />} />
             <Route path='/mystore' element={<App  page='my-store' />} />
             <Route path='/myprofile' element={<App  page='my-profile' />} />

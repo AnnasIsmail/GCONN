@@ -63,12 +63,11 @@
 }
 
 .detail-product-main-container{
-    background: rgba(255, 255, 255, 0.15);
-    border-radius: 16px;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(13.1px);
-    -webkit-backdrop-filter: blur(13.1px);
-    border: 1px solid rgba(28, 52, 173, 0.32);
+    background: linear-gradient(18deg, rgba(28,52,173,0.23012955182072825) 0%, rgba(28,52,173,1) 100%);
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    backdrop-filter: blur( 20px );
+    -webkit-backdrop-filter: blur( 20px );
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
 
     padding: 20px;
     border-radius: 15px;

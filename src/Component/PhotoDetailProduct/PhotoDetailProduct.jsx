@@ -20,7 +20,7 @@ function PhotoDetailProduct(){
             <Carousel activeIndex={index} onSelect={handleSelect} indicators={false} interval={null} >
                 {sourceImage.map((src , index)=>{
                     return(
-                <Carousel.Item>
+                <Carousel.Item key={index}>
                     <img className="d-block w-100" src={src} alt="First slide"/>
                 </Carousel.Item>
                 )})}

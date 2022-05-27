@@ -13,9 +13,26 @@
 
 .container-list-skin-detail-product{
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px , 1fr));
+    /* grid-template-columns: repeat(auto-fit, minmax(150px , 1fr)); */
+    grid-template-columns: 100%;
     justify-content: space-between;
-    gap: 10px;
+    gap: 5px;
+    color: black;
+    overflow: hidden;
+    overflow-y: auto;
+    max-height: 250px;
+    border-radius: 0 0 5px 5px  ;
+}
+
+.list-skin-detail-product .ui.attached.header{
+    background-color: #1935C2;
+    color: #DCDDDE;
+    border: none;
+    font-size: 15px;
+}
+
+.container-list-skin-detail-product img{
+    height: 35px;
 }
 
 .content-detail-product-container .list-skin-detail-product .label {
