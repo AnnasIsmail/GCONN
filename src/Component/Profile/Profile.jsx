@@ -10,7 +10,7 @@ function Profile(props){
         <div className='profile'>
             <img src={photoAnsel} alt="" />
             <span>
-                <h1>{props.Username}</h1>
+                <h1>{localStorage.fullName}</h1>
                 <div className='status'><Icon name="circle" color='green' />Online</div>
             </span>
             <img src={ArrowDown} alt="" />
@@ -45,7 +45,11 @@ function Profile(props){
                 <Dropdown.Item  icon="circle outline" color='red' text="Offline" />
                 <Dropdown.Divider />
                 <Dropdown.Item  icon="setting" text="Settings" />
-                <Dropdown.Item  icon="sign-out alternate" text="Sign Out" />
+                <Dropdown.Item  icon="sign-out alternate" text="Sign Out" onClick={()=>{
+                    localStorage.clear();
+                    NavigateTo('/');
+                    window.location.reload();
+                }} />
                 </Dropdown.Menu>
             </Dropdown>
     );

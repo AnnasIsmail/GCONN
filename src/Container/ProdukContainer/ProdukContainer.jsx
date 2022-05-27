@@ -1,18 +1,34 @@
 import React from "react";
 import Produk from "../../Component/Produk/Produk";
-import gambarValorant from './assets/1.png';
 import './ProdukContainer.css';
 
 function ProdukContainer(props){
+    
+    let account = {};
+    let [content , setContent] = React.useState();
+
+    React.useEffect(()=>{
+        fetch('http://localhost:8000/account')
+        .then((response) => response.json())
+        .then((res)=>{
+            account = res
+            console.log(account);
+            load();
+        });
+    },[]);
+
+    
+    function load(){
+        setContent(
+        account.map((data , index)=>{
+            return <Produk src={data.photo[0]} header={data.header} price='650.000' />
+        })
+        );
+    }
+    
     return(
         <div className="produk-container">
-                <Produk src={gambarValorant} header='AKUN MURAH MERIAH butuh uang dan spek laptop tidak memadai' price='650.000' />
-                <Produk src={gambarValorant} header='AKUN MURAH MERIAH butuh uang dan spek laptop tidak memadai' price='650.000' />
-                <Produk src={gambarValorant} header='AKUN MURAH MERIAH butuh uang dan spek laptop tidak memadai' price='650.000' />
-                <Produk src={gambarValorant} header='AKUN MURAH MERIAH butuh uang dan spek laptop tidak memadai' price='650.000' />
-                <Produk src={gambarValorant} header='AKUN MURAH MERIAH butuh uang dan spek laptop tidak memadai' price='650.000' />
-                <Produk src={gambarValorant} header='AKUN MURAH MERIAH butuh uang dan spek laptop tidak memadai' price='650.000' />
-                <Produk src={gambarValorant} header='AKUN MURAH MERIAH butuh uang dan spek laptop tidak memadai' price='650.000' />
+            {content}
 
             {/* <Pagination
                 defaultActivePage={1}

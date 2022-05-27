@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from 'react-router-dom';
-import { Button, Icon } from 'semantic-ui-react';
+import { Button, Header, Icon, Segment } from 'semantic-ui-react';
 import ListAgentDetailProduct from "../../Component/ListAgentDetailProduct/ListAgentDetailProduct";
 import ListSkinDetailProduct from "../../Component/ListSkinDetailProduct/ListSkinDetailProduct";
 import PhotoDetailProduct from "../../Component/PhotoDetailProduct/PhotoDetailProduct";
@@ -20,6 +20,16 @@ function DetailProductContainer(){
                 <div className="tab-left">
                     <PhotoDetailProduct />
                     <ListSkinDetailProduct />
+                    <Header as='h5' attached='top'>
+                        Dogs
+                        </Header>
+                        <Segment attached>Dogs are one type of animal.</Segment>
+                        <Segment attached>
+                        Cats are thought of as being related to dogs, but only humans think this.
+                        </Segment>
+                        <Segment attached>
+                        Humans don't think of lions as being like cats, but they are.
+                        </Segment>
                 </div>
                 <div className="tab-right">
                     <div className="descripption">
@@ -31,6 +41,8 @@ function DetailProductContainer(){
                         <h5><b>Total VP:</b> 22.500 VP</h5>
                         <h5><b>Rank:</b> Gold 2</h5>
                         <ListAgentDetailProduct />
+
+                        
                     </div>
                     <div className="button-container">
                         <Button animated='vertical' onClick={()=>console.log('masuk BUT')}>

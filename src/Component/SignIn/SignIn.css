@@ -84,3 +84,15 @@
     font-weight: 600;
     font-family: 'Poppins' !important;
 }
+
+.sign-in .ui.basic.red.label{
+    /* margin-top: 0 !important; */
+    display:inline-block !important;
+    border-radius: 5px !important;
+    font-weight: 500;
+    height: 28px;
+}
+
+.sign-in .ui.form .field{
+    margin-bottom: 0;
+}

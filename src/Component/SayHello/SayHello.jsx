@@ -6,7 +6,7 @@ function TopBar(props){
     let dateNow =()=> {
         let date = new Date();
         const month = ['JAN','FEB','MAR','APR','MAY','JUN','JUL','AUG','SEP','OCT','NOV','DES'];
-        setDate(`${date.getDate()} ${month[date.getMonth()]} ${date.getFullYear()}-${date.toLocaleTimeString()}`);
+        setDate(`${date.getDate()} ${month[date.getMonth()]} ${date.getFullYear()} - ${date.toLocaleTimeString()}`);
     }
 
     React.useEffect(()=>{
@@ -18,7 +18,7 @@ function TopBar(props){
     }, 1000);
     return(
         <div className="say-hello">
-            <h1>Hello, {props.Username} </h1>
+            <h1>Hello, {localStorage.fullName} </h1>
             <h3>Date-Time : {date}  </h3>
         </div>
     );

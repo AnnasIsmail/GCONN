@@ -1,10 +1,17 @@
 import React from "react";
+import { useNavigate } from 'react-router-dom';
 import { Button, Form, Icon, Input, Label } from 'semantic-ui-react';
 import './SignIn.css';
 
+let username = "", password = "";
 function SignIn(){
 
-    let username , password;
+    const navigasi = useNavigate();
+    
+    const NavigateTo =(to)=>{
+        navigasi(to)
+    }
+
     let [type , setType] = React.useState('password');
     let [eye , setEye] = React.useState('eye slash');
     
@@ -18,21 +25,63 @@ function SignIn(){
     
     function login(){
         let dataLogin = {}
-
         fetch(`http://localhost:8000/users?username=${username}`)
         .then((response) => response.json())
         .then((json) =>{
             dataLogin = json
             if(dataLogin.length === 1){
-                let PencocokanPassword;
-                dataLogin.map((data)=>PencocokanPassword = data.password)
+                let PencocokanPassword, urlPhoto, id, username, fullName ;
+                dataLogin.map((data)=>{
+                    PencocokanPassword = data.password;
+                    urlPhoto = data.photo;
+                    id = data.id;
+                    username = data.username;
+                    fullName = data.fullName;
+                })
                 if(password === PencocokanPassword){
-                    console.log(true)
+                    localStorage.setItem('login' , true);
+                    localStorage.setItem('userId' , id);
+                    localStorage.setItem('userPhoto' , urlPhoto);
+                    localStorage.setItem('username' , username);
+                    localStorage.setItem('fullName', fullName)
+                    NavigateTo('/')
                 }else{
-                    console.log(false)
+                    setErrorFieldPassword(<Label basic color='red' pointing='below'>
+                        The password you entered is wrong!
+                    </Label>)
                 }
+            }else{
+                setErrorFieldUsername(<Label basic color='red' pointing='below'>
+                    the username you entered is not registered!
+                </Label>)
             }
         });
+    }
+
+    let [errorFieldUsername , setErrorFieldUsername] = React.useState();
+    let [errorFieldPassword , setErrorFieldPassword] = React.useState();
+
+    function blur(e){
+        let error = <Label basic color='red' pointing='below'>
+                        Please enter a value
+                    </Label>
+        if(e.target.name === 'username'){
+            if(username === ""){
+                setErrorFieldUsername(error)
+            }
+        }else if(e.target.name === 'password'){
+            if(password === ""){
+                setErrorFieldPassword(error)
+            }
+        }
+    }
+
+    function focus(e){
+        if(e.target.name === 'username'){
+            setErrorFieldUsername()
+            }else if(e.target.name === 'password'){
+            setErrorFieldPassword()
+        }
     }
 
     return(
@@ -42,10 +91,12 @@ function SignIn(){
                     <h1>Welcome to GCONN !</h1>
                     <h4>Please Sign-in with your account!</h4>
                 </Form.Field>
-                <Form.Field>
+                <Form.Field onBlur={blur} onFocus={focus} >
+                    {errorFieldUsername}
                     <Input name='username' icon='user' onChange={changeValue} iconPosition='left' placeholder='Username' />
                 </Form.Field>
-                <Form.Field>
+                <Form.Field onBlur={blur} onFocus={focus} >
+                    {errorFieldPassword}
                     <Input labelPosition='right' type='text'>
                         <Input type={type} name='password' onChange={changeValue} className="password-sign-in" icon="lock" iconPosition='left' placeholder='Password' />
                         <Label><Icon inverted name={eye} onClick={()=>{setType((type === 'password')? 'text' : 'password');setEye((eye === 'eye slash')? 'eye' : 'eye slash')}} /></Label>

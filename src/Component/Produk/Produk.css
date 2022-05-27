@@ -1,4 +1,8 @@
 
+.produk{
+    max-width: 280px;
+}
+
 .produk .card{
     background-color: #1C34AD !important;
     border-radius: 10px 10px 0 0 ;
@@ -11,7 +15,7 @@
 }
 
 .produk .card-text{
-    height: 38px;
+    height: 40px;
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;

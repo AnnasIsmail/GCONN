@@ -27,6 +27,8 @@
     font-size: 20px;
     width: fit-content;
     margin-bottom: 5px;
+    min-width: 145px;
+    text-transform: capitalize;
 }
 
 .profile h2{
