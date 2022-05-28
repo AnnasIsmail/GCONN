@@ -35,6 +35,15 @@
     height: 35px;
 }
 
+.container-list-skin-detail-product .ui.attached.segment{
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-weight: 500;
+    font-size: 15px;
+    justify-content: space-evenly;
+}
+
 .content-detail-product-container .list-skin-detail-product .label {
     display: grid;
     /* grid-template-columns: 1fr 1fr; */
@@ -47,3 +56,4 @@
 .container-list-skin-detail-product .ui.label:last-child , .container-list-skin-detail-product .ui.label:first-child{
     margin: 0 .14285714em !important;
 }
+

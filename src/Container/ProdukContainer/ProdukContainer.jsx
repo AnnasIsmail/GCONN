@@ -20,7 +20,7 @@ function ProdukContainer(props){
     function load(){
         setContent(
         account.map((data , index)=>{
-            return <Produk key={index} src={data.photo[0]} header={data.header} price={data.price} id={data.id} />
+            return <Produk key={index} src={data.photo[0]} game={data.game} header={data.header} price={data.price} id={data.id} />
         })
         );
     }

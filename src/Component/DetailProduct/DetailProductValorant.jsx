@@ -58,6 +58,7 @@ function DetailProductValorant(props){
                         <h5><b>Total VP:</b> {data.totalVP} VP</h5>
                         <h5><b>Rank:</b> {data.rank}</h5>
                         <h5><b>Level:</b> {data.level}</h5>
+                        <h5><b>Reason to Sell:</b> {data.reason}</h5>
                         <ListAgentDetailProduct data={data.agent} />
                         <ListSkinDetailProduct data={data.skin} />
                     </div>       

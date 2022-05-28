@@ -23,11 +23,11 @@ function DetailProductContainer(){
     },[]);
 
     function load(data){
-        if(data.game === "valorant"){
+        if(data.game === "Valorant"){
             setContent(<DetailProductValorant data={data} />);
-        }else if(data.game === "mobile legend"){
+        }else if(data.game === "Mobile Legend"){
             setContent(<DetailProductMobileLegend data={data}  />)
-        }else if(data.game === "pubg"){
+        }else if(data.game === "PUBG"){
             setContent(<DetailProductPUBG data={data}  />)
         }        
     }

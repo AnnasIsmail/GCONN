@@ -10,7 +10,6 @@ function ListAgentDetailProduct(props){
     React.useEffect(()=>{
         if(agent.length !== props.data.length){
             props.data.map((data , index)=>{
-                            console.log(data)
                 fetch(`https://valorant-api.com/v1/agents/${data}`)
                 .then((response) => response.json())
                 .then((res)=>{
@@ -21,7 +20,6 @@ function ListAgentDetailProduct(props){
                 }).then(()=>{
                     setContent(
                         agent.map((data , index)=>{
-                            console.log(data)
                             return(<Label as='a' key={index}>
                                 <img src={data.displayIconSmall} />
                                 {data.displayName}

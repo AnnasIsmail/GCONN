@@ -1,26 +1,25 @@
 import React from "react";
 import { useNavigate } from 'react-router-dom';
 import { Button, Icon } from 'semantic-ui-react';
-import ListAgentDetailProduct from "../ListAgentDetailProduct/ListAgentDetailProduct";
-import ListSkinDetailProduct from "../ListSkinDetailProduct/ListSkinDetailProduct";
+import ListHeroDetailProduct from "../ListHeroDetailProduct/ListHeroDetailProduct";
 import PhotoDetailProduct from "../PhotoDetailProduct/PhotoDetailProduct";
 import './DetailProduct.css';
 
 
-function DetailProductMobileLegend(){
+function DetailProductMobileLegend(props){
 
     const navigasi = useNavigate();        
     const NavigateTo =(to)=>{
         navigasi(to)
     }
-
+    let data = props.data
 
     return(
         <>
-            <h1 className="header">Valorant Account</h1>
+            <h1 className="header">Mobile Legend Account</h1>
             <div className="content-detail-product-container">
                 <div className="tab-left">
-                    <PhotoDetailProduct />
+                    <PhotoDetailProduct data={data.photo} />
                     <div className="button-container">
                         <Button animated='vertical' onClick={()=>console.log('masuk BUT')}>
                             <Button.Content hidden>Favorite</Button.Content>
@@ -50,15 +49,16 @@ function DetailProductMobileLegend(){
                 </div>
                 <div className="tab-right">
                     <div className="descripption">
-                        <h3>AKUN MURAH MERIAH butuh uang dan spek laptop tidak memadai</h3>
-                        <h2>Rp. 2.000.000.00</h2>
-                        <h5><b>Email Status:</b> Verifed</h5>
-                        <h5><b>Region:</b> Asia</h5>
+                        <h3>{data.header}</h3>
+                        <h2>Rp. {data.price}.00</h2>
+                        <h5><b>Devices:</b> {data.device}</h5>
+                        <h5><b>CN/CF:</b> {data.CNCF}</h5>
                         <h5><b>Change Name Status:</b> Available</h5>
-                        <h5><b>Total VP:</b> 22.500 VP</h5>
-                        <h5><b>Rank:</b> Gold 2</h5>
-                        <ListAgentDetailProduct />
-                         <ListSkinDetailProduct />
+                        <h5><b>Hero Count:</b> {data.heroCount}</h5>
+                        <h5><b>Level:</b> {data.level}</h5>
+                        <h5><b>Rank:</b> {data.rank}</h5>
+                        <h5><b>Reason to Sell:</b> {data.reason}</h5>
+                        <ListHeroDetailProduct />
                     </div>       
                 </div>
             </div>

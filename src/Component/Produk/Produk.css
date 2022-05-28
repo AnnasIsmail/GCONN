@@ -3,6 +3,10 @@
     max-width: 280px;
 }
 
+.produk .foto-produk{
+    height: 157px;
+}
+
 .produk .card{
     background-color: #1C34AD !important;
     border-radius: 10px 10px 0 0 ;
@@ -12,10 +16,11 @@
 
 .produk .card-body{
     padding: 10px 10px 0 10px ;
+    height: 111px;
 }
 
 .produk .card-text{
-    height: 40px;
+    min-height: 25px;
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
@@ -33,6 +38,7 @@
     margin-bottom: 10px;
     font-weight: 600;
     font-size: 19px;
+    text-transform: capitalize;
 }
 
 .produk .card-subtitle{
