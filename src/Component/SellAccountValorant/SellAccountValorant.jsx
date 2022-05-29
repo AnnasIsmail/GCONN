@@ -46,42 +46,86 @@ function SellAccountValorant(){
           { key: "RADIANT", text: "RADIANT", value: "RADIANT"},
       ]
 
+      let inputTitle = "", inputEmailStatus = "", inputRegion = "", inputRank = "", inputLevel = "", inputBattlepass = "",inputTotalVP = "", inputChangeNameStatus = "", inputPrice = "", inputReason = "", inputPhoto = [], inputSkin = [];
+
+      function changeValue(e, name){
+        let value = e.target.value;
+        
+        console.log(e)
+
+        if(name === ''){
+
+        }else if(name === ''){
+
+        }else if(name === ''){
+
+        }else if(name === ''){
+
+        }else if(name === ''){
+
+        }else if(name === ''){
+
+        }else if(name === ''){
+
+        }else if(name === ''){
+
+        }else if(name === ''){
+
+        }else if(name === ''){
+
+        }else if(name === ''){
+
+        }else if(name === ''){
+
+        }else if(name === ''){
+
+        }
+      }
+
+      function getData(data){
+        console.log(data)
+      }
+
+      function uploadImage(e){
+        console.log(e.target.files)
+      }
+      
     return(
         <div className="sell-account-valorant double-column">
             <div className="left">
                 <div>
                     <h6>Title</h6>
-                    <Input placeholder='Title Product' />
+                    <Input placeholder='Title Product' onChange={(e)=>changeValue(e, 'header')}/>
                 </div>
                 <div className="double-column dropdown-size">
                     <div>
                         <h6>Email Status</h6>
-                        <Dropdown clearable options={emailStatus} selection placeholder="None" />
+                        <Dropdown clearable options={emailStatus} selection placeholder="None" onChange={(e)=>changeValue(e, 'email-status')}/>
                     </div>
                     <div>
                         <h6>Region</h6>
-                        <Dropdown clearable options={chooseRegion} selection placeholder="None" />
+                        <Dropdown clearable options={chooseRegion} selection placeholder="None" onChange={(e)=>changeValue(e, 'region')} />
                     </div>
                 </div>
                 <div className="double-column dropdown-size">
                     <div>
                         <h6>Rank</h6>
-                        <Dropdown clearable options={rank} selection placeholder="None" />
+                        <Dropdown clearable options={rank} selection placeholder="None" onChange={(e)=>changeValue(e, 'rank')} />
                     </div>
                     <div>
                         <h6>Level</h6>
-                        <Input placeholder='Level Account' type="number" />
+                        <Input placeholder='Level Account' type="number" onChange={(e)=>changeValue(e, 'level')} />
                     </div>
                 </div>
                 <div className="double-column dropdown-size">
                     <div>
                         <h6>Battlepass</h6>
-                        <Input placeholder='Battlepass' />
+                        <Input placeholder='Battlepass' onChange={(e)=>changeValue(e, 'battlepass')} />
                     </div>
                     <div className="format">
                         <h6>Total VP</h6>
                         <Input labelPosition='right' type='text' placeholder='Total VP'>
-                            <input type="number" name="Total-VP" />
+                            <input type="number" name="Total-VP" onChange={(e)=>changeValue(e, 'total-vp')} />
                             <Label>VP</Label>
                         </Input>
                     </div>
@@ -89,13 +133,13 @@ function SellAccountValorant(){
                 <div className="double-column dropdown-size">
                     <div>
                         <h6>Change Name Status</h6>
-                        <Dropdown clearable options={changeName} selection placeholder="None" />
+                        <Dropdown clearable options={changeName} selection placeholder="None" onChange={(e)=>changeValue(e, 'change-name-status')} />
                     </div>
                     <div className="format">
                         <h6>Price</h6>
                         <Input labelPosition='right' type='text' placeholder='Price'>
                             <Label basic>Rp.</Label>
-                            <input type="number" name="price" />
+                            <input type="number" name="price" onChange={(e)=>changeValue(e, 'price')} />
                             <Label>.00</Label>
                         </Input>
                     </div>
@@ -104,14 +148,14 @@ function SellAccountValorant(){
             <div className="right">
                 <div>
                     <h6>Reason to Sell</h6>
-                    <Input placeholder='Reason to Sell Product' />
+                    <Input placeholder='Reason to Sell Product' onChange={(e)=>changeValue(e, 'reason')} />
                 </div>
                 <div>
                     <h6>Add Image</h6>
                     <div>
                         <Segment>
                             <Header icon>
-                            <Icon name='pdf file outline' />
+                            <Icon name='image outline' />
                             No image are listed for this customer.
                             {/* <div className="container-image-sell-account-valorant">
                                 <span>
@@ -128,13 +172,15 @@ function SellAccountValorant(){
                                 </span>
                             </div> */}
                             </Header>
-                            <Button primary>Add Document</Button>
+                            <Button primary>
+                                <input type="file" accept="image/*" onChange={uploadImage} multiple/>
+                            </Button>
                         </Segment>
                     </div>
                 </div>
                 <div>
                     <h6>Your Account Skin</h6>
-                    <DropdownSkinValorant game='Valorant' />
+                    <DropdownSkinValorant game='Valorant' dataSelect={getData} />
                 </div>
             </div>
         </div>

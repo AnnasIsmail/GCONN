@@ -20,7 +20,6 @@ class DropdownSkinPUBG extends Component {
       this.setState({
         options : addArray 
       })
-      console.log(options)
     })
   }
 

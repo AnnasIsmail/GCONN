@@ -91,7 +91,7 @@ function SellAccountPUBG(){
                     <div>
                         <Segment>
                             <Header icon>
-                            {/* <Icon name='pdf file outline' />
+                            {/* <Icon name='image outline' />
                             No image are listed for this customer. */}
                         <div className="container-image-sell-account-valorant">
                             <span>

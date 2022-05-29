@@ -20,7 +20,6 @@ componentDidMount(){
     this.setState({
       options : addArray 
     })
-    console.log(options)
   })
 }
 
@@ -31,6 +30,10 @@ componentDidMount(){
   }
 
   handleChange = (e, { value }) => this.setState({ currentValues: value })
+
+  sendData =(e , {value})=>{
+    this.props.dataSelect(value)
+  }
 
   render() {
     const { currentValues } = this.state
@@ -45,7 +48,10 @@ componentDidMount(){
         multiple
         
         onAddItem={this.handleAddition}
-        onChange={this.handleChange}
+        onChange={(e,{ value })=>{
+          this.handleChange(e,{ value });
+          this.sendData(e, {value});
+        }}
       />
     )
   }
