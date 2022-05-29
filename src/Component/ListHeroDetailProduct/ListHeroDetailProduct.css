@@ -3,7 +3,7 @@
     background-color: #1935C2;
     color: #DCDDDE;
     border: none;
-    font-size: 15px;
+    font-size: 20px;
 }
 
 .list-hero-detail-product .ui.input{
@@ -33,7 +33,9 @@
 
 .list-hero-detail-product .ui.menu .item{
     padding: 5px 10px ;
-    background-color: #b0afaf85;
+    /* background-color: #b0afaf85; */
     width: 100%;
+    text-align: center;
     font-weight: 500;
 }
+

@@ -60,7 +60,7 @@ function DetailProductValorant(props){
                         <h5><b>Level:</b> {data.level}</h5>
                         <h5><b>Reason to Sell:</b> {data.reason}</h5>
                         <ListAgentDetailProduct data={data.agent} />
-                        <ListSkinDetailProduct data={data.skin} />
+                        <ListSkinDetailProduct data={data.skin} game={data.game} />
                     </div>       
                 </div>
             </div>

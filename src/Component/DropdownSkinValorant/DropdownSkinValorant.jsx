@@ -1,17 +1,28 @@
-import React, { Component } from 'react'
-import { Dropdown } from 'semantic-ui-react'
-import './DropdownSkinValorant.css'
+import React, { Component } from 'react';
+import { Dropdown } from 'semantic-ui-react';
+import './DropdownSkinValorant.css';
 
-const options = [
-  { key: 'Vandal Prime', text: 'Vandal Prime', value: 'Vandal Prime' },
-  { key: 'Vandal Reaver', text: 'Vandal Reaver', value: 'Vandal Reaver' },
-  { key: 'Prime Axe', text: 'Prime Axe', value: 'Prime Axe' },
-  { key: 'Phantom Ion', text: 'Phantom Ion', value: 'Phantom Ion' },
-  { key: 'Phantom RGX', text: 'Phantom RGX', value: 'Phantom RGX' },
-]
+let options = [];
 
 class DropdownSkinValorant extends Component {
   state = { options }
+
+componentDidMount(){
+  fetch(`https://valorant-api.com/v1/weapons/skins`)
+  .then((response) => response.json())
+  .then((res)=>{
+    let addArray = [];
+    res.data.map((data , index)=>{
+      let dataPush = {key: data.uuid, text: data.displayName, value:data.displayName}
+      addArray.push(dataPush);
+    })
+    options = addArray;
+    this.setState({
+      options : addArray 
+    })
+    console.log(options)
+  })
+}
 
   handleAddition = (e, { value }) => {
     this.setState((prevState) => ({
@@ -32,7 +43,7 @@ class DropdownSkinValorant extends Component {
         selection
         fluid
         multiple
-        value={currentValues}
+        
         onAddItem={this.handleAddition}
         onChange={this.handleChange}
       />

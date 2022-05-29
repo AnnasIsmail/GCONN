@@ -2,16 +2,28 @@ import React, { Component } from 'react'
 import { Dropdown } from 'semantic-ui-react'
 import './DropdownSkinMobilLegend.css'
 
-const options = [
-  { key: 'Paquito Starlight Skin: Fulgent Punch', text: 'Paquito Starlight Skin: Fulgent Punch', value: 'Paquito Starlight Skin: Fulgent Punch' },
-  { key: 'Benedetta Special Skin: Moon Blade', text: 'Benedetta Special Skin: Moon Blade', value: 'Benedetta Special Skin: Moon Blade' },
-  { key: 'Vale Collector skin: Supernal Tempest', text: 'Vale Collector skin: Supernal Tempest', value: 'Vale Collector skin: Supernal Tempest' },
-  { key: 'Aulus Elite Skin: Barren Pioneer', text: 'Aulus Elite Skin: Barren Pioneer', value: 'Aulus Elite Skin: Barren Pioneer' },
-  { key: 'Bruno 515 skin: Street Hype', text: 'Bruno 515 skin: Street Hype', value: 'Bruno 515 skin: Street Hype' },
-]
+let options = []
+
 
 class DropdownSkinMobilLegend extends Component {
   state = { options }
+
+  componentDidMount(){
+    fetch(`http://localhost:8000/hero`)
+    .then((response) => response.json())
+    .then((res)=>{
+      let addArray = [];
+      res.map((data , index)=>{
+        let dataPush = {key: data.id, text: data.name, value:data.name}
+        addArray.push(dataPush);
+      })
+      options = addArray;
+      this.setState({
+        options : addArray 
+      })
+      console.log(options)
+    })
+  }
 
   handleAddition = (e, { value }) => {
     this.setState((prevState) => ({
@@ -32,7 +44,6 @@ class DropdownSkinMobilLegend extends Component {
         selection
         fluid
         multiple
-        value={currentValues}
         onAddItem={this.handleAddition}
         onChange={this.handleChange}
       />

@@ -1,20 +1,35 @@
 import React from "react";
 import CloseButton from 'react-bootstrap/CloseButton';
-import { Button, Dropdown, Header, Image, Input, Segment } from 'semantic-ui-react';
-import DropdownSkinValorant from "../DropdownSkinValorant/DropdownSkinValorant";
+import { Button, Dropdown, Header, Image, Input, Label, Segment } from 'semantic-ui-react';
+import DropdownSkinMobilLegend from "../DropdownSkinMobilLegend/DropdownSkinMobilLegend";
 import coba1 from "./assets/coba1.png";
 import coba2 from "./assets/coba2.png";
 import coba3 from "./assets/coba3.png";
-import RankMobileLegend from "./assets/Rank Mobile Legend.png";
 import './SellAccountMobileLegend.css';
 
 function SellAccountMobileLegend(){
 
     const androidOrIos = [
-        { key: 1, text: 'Available', value: 1 },
-        { key: 2, text: 'Not Available', value: 1 },
+        { key: "All", text: 'All', value: "All" },
+        { key: "Android", text: 'Android', value: "Android" },
+        { key: "IOS", text: 'IOS', value: "IOS" },
       ]
 
+      const CNCF = [
+        { key: "None", text: 'None', value: "None" },
+        { key: "Available", text: 'Available', value: "Available" },
+        { key: "Not AVailable", text: 'Not Available', value: "Not AVailable" },
+      ]
+
+      const rank = [
+        { key: "Warior", text: "Warior", value: "Warior" },
+        { key: "Elite", text: "Elite", value: "Elite" },
+        { key: "Grandmaster", text: "Grandmaster", value: "Grandmaster" },
+        { key: "Epic", text: "Epic", value: "Epic" },
+        { key: "Legend", text: "Legend", value: "Legend" },
+        { key: "Mythic", text: "Mythic", value: "Mythic" },
+        { key: "Mythical Glory", text: "Mythical Glory", value: "Mythical Glory" },
+      ]
     return(
         <div className="sell-account-valorant double-column">
             <div className="left">
@@ -41,9 +56,13 @@ function SellAccountMobileLegend(){
                         <h6>Hero Count</h6>
                         <Input placeholder='Hero Count' type="number" />
                     </div>
-                    <div>
+                    <div className="format">
                         <h6>Price</h6>
-                        <Input placeholder='Price Product' type="number" />
+                        <Input labelPosition='right' type='text' placeholder='Price'>
+                            <Label basic>Rp.</Label>
+                            <input type="number" name="price" />
+                            <Label>.00</Label>
+                        </Input>
                     </div>
                 </div>
                 <div>
@@ -52,9 +71,15 @@ function SellAccountMobileLegend(){
                 </div>
             </div>
             <div className="right">
-                <div className="rank">
-                    <h6>Rank</h6>
-                    <img src={RankMobileLegend} alt="" />
+                <div className="double-column dropdown-size">
+                    <div>
+                        <h6>Rank</h6>
+                        <Dropdown clearable options={rank} selection placeholder="None" />
+                    </div>
+                    <div>
+                        <h6>Change Flag and Change Name</h6>
+                        <Dropdown clearable options={CNCF} selection placeholder="None" />
+                    </div>
                 </div>
                 <div>
                     <h6>Add Image</h6>
@@ -62,7 +87,7 @@ function SellAccountMobileLegend(){
                         <Segment>
                             <Header icon>
                             {/* <Icon name='pdf file outline' />
-                            No documents are listed for this customer. */}
+                            No image are listed for this customer. */}
                         <div className="container-image-sell-account-valorant">
                             <span>
                                 <Image src={coba1} />
@@ -83,8 +108,8 @@ function SellAccountMobileLegend(){
                     </div>
                 </div>
                 <div>
-                    <h6>Your Account Valorant Skin</h6>
-                    <DropdownSkinValorant  />
+                    <h6>Your Account Hero</h6>
+                    <DropdownSkinMobilLegend />
                 </div>
             </div>
         </div>

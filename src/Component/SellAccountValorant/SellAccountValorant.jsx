@@ -1,29 +1,49 @@
 import React from "react";
-import CloseButton from 'react-bootstrap/CloseButton';
-import { Button, Dropdown, Header, Image, Input, Segment } from 'semantic-ui-react';
+import { Button, Dropdown, Header, Icon, Input, Label, Segment } from 'semantic-ui-react';
 import DropdownSkinValorant from "../DropdownSkinValorant/DropdownSkinValorant";
-import coba1 from "./assets/coba1.png";
-import coba2 from "./assets/coba2.png";
-import coba3 from "./assets/coba3.png";
-import RankValorant from "./assets/Rank Valorant.jpg";
 import './SellAccountValorant.css';
 
 function SellAccountValorant(){
 
     const emailStatus = [
-        { key: 1, text: 'Available', value: 1 },
-        { key: 2, text: 'Not Available', value: 1 },
+        { key: "Available", text: 'Available', value: "Available" },
+        { key: "Not AVailable", text: 'Not Available', value: "Not AVailable" },
       ]
 
       const chooseRegion = [
-        { key: 1, text: 'ASIA', value: 1 },
-        { key: 2, text: 'EROUPA', value: 1 },
-        { key: 3, text: 'USA', value: 1 },
+        { key: "ASIA", text: 'ASIA', value: "ASIA" },
+        { key: "EROUPA", text: 'EROUPA', value: "EROUPA" },
+        { key: "USA", text: 'USA', value: "USA" },
       ]
 
       const changeName = [
-        { key: 1, text: 'Ready', value: 1 },
-        { key: 2, text: 'Not Ready', value: 1 },
+        { key: "Ready", text: 'Ready', value: "Ready" },
+        { key: "Not Ready", text: 'Not Ready', value: "Not Ready" },
+      ]
+
+      const rank = [
+          { key: "IRON 1", text: "IRON 1", value: "IRON 1"},
+          { key: "IRON 2", text: "IRON 2", value: "IRON 2"},
+          { key: "IRON 3", text: "IRON 3", value: "IRON 3"},
+          { key: "BRONZE 1", text: "BRONZE 1", value: "BRONZE 1"},
+          { key: "BRONZE 2", text: "BRONZE 2", value: "BRONZE 2"},
+          { key: "BRONZE 3", text: "BRONZE 3", value: "BRONZE 3"},
+          { key: "SILVER 1", text: "SILVER 1", value: "SILVER 1"},
+          { key: "SILVER 2", text: "SILVER 2", value: "SILVER 2"},
+          { key: "SILVER 3", text: "SILVER 3", value: "SILVER 3"},
+          { key: "GOLD 1", text: "GOLD 1", value: "GOLD 1"},
+          { key: "GOLD 2", text: "GOLD 2", value: "GOLD 2"},
+          { key: "GOLD 3", text: "GOLD 3", value: "GOLD 3"},
+          { key: "PLATINUM 1", text: "PLATINUM 1", value: "PLATINUM 1"},
+          { key: "PLATINUM 2", text: "PLATINUM 2", value: "PLATINUM 2"},
+          { key: "PLATINUM 3", text: "PLATINUM 3", value: "PLATINUM 3"},          
+          { key: "DIAMOND 1", text: "DIAMOND 1", value: "DIAMOND 1"},
+          { key: "DIAMOND 2", text: "DIAMOND 2", value: "DIAMOND 2"},
+          { key: "DIAMOND 3", text: "DIAMOND 3", value: "DIAMOND 3"},
+          { key: "IMMORTAL 1", text: "IMMORTAL 1", value: "IMMORTAL 1"},
+          { key: "IMMORTAL 2", text: "IMMORTAL 2", value: "IMMORTAL 2"},
+          { key: "IMMORTAL 3", text: "IMMORTAL 3", value: "IMMORTAL 3"},
+          { key: "RADIANT", text: "RADIANT", value: "RADIANT"},
       ]
 
     return(
@@ -43,18 +63,41 @@ function SellAccountValorant(){
                         <Dropdown clearable options={chooseRegion} selection placeholder="None" />
                     </div>
                 </div>
-                <div className="rank">
-                    <h6>Rank</h6>
-                    <img src={RankValorant} alt="" />
+                <div className="double-column dropdown-size">
+                    <div>
+                        <h6>Rank</h6>
+                        <Dropdown clearable options={rank} selection placeholder="None" />
+                    </div>
+                    <div>
+                        <h6>Level</h6>
+                        <Input placeholder='Level Account' type="number" />
+                    </div>
+                </div>
+                <div className="double-column dropdown-size">
+                    <div>
+                        <h6>Battlepass</h6>
+                        <Input placeholder='Battlepass' />
+                    </div>
+                    <div className="format">
+                        <h6>Total VP</h6>
+                        <Input labelPosition='right' type='text' placeholder='Total VP'>
+                            <input type="number" name="Total-VP" />
+                            <Label>VP</Label>
+                        </Input>
+                    </div>
                 </div>
                 <div className="double-column dropdown-size">
                     <div>
                         <h6>Change Name Status</h6>
                         <Dropdown clearable options={changeName} selection placeholder="None" />
                     </div>
-                    <div>
+                    <div className="format">
                         <h6>Price</h6>
-                        <Input placeholder='Price Product' type="number" />
+                        <Input labelPosition='right' type='text' placeholder='Price'>
+                            <Label basic>Rp.</Label>
+                            <input type="number" name="price" />
+                            <Label>.00</Label>
+                        </Input>
                     </div>
                 </div>
             </div>
@@ -68,9 +111,9 @@ function SellAccountValorant(){
                     <div>
                         <Segment>
                             <Header icon>
-                            {/* <Icon name='pdf file outline' />
-                            No documents are listed for this customer. */}
-                            <div className="container-image-sell-account-valorant">
+                            <Icon name='pdf file outline' />
+                            No image are listed for this customer.
+                            {/* <div className="container-image-sell-account-valorant">
                                 <span>
                                     <Image src={coba1} />
                                     <CloseButton aria-label="Hide" />
@@ -83,15 +126,15 @@ function SellAccountValorant(){
                                     <Image src={coba3} />
                                     <CloseButton aria-label="Hide" />
                                 </span>
-                            </div>
+                            </div> */}
                             </Header>
                             <Button primary>Add Document</Button>
                         </Segment>
                     </div>
                 </div>
                 <div>
-                    <h6>Your Account Valorant Skin</h6>
-                    <DropdownSkinValorant />
+                    <h6>Your Account Skin</h6>
+                    <DropdownSkinValorant game='Valorant' />
                 </div>
             </div>
         </div>

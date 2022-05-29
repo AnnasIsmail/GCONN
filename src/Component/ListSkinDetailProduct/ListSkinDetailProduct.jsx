@@ -11,31 +11,61 @@ function ListSkinDetailProduct(props){
 
         if(skin.length !== props.data.length){
             props.data.map((data , index)=>{
+                if(props.game === "Valorant"){
                 fetch(`https://valorant-api.com/v1/weapons/skins/${data}`)
                 .then((response) => response.json())
                 .then((res)=>{
-                        let addArray = [];
-                        addArray = skin;
-                        addArray.push(res.data);
-                        setSkin(addArray);
-                }).then(()=>{
+                    let addArray = [];
+                    addArray = skin;
+                    addArray.push(res.data);
+                    setSkin(addArray);
+                })
+                .then(()=>{
                     setContent(
                         skin.map((data , index)=>{
+                            load(data.displayName , data.displayIcon , index)
                             return(
-                            <Segment attached key={index}>
-                                <img src={data.displayIcon} />
-                                {data.displayName}
-                            </Segment>
-                            )
-                        })
-                    )
+                                <Segment attached key={index}>
+                                    <img src={data.displayIcon} />
+                                    {data.displayName}
+                                </Segment>
+                                )
+                            })
+                        )
                 })
-            });
+
+            }else if(props.game === "PUBG"){
+                fetch(`http://localhost:8000/skinPUBG?id=${data}`)
+                .then((response) => response.json())
+                .then((res)=>{
+                    let addArray = [];
+                    addArray = skin;
+                    addArray.push(res);
+                    setSkin(addArray);
+                })
+                .then(()=>{
+                    setContent(
+                        skin.map((data , index)=>{
+                            load(data.name , data.image , index)
+                            return(
+                                <Segment attached key={index}>
+                                    <img src={data[0].image} />
+                                    {data[0].name}
+                                </Segment>
+                                )
+                            })
+                        )
+                    })
+                }
+            })
         }
+                
     },[]);
 
-    function load(){
-            
+    function load(name ,  src , index){
+        
+                
+
     }
 
     return(

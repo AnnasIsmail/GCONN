@@ -32,6 +32,12 @@
     display: grid;
 }
 
+.sell-account-valorant .format .right{
+    display: flex;
+    flex-direction: row;
+    gap: 0;
+}
+
 .container-image-sell-account-valorant{
     display: flex !important;
     overflow: auto;

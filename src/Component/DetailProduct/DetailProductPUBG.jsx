@@ -1,7 +1,6 @@
 import React from "react";
 import { useNavigate } from 'react-router-dom';
 import { Button, Icon } from 'semantic-ui-react';
-import ListAgentDetailProduct from "../ListAgentDetailProduct/ListAgentDetailProduct";
 import ListSkinDetailProduct from "../ListSkinDetailProduct/ListSkinDetailProduct";
 import PhotoDetailProduct from "../PhotoDetailProduct/PhotoDetailProduct";
 import './DetailProduct.css';
@@ -14,13 +13,14 @@ function DetailProductPUBG(props){
         navigasi(to)
     }
 
-
+    let data = props.data
+    
     return(
         <>
-            <h1 className="header">Valorant Account</h1>
+            <h1 className="header">PUBG Account</h1>
             <div className="content-detail-product-container">
                 <div className="tab-left">
-                    <PhotoDetailProduct />
+                    <PhotoDetailProduct data={data.photo} />
                     <div className="button-container">
                         <Button animated='vertical' onClick={()=>console.log('masuk BUT')}>
                             <Button.Content hidden>Favorite</Button.Content>
@@ -50,15 +50,16 @@ function DetailProductPUBG(props){
                 </div>
                 <div className="tab-right">
                     <div className="descripption">
-                        <h3>AKUN MURAH MERIAH butuh uang dan spek laptop tidak memadai</h3>
-                        <h2>Rp. 2.000.000.00</h2>
-                        <h5><b>Email Status:</b> Verifed</h5>
-                        <h5><b>Region:</b> Asia</h5>
+                        <h3>{data.header}</h3>
+                        <h2>Rp. {data.price}.00</h2>
+                        <h5><b>Royale Pass:</b> {data.royalePass}</h5>
                         <h5><b>Change Name Status:</b> Available</h5>
-                        <h5><b>Total VP:</b> 22.500 VP</h5>
-                        <h5><b>Rank:</b> Gold 2</h5>
-                        <ListAgentDetailProduct />
-                         <ListSkinDetailProduct />
+                        <h5><b>Data Login:</b> {data.dataLogin}</h5>
+                        <h5><b>Level:</b> {data.level}</h5>
+                        <h5><b>Rank:</b> {data.rank}</h5>
+                        <h5><b>Reason to Sell:</b> {data.reason}</h5>
+                        <h5><b>Description:</b> {data.description}</h5>
+                        <ListSkinDetailProduct data={data.skin} game={data.game} />
                     </div>       
                 </div>
             </div>
