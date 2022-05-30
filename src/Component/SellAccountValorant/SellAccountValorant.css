@@ -63,3 +63,7 @@
     background-color: aliceblue;
     border-radius: 7px;
 }
+
+.input-add-image{
+    display: none;
+}

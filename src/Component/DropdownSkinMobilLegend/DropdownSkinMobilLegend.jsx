@@ -32,6 +32,10 @@ class DropdownSkinMobilLegend extends Component {
 
   handleChange = (e, { value }) => this.setState({ currentValues: value })
 
+  sendData =(e , {value})=>{
+    this.props.dataSelect(value)
+  }
+
   render() {
     const { currentValues } = this.state
 
@@ -44,7 +48,10 @@ class DropdownSkinMobilLegend extends Component {
         fluid
         multiple
         onAddItem={this.handleAddition}
-        onChange={this.handleChange}
+        onChange={(e,{ value })=>{
+          this.handleChange(e,{ value });
+          this.sendData(e, {value});
+        }}
       />
     )
   }

@@ -1,9 +1,11 @@
 import React from "react";
-import { Button, Dropdown, Header, Icon, Input, Label, Segment } from 'semantic-ui-react';
+import CloseButton from 'react-bootstrap/CloseButton';
+import { Button, Dropdown, Header, Icon, Image, Input, Label, Segment } from 'semantic-ui-react';
+import DropdownAgentValorant from "../DropdownAgentValorant/DropdownAgentValorant";
 import DropdownSkinValorant from "../DropdownSkinValorant/DropdownSkinValorant";
 import './SellAccountValorant.css';
 
-function SellAccountValorant(){
+function SellAccountValorant(props){
 
     const emailStatus = [
         { key: "Available", text: 'Available', value: "Available" },
@@ -46,50 +48,106 @@ function SellAccountValorant(){
           { key: "RADIANT", text: "RADIANT", value: "RADIANT"},
       ]
 
-      let inputTitle = "", inputEmailStatus = "", inputRegion = "", inputRank = "", inputLevel = "", inputBattlepass = "",inputTotalVP = "", inputChangeNameStatus = "", inputPrice = "", inputReason = "", inputPhoto = [], inputSkin = [];
+    let data ={
+        game:"Valorant",
+        header:"",
+        price: 0,
+        emailStatus: "",
+        region:"",
+        changeNameStatus: "",
+        totalVP: 0,
+        rank: "",
+        reason:"",
+        level: 0,
+        agent: [],
+        skin: [],
+        photo: []
+    }
 
       function changeValue(e, name){
         let value = e.target.value;
-        
-        console.log(e)
+        let outerText = e.target.outerText
 
-        if(name === ''){
-
-        }else if(name === ''){
-
-        }else if(name === ''){
-
-        }else if(name === ''){
-
-        }else if(name === ''){
-
-        }else if(name === ''){
-
-        }else if(name === ''){
-
-        }else if(name === ''){
-
-        }else if(name === ''){
-
-        }else if(name === ''){
-
-        }else if(name === ''){
-
-        }else if(name === ''){
-
-        }else if(name === ''){
-
+        if(name === 'header'){
+            data.header = value;
+        }else if(name === 'email-status'){
+            data.emailStatus = outerText;
+        }else if(name === 'region'){
+            data.region = outerText;
+        }else if(name === 'rank'){
+            data.rank = outerText;
+        }else if(name === 'level'){
+            data.level = value;
+        }else if(name === 'battlepass'){
+            data.battlepass = value;
+        }else if(name === 'total-vp'){
+            data.totalVP = value;
+        }else if(name === 'change-name-status'){
+            data.changeNameStatus = outerText;
+        }else if(name === 'price'){
+            data.price = value;
+        }else if(name === 'reason'){
+            data.reason = value
         }
+        sendData();
       }
 
-      function getData(data){
-        console.log(data)
+
+      function sendData(){
+        props.data(data , 'Valorant')
+    }
+
+      function getData(datanya , from){
+        if(from === 'skin'){
+            data.skin = datanya
+        }else if(from === 'agent'){
+            data.agent = datanya
+        }
+        sendData();
       }
 
-      function uploadImage(e){
-        console.log(e.target.files)
+      async function uploadImage(e){
+        let arrayData = []
+        let files = e.target.files
+        for(let i = 0; i < files.length; i++){
+            arrayData.push(files[i])
+        }
+
+        let pushData = async()=>{
+            arrayData.map((datanya , index)=>{
+                let inputPhotoData = 'https://cdn.discordapp.com/attachments/830080342026092566/' + datanya.name.replace("=", "/");
+                data.photo.push(inputPhotoData);
+            })
+        }
+        
+        pushData().then(()=>{
+            renderImage();
+            sendData();
+        });
+      }
+
+      function renderImage(){
+          setInputImage(
+            <div className="container-image-sell-account-valorant">
+                {data.photo.map((data , index)=>{
+                    return(
+                        <span key={index}>
+                            <Image src={data} />
+                            <CloseButton aria-label="Hide" />
+                        </span>
+                    )
+                })}
+        </div>
+          )
       }
       
+      let [inputImage , setInputImage] = React.useState(
+        <>
+          <Icon name='image outline' />
+          No image are listed for this customer.
+        </>
+        );
+
     return(
         <div className="sell-account-valorant double-column">
             <div className="left">
@@ -155,32 +213,22 @@ function SellAccountValorant(){
                     <div>
                         <Segment>
                             <Header icon>
-                            <Icon name='image outline' />
-                            No image are listed for this customer.
-                            {/* <div className="container-image-sell-account-valorant">
-                                <span>
-                                    <Image src={coba1} />
-                                    <CloseButton aria-label="Hide" />
-                                </span>
-                                <span>
-                                    <Image src={coba2} />
-                                    <CloseButton aria-label="Hide" />
-                                </span>
-                                <span>
-                                    <Image src={coba3} />
-                                    <CloseButton aria-label="Hide" />
-                                </span>
-                            </div> */}
+                                {inputImage}
                             </Header>
-                            <Button primary>
-                                <input type="file" accept="image/*" onChange={uploadImage} multiple/>
+                            <Button primary onClick={function(){ document.getElementById("inputAddImage").click()}}>
+                                <input id="inputAddImage" className="input-add-image" type="file" accept="image/*" onChange={uploadImage} multiple/>
+                                add image
                             </Button>
                         </Segment>
                     </div>
                 </div>
                 <div>
                     <h6>Your Account Skin</h6>
-                    <DropdownSkinValorant game='Valorant' dataSelect={getData} />
+                    <DropdownSkinValorant dataSelect={getData} />
+                </div>
+                <div>
+                    <h6>Your Account Agent</h6>
+                    <DropdownAgentValorant dataSelect={getData} />
                 </div>
             </div>
         </div>

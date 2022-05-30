@@ -13,7 +13,7 @@ class DropdownSkinPUBG extends Component {
     .then((res)=>{
       let addArray = [];
       res.map((data , index)=>{
-        let dataPush = {key: data.id, text: data.name, value:data.name}
+        let dataPush = {key: data.id, text: data.name, value:data.id}
         addArray.push(dataPush);
       })
       options = addArray;
@@ -31,6 +31,10 @@ class DropdownSkinPUBG extends Component {
 
   handleChange = (e, { value }) => this.setState({ currentValues: value })
 
+  sendData =(e , {value})=>{
+    this.props.dataSelect(value)
+  }
+
   render() {
     const { currentValues } = this.state
 
@@ -43,7 +47,10 @@ class DropdownSkinPUBG extends Component {
         fluid
         multiple
         onAddItem={this.handleAddition}
-        onChange={this.handleChange}
+        onChange={(e,{ value })=>{
+          this.handleChange(e,{ value });
+          this.sendData(e, {value});
+        }}
       />
     )
   }

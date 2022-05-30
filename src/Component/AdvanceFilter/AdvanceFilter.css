@@ -3,12 +3,22 @@
 }
 
 .advance-filter .tab{
+    background-color: none;
     margin: 0;
     border: none;
     box-shadow: none;
     display: grid !important;
     grid-template-columns: 1fr 1fr;
     gap: 20px;
+}
+
+.advance-filter .ui.segment{
+    background: none !important;
+    
+}
+
+.advance-filter .dropdown ,  .advance-filter input{
+    border-radius: 10px !important;
 }
 
 .advance-filter .tab .tab-left{
@@ -24,6 +34,11 @@
 
 .advance-filter .choose-game img{
     cursor: pointer;
+}
+
+.advance-filter .choose-game .on-page{
+    border: 5px solid #FFC700;
+    border-radius: 10px;
 }
 
 .advance-filter .choose-region , .advance-filter .change-name , .advance-filter .min-level , .advance-filter .android-ios{
@@ -47,6 +62,7 @@
 
 .advance-filter .range-price .range-price-container input{
     width: 1px !important;
+    border-radius: 0px !important;
 }
 
 .advance-filter .tab .tab-right{

@@ -13,7 +13,7 @@ componentDidMount(){
   .then((res)=>{
     let addArray = [];
     res.data.map((data , index)=>{
-      let dataPush = {key: data.uuid, text: data.displayName, value:data.displayName}
+      let dataPush = {key: data.uuid, text: data.displayName, value:data.uuid}
       addArray.push(dataPush);
     })
     options = addArray;
@@ -32,7 +32,7 @@ componentDidMount(){
   handleChange = (e, { value }) => this.setState({ currentValues: value })
 
   sendData =(e , {value})=>{
-    this.props.dataSelect(value)
+    this.props.dataSelect(value ,  'skin')
   }
 
   render() {
