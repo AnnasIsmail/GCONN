@@ -29,6 +29,7 @@ function SellAccountMobileLegend(props){
       ]
 
       let data ={
+        game: "Mobile Legend",
         header: "",
         device: "",
         CNCF: "",
@@ -73,7 +74,7 @@ function SellAccountMobileLegend(props){
     }
 
       function getData(datanya){
-        data.skin = datanya
+        data.hero = datanya
         sendData();
       }
 

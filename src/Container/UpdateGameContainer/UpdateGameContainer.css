@@ -26,3 +26,11 @@
 .container-update-game-container::-webkit-scrollbar {
     width: 8px !important;
   }
+
+@media only screen and (max-width: 1040px) {
+    .update-game-container{
+        grid-row: 3;
+        grid-column: 1;
+        max-width: 380px;
+}
+}

@@ -67,7 +67,6 @@ function SellAccountContainer(){
     function getData(data , from){
         if(from === "Valorant"){
             dataValorant = data
-            console.log(dataValorant)
         }else if(from === "Mobile Legend"){
             dataMobileLegend = data
         }else if(from === "PUBG"){

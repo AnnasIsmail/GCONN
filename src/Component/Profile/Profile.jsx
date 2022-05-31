@@ -1,14 +1,13 @@
 import { useNavigate } from 'react-router-dom';
 import { Dropdown, Icon } from 'semantic-ui-react';
 import ArrowDown from '../../image/icon/svg file/arrow_down.svg';
-import photoAnsel from '../../image/image ansell.png';
 import './Profile.css';
 
 function Profile(props){
 
     let profileContainer = (
         <div className='profile'>
-            <img src={photoAnsel} alt="" />
+            <img src={localStorage.userPhoto} alt="" />
             <span>
                 <h1>{localStorage.fullName}</h1>
                 <div className='status'><Icon name="circle" color='green' />Online</div>

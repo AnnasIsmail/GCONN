@@ -20,6 +20,10 @@
     font-weight: 600;
 }
 
+.payment-container .produk #fotoProduk{
+    height: auto;
+}
+
 .payment-container .content-payment-container{
     margin-top: 25px;
     display: flex;

@@ -65,6 +65,22 @@
     background-color: #1935C2;
     color: #DCDDDE;
 }
+
+.detail-product-main-container .button-container .button:nth-child(4){
+    background: linear-gradient(18deg, rgba(28,52,173,0.23012955182072825) 0%, rgba(28,52,173,1) 100%);
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    backdrop-filter: blur( 20px );
+    -webkit-backdrop-filter: blur( 20px );
+    border: 2px solid #1935C2;
+
+    color: #DCDDDE;
+    height: 45px;
+}
+
+.detail-product-main-container .button-container .fade:not(.show){
+    opacity: 1;
+}
+
 .detail-product-main-container .button-container :nth-child(4){
     grid-column: 1/4;
 }

@@ -1,3 +1,12 @@
+.my-profile-main-container{
+    overflow: hidden;
+}
+
+
+.my-profile-main-container .ui.secondary.inverted.pointing.menu{
+    overflow: auto;
+}
+
 .profile{
     color: white;
     width: auto;
@@ -15,6 +24,9 @@
 
 .profile img:nth-child(1){
     height: 60px;
+    width: 60px;
+    object-fit: cover;
+    border-radius: 50%;
 }
 
 .profile img:nth-child(3){
@@ -42,6 +54,7 @@
     font-size: 15px;
     font-weight: 500;
 }
+
 
 .top-bar .ui.dropdown>.dropdown.icon:before{
     display: none !important;

@@ -13,7 +13,7 @@ function Produk(props){
     return(
         <div className="produk" >
         <Card style={{ width: '18rem' }} onClick={()=>NavigateTo(`/detailproduk${props.id}`)}>
-            <Card.Img variant="top" src={props.src} className='foto-produk' />
+            <Card.Img variant="top" src={props.src} className='foto-produk' id="fotoProduk" />
             <Card.Body>
                 <Card.Text>{props.header}</Card.Text>
                 <Card.Subtitle>{props.game}</Card.Subtitle>

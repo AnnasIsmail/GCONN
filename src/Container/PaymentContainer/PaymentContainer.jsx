@@ -1,10 +1,34 @@
 import React from "react";
+import { useParams } from 'react-router-dom';
 import { Button, Dropdown } from 'semantic-ui-react';
 import Produk from "../../Component/Produk/Produk";
-import gambarValorant from './assets/coba1.png';
 import './PaymentContainer.css';
 
 function PaymentContainer(){
+
+    let account = {};
+    let { id } = useParams();
+    console.log(id)
+    let [produk , setProduk] = React.useState(
+        "Mohon pilih produk terlebih dahulu di halaman market"
+    )
+
+    React.useEffect(()=>{
+        fetch(`http://localhost:8000/account?id=${id}`)
+        .then((response) => response.json())
+        .then((res)=>{
+            account = res
+            load();
+        });
+    },[]);
+
+    function load(){
+        setProduk(
+            account.map((data , index)=>{
+                return <Produk key={index} src={data.photo[0]} game={data.game} header={data.header} price={data.price} id={data.id} footer={false} />
+            })
+        )
+    }
 
     const PaymentType = [
         { key: 1, text: 'Gopay', value: 'Gopay' },
@@ -27,10 +51,7 @@ function PaymentContainer(){
         <div className="payment-container">
             <h1 className="header">Payment</h1>
             <div className="content-payment-container">
-                    {/* <PhotoDetailProduct /> */}
-                    {/* <h3>AKUN MURAH MERIAH butuh uang dan spek laptop tidak memadai</h3> */}
-                    <Produk src={gambarValorant} header='AKUN MURAH MERIAH butuh uang dan spek laptop tidak memadai' price='650.000' footer={false} />
-
+                    {produk}
                     <h6>Choose Payment Type</h6>
                     <Dropdown clearable options={PaymentType} onChange={getPaymentMethod} selection placeholder="None" />
                     <Button animated='fade'>

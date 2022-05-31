@@ -6,6 +6,8 @@
     border-radius: 50%;
     padding-bottom: 10px;
     width: 200px;
+    height: 200px;
+    object-fit: cover;
 }
 
 .header-my-store .content{

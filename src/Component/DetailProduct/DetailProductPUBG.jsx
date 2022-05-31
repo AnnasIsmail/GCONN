@@ -1,10 +1,9 @@
 import React from "react";
-import { useNavigate } from 'react-router-dom';
-import { Button, Icon } from 'semantic-ui-react';
+import { useNavigate, useParams } from 'react-router-dom';
+import { Button, Icon, Image, List } from 'semantic-ui-react';
 import ListSkinDetailProduct from "../ListSkinDetailProduct/ListSkinDetailProduct";
 import PhotoDetailProduct from "../PhotoDetailProduct/PhotoDetailProduct";
 import './DetailProduct.css';
-
 
 function DetailProductPUBG(props){
 
@@ -14,6 +13,7 @@ function DetailProductPUBG(props){
     }
 
     let data = props.data
+    let { id } = useParams();
     
     return(
         <>
@@ -21,6 +21,18 @@ function DetailProductPUBG(props){
             <div className="content-detail-product-container">
                 <div className="tab-left">
                     <PhotoDetailProduct data={data.photo} />
+                    <div className="seller">
+                        <Image className="pp-seller" src={"https://cdn.discordapp.com/attachments/955023472931799041/962880645355434024/IMG_9897.png"} size='tiny' />{' '}
+                        <span>
+                            <List.Item>
+                                <List.Content>Ancelma</List.Content>
+                            </List.Item>
+                            <List.Item>
+                                <List.Icon name="circle" color='green' />
+                                <List.Content>Online</List.Content>
+                            </List.Item>
+                        </span>
+                    </div>
                     <div className="button-container">
                         <Button animated='vertical' onClick={()=>console.log('masuk BUT')}>
                             <Button.Content hidden>Favorite</Button.Content>
@@ -40,8 +52,8 @@ function DetailProductPUBG(props){
                                 <Icon name='share alternate' />
                             </Button.Content>
                         </Button>
-                        <Button animated='vertical' onClick={()=>NavigateTo('/detailproduk/payment')}>
-                            <Button.Content visible>Buy</Button.Content>
+                        <Button animated='fade' onClick={()=>NavigateTo(`/detailproduk${id}/payment`)}>
+                            <Button.Content visible>Buy Account</Button.Content>
                             <Button.Content hidden>
                                 <Icon name='shopping cart' />
                             </Button.Content>

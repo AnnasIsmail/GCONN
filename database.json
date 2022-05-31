@@ -5,12 +5,26 @@
       "email": "joko@email.com",
       "username": "joko",
       "password": "joko123",
-      "photo": "",
+      "photo": "https://media.suara.com/pictures/653x366/2018/09/17/68090-djoko-santoso.jpg",
+      "id": 1
+    }
+  ],
+  "seller": [
+    {
+      "marketName": "Joko Store",
+      "slogan": "ga jualan ga makan",
+      "photo": "https://media.suara.com/pictures/653x366/2018/09/17/68090-djoko-santoso.jpg",
+      "id": 1
+    }
+  ],
+  "transaction": [
+    {
       "id": 1
     }
   ],
   "account": [
     {
+      "idSeller": 1,
       "id": 1,
       "game": "Valorant",
       "header": "AKUN MURAH Banget",
@@ -40,6 +54,7 @@
       ]
     },
     {
+      "idSeller": 2,
       "id": 2,
       "game": "Mobile Legend",
       "header": "selena thunder, kof aurora, stun chou(wr kecil bs di up)",
@@ -51,12 +66,49 @@
       "price": 650000,
       "reason": "butuh uang buat bayar kuliah",
       "heroCount": "80",
+      "hero": [
+        "Xavier",
+        "Melissa",
+        "Yin",
+        "Floryn",
+        "Valentina",
+        "Aamon",
+        "Aulus",
+        "Natan",
+        "Phoveus",
+        "Beatrix",
+        "Gloo",
+        "Edith",
+        "Paquito",
+        "Mathilda",
+        "Yve",
+        "Brody",
+        "Barats",
+        "Luo Yi",
+        "Yu Zhong",
+        "Popol and Kupa",
+        "Benedetta",
+        "Atlas",
+        "Cecilion",
+        "Wanwan",
+        "Masha",
+        "Baxia",
+        "Lylia",
+        "Dyrroth",
+        "Ling",
+        "Carmilla",
+        "Silvanna",
+        "Terizla",
+        "Guinevere",
+        "Granger"
+      ],
       "photo": [
         "https://scontent.fcgk20-1.fna.fbcdn.net/v/t1.6435-9/95392791_156500265853220_615857207409377280_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=8bfeb9&_nc_eui2=AeH_yFDG0fLb9-R_7eNHHdPFcZT8WDzY5RJxlPxYPNjlEry79xEmIGy0vHeH37rYOuLVyOdROmPVf1oIIip95IfN&_nc_ohc=okakdYOcyX4AX-sEvnk&_nc_oc=AQmD5zxxWa4_h0h-N3cO2r32_9vQKHqs804_uzCyBEtx0bSM9V24JTPDYYZCDc7ABh8&_nc_ht=scontent.fcgk20-1.fna&oh=00_AT_FXn84gh2nPD3G8LMlbHruRtTz6Mr8ikddAaoF3TknPQ&oe=62B7076E",
         "https://scontent.fcgk20-1.fna.fbcdn.net/v/t1.6435-9/90842905_145677053602208_395628417095041024_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=8bfeb9&_nc_eui2=AeEwyE4OoeTUD00Us4D4I9JAgqDyqFO-M_mCoPKoU74z-aqdWMyZHTxx4QONdQgZ8PIFCvwNB05PFdUOeIeipce_&_nc_ohc=VweFGoWJOEUAX8hX9iH&_nc_ht=scontent.fcgk20-1.fna&oh=00_AT_wdsT1QNdve5GJFrgo1p0Ul5u6Lh8ZDjB1NK5UDqkYHQ&oe=62B54A67"
       ]
     },
     {
+      "idSeller": 2,
       "id": 3,
       "game": "PUBG",
       "header": "M4 GLACIER, 7 SET MITIC RP M4-M10 MAX M11 ON OTW KOLEKTOR UAZ ,KEPANG KW READY",

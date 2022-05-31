@@ -16,7 +16,24 @@
     grid-template-columns: 70% 1fr;
     grid-template-rows: 50% 1fr;
     gap: 20px;
-    min-width: 860px;
+    min-width: 850px;
+}
+
+@media only screen and (max-width: 1040px) {
+    .home-main-container{
+        grid-template-columns: 100%;
+        grid-template-rows: 50% 50% 80%;
+        min-width: auto;
+    }
+}
+
+@media only screen and (max-width: 710px) {
+    .home-main-container{
+        grid-template-columns: 100%;
+        grid-template-rows: 330px 50% 80%;
+        min-width: auto;
+        width: 90%;
+    }
 }
 
 .market-main-container{

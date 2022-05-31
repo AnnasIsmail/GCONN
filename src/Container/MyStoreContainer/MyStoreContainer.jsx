@@ -1,35 +1,44 @@
 import React from "react";
 import { Tab } from 'semantic-ui-react';
 import HeaderMyStore from "../../Component/HeaderMyStore/HeaderMyStore";
+import NoData from "../../Component/NoData/NoData";
 import OrderCustomerContainer from "../OrderCustomerContainer/OrderCustomerContainer";
-import ProdukContainer from "../ProdukContainer/ProdukContainer";
 import ReviewCustomerContainer from "../ReviewCustomerContainer/ReviewCustomerContainer";
 import image from './assets/1.png';
 import './MyStoreContainer.css';
 
 function MyStoreContainer(){
 
-                let panes = [
-                {
-                  menuItem: 'My Product',
-                  render: () =>                 
-                  <div className="container-my-store-main-container">
-                    <ProdukContainer name='Valorant' />
-                </div>,
-                },
-                {
-                  menuItem: 'Order Customer',
-                  render: () => 
-                  <OrderCustomerContainer />
-                  ,
-                },
-                {
-                  menuItem: 'Review Customer',
-                  render: () => 
-                  <ReviewCustomerContainer />
-                  ,
-                },
-              ]
+  let [myProduct , setMyProduct] = React.useState();
+  let [orderCustomer , setOrderCustomer] = React.useState();
+  let [reviewCustomer , serReviewCustomer] = React.useState();
+
+  function load(){
+
+  }
+
+    let panes = [
+    {
+      menuItem: 'My Product',
+      render: () =>                 
+      <NoData description='There are no accounts that you have marketed yet' goto="sell" />
+      // <div className="container-my-store-main-container">
+      //   <ProdukContainer name='Valorant' />
+      // </div>,
+    },
+    {
+      menuItem: 'Order Customer',
+      render: () => 
+      <OrderCustomerContainer />
+      ,
+    },
+    {
+      menuItem: 'Review Customer',
+      render: () => 
+      <ReviewCustomerContainer />
+      ,
+    },
+  ]                
 
     return(
         <div className="my-store-container">

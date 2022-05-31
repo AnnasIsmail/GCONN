@@ -1,12 +1,13 @@
 import React from "react";
-import { Image } from 'semantic-ui-react';
+import Produk from "../Produk/Produk";
 import './OrderCustomer.css';
 
 function OrderCustomer(){
     return(
         <div className="order-customer">
             <div className="tab-left">
-                <Image className="photo-produk" src="https://cdn.discordapp.com/attachments/830080342026092566/978567591654207508/coba1.png" alt="" />
+                {/* <Image className="photo-produk" src="https://cdn.discordapp.com/attachments/830080342026092566/978567591654207508/coba1.png" alt="" /> */}
+                <Produk footer={false} />
             </div>
             <div className="tab-right">
                 <div className="content">
