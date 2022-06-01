@@ -12,6 +12,7 @@
 
 .filter label{
     padding-left: 10px;
+    white-space: nowrap;
 }
 
 .filter div .ui.selection.dropdown{
@@ -52,6 +53,10 @@
 
 .ui.selection.dropdown .menu{
     width: 196px !important;
+}
+
+.filter .ui.dropdown>.text{
+    white-space: nowrap;
 }
 
 .filter .menu{
@@ -99,4 +104,37 @@
 .arrow-filter{
     position: relative;
     right: 0;
+}
+
+@media only screen and (max-width: 1300px) {
+    .filter{
+        grid-template-columns: 15% 20% 20% 15% 22%;
+        gap: 5px;
+    }
+}
+
+@media only screen and (max-width: 1100px) {
+    .filter{
+        grid-template-columns: 30% 30% 30%;
+        gap: 5px;
+    }
+
+    .filter .min-price , .filter .max-price{
+        display: none;
+    }
+}
+
+@media only screen and (max-width: 730px) {
+    .filter{
+        grid-template-columns: 25% 25% 40%;
+        gap: 5px;
+    }
+}
+
+@media only screen and (max-width: 550px) {
+    .filter{
+        grid-template-columns: auto auto auto;
+        justify-content: center;
+        gap: 5px;
+    }
 }

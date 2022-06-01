@@ -22,7 +22,7 @@ function NavbarBeforeLogin(props){
         favorite = true
     }else if(props.page === "my-store"){
         mystore = true
-        }
+    }
 
     React.useEffect(()=>{
         document.getElementById("HomeAfter").classList.remove('klik');

@@ -24,7 +24,7 @@ function Filter(){
                 <label htmlFor="game" >GAME</label>
                 <Dropdown className="dropdown-filter" clearable options={game} selection placeholder="All Game" />
             </div>
-            <div>
+            <div className="min-price">
                 <label htmlFor="minimum-price">MINIMUM PRICE</label>
                 <Input labelPosition='right' type='text' placeholder='Minimum Price'>
                     <Label basic>Rp.</Label>
@@ -32,7 +32,7 @@ function Filter(){
                     <Label>.00</Label>
                 </Input>
             </div>
-            <div>
+            <div className="max-price">
                 <label htmlFor="maximum-price">MAXIMUM PRICE</label>
                 <Input labelPosition='right' type='text' placeholder='Maximum Price'>
                     <Label basic>Rp.</Label>
