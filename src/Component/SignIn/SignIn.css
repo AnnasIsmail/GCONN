@@ -96,3 +96,29 @@
 .sign-in .ui.form .field{
     margin-bottom: 0;
 }
+
+@media only screen and (max-width: 1040px) {
+
+    .sign-in-main-container, .sign-up-main-container{
+        grid-template-columns: 1fr !important;
+        top: 10px !important;
+        padding-right: 40px;
+    }
+}
+
+@media only screen and (max-width: 730px) {
+    .sign-in-main-container, .sign-up-main-container{
+        left: 40px !important;
+    }
+}
+
+@media only screen and (max-width: 550px) {
+    .sign-in-main-container, .sign-up-main-container{
+        left: 20px !important;
+        padding-right: 20px;
+    }
+
+    .sign-in h1 {
+        font-size: 32px;
+    }
+}

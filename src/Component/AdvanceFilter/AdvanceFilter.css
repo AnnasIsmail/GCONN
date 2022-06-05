@@ -70,3 +70,26 @@
     flex-direction: column;
     gap: 10px;
 }
+
+@media only screen and (max-width: 1050px) {
+    .advance-filter .tab{
+        grid-template-columns: 1fr;
+    }
+}
+
+@media only screen and (max-width: 650px) {
+    .advance-filter .choose-game{
+        display: grid;
+        grid-template-columns: auto auto auto;
+    }
+
+    .advance-filter .choose-game img{
+        width: 100%;
+    }
+
+    .modal-dialog{
+        margin: auto;
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+}

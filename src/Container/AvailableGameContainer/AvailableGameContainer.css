@@ -11,3 +11,22 @@
     display: flex;
     gap: 15px;
 }
+
+@media only screen and (max-width: 1040px){
+
+    .available-game-container{
+        margin: auto;
+        width: auto;
+    }
+}
+
+@media only screen and (max-width: 580px) {
+    .container-available-game-container{
+        display: grid;
+        grid-template-columns: auto auto auto;
+    }
+
+    .container-available-game-container img{
+        width: 100%;
+    }
+}

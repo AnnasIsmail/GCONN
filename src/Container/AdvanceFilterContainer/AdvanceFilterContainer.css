@@ -41,3 +41,15 @@
     border: none;
     
 }
+
+@media only screen and (max-width: 1050px) {
+    .modal-content{
+        min-width: auto !important;
+        width: 100% !important;
+    }   
+
+    .modal-90w{
+        max-width: 90% !important;
+        min-width: 90% !important;
+    }
+}

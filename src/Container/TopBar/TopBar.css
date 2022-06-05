@@ -17,3 +17,11 @@
     margin: auto 0;
     font-weight: normal;
 }
+
+@media only screen and (max-width: 730px) {
+    .top-bar{
+        width: 90vw;
+        height: 80px;
+        justify-content: space-between;
+    }
+}

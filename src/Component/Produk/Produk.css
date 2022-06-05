@@ -9,6 +9,7 @@
 
 .produk .card{
     background-color: #1C34AD !important;
+    border: none !important;
     border-radius: 10px 10px 0 0 ;
     width: auto !important;
     cursor: pointer;

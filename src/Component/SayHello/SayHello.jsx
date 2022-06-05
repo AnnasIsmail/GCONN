@@ -18,7 +18,11 @@ function TopBar(props){
     }, 1000);
     return(
         <div className="say-hello">
+            {(localStorage.login)?
             <h1>Hello, {localStorage.fullName} </h1>
+            :
+            <h1>Hello, Please Do Sign In or Sign Up </h1>
+            }
             <h3>Date-Time : {date}  </h3>
         </div>
     );

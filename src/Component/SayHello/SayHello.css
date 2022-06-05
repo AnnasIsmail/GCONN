@@ -6,10 +6,17 @@
 .say-hello h1{
     font-size: 25px;
     font-weight: 700;
+    margin: 0;
 }
 
 .say-hello h3{
     font-size: 14px;
-    margin-top: -7px;
+    /* margin-top: -7px; */
     font-weight: 300;
+}
+
+@media only screen and (max-width: 700px) {
+    .say-hello h1{
+        font-size: 16px;
+    }
 }

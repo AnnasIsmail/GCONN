@@ -66,6 +66,11 @@
     .container-market-main-container{
         margin-bottom: 60px;
     }
+
+    .favorite-main-container{
+        width: 90vw;
+        bottom: 70px;
+    }
 }
 
 .container-market-main-container{

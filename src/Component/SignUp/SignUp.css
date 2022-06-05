@@ -105,3 +105,16 @@
 .sign-up .ui.form .field{
     margin-bottom: 0;
 }
+
+@media only screen and (max-width: 1040px) {
+
+    .sign-up-main-container{
+        grid-template-rows: auto auto !important;
+    }
+}
+@media only screen and (max-width: 550px) {
+
+    .sign-up h1{
+        font-size: 32px;
+    }
+}

@@ -33,3 +33,9 @@
     padding: 3px 0;
     font-weight: 500;
 }
+
+@media only screen and (max-width: 730px) {
+    .search-text-field{
+        width: 50VW;
+    }
+}
