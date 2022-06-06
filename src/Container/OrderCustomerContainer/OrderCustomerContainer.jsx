@@ -6,6 +6,10 @@ function OrderCustomerContainer(){
     return(
         <div className="order-customer-container">
             <OrderCustomer />
+            <OrderCustomer />
+            <OrderCustomer />
+            <OrderCustomer />
+            <OrderCustomer />
         </div>
     );
 }

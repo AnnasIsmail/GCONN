@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from "react-router-dom";
+import ChatIcon from '../../image/icon/chat';
 import HomeIcon from '../../image/icon/home';
 import MarketIcon from '../../image/icon/market';
 import StarIcon from '../../image/icon/star';
@@ -46,6 +47,7 @@ function NavbarResponsiveAfter(props){
             <Link id="MarketAfterResponsive" className="link" to='/market' ><MarketIcon diKlik={market} /></Link>
             <Link id="FavoriteAfterResponsive" className="link" to='/favorite' ><StarIcon diKlik={favorite} /></Link>
             <Link id="MyStoreAfterResponsive" className='link' to='/mystore' ><StoreIcon diKlik={mystore} /></Link>
+            <Link id="ChatAfterResponsive" className='link' to='/mystore' ><ChatIcon diKlik={false} /></Link>
         </div>
     );
 }

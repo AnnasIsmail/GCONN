@@ -1,4 +1,9 @@
 .order-customer-container{
     width: 100%;
-    display: flex;
+}
+
+@media only screen and (max-width: 730px) {
+    .order-customer-container{
+        margin-bottom: 60px;
+    }
 }
