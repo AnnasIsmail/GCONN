@@ -5,6 +5,7 @@
 
 .my-profile-main-container .ui.secondary.inverted.pointing.menu{
     overflow: auto;
+    width: 70vw;
 }
 
 .profile{
@@ -101,4 +102,16 @@
         }
     }
 
+}
+
+@media only screen and (max-width: 730px) {
+
+    .my-profile-main-container .ui.secondary.inverted.pointing.menu{
+        overflow: auto;
+        width: 90vw;
+    }
+
+    .my-profile-main-container{
+        width: 90vw;
+    }
 }

@@ -7,6 +7,13 @@ function OrderCustomer(){
     let [sizeImage , setSizeImage] = React.useState('medium')
 
     React.useEffect(()=>{
+
+        if(window.innerWidth <= 1050){
+            setSizeImage('medium')
+        }else{
+            setSizeImage('large')
+        }
+        
         window.addEventListener('resize', (event) => {
 
             if(window.innerWidth <= 1050){

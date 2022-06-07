@@ -58,4 +58,14 @@
     }
 }
 
+@media only screen and (max-width: 730px) {
 
+    /* .header-chat{
+        grid-template-columns: auto auto;
+        justify-content: space-between;
+    } */
+
+    .ButtonChatClosed , .ButtonChatOpen{
+        visibility: hidden;
+    }
+}

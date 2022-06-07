@@ -8,7 +8,6 @@ import './Profile.css';
 function Profile(props){
 
     let widthH1 = React.useRef(null)
-
     React.useEffect(()=>{
         $(".profile").click(()=>{
             if(window.innerWidth < 700){
@@ -25,7 +24,7 @@ function Profile(props){
 
         window.addEventListener('resize', (event) => {
 
-            if(window.innerWidth < 700){
+            if(window.innerWidth < 730){
                 if( $("#menuProfile").hasClass("visible") === false){
                     $(".profile-responsive").css("width", 0);
                 }

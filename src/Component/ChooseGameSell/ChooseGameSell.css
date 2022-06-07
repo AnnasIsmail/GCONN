@@ -12,8 +12,10 @@
     display: grid;
     grid-template-columns: auto auto auto;
     justify-content: space-around;
+    gap: 10px;
 }
 
 .choose-game-sell div img{
     cursor: pointer;
+    width: 100%;
 }
