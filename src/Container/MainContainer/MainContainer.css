@@ -122,6 +122,16 @@
     overflow: visible;
 }
 
+@media only screen and (max-width: 730px) {
+    .sell-account-main-container{
+        width: 90vw;
+        top: 80px;
+        bottom: 80px !important;
+        overflow: auto;
+
+}
+}
+
 .detail-product-main-container{
     background: linear-gradient(18deg, rgba(28,52,173,0.23012955182072825) 0%, rgba(28,52,173,1) 100%);
     box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
@@ -131,10 +141,13 @@
 
     padding: 20px;
     border-radius: 15px;
-    /* display: grid; */
-    /* grid-template-rows: auto auto; */
-    /* gap: 20px; */
-    /* justify-content: start; */
+}
+
+@media only screen and (max-width: 730px) {
+    .detail-product-main-container{
+    width: 90vw;
+    margin-bottom: 60px;
+    }
 }
 
 .payment-main-container{

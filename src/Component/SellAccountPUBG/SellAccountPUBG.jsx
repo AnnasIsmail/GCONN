@@ -1,6 +1,6 @@
 import React from "react";
 import CloseButton from 'react-bootstrap/CloseButton';
-import { Button, Dropdown, Header, Icon, Image, Input, Segment } from 'semantic-ui-react';
+import { Button, Dropdown, Header, Icon, Image, Input, Label, Segment } from 'semantic-ui-react';
 import DropdownSkinPUBG from "../DropdownSkinPUBG/DropdownSkinPUBG";
 import './SellAccountPUBG.css';
 
@@ -124,7 +124,7 @@ function SellAccountPUBG(props){
       );
 
     return(
-        <div className="sell-account-valorant double-column">
+        <div className="sell-account-valorant sell-pubg">
             <div className="left">
                 <div>
                     <h6>Title</h6>
@@ -149,9 +149,13 @@ function SellAccountPUBG(props){
                         <h6>Data Login</h6>
                         <Dropdown clearable options={dataLogin} selection placeholder="None" onChange={(e)=>changeValue(e, 'dataLogin')} />
                     </div>
-                    <div>
+                    <div className="format">
                         <h6>Price</h6>
-                        <Input placeholder='Price Product' type="number" onChange={(e)=>changeValue(e, 'price')}/>
+                        <Input labelPosition='right' type='text' placeholder='Price'>
+                            <Label basic>Rp.</Label>
+                            <input className="price" type="number" name="price" onChange={(e)=>changeValue(e, 'price')} />
+                            <Label>.00</Label>
+                        </Input>
                     </div>
                 </div>
                 <div>

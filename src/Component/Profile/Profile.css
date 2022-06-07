@@ -74,7 +74,7 @@
     margin-top: 4px;
 }
 
-@media only screen and (max-width: 700px) {
+@media only screen and (max-width: 730px) {
     .profile{
         position: absolute;
         right: 0;
@@ -101,10 +101,6 @@
             min-width: auto;
         }
     }
-
-}
-
-@media only screen and (max-width: 730px) {
 
     .my-profile-main-container .ui.secondary.inverted.pointing.menu{
         overflow: auto;

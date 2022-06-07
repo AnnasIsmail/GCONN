@@ -2,8 +2,8 @@ import React from "react";
 import { Tab } from 'semantic-ui-react';
 import HeaderMyStore from "../../Component/HeaderMyStore/HeaderMyStore";
 import NoData from "../../Component/NoData/NoData";
-import OrderCustomerContainer from "../OrderCustomerContainer/OrderCustomerContainer";
-import ReviewCustomerContainer from "../ReviewCustomerContainer/ReviewCustomerContainer";
+import OrderCustomer from "../../Component/OrderCustomer/OrderCustomer";
+import ReviewCustomer from "../../Component/ReviewCustomer/ReviewCustomer";
 import image from './assets/1.png';
 import './MyStoreContainer.css';
 
@@ -29,13 +29,21 @@ function MyStoreContainer(){
     {
       menuItem: 'Order Customer',
       render: () => 
-      <OrderCustomerContainer />
+      <div className="order-customer-container">
+          <OrderCustomer />
+          <OrderCustomer />
+          <OrderCustomer />
+          <OrderCustomer />
+          <OrderCustomer />
+      </div>
       ,
     },
     {
       menuItem: 'Review Customer',
       render: () => 
-      <ReviewCustomerContainer />
+      <div className="review-customer-container">
+            <ReviewCustomer />
+        </div>
       ,
     },
   ]                

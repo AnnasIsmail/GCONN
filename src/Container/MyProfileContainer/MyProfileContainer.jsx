@@ -1,7 +1,12 @@
 import React from "react";
 import { Tab } from 'semantic-ui-react';
+import AlreadySent from "../../Component/AlreadySent/AlreadySent";
 import HeaderMyStore from "../../Component/HeaderMyStore/HeaderMyStore";
 import NoData from "../../Component/NoData/NoData";
+import Refund from "../../Component/Refund/Refund";
+import SettingUpAnAccount from "../../Component/SettingUpAnAccount/SettingUpAnAccount";
+import TransactionCanceled from "../../Component/TransactionCanceled/TransactionCanceled";
+import WaitingForPayment from "../../Component/WaitingForPayment/WaitingForPayment";
 import './MyProfileContainer.css';
 
 function MyProfileContainer(){
@@ -9,26 +14,46 @@ function MyProfileContainer(){
                 let panes = [
                 {
                     menuItem: 'Waiting For Payment',
-                    render: () => <NoData  description='There Is No Incomming Bill' /> ,
+                    render: () =>
+                    <>
+                      {/* <NoData  description='There Is No Incomming Bill' /> , */}
+                      <WaitingForPayment />
+                    </>
                 },
                 {
-                    menuItem: 'Waiting To Be Sent',
-                    render: () => <NoData description='No Orders Processed Yet' /> ,
+                    menuItem: 'Setting Up an Account',
+                    render: () => 
+                    <>
+                      {/* <NoData description='No Orders Processed Yet' /> , */}
+                      <SettingUpAnAccount />
+                    </>
                   },
                   {
                     menuItem: 'Already Sent',
-                    render: () => <NoData description='No Orders Processed Yet' /> ,
+                    render: () => 
+                    <>
+                      {/* <NoData description='No Orders Processed Yet' /> , */}
+                      <AlreadySent />
+                    </>
                   },
                   {
                     menuItem: 'Refund',
-                    render: () => <NoData description='No Orders Processed Yet' /> ,
-                  },
-                  {
-                    menuItem: 'Refunded',
-                    render: () => <NoData description='No Orders Processed Yet' /> ,
+                    render: () => 
+                    <>
+                      {/* <NoData description='No Orders Processed Yet' /> , */}
+                      <Refund />
+                    </>
                   },
                   {
                     menuItem: 'Transaction Canceled',
+                    render: () => 
+                    <>
+                      {/* <NoData description='No Orders Processed Yet' /> , */}
+                      <TransactionCanceled />
+                    </>
+                  },
+                  {
+                    menuItem: 'Done',
                     render: () => <NoData description='No Orders Processed Yet' /> ,
                   },
               ]

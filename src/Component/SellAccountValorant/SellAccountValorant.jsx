@@ -149,7 +149,7 @@ function SellAccountValorant(props){
         );
 
     return(
-        <div className="sell-account-valorant double-column">
+        <div className="sell-account-valorant">
             <div className="left">
                 <div>
                     <h6>Title</h6>
@@ -183,7 +183,7 @@ function SellAccountValorant(props){
                     <div className="format">
                         <h6>Total VP</h6>
                         <Input labelPosition='right' type='text' placeholder='Total VP'>
-                            <input type="number" name="Total-VP" onChange={(e)=>changeValue(e, 'total-vp')} />
+                            <input className="total-vp" type="number" name="Total-VP" onChange={(e)=>changeValue(e, 'total-vp')} />
                             <Label>VP</Label>
                         </Input>
                     </div>
@@ -197,7 +197,7 @@ function SellAccountValorant(props){
                         <h6>Price</h6>
                         <Input labelPosition='right' type='text' placeholder='Price'>
                             <Label basic>Rp.</Label>
-                            <input type="number" name="price" onChange={(e)=>changeValue(e, 'price')} />
+                            <input className="price" type="number" name="price" onChange={(e)=>changeValue(e, 'price')} />
                             <Label>.00</Label>
                         </Input>
                     </div>

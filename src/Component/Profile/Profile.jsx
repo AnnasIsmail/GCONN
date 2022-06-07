@@ -37,7 +37,7 @@ function Profile(props){
             var profile = $(".profile");
 
             if (!profile.is(e.target) && profile.has(e.target).length === 0) {
-                if(window.innerWidth < 700){
+                if(window.innerWidth < 730){
                     $(".profile-responsive").animate({width: 0}, 500)
                 }
             }

@@ -85,3 +85,14 @@
     grid-column: 1/4;
 }
 
+@media only screen and (max-width: 1000px) {
+    .content-detail-product-container{
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+    .detail-product-main-container .header{
+        font-size: 30px;
+        margin-bottom: 10px;
+    }
+}

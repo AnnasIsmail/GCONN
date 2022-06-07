@@ -151,7 +151,7 @@ function SellAccountMobileLegend(props){
                         <h6>Price</h6>
                         <Input labelPosition='right' type='text' placeholder='Price'>
                             <Label basic>Rp.</Label>
-                            <input type="number" name="price" onChange={(e)=>changeValue(e, 'price')}/>
+                            <input className="price" type="number" name="price" onChange={(e)=>changeValue(e, 'price')} />
                             <Label>.00</Label>
                         </Input>
                     </div>

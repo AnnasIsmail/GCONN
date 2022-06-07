@@ -1,26 +1,49 @@
 import React from "react";
-import { Image, Rating } from 'semantic-ui-react';
+import { Item, Rating } from 'semantic-ui-react';
 import './ReviewCustomer.css';
 
 function ReviewCustomer(){
+
+    let [sizeImage , setSizeImage] = React.useState('medium')
+
+    React.useEffect(()=>{
+
+        if(window.innerWidth <= 1050){
+            setSizeImage('medium')
+        }else{
+            setSizeImage('large')
+        }
+        
+        window.addEventListener('resize', (event) => {
+
+            if(window.innerWidth <= 1050){
+                setSizeImage('medium')
+            }else{
+                setSizeImage('large')
+            }
+        });
+    })
+
     return(
-        <div className="review-customer">
-            <div className="tab-left">
-                <Image className="photo-produk" src="https://cdn.discordapp.com/attachments/830080342026092566/978567591654207508/coba1.png" alt="" />
-            </div>
-            <div className="tab-right">
-                <div className="content">
+
+    <Item.Group className="order-customer">
+            <Item>
+            <Item.Image className="img" size={sizeImage} src='https://cdn.discordapp.com/attachments/830080342026092566/980661811357577286/unknownw.png' />
+        
+            <Item.Content>
+                <Item.Header as='a'>AKUN MURAH MERIAH butuh uang dan spek laptop tidak memadai</Item.Header>
+                <Item.Meta>Valorant</Item.Meta>
+                <Item.Description>
                     <h5><b>Nama Pembeli: </b>Joko Santoso</h5>
-                    <h5><b>Nama Produk: </b>AKUN MURAH MERIAH butuh uang dan spek laptop tidak memadai</h5>
                     <h5><b>Nomor Transaksi: </b>TR00192638367</h5>
-                    <h5><b>Status Transaksi: </b>Menunggu Konfirmasi Penjual</h5>
+                    <h5><b>Status Transaksi: </b> Selesai</h5>
                     <h5><b>Jumlah Transaksi: </b>Rp. 650.000.00</h5>
                     <h5><b>Date Transaksi: </b> 13 May 2022</h5>
                     <h5><b>Rating: </b><Rating icon='star' defaultRating={3} maxRating={5} size='huge'/></h5>
-                    <h5><b>Comment: </b>  Akun sesuai deskripsi tetapi hanya kurang update rank saja sudah turun dari gold ke silver</h5>
-                </div>
-            </div>
-        </div>
+                </Item.Description>
+            </Item.Content>
+            </Item>
+        </Item.Group>                                                 
     );
 }
 

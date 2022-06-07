@@ -35,5 +35,6 @@
 @media only screen and (max-width: 730px) {
     .RightSideBar{
         bottom: 70px;
+        right: -400px;
     }
 }

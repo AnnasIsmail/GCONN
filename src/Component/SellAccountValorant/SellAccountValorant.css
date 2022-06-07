@@ -1,10 +1,16 @@
+.sell-account-valorant{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
 .single-column{
     display: grid;
 }
 
 .double-column{
     display: grid;
-    grid-template-columns: 49% 49%;
+    grid-template-columns: 1fr 1fr;
     gap: 10px;
     justify-content: space-around;
 }
@@ -66,4 +72,18 @@
 
 .input-add-image{
     display: none;
+}
+
+.format .total-vp{
+    width: calc(100% - 43px);
+}
+
+.format .price{
+    width: calc(100% - 105px);
+}
+
+@media only screen and (max-width: 1000px) {
+    .sell-account-valorant{
+        grid-template-columns: 1fr;
+    }
 }
