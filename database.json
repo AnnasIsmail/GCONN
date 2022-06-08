@@ -6,6 +6,7 @@
       "username": "joko",
       "password": "joko123",
       "photo": "https://media.suara.com/pictures/653x366/2018/09/17/68090-djoko-santoso.jpg",
+      "idUser": 1,
       "id": 1
     }
   ],
@@ -19,7 +20,15 @@
   ],
   "transaction": [
     {
-      "id": 1
+      "id": 1,
+      "idSeller": 1,
+      "idUser": 1,
+      "idAccount": 1,
+      "date": "12/01/2022",
+      "totalTransaction": 250000,
+      "statusTransaction": "Menunggu Konfirmasi Penjual",
+      "rating": "",
+      "comment": ""
     }
   ],
   "account": [

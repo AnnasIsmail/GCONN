@@ -36,8 +36,11 @@
 
 .ButtonChatClosed{
     transform: rotate(90deg);
-    animation: animasiButtonChatClosed 0.5s;
     cursor: pointer;
+}
+
+.AnimationButtonChatClosed{
+    animation: animasiButtonChatClosed 0.5s;
 }
 
 @keyframes animasiButtonChatClosed {
@@ -60,12 +63,7 @@
 
 @media only screen and (max-width: 730px) {
 
-    /* .header-chat{
-        grid-template-columns: auto auto;
-        justify-content: space-between;
-    } */
-
-    .ButtonChatClosed , .ButtonChatOpen{
+    .header-chat .ButtonChatClosed ,.header-chat .ButtonChatOpen{
         visibility: hidden;
     }
 }

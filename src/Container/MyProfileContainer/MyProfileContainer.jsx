@@ -1,8 +1,8 @@
 import React from "react";
 import { Tab } from 'semantic-ui-react';
 import AlreadySent from "../../Component/AlreadySent/AlreadySent";
+import Done from "../../Component/Done/Done";
 import HeaderMyStore from "../../Component/HeaderMyStore/HeaderMyStore";
-import NoData from "../../Component/NoData/NoData";
 import Refund from "../../Component/Refund/Refund";
 import SettingUpAnAccount from "../../Component/SettingUpAnAccount/SettingUpAnAccount";
 import TransactionCanceled from "../../Component/TransactionCanceled/TransactionCanceled";
@@ -54,7 +54,11 @@ function MyProfileContainer(){
                   },
                   {
                     menuItem: 'Done',
-                    render: () => <NoData description='No Orders Processed Yet' /> ,
+                    render: () => 
+                    <>
+                      {/* <NoData description='No Orders Processed Yet' /> , */}
+                      <Done />
+                    </>
                   },
               ]
 

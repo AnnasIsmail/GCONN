@@ -11,9 +11,10 @@
     right: -330px;
     top: 10px;
     bottom: 10px;
-    display: flex;
     flex-direction: column;
     z-index: 10;
+    display: grid;
+    grid-template-rows: 60px 2px 1fr ;
 }
 
 .RightSideBar hr{

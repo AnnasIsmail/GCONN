@@ -7,6 +7,7 @@ import './RightSlideBar.css';
 function RightSlideBar(props){
     const source = 'https://cdn.discordapp.com/attachments/900594253850349568/963634922017423360/Avatar.png'
     const [page , setPage] = React.useState('chat');
+    
     return(
         <>
         {(props.login)?
@@ -15,11 +16,11 @@ function RightSlideBar(props){
            <hr className="hrRightSlideBar" />
            {(page === 'chat')?
                 <div className="container-chat">
-                    <Chat source={source} alt='photo-profil' nama='Joko Santo' lastChat='Yaudah 550k deh' notification='200' />
+                    <Chat goDetailChat={()=>setPage('detail-chat')} source={source} alt='photo-profil' nama='Joko Santo' lastChat='Yaudah 550k deh' notification='200' />
                 </div>
            : (page === 'detail-chat')?
                 <div className="container-detail-chat">
-                    <DetailChat />
+                    <DetailChat back={()=>setPage('chat')} />
                 </div>
            :
            <></>

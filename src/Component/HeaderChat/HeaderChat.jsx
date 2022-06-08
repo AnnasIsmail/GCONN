@@ -16,6 +16,7 @@ function HeaderChat(props){
             if( RightSideBar.css('right') === '10px'){
                 hrRightSideBar.animate({'width':'40px'},500);
                 ButtonClosedChat.removeClass('ButtonChatOpen');
+                ButtonClosedChat.addClass('AnimationButtonChatClosed')
                 ButtonClosedChat.addClass('ButtonChatClosed');
                 RightSideBar.animate({'right':'-330px'},500);
                 RightSideBar.clearQueue();
@@ -24,6 +25,7 @@ function HeaderChat(props){
             }else{
                 hrRightSideBar.animate({'width':'365px'},500);
                 RightSideBar.animate({'right':'10px'},500);
+                ButtonClosedChat.removeClass('AnimationButtonChatClosed')
                 ButtonClosedChat.removeClass('ButtonChatClosed');
                 ButtonClosedChat.addClass('ButtonChatOpen');
                 RightSideBar.clearQueue();

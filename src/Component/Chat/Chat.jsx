@@ -2,8 +2,9 @@ import React from "react";
 import './Chat.css';
 
 function Chat(props){
+
     return(
-        <div className="chat">
+        <div className="chat" onClick={()=>props.goDetailChat()}>
             <img src={props.source} alt={props.alt} />
             <span>
                 <h1>{props.nama}</h1>

@@ -39,7 +39,7 @@ function ReviewCustomer(){
                     <h5><b>Status Transaksi: </b> Selesai</h5>
                     <h5><b>Jumlah Transaksi: </b>Rp. 650.000.00</h5>
                     <h5><b>Date Transaksi: </b> 13 May 2022</h5>
-                    <h5><b>Rating: </b><Rating icon='star' defaultRating={3} maxRating={5} size='huge'/></h5>
+                    <h5><b>Rating: </b><Rating icon='star' defaultRating={3} maxRating={5} size='huge' disabled/></h5>
                 </Item.Description>
             </Item.Content>
             </Item>
