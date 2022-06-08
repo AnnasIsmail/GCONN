@@ -6,7 +6,6 @@ import ArrowDown from '../../image/icon/svg file/arrow_down.svg';
 import './Profile.css';
 
 function Profile(props){
-
     let widthH1 = React.useRef(null)
     React.useEffect(()=>{
         $(".profile").click(()=>{
@@ -29,7 +28,9 @@ function Profile(props){
                     $(".profile-responsive").css("width", 0);
                 }
             }else{
-                $(".profile-responsive").css("width", widthH1.current.offsetWidth);
+                let width = widthH1.current.offsetWidth;
+                $(".profile-responsive").css("width", width);
+                console.log(widthH1.current.offsetWidth)
             }
         });
 
@@ -46,7 +47,7 @@ function Profile(props){
 
     let profileContainer = (
         <div className='profile'>
-            <img src={localStorage.userPhoto} alt="" />
+            <img src={(localStorage.userPhoto !== "")? localStorage.userPhoto : "https://react.semantic-ui.com/images/wireframe/image.png"} alt="" />
             <span className='profile-responsive'>
                 <h1 ref={widthH1} >{localStorage.fullName}</h1>
                 <div className='status'><Icon name="circle" color='green' />Online</div>

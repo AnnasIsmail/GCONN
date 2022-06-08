@@ -8,14 +8,28 @@
       "photo": "https://media.suara.com/pictures/653x366/2018/09/17/68090-djoko-santoso.jpg",
       "idUser": 1,
       "id": 1
+    },
+    {
+      "fullName": "Mas Santo",
+      "email": "santo@binus.ac.id",
+      "username": "santo123",
+      "password": "Santo123",
+      "photo": "",
+      "id": 2
     }
   ],
   "seller": [
     {
-      "marketName": "Joko Store",
+      "sellerName": "Joko Store",
       "slogan": "ga jualan ga makan",
       "photo": "https://media.suara.com/pictures/653x366/2018/09/17/68090-djoko-santoso.jpg",
       "id": 1
+    },
+    {
+      "sellerName": "",
+      "photo": "",
+      "slogan": "",
+      "id": 2
     }
   ],
   "transaction": [
@@ -43,6 +57,7 @@
       "changeNameStatus": "Available",
       "totalVP": 22500,
       "rank": "Gold 2",
+      "battlepass": "E2 A2 FULL, E2 A3 FULL, E3 A2 FULL, E4 A1 FULL",
       "reason": "butuh uang dan spek laptop tidak memadai",
       "level": 124,
       "agent": [

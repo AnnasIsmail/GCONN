@@ -4,7 +4,12 @@ import { Button, Form, Icon, Input, Label } from 'semantic-ui-react';
 import './SignIn.css';
 
 let username = "", password = "";
+
 function SignIn(){
+
+    fetch('https://api-gconn.herokuapp.com/users')
+    .then((response) => response.json())
+    .then((json) => console.log(json))
 
     const navigasi = useNavigate();
     
@@ -44,7 +49,8 @@ function SignIn(){
                     localStorage.setItem('userPhoto' , urlPhoto);
                     localStorage.setItem('username' , username);
                     localStorage.setItem('fullName', fullName)
-                    NavigateTo('/')
+                  
+                    
                 }else{
                     setErrorFieldPassword(<Label basic color='red' pointing='below'>
                         The password you entered is wrong!
@@ -55,6 +61,18 @@ function SignIn(){
                     the username you entered is not registered!
                 </Label>)
             }
+        });
+          
+        fetch(`http://localhost:8000/seller?id=${localStorage.userId}`)
+        .then((res)=>res.json())
+        .then((json)=>{
+            json.map((data ,index)=>{
+            localStorage.sellerName = data.sellerName;
+            localStorage.sellerPhoto = data.photo;
+            localStorage.sellerSlogan = data.slogan;
+
+            NavigateTo('/')
+            })
         });
     }
 

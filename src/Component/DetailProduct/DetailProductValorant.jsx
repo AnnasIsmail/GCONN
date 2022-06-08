@@ -1,6 +1,7 @@
 import React from "react";
 import { useNavigate, useParams } from 'react-router-dom';
 import { Button, Icon, Image, List } from 'semantic-ui-react';
+import FormatMoney from "../../Function/FormatMoney";
 import ListAgentDetailProduct from "../ListAgentDetailProduct/ListAgentDetailProduct";
 import ListSkinDetailProduct from "../ListSkinDetailProduct/ListSkinDetailProduct";
 import PhotoDetailProduct from "../PhotoDetailProduct/PhotoDetailProduct";
@@ -14,9 +15,18 @@ function DetailProductValorant(props){
         navigasi(to)
     }
 
+    React.useEffect(()=>{
+        fetch(`http://localhost:8000/seller?id=${props.data.idSeller}`)
+        .then((response) => response.json())
+        .then((res)=>{
+            res.map((data , index)=>{
+                console.log(data)
+            })
+        });
+    },[]);
+
     let data = props.data
     let { id } = useParams();
-    console.log(id)
     return(
         <>
             <h1 className="header">Valorant Account</h1>
@@ -65,12 +75,13 @@ function DetailProductValorant(props){
                 <div className="tab-right">
                     <div className="descripption">
                         <h3>{data.header}</h3>
-                        <h2>Rp. {data.price}.00</h2>
+                        <h2>Rp. <FormatMoney money={data.price} /> </h2>
                         <h5><b>Email Status:</b> {data.emailStatus}</h5>
                         <h5><b>Region:</b> {data.region}</h5>
                         <h5><b>Change Name Status:</b> Available</h5>
-                        <h5><b>Total VP:</b> {data.totalVP} VP</h5>
+                        <h5><b>Total VP:</b> <FormatMoney money={data.totalVP} /> VP</h5>
                         <h5><b>Rank:</b> {data.rank}</h5>
+                        <h5><b>Battlepass:</b> {data.battlepass}</h5>
                         <h5><b>Level:</b> {data.level}</h5>
                         <h5><b>Reason to Sell:</b> {data.reason}</h5>
                         <ListAgentDetailProduct data={data.agent} />

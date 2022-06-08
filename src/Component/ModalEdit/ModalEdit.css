@@ -1,0 +1,33 @@
+#modalEdit{
+    top: auto !important;
+    left: auto !important;
+    height: auto !important;
+    color: black !important;
+    width: 400px !important;
+}
+
+#modalEdit .header{
+    display: flex;
+}
+
+#modalEdit .content{
+    display: grid;
+    font-size: 15px;
+    gap: 10px;
+}
+
+#modalEdit .content div{
+    width: 100%;
+    display: grid;
+    grid-template-columns: auto auto;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#modalEdit .content div label{
+    font-weight: 500;
+}
+
+#modalEdit .content div .label{
+    text-decoration: none;
+}

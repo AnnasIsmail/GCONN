@@ -2,6 +2,7 @@ import React from "react";
 import { Card } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import { Button, Icon } from 'semantic-ui-react';
+import FormatMoney from "../../Function/FormatMoney";
 import './Produk.css';
 
 function Produk(props){
@@ -17,11 +18,11 @@ function Produk(props){
             <Card.Body>
                 <Card.Text>{props.header}</Card.Text>
                 <Card.Subtitle>{props.game}</Card.Subtitle>
-                <Card.Title>Rp.{props.price}.00</Card.Title>
+                <Card.Title>Rp. <FormatMoney money={props.price} /> </Card.Title>
             </Card.Body>
         </Card>
             {(props.footer === false)?
-            <></>
+            <> </>
             :
                 <div className="button-container">
                     <Button animated='vertical' onClick={()=>console.log('masuk BUT')}>

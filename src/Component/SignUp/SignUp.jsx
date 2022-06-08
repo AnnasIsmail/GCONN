@@ -4,6 +4,7 @@ import { Button, Checkbox, Form, Icon, Input, Label } from 'semantic-ui-react';
 import './SignUp.css';
 
 let username = "" , email = "" , password = "" , confirmPassword= "", fullName = "";
+
 function SignUp(){
     const navigasi = useNavigate();
     
@@ -35,29 +36,71 @@ function SignUp(){
         }  
     }
 
+    function error(text){
+        return error = <Label basic color='red' pointing='below'>
+            {(text === undefined)?
+            'Please enter a value'
+            :
+            text
+            }
+        </Label>
+    }
+
     function blur(e){
-        let error = <Label basic color='red' pointing='below'>
-                        Please enter a value
-                    </Label>
+        
         if(e.target.name === "full-name"){
             if(fullName === ""){   
                 setErrorFieldFullName(error)
+            }else if(fullName.length < 5){
+                setErrorFieldFullName(error('Please enter a full name of at least 5 letters'))
             }
         }else if(e.target.name === "username"){
             if(username === ""){   
                 setErrorFieldUsername(error)
+            }else if(username.length < 5){
+                setErrorFieldUsername(error('Username must at least 5 letters'))
+            }else if(username.match(/^[0-9]+$/)){
+                setErrorFieldUsername(error('Username must contain Lowercase a - z'))
+            }else if(username.match(/^[a-z]+$/)){
+                setErrorFieldUsername(error('Username must contain numbers 0 - 9'))
             }
         }else if(e.target.name === "email"){
             if(email === ""){   
                 setErrorFieldEmail(error)
+            }else if(email.indexOf("@") === -1){   
+                setErrorFieldEmail(error('Please enter Email correctly'))
+            }else{   
+                let validation = false;
+                    let list = ['.com','.id','.ac','.ac.id','.co.id'];
+
+                    list.forEach(format=>{
+                        if(email.lastIndexOf(format) !== -1){
+                            validation = true;
+                        }
+                    })
+
+                    if(validation === false){
+                        setErrorFieldEmail(error('Please enter Email correctly'))
+                    }
             }
         }else if(e.target.name === "password"){
             if(password === ""){   
                 setErrorFieldPassword(error)
+            }else if(password.length < 8){
+                setErrorFieldPassword(error('Password must at least 8 letters'))
+            }else if(password.match(/^[A-Z0-9]+$/)){
+                setErrorFieldPassword(error('Password must contain Lowercase a - z'))
+            }else if(password.match(/^[a-z0-9]+$/)){
+                setErrorFieldPassword(error('Password must contain Uppercase A -Z'))
+            }else if(password.match(/^[a-zA-Z]+$/)){
+                setErrorFieldPassword(error('Password must contain numbers 0 - 9'))
             }
         }else if(e.target.name === "confirm-password"){
             if(confirmPassword === ""){   
                 setErrorFieldConfirmPassword(error)
+            }else if( confirmPassword !== password){
+                setErrorFieldConfirmPassword(error('Password with Confirm Password must contain the same'))
+                setErrorFieldPassword(error('Password with Confirm Password must contain the same'))
             }
         }  
     }
@@ -76,8 +119,79 @@ function SignUp(){
         }  
     }
 
+    function validationSignUp(){
+        let valid = true;
+        if(fullName === ""){   
+            setErrorFieldFullName(error)
+            valid = false;
+        }else if(fullName.length < 5){
+            setErrorFieldFullName(error('Please enter a full name of at least 5 letters'))
+            valid = false;
+        }
+        if(username === ""){   
+            setErrorFieldUsername(error)
+            valid = false;
+        }else if(username.length < 5){
+            setErrorFieldUsername(error('Username must at least 5 letters'))
+            valid = false;
+        }else if(username.match(/^[0-9]+$/)){
+            setErrorFieldUsername(error('Username must contain Lowercase a - z'))
+            valid = false;
+        }else if(username.match(/^[a-z]+$/)){
+            setErrorFieldUsername(error('Username must contain numbers 0 - 9'))
+            valid = false;
+        }
+        if(email === ""){   
+            setErrorFieldEmail(error)
+            valid = false;
+        }else if(email.indexOf("@") === -1){   
+            setErrorFieldEmail(error('Please enter Email correctly'))
+            valid = false;
+        }else{   
+            let validation = false;
+                let list = ['.com','.id','.ac','.ac.id','.co.id'];
+
+                list.forEach(format=>{
+                    if(email.lastIndexOf(format) !== -1){
+                        validation = true;
+                    }
+                })
+
+                if(validation === false){
+                    setErrorFieldEmail(error('Please enter Email correctly'))
+                    valid = false;
+                }
+        }
+        if(password === ""){   
+            setErrorFieldPassword(error)
+            valid = false;
+        }else if(password.length < 8){
+            setErrorFieldPassword(error('Password must at least 8 letters'))
+            valid = false;
+        }else if(password.match(/^[A-Z0-9]+$/)){
+            setErrorFieldPassword(error('Password must contain Lowercase a - z'))
+            valid = false;
+        }else if(password.match(/^[a-z0-9]+$/)){
+            setErrorFieldPassword(error('Password must contain Uppercase A -Z'))
+            valid = false;
+        }else if(password.match(/^[a-zA-Z]+$/)){
+            setErrorFieldPassword(error('Password must contain numbers 0 - 9'))
+            valid = false;
+        }
+        if(confirmPassword === ""){   
+            setErrorFieldConfirmPassword(error)
+            valid = false;
+        }else if( confirmPassword !== password){
+            setErrorFieldConfirmPassword(error('Password with Confirm Password must contain the same'))
+            setErrorFieldPassword(error('Password with Confirm Password must contain the same'))
+            valid = false;
+        }
+        return valid;
+    }
+
     function SignUp(){
-        if(username !== "" && email !== "" && password  !== "" && confirmPassword  !== ""){
+        let valid = validationSignUp()
+        if(valid == true){
             let dataLogin = {}
             fetch(`http://localhost:8000/users?username=${username}`)
             .then((response) => response.json())
@@ -96,6 +210,18 @@ function SignUp(){
                 headers: {
                     'Content-type': 'application/json; charset=UTF-8',
                 },
+                });
+
+                fetch('http://localhost:8000/seller',{
+                method: 'POST',
+                body: JSON.stringify({
+                    "marketName": "",
+                    "photo": "",
+                    "slogan": "",
+                }),
+                headers: {
+                    'Content-type': 'application/json; charset=UTF-8',
+                },
                 })
                 .then((response) => response.json())
                 .then((json) => {NavigateTo('/sign-in');});
@@ -105,24 +231,7 @@ function SignUp(){
                 </Label>);
             }
         });
-        }else{
-            let error = <Label basic color='red' pointing='below'>
-                Please enter a value
-            </Label>
-            if(username === ""){   
-                setErrorFieldUsername(error)
-            }
-            if(email === ""){   
-                setErrorFieldEmail(error)
-            }
-            if(password === ""){   
-                setErrorFieldPassword(error)
-            }
-            if(confirmPassword === ""){   
-                setErrorFieldConfirmPassword(error)
-            }
-        }  
-        
+        }
     }
 
     return(

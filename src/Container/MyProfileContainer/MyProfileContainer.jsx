@@ -64,7 +64,7 @@ function MyProfileContainer(){
 
     return(
         <div className="my-profile-container">
-            <HeaderMyStore StoreName={localStorage.fullName} src={localStorage.userPhoto} />
+            <HeaderMyStore pageEdit="profile" StoreName={localStorage.fullName} src={(localStorage.userPhoto !== "")? localStorage.userPhoto : "https://react.semantic-ui.com/images/wireframe/image.png"} />
             <Tab menu={{ secondary: true, pointing: true, inverted: true, attached: false, tabular: false }} panes={panes} />
         </div>
     );

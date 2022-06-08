@@ -1,5 +1,10 @@
-.header-my-store{
+.header-my-store .ui.icon.header .icon{
+    display: inline !important;
+    font-size: 30px !important;
+}
 
+.header-my-store i.icon.pencil.alternate:before{
+    padding-left: 10px;
 }
 
 .header-my-store :nth-child(1) img{

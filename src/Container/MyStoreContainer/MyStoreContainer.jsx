@@ -4,7 +4,6 @@ import HeaderMyStore from "../../Component/HeaderMyStore/HeaderMyStore";
 import NoData from "../../Component/NoData/NoData";
 import OrderCustomer from "../../Component/OrderCustomer/OrderCustomer";
 import ReviewCustomer from "../../Component/ReviewCustomer/ReviewCustomer";
-import image from './assets/1.png';
 import './MyStoreContainer.css';
 
 function MyStoreContainer(){
@@ -12,10 +11,6 @@ function MyStoreContainer(){
   let [myProduct , setMyProduct] = React.useState();
   let [orderCustomer , setOrderCustomer] = React.useState();
   let [reviewCustomer , serReviewCustomer] = React.useState();
-
-  function load(){
-
-  }
 
     let panes = [
     {
@@ -50,7 +45,7 @@ function MyStoreContainer(){
 
     return(
         <div className="my-store-container">
-            <HeaderMyStore StoreName='Ansell Store' src={image} slogan="Tokonya Anselma Putri" />
+            <HeaderMyStore pageEdit="seller" StoreName={localStorage.sellerName} src={(localStorage.sellerPhoto !== "")? localStorage.sellerPhoto : "https://react.semantic-ui.com/images/wireframe/image.png"} slogan={localStorage.sellerSlogan} />
             <Tab menu={{ secondary: true, pointing: true, inverted: true, attached: false, tabular: false }} panes={panes} />
 
         </div>

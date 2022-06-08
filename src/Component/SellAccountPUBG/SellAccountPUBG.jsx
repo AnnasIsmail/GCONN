@@ -4,6 +4,22 @@ import { Button, Dropdown, Header, Icon, Image, Input, Label, Segment } from 'se
 import DropdownSkinPUBG from "../DropdownSkinPUBG/DropdownSkinPUBG";
 import './SellAccountPUBG.css';
 
+
+let data = {
+    game: "PUBG",
+    header: "",
+    royalePass: "",
+    level: 0,
+    rank: "",
+    price: 0,
+    changeNameStatus: "",
+    dataLogin: "",
+    description: "",
+    reason: "",
+    skin: [],
+    photo: []
+  }
+
 function SellAccountPUBG(props){
 
     const changeName = [
@@ -32,20 +48,6 @@ function SellAccountPUBG(props){
 
     ]
 
-    let data = {
-        game: "PUBG",
-        header: "",
-        royalePass: "",
-        level: 0,
-        rank: "",
-        price: 0,
-        changeNameStatus: "",
-        dataLogin: "",
-        description: "",
-        reason: "",
-        skin: [],
-        photo: []
-      }
 
     function changeValue(e, name){
         let value = e.target.value;

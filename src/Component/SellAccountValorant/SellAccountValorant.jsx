@@ -5,6 +5,23 @@ import DropdownAgentValorant from "../DropdownAgentValorant/DropdownAgentValoran
 import DropdownSkinValorant from "../DropdownSkinValorant/DropdownSkinValorant";
 import './SellAccountValorant.css';
 
+let data ={
+    game:"Valorant",
+    header:"",
+    price: 0,
+    emailStatus: "",
+    region:"",
+    changeNameStatus: "",
+    totalVP: 0,
+    rank: "",
+    reason:"",
+    level: 0,
+    battlepass:'',
+    agent: [],
+    skin: [],
+    photo: []
+}
+
 function SellAccountValorant(props){
 
     const emailStatus = [
@@ -48,21 +65,7 @@ function SellAccountValorant(props){
           { key: "RADIANT", text: "RADIANT", value: "RADIANT"},
       ]
 
-    let data ={
-        game:"Valorant",
-        header:"",
-        price: 0,
-        emailStatus: "",
-        region:"",
-        changeNameStatus: "",
-        totalVP: 0,
-        rank: "",
-        reason:"",
-        level: 0,
-        agent: [],
-        skin: [],
-        photo: []
-    }
+
 
       function changeValue(e, name){
         let value = e.target.value;
@@ -147,7 +150,7 @@ function SellAccountValorant(props){
           No image are listed for this customer.
         </>
         );
-
+        
     return(
         <div className="sell-account-valorant">
             <div className="left">

@@ -4,6 +4,21 @@ import { Button, Dropdown, Header, Icon, Image, Input, Label, Segment } from 'se
 import DropdownSkinMobilLegend from "../DropdownSkinMobilLegend/DropdownSkinMobilLegend";
 import './SellAccountMobileLegend.css';
 
+let data ={
+    game: "Mobile Legend",
+    header: "",
+    device: "",
+    CNCF: "",
+    level: 0,
+    rank: "",
+    price: 0,
+    reason: "",
+    heroCount: "",
+    hero: [],
+    photo:[]
+  }
+
+
 function SellAccountMobileLegend(props){
 
     const androidOrIos = [
@@ -28,19 +43,6 @@ function SellAccountMobileLegend(props){
         { key: "Mythical Glory", text: "Mythical Glory", value: "Mythical Glory" },
       ]
 
-      let data ={
-        game: "Mobile Legend",
-        header: "",
-        device: "",
-        CNCF: "",
-        level: 0,
-        rank: "",
-        price: 0,
-        reason: "",
-        heroCount: "",
-        hero: [],
-        photo:[]
-      }
 
       function changeValue(e, name){
         let value = e.target.value;

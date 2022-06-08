@@ -32,3 +32,24 @@
 .sell-account-main-container h1{
     text-align: center;
 }
+
+#modalEmptyFieldSell{
+    top: auto !important;
+    left: auto !important;
+    height: auto !important;
+    color: #00072B !important;
+}
+
+#modalEmptyFieldSell .actions{
+    display: grid !important;
+    justify-content: center;
+}
+
+#modalEmptyFieldSell .ui.button{
+    display: none;
+}
+
+#modalEmptyFieldSell .primary{
+    background-color: #db2828;
+    display: block !important;
+}
