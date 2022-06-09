@@ -35,14 +35,15 @@
   "transaction": [
     {
       "id": 1,
+      "noTransaction": "TR1654781983445",
       "idSeller": 1,
       "idUser": 1,
       "idAccount": 1,
       "date": "12/01/2022",
       "totalTransaction": 250000,
-      "statusTransaction": "Menunggu Konfirmasi Penjual",
-      "paymentMethod": "",
-      "rating": "",
+      "status": "Setting Up an Account",
+      "paymentMethod": "Gopay",
+      "rating": 4,
       "comment": ""
     }
   ],

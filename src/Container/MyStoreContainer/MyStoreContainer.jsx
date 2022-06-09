@@ -4,41 +4,76 @@ import HeaderMyStore from "../../Component/HeaderMyStore/HeaderMyStore";
 import NoData from "../../Component/NoData/NoData";
 import OrderCustomer from "../../Component/OrderCustomer/OrderCustomer";
 import ReviewCustomer from "../../Component/ReviewCustomer/ReviewCustomer";
+import ProdukContainer from "../ProdukContainer/ProdukContainer";
 import './MyStoreContainer.css';
 
 function MyStoreContainer(){
 
-  let [myProduct , setMyProduct] = React.useState();
-  let [orderCustomer , setOrderCustomer] = React.useState();
-  let [reviewCustomer , serReviewCustomer] = React.useState();
+  let [MyProductData , setMyProductData] = React.useState();
+  let [OrderCustomerData , setOrderCustomerData] = React.useState();
+  let [ReviewCustomerData , setReviewCustomerData] = React.useState();
+
+  React.useEffect(()=>{
+    fetch(`http://localhost:8000/transaction?idSeller=${localStorage.userId}`)
+    .then((response) => response.json())
+    .then((res)=>{
+      res.map((data , index)=>{
+          if(data.status !== "Done"){
+            setOrderCustomerData(data);
+          }else if(data.status === "Done"){
+            setReviewCustomerData(data);
+          }
+        });
+      });
+
+      fetch(`http://localhost:8000/account?idSeller=${localStorage.userId}`)
+      .then((response) => response.json())
+      .then((res)=>{
+        setMyProductData(res)
+        });
+    
+  },[]);
 
     let panes = [
     {
       menuItem: 'My Product',
-      render: () =>                 
-      <NoData description='There are no accounts that you have marketed yet' goto="sell" />
-      // <div className="container-my-store-main-container">
-      //   <ProdukContainer name='Valorant' />
-      // </div>,
+      render: () =>    
+      <>       
+        {(MyProductData !== undefined)?
+          <div className="container-my-store-main-container">
+            <ProdukContainer data={MyProductData} footer="edit-product" page="my-product" />
+          </div>
+        :
+          <NoData description='There are no accounts that you have marketed yet' goto="/choosegamesell" button="Go To Sell Account" />
+        }     
+      </> 
     },
     {
       menuItem: 'Order Customer',
       render: () => 
-      <div className="order-customer-container">
-          <OrderCustomer />
-          <OrderCustomer />
-          <OrderCustomer />
-          <OrderCustomer />
-          <OrderCustomer />
-      </div>
+      <>
+      {(OrderCustomerData !== undefined)?
+        <div className="order-customer-container">
+            <OrderCustomer data={OrderCustomerData} />
+        </div>
+      :
+      <NoData description='There are no accounts that you have marketed yet' goto="/choosegamesell" button="Go To Sell Account" />
+    }
+      </>
       ,
     },
     {
       menuItem: 'Review Customer',
       render: () => 
-      <div className="review-customer-container">
-            <ReviewCustomer />
+      <>
+        {(ReviewCustomerData !== undefined)?
+        <div className="review-customer-container">
+              <ReviewCustomer data={ReviewCustomerData} />
         </div>
+        :
+        <NoData description='There are no accounts that you have marketed yet' goto="/choosegamesell" button="Go To Sell Account" />
+        }
+      </>
       ,
     },
   ]                

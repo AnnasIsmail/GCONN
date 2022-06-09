@@ -1,10 +1,14 @@
 import React from "react";
 import { Item } from 'semantic-ui-react';
+import FormatMoney from "../../Function/FormatMoney";
 import './OrderCustomer.css';
 
-function OrderCustomer(){
+function OrderCustomer(props){
 
     let [sizeImage , setSizeImage] = React.useState('medium')
+    let [dataAccount , setDataAccount] = React.useState({});
+    let [dataCustomer , setDataCustomer] = React.useState({});
+    let [srcImage , setSrcImage] = React.useState()
 
     React.useEffect(()=>{
 
@@ -22,23 +26,40 @@ function OrderCustomer(){
                 setSizeImage('large')
             }
         });
-    })
+
+        fetch(`http://localhost:8000/users?id=${props.data.idUser}`)
+        .then((response) => response.json())
+        .then((res)=>{
+            res.map((data,index)=>{
+                setDataCustomer(data);
+            })
+        })
+
+        fetch(`http://localhost:8000/account?id=${props.data.idAccount}`)
+        .then((response) => response.json())
+        .then((res)=>{
+            res.map((data,index)=>{
+                setDataAccount(data);
+                setSrcImage(data.photo[0])
+            })
+        })
+    },[])
 
     return(
 
         <Item.Group className="order-customer">
         <Item>
-          <Item.Image className="img" size={sizeImage} src='https://cdn.discordapp.com/attachments/830080342026092566/980661811357577286/unknownw.png' />
+          <Item.Image className="img" size={sizeImage} src={srcImage} />
     
           <Item.Content>
-            <Item.Header as='a'>selena thunder, kof aurora, stun chou(wr kecil bs di up)</Item.Header>
-            <Item.Meta>Valorant</Item.Meta>
+            <Item.Header as='a'>{dataAccount.header}</Item.Header>
+            <Item.Meta>{dataAccount.game}</Item.Meta>
             <Item.Description>
-                <h5><b>Nomor Transaksi: </b>TR00192638367</h5>
-                <h5><b>Nama Pembeli: </b>Joko Santoso</h5>
-                <h5><b>Transaction Date: </b> 2 December 2021</h5>
-                <h5><b>Status Transaksi: </b>Menunggu Konfirmasi Penjual</h5>
-                <h5><b>Jumlah Transaksi: </b>Rp. 650.000.00</h5>
+                <h5><b>Nomor Transaksi: </b> {props.data.noTransaction}</h5>
+                <h5><b>Nama Pembeli: </b> {dataCustomer.fullName}</h5>
+                <h5><b>Transaction Date: </b> {props.data.date}</h5>
+                <h5><b>Status Transaksi: </b> {props.data.status}</h5>
+                <h5><b>Jumlah Transaksi: </b>Rp. <FormatMoney money={props.data.totalTransaction} /></h5>
             </Item.Description>
             <Item.Extra>
                 <button>Detail Product</button>

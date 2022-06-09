@@ -13,8 +13,8 @@ function NoData(props){
 
     return(
         <div className="no-data">
-            <Button basic inverted color='yellow' onClick={()=>NavigateTo('/market')}>
-                Go to Market
+            <Button basic inverted color='yellow' onClick={()=>NavigateTo(props.goto)}>
+                {props.button}
             </Button>
             <h1>{props.description}</h1>
         </div>

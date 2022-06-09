@@ -28,12 +28,12 @@ function MainContainer(props){
             <div className={`main-container ${props.additionalClass}`}>
                 <Filter />
                 <div className="container-market-main-container">
-                    <ProdukContainer name='Valorant' />
+                    <ProdukContainer page={props.additionalClass} />
                 </div>
             </div>
             : (props.additionalClass === 'favorite-main-container')?
             <div className={`main-container ${props.additionalClass}`}>
-                    <ProdukContainer name='Valorant' />
+                    <ProdukContainer page={props.additionalClass} />
             </div>
             : (props.additionalClass === 'my-store-main-container')?
             <div className={`main-container ${props.additionalClass}`}>

@@ -30,6 +30,15 @@ function Produk(props){
         </Card>
             {(props.footer === false)?
             <> </>
+            : (props.footer === 'edit-product')?
+            <div className="button-container edit-product">
+                    <Button animated='vertical'>
+                        <Button.Content hidden>Edit Product</Button.Content>
+                        <Button.Content visible>
+                            <Icon inverted color='grey' name='pencil alternate' />
+                        </Button.Content>
+                    </Button>
+                </div>
             :
                 <div className="button-container">
                     <Button animated='vertical'>

@@ -28,7 +28,12 @@ function Profile(props){
                     $(".profile-responsive").css("width", 0);
                 }
             }else{
-                let width = widthH1.current.offsetWidth;
+                let width;
+                try {
+                    width = widthH1.current.offsetWidth;
+                } catch (error) {
+                    
+                }
                 $(".profile-responsive").css("width", width);
                 console.log(widthH1.current.offsetWidth)
             }

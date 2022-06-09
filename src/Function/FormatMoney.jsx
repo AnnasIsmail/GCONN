@@ -4,7 +4,7 @@ function FormatMoney(props){
         maximumSignificantDigits: 3,
     });
 
-    return formatTigaAngka.format(props.money)
+    return formatTigaAngka.format(props.money).replace(',','.')
 }
 
 export default FormatMoney;

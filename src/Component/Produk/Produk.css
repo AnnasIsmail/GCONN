@@ -59,6 +59,16 @@
     margin: 0 !important;
 }
 
+.produk .edit-product {
+    display: grid !important;
+    grid-template-columns: 100%;
+}
+
+.produk .edit-product .button{
+    width: 258px !important;
+}
+
+
 .produk .button-container .button{
     background-color: #2444E3;
     color: #DCDDDE;
