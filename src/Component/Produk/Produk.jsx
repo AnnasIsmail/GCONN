@@ -11,9 +11,16 @@ function Produk(props){
     const NavigateTo =(to)=>{
         navigasi(to)
     }
+
+    function navigateToDetail(){
+        if(props.click !== false){
+            NavigateTo(`/detailproduk${props.id}`);
+        }
+    }
+
     return(
         <div className="produk" >
-        <Card style={{ width: '18rem' }} onClick={()=>NavigateTo(`/detailproduk${props.id}`)}>
+        <Card style={{ width: '18rem' }} onClick={navigateToDetail}>
             <Card.Img variant="top" src={props.src} className='foto-produk' id="fotoProduk" />
             <Card.Body>
                 <Card.Text>{props.header}</Card.Text>
@@ -25,7 +32,7 @@ function Produk(props){
             <> </>
             :
                 <div className="button-container">
-                    <Button animated='vertical' onClick={()=>console.log('masuk BUT')}>
+                    <Button animated='vertical'>
                         <Button.Content hidden>Favorite</Button.Content>
                         <Button.Content visible>
                             <Icon inverted color='grey' name='favorite' />

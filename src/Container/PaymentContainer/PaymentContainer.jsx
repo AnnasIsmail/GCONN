@@ -1,33 +1,68 @@
 import React from "react";
 import { useParams } from 'react-router-dom';
-import { Button, Dropdown } from 'semantic-ui-react';
+import { Button, Dropdown, Image, List } from 'semantic-ui-react';
 import Produk from "../../Component/Produk/Produk";
+import FormatMoney from "../../Function/FormatMoney";
 import './PaymentContainer.css';
 
 function PaymentContainer(){
 
     let account = {};
     let { id } = useParams();
-    console.log(id)
+    let dataSeller  = {};
+    let [totalPayment , setTotalPayment] = React.useState(0)
     let [produk , setProduk] = React.useState(
         "Mohon pilih produk terlebih dahulu di halaman market"
     )
 
+    
     React.useEffect(()=>{
         fetch(`http://localhost:8000/account?id=${id}`)
         .then((response) => response.json())
         .then((res)=>{
-            account = res
+            account = res;
             load();
         });
+        console.log(account.length)
+
     },[]);
 
     function load(){
-        setProduk(
-            account.map((data , index)=>{
-                return <Produk key={index} src={data.photo[0]} game={data.game} header={data.header} price={data.price} id={data.id} footer={false} />
+
+        account.map((data , index)=>{
+            fetch(`http://localhost:8000/seller?id=${data.idSeller}`)
+            .then((response) => response.json())
+            .then((res)=>{
+                res.map((data , index)=>{
+                    dataSeller = data
+                })
+            }).
+            then(()=>{
+                console.log(dataSeller)
+                setProduk(
+                    account.map((data , index)=>{
+                        setTotalPayment(data.price)
+                        return(
+                            <div key={index}>
+                            <Produk  src={data.photo[0]} game={data.game} header={data.header} price={data.price} id={data.id} footer={false} click={false} />
+                            <div className="seller">
+                                <Image className="pp-seller" src={(dataSeller.photo !== undefined)? dataSeller.photo : "https://react.semantic-ui.com/images/wireframe/image.png"} size='tiny' />{' '}
+                                <span>
+                                    <List.Item>
+                                        <List.Content>{dataSeller.sellerName}</List.Content>
+                                    </List.Item>
+                                    <List.Item>
+                                        <List.Icon name="circle" color='green' />
+                                        <List.Content>Online</List.Content>
+                                    </List.Item>
+                                </span>
+                            </div>
+                            </div>
+                        );
+                    })
+                )
             })
-        )
+        })
     }
 
     const PaymentType = [
@@ -38,7 +73,7 @@ function PaymentContainer(){
         { key: 5, text: 'Brimo', value: 'Brimo' },
         { key: 6, text: 'Virtual Account', value: 'Virtual Account' },
         { key: 7, text: 'Jenius Pay', value: 'Jenius Pay' },
-        { key: 8, text: 'GoPayLater', value: 'GoPayLater' },
+        { key: 8, text: 'Go Pay Later', value: 'Go Pay Later' },
         { key: 9, text: 'Credit Card', value: 'Credit Card' },
       ]
       
@@ -56,7 +91,7 @@ function PaymentContainer(){
                     <Dropdown clearable options={PaymentType} onChange={getPaymentMethod} selection placeholder="None" />
                     <Button animated='fade'>
                         <Button.Content visible>Check Out</Button.Content>
-                        <Button.Content hidden>RP. 650.000 with {payment}</Button.Content>
+                        <Button.Content hidden>RP. <FormatMoney money={totalPayment} /> with {payment}</Button.Content>
                     </Button>
             </div>
         </div>

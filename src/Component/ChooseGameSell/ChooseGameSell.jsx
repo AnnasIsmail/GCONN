@@ -1,8 +1,8 @@
 import React from "react";
 import { useNavigate } from 'react-router-dom';
-import game1 from './assets/game1.png';
-import game2 from './assets/game2.png';
-import game3 from './assets/game3.png';
+import game1 from '../../image/icon/game1.png';
+import game2 from '../../image/icon/game2.png';
+import game3 from '../../image/icon/game3.png';
 import './ChooseGameSell.css';
 
 function ChooseGameSell (){

@@ -153,3 +153,9 @@
 .payment-main-container{
     padding: 20px;
 }
+
+@media only screen and (max-width: 730px) {
+    .payment-main-container{
+        width: 90vw;
+    }
+}

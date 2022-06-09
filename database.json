@@ -41,6 +41,7 @@
       "date": "12/01/2022",
       "totalTransaction": 250000,
       "statusTransaction": "Menunggu Konfirmasi Penjual",
+      "paymentMethod": "",
       "rating": "",
       "comment": ""
     }

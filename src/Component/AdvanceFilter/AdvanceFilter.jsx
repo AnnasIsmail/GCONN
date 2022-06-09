@@ -1,13 +1,13 @@
 import React from "react";
 import { Dropdown, Input, Label, Tab } from 'semantic-ui-react';
+import game1 from '../../image/icon/game1.png';
+import game2 from '../../image/icon/game2.png';
+import game3 from '../../image/icon/game3.png';
 import DropdownAgentValorant from "../DropdownAgentValorant/DropdownAgentValorant";
 import DropdownSkinMobilLegend from "../DropdownSkinMobilLegend/DropdownSkinMobilLegend";
 import DropdownSkinPUBG from "../DropdownSkinPUBG/DropdownSkinPUBG";
 import DropdownSkinValorant from "../DropdownSkinValorant/DropdownSkinValorant";
 import './AdvanceFilter.css';
-import game1 from './assets/game1.png';
-import game2 from './assets/game2.png';
-import game3 from './assets/game3.png';
 
 function AdvanceFilter(){
 

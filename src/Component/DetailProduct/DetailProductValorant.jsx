@@ -14,13 +14,15 @@ function DetailProductValorant(props){
     const NavigateTo =(to)=>{
         navigasi(to)
     }
+    
+    let [dataSeller , setDataSeller] = React.useState({});
 
     React.useEffect(()=>{
         fetch(`http://localhost:8000/seller?id=${props.data.idSeller}`)
         .then((response) => response.json())
         .then((res)=>{
             res.map((data , index)=>{
-                console.log(data)
+                setDataSeller(data)
             })
         });
     },[]);
@@ -34,10 +36,10 @@ function DetailProductValorant(props){
                 <div className="tab-left">
                     <PhotoDetailProduct data={data.photo} />
                     <div className="seller">
-                        <Image className="pp-seller" src={"https://cdn.discordapp.com/attachments/955023472931799041/962880645355434024/IMG_9897.png"} size='tiny' />{' '}
+                        <Image className="pp-seller" src={(dataSeller.photo !== undefined)? dataSeller.photo : "https://react.semantic-ui.com/images/wireframe/image.png"} size='tiny' />{' '}
                         <span>
                             <List.Item>
-                                <List.Content>Ancelma</List.Content>
+                                <List.Content>{dataSeller.sellerName}</List.Content>
                             </List.Item>
                             <List.Item>
                                 <List.Icon name="circle" color='green' />
