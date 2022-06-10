@@ -18,6 +18,8 @@ function MyProfileContainer(){
   let [RefundData , setRefundData] = React.useState();
   let [TransactionCanceledData , setTransactionCanceledData] = React.useState();
   let [DoneData , setDoneData] = React.useState();
+  let [content , setContent] = React.useState()
+  let waitingforpayment = []
 
   React.useEffect(()=>{
     fetch(`http://localhost:8000/transaction?idUser=${localStorage.userId}`)
@@ -25,6 +27,7 @@ function MyProfileContainer(){
             .then((res)=>{
               res.map((data , index)=>{
                 if(data.status === "Waiting For Payment"){
+                  waitingforpayment.push(data)
                   setWaitingForPaymentData(data);
                 }else if(data.status === "Setting Up an Account"){
                   SetSettingUpAnAccountData(data);
@@ -38,7 +41,14 @@ function MyProfileContainer(){
                   setDoneData(data);
                 }
               });
-            });
+            }).then(()=>{
+              console.log(waitingforpayment)
+              setContent(
+              waitingforpayment.map((data , index)=>{
+                return <WaitingForPayment data={data} />
+              })
+              )
+            })
   },[]);
 
   let panes = [
@@ -47,7 +57,10 @@ function MyProfileContainer(){
       render: () =>
       <>
         {(WaitingForPaymentData !== undefined)?
-          <WaitingForPayment data={WaitingForPaymentData} />
+        <> 
+          {content}
+          
+        </>
         :
           <NoData  description='There Is No Incomming Bill' goto="/market" button="Go To Market" /> 
         }

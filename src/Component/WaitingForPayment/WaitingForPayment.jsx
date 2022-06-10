@@ -51,7 +51,6 @@ function WaitingForPayment(props){
         <Item.Group className="order-customer">
         <Item>
           <Item.Image className="img" size={sizeImage} src={srcImage} />
-    
           <Item.Content>
             <Item.Header as='a'>{dataAccount.header}</Item.Header>
             <Item.Meta>{dataAccount.game}</Item.Meta>

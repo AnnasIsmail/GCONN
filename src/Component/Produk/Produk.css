@@ -77,3 +77,7 @@
   /* background: rgba(28, 52, 173, 0.77); */
   z-index: inherit;
 }
+
+.produk .like{
+    color: #ffe21f !important;
+}

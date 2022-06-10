@@ -7,7 +7,8 @@ import './Produk.css';
 
 function Produk(props){
     const navigasi = useNavigate();
-    
+    let [like , setLike] = React.useState(props.like)
+
     const NavigateTo =(to)=>{
         navigasi(to)
     }
@@ -17,6 +18,27 @@ function Produk(props){
             NavigateTo(`/detailproduk${props.id}`);
         }
     }
+    function clickFavorite(){
+        if(like !== true){
+            fetch(`http://localhost:8000/favorite`, {
+                method: 'POST',
+                body: JSON.stringify({
+                  idUser: localStorage.userId,
+                  idAccount: props.id
+                }),
+                headers: {
+                  'Content-type': 'application/json; charset=UTF-8',
+                },
+              }).then(()=>setLike(true))
+        }else{
+            fetch(`http://localhost:8000/favorite/${props.likeId}`, {
+                method: 'DELETE',
+            }).then(()=>setLike(false))
+              
+        }
+    
+    }
+    
 
     return(
         <div className="produk" >
@@ -41,10 +63,10 @@ function Produk(props){
                 </div>
             :
                 <div className="button-container">
-                    <Button animated='vertical'>
-                        <Button.Content hidden>Favorite</Button.Content>
+                    <Button animated='vertical' onClick={clickFavorite} >
+                        <Button.Content className={(like === true)? 'like': ''} hidden>Favorite</Button.Content>
                         <Button.Content visible>
-                            <Icon inverted color='grey' name='favorite' />
+                            <Icon inverted color={(like === true)? 'yellow': 'grey'} name='favorite' />
                         </Button.Content>
                     </Button>
                     <Button animated='vertical'>

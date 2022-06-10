@@ -32,6 +32,13 @@
       "id": 2
     }
   ],
+  "favorite": [
+    {
+      "idUser": "1",
+      "idAccount": 2,
+      "id": 1
+    }
+  ],
   "transaction": [
     {
       "id": 1,
@@ -41,10 +48,23 @@
       "idAccount": 1,
       "date": "12/01/2022",
       "totalTransaction": 250000,
-      "status": "Setting Up an Account",
+      "status": "Waiting For Payment",
       "paymentMethod": "Gopay",
       "rating": 4,
       "comment": ""
+    },
+    {
+      "noTransaction": "TR1654824406443",
+      "idSeller": 2,
+      "idUser": 1,
+      "idAccount": 2,
+      "date": "10/5/2022",
+      "totalTransaction": 650000,
+      "status": "Waiting For Payment",
+      "paymentMethod": "Go Pay Later",
+      "rating": 0,
+      "comment": "",
+      "id": 2
     }
   ],
   "account": [

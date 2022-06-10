@@ -1,6 +1,7 @@
 import React from "react";
 import { useNavigate, useParams } from 'react-router-dom';
 import { Button, Icon, Image, List } from 'semantic-ui-react';
+import FormatMoney from "../../Function/FormatMoney";
 import ListSkinDetailProduct from "../ListSkinDetailProduct/ListSkinDetailProduct";
 import PhotoDetailProduct from "../PhotoDetailProduct/PhotoDetailProduct";
 import './DetailProduct.css';
@@ -15,6 +16,18 @@ function DetailProductPUBG(props){
     let data = props.data
     let { id } = useParams();
     
+    let [dataSeller , setDataSeller] = React.useState({});
+
+    React.useEffect(()=>{
+        fetch(`http://localhost:8000/seller?id=${props.data.idSeller}`)
+        .then((response) => response.json())
+        .then((res)=>{
+            res.map((data , index)=>{
+                setDataSeller(data)
+            })
+        });
+    },[]);
+
     return(
         <>
             <h1 className="header">PUBG Account</h1>
@@ -22,10 +35,10 @@ function DetailProductPUBG(props){
                 <div className="tab-left">
                     <PhotoDetailProduct data={data.photo} />
                     <div className="seller">
-                        <Image className="pp-seller" src={"https://cdn.discordapp.com/attachments/955023472931799041/962880645355434024/IMG_9897.png"} size='tiny' />{' '}
+                        <Image className="pp-seller" src={(dataSeller.photo !== undefined)? dataSeller.photo : "https://react.semantic-ui.com/images/wireframe/image.png"} size='tiny' />{' '}
                         <span>
                             <List.Item>
-                                <List.Content>Ancelma</List.Content>
+                                <List.Content>{dataSeller.sellerName}</List.Content>
                             </List.Item>
                             <List.Item>
                                 <List.Icon name="circle" color='green' />
@@ -63,7 +76,7 @@ function DetailProductPUBG(props){
                 <div className="tab-right">
                     <div className="descripption">
                         <h3>{data.header}</h3>
-                        <h2>Rp. {data.price}.00</h2>
+                        <h2>Rp. <FormatMoney money={data.price} /></h2>
                         <h5><b>Royale Pass:</b> {data.royalePass}</h5>
                         <h5><b>Change Name Status:</b> Available</h5>
                         <h5><b>Data Login:</b> {data.dataLogin}</h5>

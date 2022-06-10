@@ -9,7 +9,8 @@ function PaymentContainer(){
 
     let account = {};
     let { id } = useParams();
-    let dataSeller  = {};
+    let [DataSeller , setDataSeler]  = React.useState({});
+    let dataSeller   = {};
     let [totalPayment , setTotalPayment] = React.useState(0)
     let [produk , setProduk] = React.useState(
         "Mohon pilih produk terlebih dahulu di halaman market"
@@ -23,7 +24,6 @@ function PaymentContainer(){
             account = res;
             load();
         });
-        console.log(account.length)
 
     },[]);
 
@@ -34,11 +34,11 @@ function PaymentContainer(){
             .then((response) => response.json())
             .then((res)=>{
                 res.map((data , index)=>{
-                    dataSeller = data
+                    dataSeller = data;
+                    setDataSeler(data);
                 })
             }).
             then(()=>{
-                console.log(dataSeller)
                 setProduk(
                     account.map((data , index)=>{
                         setTotalPayment(data.price)
@@ -82,6 +82,32 @@ function PaymentContainer(){
         setPayment(data.value)
       }
 
+      function checkOutPayment(){
+          let date = new Date()
+          console.log(payment)
+        if(payment !== "" && payment !== "Please Choose Payment"){
+
+            fetch('http://localhost:8000/transaction', {
+                method: 'POST',
+                body: JSON.stringify({
+                    "noTransaction": `TR${Date.now()}`,
+                    "idSeller": DataSeller.id,
+                    "idUser": parseInt(localStorage.userId),
+                    "idAccount": parseInt(id),
+                    "date": `${date.getDate()}/${date.getMonth()}/${date.getFullYear()}`,
+                    "totalTransaction": totalPayment,
+                    "status": "Waiting For Payment",
+                    "paymentMethod": payment,
+                    "rating": 0,
+                    "comment": ""
+                }),
+                headers: {
+                  'Content-type': 'application/json; charset=UTF-8',
+                },
+              })
+        }
+      }
+
     return(
         <div className="payment-container">
             <h1 className="header">Payment</h1>
@@ -89,7 +115,7 @@ function PaymentContainer(){
                     {produk}
                     <h6>Choose Payment Type</h6>
                     <Dropdown clearable options={PaymentType} onChange={getPaymentMethod} selection placeholder="None" />
-                    <Button animated='fade'>
+                    <Button onClick={checkOutPayment} animated='fade'>
                         <Button.Content visible>Check Out</Button.Content>
                         <Button.Content hidden>RP. <FormatMoney money={totalPayment} /> with {payment}</Button.Content>
                     </Button>
