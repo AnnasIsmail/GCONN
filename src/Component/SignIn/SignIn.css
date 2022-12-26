@@ -1,0 +1,131 @@
+.sign-in{
+    width: 100%;
+    grid-column: 1;
+    text-align: center;
+    display: grid;
+    align-items: center;
+    align-content: center;
+    grid-row: 1 / span 2;
+}
+
+.sign-in Form{
+    background: linear-gradient(18deg, rgba(28,52,173,0.23012955182072825) 0%, rgba(28,52,173,1) 100%);
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    backdrop-filter: blur( 20px );
+    -webkit-backdrop-filter: blur( 20px );
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+
+    padding: 20px 30px;
+    border-radius: 20px;
+    display: grid;
+    gap: 20px;
+    
+}
+
+.sign-in Form Input{
+    height: 45px;
+}
+
+.sign-in .ui label{
+    color: white !important;
+}
+
+.sign-in :nth-child(2) :nth-child(1){
+    border-radius: 12px !important;
+}
+
+.sign-in :nth-child(4) :nth-child(1){
+    border-radius: 12px !important;
+    height: 45px;
+}
+
+.sign-in h1{
+    font-weight: bold;
+    font-size: 37px;
+}
+
+.sign-in h4 , .sign-in h5{
+    padding-bottom: 5px;
+    font-weight: 300;
+    font-size: 18px;
+}
+
+.sign-in h5 b{
+    cursor: pointer;
+}
+
+.sign-in b{
+    font-weight: bold;
+}
+
+.sign-in .password-sign-in :nth-child(1){
+    border-radius: 12px 0 0 12px !important;
+}
+
+.sign-in .label{
+    border-radius: 0 12px 12px 0 !important;
+    display: grid;
+    align-items: center;
+    background-color: #2444E3;
+}
+
+.sign-in .label :nth-child(1){
+    cursor: pointer;
+    margin: 0;
+}
+
+.sign-in .container-button-sign-in{
+    display: grid;
+    grid-template-columns: 100%;
+    justify-content: space-around;
+}
+
+.sign-in .container-button-sign-in :nth-child(1){
+    color: #DCDDDE;
+    background-color: #2444E3;
+    margin: 0;
+    font-size: 18px;
+    font-weight: 600;
+    font-family: 'Poppins' !important;
+}
+
+.sign-in .ui.basic.red.label{
+    /* margin-top: 0 !important; */
+    display:inline-block !important;
+    border-radius: 5px !important;
+    font-weight: 500;
+    height: 28px;
+}
+
+.sign-in .ui.form .field{
+    margin-bottom: 0;
+}
+
+@media only screen and (max-width: 1040px) {
+
+    .sign-in-main-container, .sign-up-main-container{
+        grid-template-columns: 1fr !important;
+        grid-template-rows: max-content 50% 50% !important;
+        top: 10px !important;
+        padding-right: 40px;
+    }
+}
+
+@media only screen and (max-width: 730px) {
+    .sign-in-main-container, .sign-up-main-container{
+        margin-bottom: 50px !important;
+        left: 40px !important;
+    }
+}
+
+@media only screen and (max-width: 550px) {
+    .sign-in-main-container, .sign-up-main-container{
+        left: 20px !important;
+        padding-right: 20px;
+
+    }
+
+    .sign-in h1 {
+        font-size: 32px;
+    }
+}

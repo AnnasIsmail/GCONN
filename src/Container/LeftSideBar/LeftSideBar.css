@@ -1,0 +1,23 @@
+.LeftSideBar{
+    background: rgba( 28, 52, 173, 0.8 );
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    backdrop-filter: blur( 18px );
+    -webkit-backdrop-filter: blur( 18px );
+    border-radius: 10px;
+
+    position: fixed;
+    width: 60px;
+    overflow: hidden;
+    top: 10px;
+    bottom: 10px;
+    border-radius: 10px;
+    left: 10px;
+    z-index: 5;
+}
+
+@media only screen and (max-width: 730px) {
+    .LeftSideBar{
+        display: none;
+    }
+
+}

@@ -1,0 +1,55 @@
+.sell-account-main-container .container-submit-button{
+    display: flex;
+    justify-content:space-around;
+    gap: 15px;
+}
+
+.sell-account-main-container .container-submit-button .btn{
+    padding: 5px 35px;
+    font-size: 20px;
+    border-radius: 50px;
+    font-weight: 600;
+    width: 15vw;
+    min-width: 150px;
+}
+
+.sell-account-main-container .container-submit-button :nth-child(1){
+    background-color: #00072B;
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    backdrop-filter: blur( 20px );
+    -webkit-backdrop-filter: blur( 20px );
+    border: 2px solid rgba( 255, 255, 255, 0.18 );
+}
+
+.sell-account-main-container .container-submit-button :nth-child(2){
+    background-color: #1C34AD;
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    backdrop-filter: blur( 20px );
+    -webkit-backdrop-filter: blur( 20px );
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+}
+
+.sell-account-main-container h1{
+    text-align: center;
+}
+
+#modalEmptyFieldSell{
+    top: auto !important;
+    left: auto !important;
+    height: auto !important;
+    color: #00072B !important;
+}
+
+#modalEmptyFieldSell .actions{
+    display: grid !important;
+    justify-content: center;
+}
+
+#modalEmptyFieldSell .ui.button{
+    display: none;
+}
+
+#modalEmptyFieldSell .primary{
+    background-color: #db2828;
+    display: block !important;
+}

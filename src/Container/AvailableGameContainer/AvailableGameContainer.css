@@ -1,0 +1,36 @@
+.available-game-container{
+    margin: auto;
+    width: 100%;
+    
+}
+
+.available-game-container h1{
+    font-size: 30px;
+}
+
+.container-available-game-container{
+    display: flex;
+    gap: 15px;
+    justify-content: left;
+}
+
+@media only screen and (max-width: 1040px){
+
+    .available-game-container{
+        margin: auto;
+        width: 100% !important;
+    }
+}
+
+@media only screen and (max-width: 580px) {
+    .container-available-game-container{
+        display: grid;
+        grid-template-columns: auto;
+        width: 100% !important;
+    }
+
+    .container-available-game-container img{
+        width: 100%;
+        max-width: 150px;
+    }
+}

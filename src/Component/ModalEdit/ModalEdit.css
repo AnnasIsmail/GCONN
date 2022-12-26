@@ -1,0 +1,45 @@
+#modalEdit{
+    top: auto !important;
+    left: auto !important;
+    height: auto !important;
+    color: black !important;
+    max-width: 400px !important;
+}
+
+#modalEdit .header{
+    display: flex;
+}
+
+#modalEdit .content{
+    display: grid;
+    font-size: 15px;
+    gap: 10px;
+}
+
+#modalEdit .content div{
+    width: 100%;
+    display: grid;
+    grid-template-columns: auto auto;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#nameBank {
+    min-width: 0 !important; 
+    width: 202px !important;
+}
+
+@media only screen and (max-width: 300px) {
+    #modalEdit .content div{
+        grid-template-columns: auto;
+        justify-content: center;
+    }
+}
+
+#modalEdit .content div label{
+    font-weight: 500;
+}
+
+#modalEdit .content div .label{
+    text-decoration: none;
+}

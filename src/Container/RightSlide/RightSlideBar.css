@@ -1,0 +1,41 @@
+.RightSideBar{
+    background: rgba(28, 52, 173, 0.77);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(13.1px);
+    -webkit-backdrop-filter: blur(13.1px);
+    border: 1px solid rgba(28, 52, 173, 0.32);
+    
+    position: fixed;
+    width: 400px;
+    right: -330px;
+    top: 10px;
+    bottom: 10px;
+    flex-direction: column;
+    z-index: 10;
+    display: grid;
+    grid-template-rows: 60px 2px 1fr ;
+}
+
+.RightSideBar hr{
+    max-height: 0.5px;
+    color: white;
+    opacity: 1;
+    margin: 0;
+    margin-left: 15px;
+    width: 40px;
+    overflow: hidden;
+}
+
+.container-chat{
+    overflow: auto;
+
+}
+
+
+@media only screen and (max-width: 730px) {
+    .RightSideBar{
+        bottom: 70px;
+        right: -400px;
+    }
+}

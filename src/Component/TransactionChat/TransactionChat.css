@@ -1,0 +1,7 @@
+.transaction-chat{
+    height: 250px;
+}
+
+.transaction-chat .card{
+    background-color: rgba(255, 255, 255, 0.9);
+}

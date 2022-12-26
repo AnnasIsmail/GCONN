@@ -1,0 +1,80 @@
+.logo-gconn-before-navbar{
+    padding-top: 30px;
+    color: white;
+    display: grid;
+    grid-template-columns: 40% 1fr; 
+    padding-left: 20px;
+    cursor: pointer;
+}
+
+.logo-gconn-before-navbar img{
+    width: 40px;
+    height: 40px;
+}
+
+.logo-gconn-before-navbar h1{
+    font-weight: bold ;
+    font-size: 30px;
+    padding-bottom: -10px;
+}
+
+.logo-gconn-before-navbar h3{
+    margin-top: -10px;
+    font-size: 7px;
+}
+
+.logo-gconn-before-navbar span{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.navbar .main{
+    margin-top: 70px;
+    display: grid;
+    grid-template-columns: auto;
+    row-gap: 30px;
+}
+
+/* .navbar .main .link{
+    color: white;
+    display: grid;
+    grid-template-columns: 20% 100px;
+    justify-content: center;
+    align-items: center;
+    font-size: 23px;
+    column-gap: 30px;
+    padding-left: 20px;
+    text-decoration: none;
+}
+
+.navbar .main .link img{
+    width: 40px;
+} */
+
+.navbar .main .link h3{
+    margin: 0;
+    font-weight: 400;
+    font-size: 20px;
+    margin-top: 5px;
+    width: fit-content;
+}
+
+.navbar .main .link:hover{
+    cursor: pointer;
+}
+
+.navbar .main hr{
+    max-height: 0.5px;
+    color: white;
+    opacity: 1;
+    margin: auto;
+    margin-left: 20px;
+    width: 45px;
+    overflow: hidden;
+}
+
+.navbar .main .klik h3{
+    font-weight: 700;
+}
+

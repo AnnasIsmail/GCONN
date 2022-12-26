@@ -1,0 +1,15 @@
+.ui.secondary.pointing.menu .item{
+    font-size: 17px;
+    padding: 10px 5px;
+    margin: 5px;
+}
+
+.order-customer-container , .review-customer-container, .container-my-store-main-container{
+    width: 100%;
+}
+
+@media only screen and (max-width: 730px) {
+    .order-customer-container , .review-customer-container{
+        margin-bottom: 60px;
+    }
+}

@@ -1,0 +1,20 @@
+.produk-container{
+    padding-top: 30px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px , 1fr));
+    grid-template-rows: repeat(auto-fit, 330px);
+    gap: 10px;
+    width: 100%;
+    padding-right: 10px;
+}
+
+.nodata-favorite{
+    margin-top: 20vh;    
+    height: 80px;
+}
+
+
+
+
+
+    

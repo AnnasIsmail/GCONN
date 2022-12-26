@@ -1,0 +1,98 @@
+.content-detail-product-container{
+    display: grid;
+    grid-template-columns: 55% 1fr;
+    gap: 10px;
+}
+
+.content-detail-product-container .list-skin-detail-product .label{
+    background: rgba( 255, 255, 255, 0.95 );
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    backdrop-filter: blur( 20px );
+    -webkit-backdrop-filter: blur( 20px );
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+
+    border-radius: 10px;
+    /* max-width: 250px; */
+    font-size: 13px;
+}
+
+.content-detail-product-container .list-skin-detail-product .agent .label{
+    background: rgba(255, 255, 255, 1);
+
+    border-radius: 0;
+    max-width: 200px;
+    font-size: 13px;
+}
+
+.content-detail-product-container h2{
+    font-weight: 600;
+    padding: 5px 0 10px 0;
+}
+
+.content-detail-product-container h5{
+    font-weight: 400;
+}
+
+.detail-product-main-container .header{
+    text-align: center;
+    margin: 0;
+    height: 40px;
+    font-size: 40px;
+    font-weight: 600;
+    margin-bottom: 25px;
+}
+
+.detail-product-main-container .tab-right{
+    padding: 0 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.detail-product-main-container .button-container{
+    margin-top: 15px;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 10px;
+    margin: 0 auto;
+    margin-bottom: 80px;
+    margin-top: 20px;
+}
+
+.detail-product-main-container .button-container .button{
+    background-color: #1935C2;
+    color: #DCDDDE;
+}
+
+.detail-product-main-container .button-container .button:nth-child(4){
+    background: linear-gradient(18deg, rgba(28,52,173,0.23012955182072825) 0%, rgba(28,52,173,1) 100%);
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    backdrop-filter: blur( 20px );
+    -webkit-backdrop-filter: blur( 20px );
+    border: 2px solid #1935C2;
+
+    color: #DCDDDE;
+    height: 45px;
+}
+
+.detail-product-main-container .button-container .fade:not(.show){
+    opacity: 1;
+}
+
+.detail-product-main-container .button-container :nth-child(4){
+    grid-column: 1/4;
+}
+
+@media only screen and (max-width: 1000px) {
+    .content-detail-product-container{
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+    .detail-product-main-container .header{
+        font-size: 30px;
+        margin-bottom: 10px;
+    }
+}

@@ -1,0 +1,31 @@
+
+.carousel{
+    width: 100%;
+    /* position: absolute; */
+    border-radius: 15px;
+    height: max-content;
+    overflow: hidden;
+    object-fit: cover;
+}
+
+.carousel .d-block{
+    width: 100%;
+    height: 100% !important;
+    object-fit: cover;
+}
+
+@media only screen and (max-width: 1040px) {
+    .carousel .d-block{
+        /* height: 330px !important; */
+    }
+}
+
+.carousel-indicators button{
+    /* background-color: aqua; */
+    /* display: none; */
+    height: 10px !important;
+    width: 10px !important;
+    border-radius: 50%;
+    color: white !important;
+}
+

@@ -1,0 +1,58 @@
+.bill-main-container .produk{
+    margin: 20px 0;
+    border-radius: 10px !important;
+}
+
+.bill-main-container .produk .card{
+    margin: 20px 0;
+    border-radius: 10px !important;
+    overflow: hidden;
+}
+
+.bill-main-container .button-container{
+    display: grid;
+    grid-template-columns: auto auto !important;
+    gap: 10px;
+    /* background-color: #1C34AD !important; */
+    border-radius: 10px ;
+    padding: 10px 0;
+    margin-top: 15px;
+}
+
+.payment-container .accordion .title{
+    color: white !important;
+}
+
+.bill-main-container .on-button{
+    grid-template-columns: auto !important;
+}
+
+.produk-chat .card , .produk-chat .button-container{
+    background-color: #00072b7a !important;
+}
+
+.bill-main-container .button-container .btn :nth-child(1){
+    margin: 0 !important;
+}
+
+.bill-main-container .button{
+    width: 100% !important;
+}
+
+.bill-main-container .button-container .button{
+    background-color: #2444E3;
+    color: #DCDDDE;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    width: 70px;
+  /* background: rgba(28, 52, 173, 0.77); */
+  z-index: inherit;
+}
+
+.bill-main-container .button-container .button:hover{
+    background-color: #2444E3;
+    color: #DCDDDE;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    width: 70px;
+  background: rgba(28, 52, 173, 0.77);
+  z-index: inherit;
+}

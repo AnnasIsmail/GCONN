@@ -1,0 +1,170 @@
+.main-container{
+    position: absolute;
+    width: 75vw;
+    height: auto;
+    margin: auto;
+    left: 0;
+    right: 0;
+    top: 80px;
+    margin-top: 10px;
+    bottom: 10px;
+    overflow: auto;
+}
+
+@media only screen and (max-width: 730px) {
+    .main-container{
+    /* bottom: 50px; */
+
+    }
+}
+
+.home-main-container{
+    display: grid;
+    grid-template-columns: 70% 1fr;
+    grid-template-rows: max-content 1fr;
+    gap: 20px;
+    min-width: 850px;
+    padding-right: 10px;
+}
+
+@media only screen and (max-width: 1040px) {
+    .home-main-container{
+        grid-template-columns: 100%;
+        grid-template-rows: max-content 50% 80%;
+        min-width: auto;
+    }
+}
+
+@media only screen and (max-width: 730px) {
+    .home-main-container{
+        grid-template-columns: 100%;
+        grid-template-rows: max-content 50% 100%;
+        min-width: auto;
+        width: 90%;
+        margin-bottom: 60px;
+    }
+}
+
+.market-main-container{
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 60px calc(100vh - 160px);
+    min-width: 1100px;
+}
+
+@media only screen and (max-width: 1300px) {
+    .market-main-container{
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 60px calc(100vh - 160px);
+        min-width: auto;
+        width: 80vw;
+    }
+}
+
+@media only screen and (max-width: 700px) {
+    .market-main-container{
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 60px calc(100vh - 160px);
+        min-width: auto;
+        width: 90vw;
+    }
+
+    .container-market-main-container{
+        margin-bottom: 60px;
+    }
+
+    .favorite-main-container{
+        width: 90vw;
+        bottom: 70px;
+    }
+}
+
+.container-market-main-container{
+    display: grid;
+    overflow: auto;
+}
+
+.sign-in-main-container , .sign-up-main-container{
+    top: 20px;
+    right: 0;
+    left: 100px;
+    bottom: 20px;
+    width: auto;
+    display: grid;
+    grid-template-columns:  50% fit-content(400px);
+    justify-content: space-around;
+    grid-template-rows: 50% 1fr;
+    gap: 50px;
+}
+
+.choose-game-sell-main-container{
+    top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+@media only screen and (max-width: 730px) {
+    .choose-game-sell-main-container{
+        width: 90vw;
+    }
+}
+
+.sell-account-main-container{
+    background: linear-gradient(18deg, rgba(28,52,173,0.23012955182072825) 0%, rgba(28,52,173,1) 100%);
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    backdrop-filter: blur( 20px );
+    -webkit-backdrop-filter: blur( 20px );
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+
+    border-radius: 15px;
+    padding: 10px 15px;
+    bottom: auto !important;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+@media only screen and (max-width: 730px) {
+    .sell-account-main-container{
+        width: 90vw;
+        top: 80px;
+        /* bottom: 80px !important; */
+        overflow: auto;
+}
+.my-store-container{
+    bottom: 50px !important;
+    margin-bottom: 40px !important;
+}
+}
+
+.detail-product-main-container{
+    background: linear-gradient(18deg, rgba(28,52,173,0.23012955182072825) 0%, rgba(28,52,173,1) 100%);
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    backdrop-filter: blur( 20px );
+    -webkit-backdrop-filter: blur( 20px );
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+
+    padding: 20px;
+    border-radius: 15px;
+}
+
+@media only screen and (max-width: 730px) {
+    .detail-product-main-container{
+    width: 90vw;
+    margin-bottom: 60px;
+    }
+}
+
+.payment-main-container{
+    padding: 20px;
+}
+
+@media only screen and (max-width: 730px) {
+    .payment-main-container{
+        width: 90vw;
+    }
+}
