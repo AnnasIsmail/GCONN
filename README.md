@@ -1,70 +1,66 @@
-# Getting Started with Create React App
+# GCONN STORE
+### Marketplace for selling game accounts easily and safely
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+[![N|Solid](https://cdn.discordapp.com/attachments/830080342026092566/1057130814481104957/G.Conn_ABAD_-_Copy.png)](https://gconn.netlify.app/)
 
-## Available Scripts
+Link Address: [gconn.netlify.app](https://gconn.netlify.app/)
 
-In the project directory, you can run:
+## Features
 
-### `npm start`
+- Filtering and Searching for accounts is easier
+- Ease of marketing game accounts
+- Ease of payment and disbursement of funds
+- Ease of talking with Customers and Sellers
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Change Payment Status
+[simulator.sandbox.midtrans.com](https://simulator.sandbox.midtrans.com/bca/va/index)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Tech
 
-### `npm test`
+Dillinger uses a number of open source projects to work properly:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- [ReactJS]
+- [Axios]
+- [jQuery]
+- [Node.js]
+- [Express]
+- [MongoDB]
+- [Mongoose]
+- [Socket IO]
+- [React Bootstrap]
+- [Semantic UI React]
+- [Visual Stiduo Code]
+- [Midtrans] (Sandbox Mode)
 
-### `npm run build`
+The above technology is open source.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Installation
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Dillinger requires [Node.js]
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Install the dependencies and devDependencies and start the server.
 
-### `npm run eject`
+```sh
+npm install
+npm start
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+   [Node.js]: <http://nodejs.org>
+   [jQuery]: <http://jquery.com>
+   [express]: <http://expressjs.com>
+   [ReactJS]: <https://reactjs.org>
+   [Socket IO]: <https://socket.io/>
+   [Visual Stiduo Code]: <https://code.visualstudio.com/>
+   [React Bootstrap]: <https://react-bootstrap.github.io/>
+   [Semantic UI React]: <https://react.semantic-ui.com/>
+   [Midtrans]: <https://midtrans.com>
+   [Mongoose]: <https://mongoosejs.com>
+   [MongoDB]: <https://www.mongodb.com>
+   [Axios]: <https://axios-http.com>
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+   [PlDb]: <https://github.com/joemccann/dillinger/tree/master/plugins/dropbox/README.md>
+   [PlGh]: <https://github.com/joemccann/dillinger/tree/master/plugins/github/README.md>
+   [PlGd]: <https://github.com/joemccann/dillinger/tree/master/plugins/googledrive/README.md>
+   [PlOd]: <https://github.com/joemccann/dillinger/tree/master/plugins/onedrive/README.md>
+   [PlMe]: <https://github.com/joemccann/dillinger/tree/master/plugins/medium/README.md>
+   [PlGa]: <https://github.com/RahulHP/dillinger/blob/master/plugins/googleanalytics/README.md>
