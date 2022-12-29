@@ -8,21 +8,21 @@ import './PhotoCarousel.css';
 function PhotoCarousel(){
     return(
         <Carousel id="carousel" controls={false} interval={null}>
-            <Carousel.Item >
+            <Carousel.Item>
             <img
                 className="d-block w-100"
                 src={Image1}
                 alt="First slide"
             />
             </Carousel.Item>
-            <Carousel.Item >
+            <Carousel.Item>
             <img
                 className="d-block w-100"
                 src={Image2}
                 alt="Second slide"
             />
             </Carousel.Item>
-            <Carousel.Item >
+            <Carousel.Item>
             <img
                 className="d-block w-100"
                 src={Image3}

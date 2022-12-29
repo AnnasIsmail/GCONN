@@ -21,7 +21,7 @@ function TopBar(props){
             {(props.login)?
             <h1>Hi, {props.profile.fullName} </h1>
             :
-            <h1>Hello, Please Do Sign In or Sign Up </h1>
+            <h1>Hi, Please Do Sign In or Sign Up </h1>
             }
             <h3>Date, Time : {date}  </h3>
         </div>

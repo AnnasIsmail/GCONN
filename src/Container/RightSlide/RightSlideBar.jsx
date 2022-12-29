@@ -1,3 +1,4 @@
+import $ from 'jquery';
 import React from "react";
 import { useCookies } from 'react-cookie';
 import { SocketIO } from '../../App';
@@ -89,6 +90,23 @@ function RightSlideBar(props){
         // }
     }
 
+    const checkRightSideBar = () => {
+        let RightSideBar = $('.RightSideBar');
+            let ButtonClosedChat = $('#buttonClosedChat');
+            let hrRightSideBar = $('.hrRightSlideBar');
+
+            if( RightSideBar.css('right') === '-330px'){
+                hrRightSideBar.animate({'width':'365px'},500);
+                RightSideBar.animate({'right':'10px'},500);
+                ButtonClosedChat.removeClass('AnimationButtonChatClosed')
+                ButtonClosedChat.removeClass('ButtonChatClosed');
+                ButtonClosedChat.addClass('ButtonChatOpen');
+                RightSideBar.clearQueue();
+                ButtonClosedChat.clearQueue();
+                hrRightSideBar.clearQueue();
+            }
+    }
+
     return(
         <>
             {
@@ -104,13 +122,13 @@ function RightSlideBar(props){
                                 const profileChat = allProfile.find((Profile)=> Profile._id === idProfile);
 
                                 return(
-                                    <Chat key={index} goDetailChat={()=>{setPage('detail-chat'); setDetailChatData(data); setDetailChatDataProfile(profileChat)}} source={(profileChat.photo !== "")? profileChat.photo : "https://react.semantic-ui.com/images/wireframe/image.png"} alt={profileChat.fullName} nama={profileChat.fullName} lastChat={data.content[data.content.length-1].message} notification={notification.length} />
+                                    <Chat key={index} goDetailChat={()=>{setPage('detail-chat'); setDetailChatData(data); setDetailChatDataProfile(profileChat); checkRightSideBar();}} source={(profileChat.photo !== "")? profileChat.photo : "https://react.semantic-ui.com/images/wireframe/image.png"} alt={profileChat.fullName} nama={profileChat.fullName} lastChat={data.content[data.content.length-1].message} notification={notification.length} />
                                 )
                             })}
                         </div>
                 : (page === 'detail-chat')&&
                         <div className="container-detail-chat">
-                            <DetailChat back={()=>{setPage('chat');getAllMessage();}} DetailChatData={DetailChatData} DetailChatDataProfile={DetailChatDataProfile} />
+                            <DetailChat back={()=>{setPage('chat');getAllMessage();}}  DetailChatData={DetailChatData} DetailChatDataProfile={DetailChatDataProfile} />
                         </div>
                 }
                 </div>
