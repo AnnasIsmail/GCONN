@@ -9,7 +9,7 @@ function Chat(props){
             <img src={props.source} alt={props.alt} />
             <div className="chat-and-notification">
                 <span>
-                    <h1>{props.nama}</h1>
+                    <h1>{(props.nama.indexOf(" ") === -1)?props.nama:props.nama.slice(0 , props.nama.indexOf(" "))} <Label color={(props.role === 'Customer')?'green':(props.role === 'Seller')? 'blue' : 'red'} horizontal>{props.role}</Label></h1>
                     <h2>{props.lastChat}</h2>
                 </span>
                 {(props.notification !== 0)&&

@@ -1,8 +1,5 @@
 import React from "react";
 import UpdateGame from '../../Component/UpdateGame/UpdateGame';
-import image1 from './assets/image1.png';
-import image2 from './assets/image2.png';
-import image3 from './assets/image3.png';
 import './UpdateGameContainer.css';
 
 function UpdateGameContainer(){
@@ -10,9 +7,9 @@ function UpdateGameContainer(){
         <div className="update-game-container">
             <h1 className="header-update-game-container">Update Game</h1>
             <div className="container-update-game-container">
-                <UpdateGame SrcImage={image1} Header='One giant leap for your collection. Pick up Endeavor before it leaves your orbit. Now available.' />
-                <UpdateGame SrcImage={image2} Header='One giant leap for your collection. Pick up Endeavor before it leaves your orbit. Now available.' />
-                <UpdateGame SrcImage={image3} Header='One giant leap for your collection. Pick up Endeavor before it leaves your orbit. Now available.' />
+                <UpdateGame SrcImage="https://pbs.twimg.com/media/FmHfooEWYAATNBM?format=jpg&name=small" Header='A favorite map returns, plus changes to Ranked Rating (RR) and the ability to favorite weapon variants. Check out Patch Notes 6.0 here.' />
+                <UpdateGame SrcImage="https://pbs.twimg.com/media/FmDkUyyWIAsxj8r?format=jpg&name=small" Header='Are your ears ready for a REVELATION? Check out this Spotify playlist we put together to celebrate the launch of EP6 // ACT1.' />
+                <UpdateGame SrcImage="https://pbs.twimg.com/media/FlzR30iaAAMNvcc?format=jpg&name=small" Header={`Join our devs live on http://twitch.tv/VALORANT Monday and hear the latest on Lotus, new skins, and Omen's green thumb—hosted by`} />
             </div>
         </div>
     )

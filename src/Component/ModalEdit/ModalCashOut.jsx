@@ -15,7 +15,7 @@ function ModalCashOut(props) {
   const [ errorNumberAccount , setErrorNumberAccount ] = React.useState(false);
   const [ errorNameAccount , setErrorNameAccount ] = React.useState(false);
   const [ errorPassword , setErrorPassword ] = React.useState(false);
-
+  const [loading , setLoading] = React.useState(false);
 
   const [balance , setBalance] = React.useState(props.balance);
 
@@ -45,13 +45,23 @@ function ModalCashOut(props) {
   }
 
   function submitEdit(){
+    setLoading(true)
+    const currentdate = new Date(); 
+    const dateTime = "" + (currentdate.getMonth()+1) + "/"
+            + currentdate.getDate()  + "/" 
+            + currentdate.getFullYear() + " "  
+            + currentdate.getHours() + ":"  
+            + currentdate.getMinutes() + ":" 
+            + currentdate.getSeconds();
 
     const dataSubmit = {
       idUser: cookies.Cr787980,
+      activity: 'Withdrawal',
       amount: document.getElementById('jumlah').value,
       numberAccount: document.getElementById('norek').value,
       nameAccount: document.getElementById('namarek').value,
       password: document.getElementById('password').value,
+      dateTime
     }
 
     fetch('https://gconn-api-node-js.vercel.app/cashOutAdd', {
@@ -63,6 +73,7 @@ function ModalCashOut(props) {
             }) 
         .then((response) => response.json())
         .then(function (response) {
+          setLoading(false)
           if(response.data === 'Wrong Password'){
             setErrorPassword(true);
           }else{
@@ -79,7 +90,7 @@ function ModalCashOut(props) {
     closeOnDimmerClick={props.closeOnDimmerClick}
       closeIcon
       open={open}
-      trigger={<Icon style={{ margin: 0 }} name="money bill alternate outline" link/>}
+      trigger={<Button>Withdrawal Balance</Button>}
       onClose={() => setOpen(props.closeButton)}
       onOpen={() => setOpen(true)}
       id="modalEdit"
@@ -113,7 +124,7 @@ function ModalCashOut(props) {
         <Button color='red' onClick={() =>{setOpen(false)}}>
           <Icon name='remove' /> No
         </Button>
-        <Button color='blue' onClick={() => validate()}>
+        <Button color='blue' onClick={() => validate()} loading={loading}>
           <Icon name='checkmark' /> Yes
         </Button>
       </Modal.Actions>

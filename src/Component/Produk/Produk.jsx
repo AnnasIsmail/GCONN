@@ -13,6 +13,7 @@ function Produk(props){
     let [like , setLike] = React.useState(props.like)
     const [cookies, setCookie, removeCookie] = useCookies();
     const socket = React.useRef(React.useContext(SocketIO));
+    const [loadingChat , setLoadingChat] = React.useState(false);
 
     const [open , setOpen] = React.useState(false);
     const [result , setResult] = React.useState(false);
@@ -20,6 +21,7 @@ function Produk(props){
     const handleConfirm = () =>{ setResult(true); setOpen(false) }
     const handleCancel = () =>{ setResult(false); setOpen(false) }
 
+    
     const NavigateTo =(to)=>{
         navigasi(to)
     }
@@ -52,9 +54,7 @@ function Produk(props){
                   'Content-type': 'application/json; charset=UTF-8',
                 },
             }).then(()=>setLike(false))
-              
         }
-    
     }
     
     function deleteProduct(){
@@ -78,11 +78,20 @@ function Produk(props){
             }
 
         });  
-
     }
 
     function goToChat(){
-        fetch(`https://gconn-api-node-js.vercel.app/addChat`,{
+
+        const currentdate = new Date(); 
+        const dateTime = "" + (currentdate.getMonth()+1) + "/"
+                + currentdate.getDate()  + "/" 
+                + currentdate.getFullYear() + " "  
+                + currentdate.getHours() + ":"  
+                + currentdate.getMinutes() + ":" 
+                + currentdate.getSeconds();
+
+            setLoadingChat(true);
+            fetch(`https://gconn-api-node-js.vercel.app/addChat`,{
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -90,12 +99,16 @@ function Produk(props){
             body: JSON.stringify({
                 myID: cookies.Cr787980,
                 idSeller: props.idSeller,
-                accountID: props.id
+                accountID: props.id,
+                role: 'Seller',
+                dateTime
             })
         })
         .then((response) => response.json())
         .then((json) => {
             socket.current.emit("goToDirectMessage", json);
+            props.goToChat(json);
+            setLoadingChat(false);
         });   
     }
 
@@ -128,24 +141,50 @@ function Produk(props){
                 </div>
             :
                 <div className="button-container">
-                    <Button animated='vertical' onClick={clickFavorite} >
-                        <Button.Content className={(like === true)? 'like': ''} hidden>Favorite</Button.Content>
-                        <Button.Content visible>
-                            <Icon inverted color={(like === true)? 'yellow': 'grey'} name='favorite' />
-                        </Button.Content>
-                    </Button>
-                    <Button animated='vertical' onClick={goToChat}>
-                        <Button.Content hidden>Chat</Button.Content>
-                        <Button.Content visible>
-                            <Icon inverted color='grey' name='chat' />
-                        </Button.Content>
-                    </Button>
-                    <Button animated='vertical'>
-                        <Button.Content hidden>Share</Button.Content>
-                        <Button.Content visible>
-                            <Icon inverted color='grey' name='share alternate' />
-                        </Button.Content>
-                    </Button>
+                    {(cookies.Cr787980 === undefined)?
+                        <>
+                            <Button animated='vertical' onClick={()=> NavigateTo(`/sign-in`)} >
+                                <Button.Content className={(like === true)? 'like': ''} hidden>Favorite</Button.Content>
+                                <Button.Content visible>
+                                    <Icon inverted color={(like === true)? 'yellow': 'grey'} name='favorite' />
+                                </Button.Content>
+                            </Button>
+                            <Button animated='vertical' loading={loadingChat} onClick={()=> NavigateTo(`/sign-in`)}>
+                                <Button.Content hidden>Chat</Button.Content>
+                                <Button.Content visible>
+                                    <Icon inverted color='grey' name='chat' />
+                                </Button.Content>
+                            </Button>
+                            <Button animated='vertical'>
+                                <Button.Content hidden>Share</Button.Content>
+                                <Button.Content visible>
+                                    <Icon inverted color='grey' name='share alternate' />
+                                </Button.Content>
+                            </Button>
+                        </>
+                    :
+                        <>
+                            <Button animated='vertical' onClick={clickFavorite} >
+                                <Button.Content className={(like === true)? 'like': ''} hidden>Favorite</Button.Content>
+                                <Button.Content visible>
+                                    <Icon inverted color={(like === true)? 'yellow': 'grey'} name='favorite' />
+                                </Button.Content>
+                            </Button>
+                            <Button animated='vertical' loading={loadingChat} onClick={goToChat}>
+                                <Button.Content hidden>Chat</Button.Content>
+                                <Button.Content visible>
+                                    <Icon inverted color='grey' name='chat' />
+                                </Button.Content>
+                            </Button>
+                            <Button animated='vertical'>
+                                <Button.Content hidden>Share</Button.Content>
+                                <Button.Content visible>
+                                    <Icon inverted color='grey' name='share alternate' />
+                                </Button.Content>
+                            </Button>
+                        </>
+                    }
+                    
                 </div>
             }
                 <Modal show={open} onHide={handleCancel} id="modal">

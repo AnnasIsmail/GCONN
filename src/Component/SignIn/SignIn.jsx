@@ -153,7 +153,7 @@ function SignIn(){
               <Form action={login}>
                 <Form.Field>
                     <h1>Welcome to GCONN !</h1>
-                    <h4>Please Sign-in with your account!</h4>
+                    <h4>Please log-in with your account!</h4>
                 </Form.Field>
                 <Form.Field onBlur={blur} onFocus={focus} >
                     {errorFieldUsername}
@@ -167,7 +167,7 @@ function SignIn(){
                     </Input>
                 </Form.Field>
                 <Form.Field className="container-button-sign-in">
-                    <Button type='submit' onClick={()=>login()}>Sign In</Button>
+                    <Button type='submit' onClick={()=>login()}>Log In</Button>
                 </Form.Field>
                 <Form.Field>
                     <h5>Don’t have an account? <b onClick={()=>NavigateTo('/sign-up')}>Sign-up</b>!</h5>

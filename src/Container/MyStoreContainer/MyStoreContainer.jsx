@@ -10,7 +10,7 @@ import './../../Component/OrderCustomer/OrderCustomer.css';
 import './MyStoreContainer.css';
 
 
-function MyStoreContainer(){
+function MyStoreContainer(props){
 
   const [cookies, setCookie, removeCookie] = useCookies();
   const [seller , setSeller] = React.useState({});
@@ -40,9 +40,10 @@ function MyStoreContainer(){
         setSeller(response.data);
         setBalance(response.userBalance.balance);
         setLoadingProfile(false);
-      }else{
-          window.location.reload()
       }
+      // else{
+      //     window.location.reload()
+      // }
   })
 
   fetch(`https://gconn-api-node-js.vercel.app/accountsOwner/${cookies.Cr787980}`)
@@ -57,7 +58,7 @@ function MyStoreContainer(){
     .then((response) => response.json())
     .then((res)=>{
         res.data.forEach((data, index) => {
-            if(data.status === 'Waiting For Payment' || data.status === 'Waiting for Seller to Respond' || data.status === 'Seller Already Sent Credentials' || data.status === 'Waiting for Seller to Send Credentials'|| data.status === 'Waiting for the seller to accept the cancellation'){
+            if(data.status === 'Waiting For Payment' || data.status === 'Waiting for Seller to Respond' || data.status === 'Seller Already Sent Credentials' || data.status === 'Waiting for Seller to Send Credentials'|| data.status === 'Waiting for the seller to accept the cancellation'|| data.status === "Waiting for admin's decision"){
               const dataToSet = dataOngoing;
             dataToSet.push(data)
             setDataOngoing(dataToSet);
@@ -83,7 +84,7 @@ function MyStoreContainer(){
       <>       
         {(MyProductData.length !== 0)?
           <div className="container-my-store-main-container">
-            <ProdukContainer data={MyProductData} footer="edit-product" seller={seller} page="my-product" />
+            <ProdukContainer  goToChat={(data)=>props.goToChat(data)} data={MyProductData} footer="edit-product" seller={seller} page="my-product" />
           </div>
         :
           <NoData description='There are no accounts that you have marketed yet' goto="/choosegamesell/sellaccountvalorant" button="Go To Sell Account" />
@@ -96,7 +97,7 @@ function MyStoreContainer(){
       <>
       {(dataOngoing.length > 0)?
         <div className="order-customer-container">
-          {dataOngoing.map((data , index)=> <OnGoingTransaction data={data} key={index} />)}
+          {dataOngoing.map((data , index)=> <OnGoingTransaction  goToChat={(data)=>props.goToChat(data)} data={data} key={index} />)}
         </div>
       :
       <NoData description='There are no accounts that you have marketed yet' goto="/choosegamesell/sellaccountvalorant" button="Go To Sell Account" />
@@ -110,7 +111,7 @@ function MyStoreContainer(){
       <>
         {(dataDone.length > 0)?
         <div className="review-customer-container">
-          {dataDone.map((data , index)=> <DoneTransaction data={data} key={index} />)}
+          {dataDone.map((data , index)=> <DoneTransaction  goToChat={(data)=>props.goToChat(data)} data={data} key={index} />)}
         </div>
         :
         <NoData description='There are no accounts that you have marketed yet' goto="/choosegamesell/sellaccountvalorant" button="Go To Sell Account" />
@@ -119,7 +120,6 @@ function MyStoreContainer(){
       ,
     },
   ]                
-
     return(
         <div className="my-store-container">
             {(loadingProfile)?

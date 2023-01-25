@@ -321,7 +321,7 @@ function SignUp(){
                     <Button type='submit' onClick={SignUp}>Sign Up</Button>
                 </Form.Field>
                 <Form.Field>
-                    <h5>Have an account? <b onClick={()=>NavigateTo('/sign-in')}>Sign-in</b>!</h5>
+                    <h5>Have an account? <b onClick={()=>NavigateTo('/sign-in')}>Log-in</b>!</h5>
                 </Form.Field>
             </Form>
         </div>

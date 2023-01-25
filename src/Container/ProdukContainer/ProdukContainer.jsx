@@ -118,7 +118,7 @@ function ProdukContainer(props){
                     </div>                            
                 :
                     <div className="produk-container">
-                        {account.map((data , index)=><Produk key={index} src={data.photo[0]} idSeller={data.idSeller} game={data.game} header={data.header} price={data.price} id={data._id} footer={footer} like={data.like} likeId={data.likeId} />)}
+                        {account.map((data , index)=><Produk  goToChat={(data)=>props.goToChat(data)} key={index} src={data.photo[0]} idSeller={data.idSeller} game={data.game} header={data.header} price={data.price} id={data._id} footer={footer} like={data.like} likeId={data.likeId} />)}
                     </div>
 
                 }

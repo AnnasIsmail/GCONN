@@ -125,17 +125,17 @@ function DetailProductValorant(props){
                     }
                 </div>
                 <div className="tab-right">
-                    <div className="descripption">
+                    <div className="description">
                         <h3>{data.header}</h3>
                         <h2><FormatMoney money={data.price} /> </h2>
-                        <h5><b>Email Status:</b> {data.emailStatus}</h5>
-                        <h5><b>Region:</b> {data.region}</h5>
-                        <h5><b>Change Name Status:</b> Available</h5>
-                        <h5><b>Total VP:</b> {data.totalVP} VP</h5>
-                        <h5><b>Rank:</b> {data.rank}</h5>
-                        <h5><b>Battlepass:</b> {data.battlepass}</h5>
-                        <h5><b>Level:</b> {data.level}</h5>
-                        <h5><b>Reason to Sell:</b> {data.reason}</h5>
+                        <h5>Email Status: {data.emailStatus}</h5>
+                        <h5>Region: {data.region}</h5>
+                        <h5>Change Name Status: Available</h5>
+                        <h5>Total VP: {data.totalVP} VP</h5>
+                        <h5>Rank: {data.rank}</h5>
+                        <h5>Battlepass: {data.battlepass}</h5>
+                        <h5>Level: {data.level}</h5>
+                        <h5>Reason to Sell: {data.reason}</h5>
                         <ListAgentDetailProduct data={data.agent} />
                         <ListSkinDetailProduct data={data.skin} game={data.game} />
                     </div>       

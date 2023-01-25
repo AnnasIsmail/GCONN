@@ -2,7 +2,7 @@ import React from "react";
 import { Card } from 'react-bootstrap';
 import { useCookies } from 'react-cookie';
 import { useNavigate } from 'react-router-dom';
-import { Button, Icon } from 'semantic-ui-react';
+import { Button, Icon, Loader } from 'semantic-ui-react';
 import FormatMoney from "../../Function/FormatMoney";
 
 function ProductChat(props){
@@ -10,7 +10,7 @@ function ProductChat(props){
     let [like , setLike] = React.useState(props.like)
     const [cookies, setCookie, removeCookie] = useCookies();
     const [product , setProduct] = React.useState();
-
+    const [loading , setLoading] = React.useState(true);
     const NavigateTo =(to)=>{
         navigasi(to)
     }
@@ -53,6 +53,7 @@ function ProductChat(props){
             fetch(`https://gconn-api-node-js.vercel.app/accountDetail/${props.id}`)
             .then((response) => response.json())
             .then((res)=>{
+                setLoading(false);
                 if(res.status === 200){
                     setProduct(res.data);
                 }else{
@@ -72,7 +73,10 @@ function ProductChat(props){
 
     return(
         <span className="produk produk-chat" >
-            {(product)?
+            {(loading)?
+                <Loader style={{ marginTop: 130 }} active inline='centered' size="huge" />
+            :
+            (product)?
             <>
                 <Card style={{ width: '18rem' }} onClick={navigateToDetail}>
                     <Card.Img variant="top" src={product.photo[0]} className='foto-produk' id="fotoProduk" />
@@ -100,6 +104,7 @@ function ProductChat(props){
             :
             <>
             </>
+            
             }
             
         </span>

@@ -111,10 +111,6 @@ function DetailChat(props){
                 socket.current.emit("sendMessage", getIdUser);
             }
         })
-
-        // console.log(data);
-        // console.log(dataSend);
-        
     }  
 
     function read(){
@@ -176,7 +172,7 @@ function DetailChat(props){
                 <div className="avatar">
                     <Image src={(profile.photo !== "")? profile.photo : "https://react.semantic-ui.com/images/wireframe/image.png"} className="image-avatar" circular />
                     <span>
-                        <h1>{profile.fullName}</h1>
+                        <h1>{(profile.fullName.indexOf(" ") === -1)?profile.fullName:profile.fullName.slice(0 , profile.fullName.indexOf(" "))} <Label color={(profile.role === 'Customer')?'green':(profile.role === 'Seller')? 'blue' : 'red'} horizontal>{profile.role}</Label></h1>
                         <div className='status'>
                             {(online)?
                                 <>

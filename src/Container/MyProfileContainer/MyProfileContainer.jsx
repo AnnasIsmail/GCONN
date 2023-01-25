@@ -9,7 +9,7 @@ import './../../Component/OrderCustomer/OrderCustomer.css';
 import './MyProfileContainer.css';
 
 
-function MyProfileContainer(){
+function MyProfileContainer(props){
   
   const [cookies, setCookie, removeCookie] = useCookies();
   const [profile , setProfile] = React.useState({});
@@ -31,13 +31,13 @@ function MyProfileContainer(){
       }) 
   .then((response) => response.json())
   .then(function (response) {
-        console.log(response)
         if(response.status === 200){
           setLoadingProfile(false);
           setProfile(response.data);
-      }else{
-          window.location.reload()
       }
+      // else{
+      //     window.location.reload()
+      // }
       
     });
 
@@ -45,7 +45,7 @@ function MyProfileContainer(){
       .then((response) => response.json())
       .then((res)=>{
           res.data.forEach((data, index) => {
-            if(data.status === 'Waiting For Payment' || data.status === 'Waiting for Seller to Respond' || data.status === 'Seller Already Sent Credentials' || data.status === 'Waiting for Seller to Send Credentials'|| data.status === 'Waiting for the seller to accept the cancellation'){
+            if(data.status === 'Waiting For Payment' || data.status === 'Waiting for Seller to Respond' || data.status === 'Seller Already Sent Credentials' || data.status === 'Waiting for Seller to Send Credentials'|| data.status === 'Waiting for the seller to accept the cancellation'|| data.status === "Waiting for admin's decision"){
               const dataToSet = dataOngoing;
               dataToSet.push(data)
               setDataOngoing(dataToSet);
@@ -71,7 +71,7 @@ function MyProfileContainer(){
       <>
         {(dataOngoing.length > 0)?
         <> 
-          {dataOngoing.map((data , index)=> <OnGoingTransaction data={data} key={index} />)}
+          {dataOngoing.map((data , index)=> <OnGoingTransaction goToChat={(data)=>props.goToChat(data)} data={data} key={index} />)}
         </>
         :
           <NoData  description='No Ongoing Transaction' goto="/market" button="Go To Market" /> 
@@ -84,7 +84,7 @@ function MyProfileContainer(){
       <>
         {(dataDone.length > 0)?
         <>
-          {dataDone.map((data , index)=> <DoneTransaction data={data} key={index} />)}
+          {dataDone.map((data , index)=> <DoneTransaction goToChat={(data)=>props.goToChat(data)} data={data} key={index} />)}
         </>
         :
         <NoData description='No Transaction Completed' goto="/market" button="Go To Market" /> 
@@ -92,7 +92,6 @@ function MyProfileContainer(){
       </>
     },            
   ]
-
     return(
         <div className="my-profile-container">
             {(loadingProfile)?

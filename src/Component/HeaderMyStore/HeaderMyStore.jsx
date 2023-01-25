@@ -5,6 +5,7 @@ import FormatMoney from "../../Function/FormatMoney";
 import ModalCashOut from "../ModalEdit/ModalCashOut";
 import ModalEditStore from "../ModalEdit/ModalEditMyStore";
 import ModalEditProfile from "../ModalEdit/ModalEditProfile";
+import ModalHistoryBalance from "../ModalEdit/ModalHistoryBalance";
 import './HeaderMyStore.css';
 
 function HeaderMyStore(props){
@@ -24,7 +25,11 @@ function HeaderMyStore(props){
                 <Header.Content>{props.StoreName} {(props.pageEdit === "profile")? <ModalEditProfile profile={props.profile} /> : <ModalEditStore seller={props.seller} setOpen={false} closeOnDimmerClick={false} closeButton={false} /> }</Header.Content>
                 <span className="slogan">"{props.slogan}"</span>
                 <br className="slogan"/>
-                <span style={{ textAlign: 'start', display: 'flex', justifyContent: 'center', gap: 10 }} ><b>Balance</b>: <FormatMoney money={props.balance} /> <ModalCashOut seller={props.seller} balance={props.balance} setOpen={false} closeOnDimmerClick={false} closeButton={false} /> </span>
+                <span style={{ textAlign: 'start', display: 'flex', justifyContent: 'center', gap: 10 }} ><b>Balance</b>: <FormatMoney money={props.balance} />  </span>
+
+                <ModalHistoryBalance seller={props.seller} balance={props.balance} setOpen={false} closeOnDimmerClick={false} closeButton={false} />
+                <ModalCashOut seller={props.seller} balance={props.balance} setOpen={false} closeOnDimmerClick={false} closeButton={false} />
+
             </Header>
         :
         <ModalEditStore setOpen={true} closeOnDimmerClick={true} closeButton={true} />

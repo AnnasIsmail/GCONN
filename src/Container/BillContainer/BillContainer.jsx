@@ -9,7 +9,7 @@ import '../PaymentContainer/PaymentContainer.css';
 import './BillContainer.css';
 
 // let panels = [];
-function BillContainer(){
+function BillContainer(props){
     
     const navigasi = useNavigate();
     const NavigateTo =(to)=>{
@@ -22,7 +22,8 @@ function BillContainer(){
     const [cookies, setCookie, removeCookie] = useCookies();
     const [account , setAccount] = React.useState();
     const [modalCredentials , setModalCredentials] = React.useState(false);
-    const [ panels , setPanels ] = React.useState();
+    const [loadingChat , setLoadingChat] = React.useState(false);
+    const [loadingChatReport , setLoadingChatReport] = React.useState(false);
 
     React.useEffect(()=> {
         getTransaction();
@@ -52,22 +53,89 @@ function BillContainer(){
             }
         });
     }
+    const currentdate = new Date(); 
+    const dateTime = "" + (currentdate.getMonth()+1) + "/"
+            + currentdate.getDate()  + "/" 
+            + currentdate.getFullYear() + " "  
+            + currentdate.getHours() + ":"  
+            + currentdate.getMinutes() + ":" 
+            + currentdate.getSeconds();
 
     function goToChat(){
-        fetch(`https://gconn-api-node-js.vercel.app/addChat`,{
+            setLoadingChat(true);
+            fetch(`https://gconn-api-node-js.vercel.app/addChat`,{
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-                myID: transaction.idUser,
+                myID: cookies.Cr787980,
                 idSeller: transaction.idSeller,
-                transactionID: transaction._id
+                transactionID: transaction._id,
+                role: 'Seller',
+                dateTime
             })
         })
         .then((response) => response.json())
         .then((json) => {
             socket.current.emit("goToDirectMessage", json);
+            props.goToChat(json);
+            setLoadingChat(false);
+        });   
+    }
+
+    function goToChatCustomer(){
+        setLoadingChat(true);
+        fetch(`https://gconn-api-node-js.vercel.app/addChat`,{
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            idSeller: transaction.idSeller,
+            myID: transaction.idUser,
+            transactionID: transaction._id,
+            role: 'Customer',
+            dateTime
+            })
+        })
+        .then((response) => response.json())
+        .then((json) => {
+            socket.current.emit("goToDirectMessage", json);
+            props.goToChat(json);
+            setLoadingChat(false);
+        });   
+    }
+
+    function goToChatAdmin(){
+        setLoadingChatReport(true);
+        let roleReporter = "No Detect";
+
+        if(cookies.Cr787980 === transaction.idUser){
+            roleReporter = "Customer";
+        }else{
+            roleReporter = "Seller";
+        }
+
+        fetch(`http://localhost:5000/addChatAdmin`,{
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            idAdmin: '63cd05b7c724b8a0b9cfef44',
+            myID: cookies.Cr787980,
+            transactionID: transaction._id,
+            role: 'Admin',
+            roleReporter,
+            fullName: 'Kosong',
+            dateTime
+            })
+        })
+        .then((response) => response.json())
+        .then((json) => {
+            props.goToChat(json);
+            setLoadingChatReport(false);
         });   
     }
 
@@ -78,7 +146,7 @@ function BillContainer(){
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({id, status, idAccount: transaction.idAccount, statusNow: transaction.status, idCustomer: transaction.idUser, idSeller: transaction.idSeller, totalTransaction: transaction.totalTransaction})
+            body: JSON.stringify({id, status, idAccount: transaction.idAccount, statusNow: transaction.status, idCustomer: transaction.idUser, idSeller: transaction.idSeller, totalTransaction: transaction.totalTransaction, dateTime})
         })
         .then((response) => response.json())
         .then((json) => {
@@ -198,30 +266,33 @@ function BillContainer(){
                 </div>
                 :(transaction.status === 'Waiting for Seller to Respond')?
                 <div className="button-container">
-                    <Button onClick={goToChat}>Chat Seller</Button>
+                    <Button loading={loadingChat} onClick={goToChat}>Chat Seller</Button>
                     <Button onClick={()=>changeStatus('Waiting for the seller to accept the cancellation')}>Request Cancel Transaction</Button>
                 </div>
                 :(transaction.status === 'Waiting for Seller to Send Credentials')?
                 <div className="button-container">
-                    <Button onClick={goToChat}>Chat Seller</Button>
+                    <Button loading={loadingChat} onClick={goToChat}>Chat Seller</Button>
                     <Button onClick={()=>changeStatus('Done')}>Complete Transaction</Button>
                 </div>
                 :(transaction.status === 'Seller Already Sent Credentials')?
                 <div className="button-container">
-                    <Button onClick={goToChat}>Chat Seller</Button>
+                    <Button loading={loadingChat} onClick={goToChat}>Chat Seller</Button>
                     <Button onClick={()=>changeStatus('Done')}>Complete Transaction</Button>
                 </div>
                 :(transaction.status === 'Transaction Failed' || transaction.status === 'Waiting for the seller to accept the cancellation' || transaction.status === 'Done')&&
                 <div className="button-container on-button">
-                    <Button onClick={goToChat}>Chat Seller</Button>
+                    <Button loading={loadingChat} onClick={goToChat}>Chat Seller</Button>
                 </div>
                 }
+                <div className="on-button report">
+                    <Button loading={loadingChatReport} color="red" onClick={goToChatAdmin}>Report Admin</Button>
+                </div>
                 </>
                 :
                 <>
                 {(transaction.status === 'Waiting For Payment')?
                 <div className="button-container">
-                    <Button onClick={goToChat}>Chat Customer</Button>
+                    <Button loading={loadingChat} onClick={goToChatCustomer}>Chat Customer</Button>
                     <Button onClick={()=>changeStatus('Transaction Failed')}>Cancel Transaction</Button>
                 </div>
                 :(transaction.status === 'Waiting for Seller to Respond')?
@@ -231,24 +302,27 @@ function BillContainer(){
                 </div>
                 :(transaction.status === 'Waiting for Seller to Send Credentials')?
                 <div className="button-container">
-                    <Button onClick={goToChat}>Chat Customer</Button>
+                    <Button loading={loadingChat} onClick={goToChatCustomer}>Chat Customer</Button>
                     <Button onClick={() => setModalCredentials(true)}>Send Credentials</Button>
                 </div>
                 :(transaction.status === 'Seller Already Sent Credentials')?
                 <div className="button-container">
-                    <Button onClick={goToChat}>Chat Customer</Button>
+                    <Button loading={loadingChat} onClick={goToChatCustomer}>Chat Customer</Button>
                     <Button onClick={() => setModalCredentials(true)}>Change Credentials</Button>
                 </div>
                 :(transaction.status === 'Waiting for the seller to accept the cancellation')?
                 <div className="button-container on-button">
-                    <Button onClick={goToChat}>Chat Customer</Button>
+                    <Button loading={loadingChat} onClick={goToChatCustomer}>Chat Customer</Button>
                     <Button onClick={()=>changeStatus('Transaction Failed')}>Cancel Transaction</Button>
                 </div>
                 :(transaction.status === 'Transaction Failed' || transaction.status === 'Done')&&
                 <div className="button-container on-button">
-                    <Button onClick={goToChat}>Chat Customer</Button>
+                    <Button loading={loadingChat} onClick={goToChatCustomer}>Chat Customer</Button>
                 </div>
                 }
+                <div className="on-button report">
+                    <Button loading={loadingChatReport} color="red" onClick={goToChatAdmin}>Report Admin</Button>
+                </div>
                 </>
                 }
             </>

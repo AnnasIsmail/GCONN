@@ -105,19 +105,19 @@ function MainContainer(props){
                 <input type="hidden" hidden id="searchMarket" onClick={()=>filter(data)} />
                 <div className="container-market-main-container">
                     {(dataFilter)?
-                        <ProdukFilterContainer dataFilter={dataFilter} page={props.additionalClass} />
+                        <ProdukFilterContainer goToChat={(data)=>props.goToChat(data)} dataFilter={dataFilter} page={props.additionalClass} />
                     :
-                        <ProdukContainer page={props.additionalClass} />
+                        <ProdukContainer goToChat={(data)=>props.goToChat(data)} page={props.additionalClass} />
                     }
                 </div>
             </div>
             : (props.additionalClass === 'favorite-main-container')?
             <div className={`main-container market-main-container ${props.additionalClass}`}>
-                <ProdukContainer page={props.additionalClass} />
+                <ProdukContainer goToChat={(data)=>props.goToChat(data)} page={props.additionalClass} />
             </div>
             : (props.additionalClass === 'my-store-main-container')?
             <div className={`main-container ${props.additionalClass}`}>
-                <MyStoreContainer />
+                <MyStoreContainer  goToChat={(data)=>props.goToChat(data)}/>
             </div>
             :(props.additionalClass === 'detail-product-main-container')?
             <div className={`main-container ${props.additionalClass}`}>
@@ -129,11 +129,11 @@ function MainContainer(props){
             </div>
             :(props.additionalClass === 'bill-main-container')?
             <div className={`main-container ${props.additionalClass}`}>
-                <BillContainer />
+                <BillContainer goToChat={(data)=>props.goToChat(data)} />
             </div>        
             :(props.additionalClass === 'my-profile-main-container')?
             <div className={`main-container ${props.additionalClass}`}>
-                <MyProfileContainer />
+                <MyProfileContainer goToChat={(data)=>props.goToChat(data)}/>
             </div>
             :(props.additionalClass === 'choose-game-sell-main-container')?
             <div className={`main-container ${props.additionalClass}`}>

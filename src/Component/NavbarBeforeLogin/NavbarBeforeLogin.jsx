@@ -54,7 +54,7 @@ function NavbarBeforeLogin(props){
                 <Link id='HomeBefore' className="link" to="/" ><HomeIcon diKlik={home} /> <h3>Home</h3></Link>
                 <Link id='MarketBefore' className="link" to="/market"><MarketIcon diKlik={market} /> <h3>Market</h3></Link>
                 <hr className='hrNavbar' />
-                <Link id='SignInBefore' className="link" to="/sign-in" ><LogInIcon diKlik={signIn} /> <h3>Sign In</h3></Link>
+                <Link id='SignInBefore' className="link" to="/sign-in" ><LogInIcon diKlik={signIn} /> <h3>Log In</h3></Link>
                 <Link id='SignUpBefore' className="link" to="/sign-up" ><SignUpIcon diKlik={signUp} /> <h3>Sign Up</h3></Link>
             </div>
         </div>

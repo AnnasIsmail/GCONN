@@ -25,10 +25,13 @@ function TopBar(props){
             .then(function (response) {
                 if(response.status === 200){
                     setProfile(response.data);
-                    setProfileComp(<Profile profile={response.data} />)
-                }else{
-                    removeCookie('Cr787980');
+                    setProfileComp(<Profile goToChat={(data)=>props.goToChat(data)} profile={response.data} />)
                 }
+                else{
+                    removeCookie('Cr787980');
+                    // window.location.reload();
+                }
+
             });
         }
     },[]);
@@ -56,11 +59,11 @@ function TopBar(props){
         :
             (props.page === 'home-top-bar')?
             <div className="top-bar">
-                <SayHello /><Button text='Sign In' additionalClass='sign-in-button' onclick='/sign-in' /> 
+                <SayHello /><Button text='Log In' additionalClass='sign-in-button' onclick='/sign-in' /> 
             </div>
             :(props.page === 'market-top-bar')?
             <div className="top-bar">
-                <SearchTextField /> <Button text='Sign In' additionalClass='sign-in-button' onclick='/sign-in' /> 
+                <SearchTextField /> <Button text='Log In' additionalClass='sign-in-button' onclick='/sign-in' /> 
             </div>
             :
             <div className="top-bar">

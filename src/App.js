@@ -15,16 +15,24 @@ function App(props) {
   let login = false;
   if(cookies.Cr787980){
     login = true;
+  }else{
+    caches.delete();
+  }
+
+  const chatRef = React.useRef();
+
+  const goToChat = (data) => {
+    chatRef.current.openDirectChat(data);
   }
 
   return (
     <SocketIO.Provider value={io("https://socket-gconn.herokuapp.com")}>
       <div className="App">
-        <MainContainer additionalClass={`${props.page}-main-container`}/>
-        <TopBar page={`${props.page}-top-bar`} login={login} />
+        <MainContainer goToChat={goToChat} additionalClass={`${props.page}-main-container`}/>
+        <TopBar goToChat={goToChat} page={`${props.page}-top-bar`} login={login} />
         <LeftSideBar login={login} page={props.page}/>
         <BottomBar login={login} page={props.page} />
-        <RightSlideBar login={login}/>
+        <RightSlideBar ref={chatRef} login={login}/>
       </div>
     </SocketIO.Provider>
   );

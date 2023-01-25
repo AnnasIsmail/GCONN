@@ -1,6 +1,6 @@
 import React from "react";
 import { useCookies } from 'react-cookie';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { Item } from 'semantic-ui-react';
 import { SocketIO } from "../../App";
 import FormatMoney from "../../Function/FormatMoney";
@@ -14,36 +14,78 @@ function OnGoingTransaction(props){
     const navigasi = useNavigate();
     const [cookies, setCookie, removeCookie] = useCookies();
     const socket = React.useRef(React.useContext(SocketIO));
+    const [loadingChat , setLoadingChat] = React.useState(false);
     
     const NavigateTo =(to)=>{
         navigasi(to)
     }
 
     function goToChat(){
-        fetch(`https://gconn-api-node-js.vercel.app/addChat`,{
+
+        const currentdate = new Date(); 
+        const dateTime = "" + (currentdate.getMonth()+1) + "/"
+                + currentdate.getDate()  + "/" 
+                + currentdate.getFullYear() + " "  
+                + currentdate.getHours() + ":"  
+                + currentdate.getMinutes() + ":" 
+                + currentdate.getSeconds();
+
+            setLoadingChat(true);
+            fetch(`https://gconn-api-node-js.vercel.app/addChat`,{
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-                myID: props.data.idUser,
+                myID: cookies.Cr787980,
                 idSeller: props.data.idSeller,
-                transactionID: props.data._id
+                transactionID: props.data._id,
+                role: 'Seller',
+                dateTime
             })
         })
         .then((response) => response.json())
         .then((json) => {
-            let data = {};
-
-            if(json.statusData === 'new'){
-                data = json.data[0]._id
-            }else{
-                data = json.data._id
-            }
-            
             socket.current.emit("goToDirectMessage", json);
+            props.goToChat(json);
+            setLoadingChat(false);
         });   
     }
+
+    function goToChatCustomer(){
+        console.log('json')
+
+        const currentdate = new Date(); 
+        const dateTime = "" + (currentdate.getMonth()+1) + "/"
+                + currentdate.getDate()  + "/" 
+                + currentdate.getFullYear() + " "  
+                + currentdate.getHours() + ":"  
+                + currentdate.getMinutes() + ":" 
+                + currentdate.getSeconds();
+
+            setLoadingChat(true);
+            fetch(`https://gconn-api-node-js.vercel.app/addChat`,{
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                idSeller: props.data.idSeller,
+                myID: props.data.idUser,
+                transactionID: props.data._id,
+                role: 'Customer',
+                dateTime
+            })
+        })
+        .then((response) => response.json())
+        .then((json) => {
+            socket.current.emit("goToDirectMessage", json);
+            props.goToChat(json);
+            setLoadingChat(false);
+        });   
+    }
+
+    const location = useLocation();
 
     React.useEffect(()=>{
 
@@ -87,7 +129,17 @@ function OnGoingTransaction(props){
                 <h5><b>Total Payment: </b><FormatMoney money={props.data.totalTransaction} /> </h5>
             </Item.Description>
             <Item.Extra>
-                <button onClick={goToChat}>Chat Seller</button>
+                {(location.pathname === '/mystore')?
+                    (loadingChat)?
+                    <button >Loading...</button>
+                    :
+                    <button onClick={goToChatCustomer}>Chat Customer</button>
+                :
+                    (loadingChat)?
+                    <button >Loading...</button>
+                    :
+                    <button onClick={goToChat}>Chat Seller</button>
+                }
                 <button onClick={()=>NavigateTo(`/detaiTransaksi${props.data._id}`)}>Detail Transaction</button>
             </Item.Extra>
           </Item.Content>

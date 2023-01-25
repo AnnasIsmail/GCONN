@@ -9,6 +9,7 @@ import './Profile.css';
 
 function Profile(props){
     let widthH1 = React.useRef(null)
+    const [cookies, setCookie, removeCookie] = useCookies();
     React.useEffect(()=>{
         $(".profile").click(()=>{
             if(window.innerWidth < 700){
@@ -99,20 +100,48 @@ function Profile(props){
     const NavigateTo =(to)=>{
         navigasi(to)
     }
-    const [cookies, setCookie, removeCookie] = useCookies();
 
+    function goToChatAdmin(){
+        console.log('json')
+
+        const currentdate = new Date(); 
+        const dateTime = "" + (currentdate.getMonth()+1) + "/"
+                + currentdate.getDate()  + "/" 
+                + currentdate.getFullYear() + " "  
+                + currentdate.getHours() + ":"  
+                + currentdate.getMinutes() + ":" 
+                + currentdate.getSeconds();
+
+            fetch(`https://gconn-api-node-js.vercel.app/addChatAdmin`,{
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                idAdmin: '63cd05b7c724b8a0b9cfef44',
+                myID: cookies.Cr787980,
+                role: 'Admin',
+                fullName: props.profile.fullName,
+                dateTime
+            })
+        })
+        .then((response) => response.json())
+        .then((json) => {
+            props.goToChat(json);
+        });   
+    }
 
     return(
             <Dropdown className='noselect' trigger={profileContainer} >
                 <Dropdown.Menu id="menuProfile">
                 <Dropdown.Header icon="user" content="Profile" />
                 <Dropdown.Divider />
-                <Dropdown.Item  icon="edit" text="My Profile" description="2 new" onClick={()=>NavigateTo('/myprofile')} />
+                <Dropdown.Item icon="edit" text="My Profile" onClick={()=>NavigateTo('/myprofile')} />
                 <Dropdown.Divider />
                 <Dropdown.Header icon="shopping bag" content="Seller" />
                 <Dropdown.Divider />
-                <Dropdown.Item  icon="edit" text="My Seller Profile" description="2 new" onClick={()=>NavigateTo('/mystore')} />
-                <Dropdown.Item  icon="tag" text="Sell Account" description="2 new" onClick={()=>NavigateTo('/choosegamesell/sellaccountvalorant')} />
+                <Dropdown.Item icon="edit" text="My Seller Profile" onClick={()=>NavigateTo('/mystore')} />
+                <Dropdown.Item icon="tag" text="Sell Account" onClick={()=>NavigateTo('/choosegamesell/sellaccountvalorant')} />
                 {/* <Dropdown.Divider />
                 <Dropdown.Header icon="bullhorn" content="Status" />
                 <Dropdown.Divider />
@@ -120,7 +149,8 @@ function Profile(props){
                 <Dropdown.Item  icon="bell slash" color='red' text="Busy" onClick={()=>changeStatus('bell slash','red','Busy')} />
                 <Dropdown.Item  icon="circle outline" color='grey' text="Offline" onClick={()=>changeStatus('circle outline','grey','Offline')} /> */}
                 <Dropdown.Divider />
-                <Dropdown.Item  icon="sign-out alternate" text="Sign Out" onClick={()=>{
+                <Dropdown.Item icon="talk" text="Contact Admin" onClick={goToChatAdmin} />
+                <Dropdown.Item icon="sign-out alternate" text="Sign Out" onClick={()=>{
                     removeCookie('Cr787980');
                     NavigateTo('/');
                     // window.location.reload();

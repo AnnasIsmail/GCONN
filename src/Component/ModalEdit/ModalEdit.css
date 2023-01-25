@@ -43,3 +43,20 @@
 #modalEdit .content div .label{
     text-decoration: none;
 }
+
+#balance-history {
+    display: flex !important;
+    flex-direction: column;
+    margin: 0 !important;
+}
+
+#balance-history .header{
+    padding-bottom: 10px;
+}
+
+#balance-history .detailTRH{
+    margin-top: 10px !important;
+    color: #2c662d !important;
+    box-shadow: 0 0 0 1px #2c662d inset!important;
+    width: 100% !important;
+}
