@@ -68,7 +68,6 @@ const RightSlideBar = React.forwardRef((props, ref) => {
     React.useImperativeHandle(ref, () => ({
 
         openDirectChat(dataJson){
-            console.log(dataJson)
             // getAllMessage();
                 setDetailChatData(dataJson.data[0]);
                 setDetailChatDataProfile(dataJson.profileSeller);
@@ -156,25 +155,27 @@ const RightSlideBar = React.forwardRef((props, ref) => {
                                 const profileChat = allProfile.find((Profile)=> Profile._id === idProfile[0]);
                                 const profileChatAdmin = allProfileAdmin.find((Profile)=> Profile._id === idProfile[0]);
                                 const profileChatSeller = allProfileSeller.find((Profile)=> Profile.idUser === idProfile[0]);
-                                let nama,photo;
+                                let _id,nama,photo;
                                 if(idProfile[1] === 'Seller'){
+                                    _id = profileChatSeller._id;
                                     nama = profileChatSeller.sellerName;
                                     photo = profileChatSeller.photo;
                                 }else if(idProfile[1] === 'Customer'){
+                                    _id = profileChat._id;
                                     nama = profileChat.fullName;
                                     photo = profileChat.photo;
                                 }else if(idProfile[1] === 'Admin'){
+                                    _id = profileChatAdmin._id;
                                     nama = profileChatAdmin.fullName;
                                     photo = profileChatAdmin.photo;
                                 }
                                 
                                 let profile;
                                 if(idProfile[1] === 'Seller' || idProfile[1] === 'Customer'){
-                                    profile = {fullName:nama,photo,lastOnline: profileChat.lastOnline,role:idProfile[1]}
+                                    profile = {_id: _id,fullName:nama,photo,lastOnline: profileChat.lastOnline,role:idProfile[1]}
                                 }else if(idProfile[1] === 'Admin'){
-                                    profile = {fullName:nama,photo,lastOnline: profileChatAdmin.lastOnline,role:idProfile[1]}
+                                    profile = {_id: _id,fullName:nama,photo,lastOnline: profileChatAdmin.lastOnline,role:idProfile[1]}
                                 }
-
                                 return(
                                     <Chat key={index} role={idProfile[1]} goDetailChat={()=>{setPage('detail-chat'); setDetailChatData(data); setDetailChatDataProfile(profile); checkRightSideBar();}} source={(photo !== "")? photo : "https://react.semantic-ui.com/images/wireframe/image.png"} alt={nama} nama={nama} lastChat={data.content[data.content.length-1].message} notification={notification.length} />
                                 )

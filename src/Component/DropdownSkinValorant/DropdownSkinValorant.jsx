@@ -71,7 +71,7 @@ componentDidMount(){
         value={this.state.value}
         onAddItem={this.handleAddition}
         onChange={(e,{ value })=>{
-          console.log(value)
+          // console.log(value)
           this.handleChange(e,{ value });
           this.sendData(e, { value });
         }}

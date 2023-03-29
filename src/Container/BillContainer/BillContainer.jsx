@@ -171,7 +171,7 @@ function BillContainer(props){
             })
             .then((response) => response.json())
             .then((json) => {
-                console.log(json.status === 200)
+                // console.log(json.status === 200)
                 if(json.status === 200){
                     setModalCredentials(false);
                     setLoading(true);

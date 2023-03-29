@@ -15,8 +15,6 @@ function App(props) {
   let login = false;
   if(cookies.Cr787980){
     login = true;
-  }else{
-    caches.delete();
   }
 
   const chatRef = React.useRef();
@@ -26,7 +24,7 @@ function App(props) {
   }
 
   return (
-    <SocketIO.Provider value={io("https://socket-gconn.annasismail.repl.co/")}>
+    <SocketIO.Provider value={io("https://socket-gconn.annasismail.repl.co")}>
       <div className="App">
         <MainContainer goToChat={goToChat} additionalClass={`${props.page}-main-container`}/>
         <TopBar goToChat={goToChat} page={`${props.page}-top-bar`} login={login} />

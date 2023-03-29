@@ -47,7 +47,7 @@ function ProdukContainer(props){
             allAccount = props.dataFilter;
             allFavorite = props.allFavorite;
 
-            console.log(allAccount);
+            // console.log(allAccount);
             display()
             
             // fetch(`https://gconn-api-node-js.vercel.app/favorites/${cookies.Cr787980}`)

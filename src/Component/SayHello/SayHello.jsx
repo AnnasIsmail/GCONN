@@ -19,9 +19,9 @@ function TopBar(props){
     return(
         <div className="say-hello">
             {(props.login)?
-            <h1>Hallo, {props.profile.fullName} </h1>
+            <h1>Hi, {props.profile.fullName} </h1>
             :
-            <h1>Hallo, Beli Sekarang dapatkan Promonya. </h1>
+            <h1>Hi, Beli Sekarang dapatkan Promonya. </h1>
             }
             <h3>Date, Time : {date}  </h3>
         </div>

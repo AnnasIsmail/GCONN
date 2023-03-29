@@ -44,7 +44,7 @@ function Produk(props){
                 },
               }).then(()=>setLike(true))
         }else{
-            console.log(props.likeId)
+            // console.log(props.likeId)
             fetch(`https://gconn-api-node-js.vercel.app/favoritesDelete`, {
                 method: 'POST',
                 body: JSON.stringify({

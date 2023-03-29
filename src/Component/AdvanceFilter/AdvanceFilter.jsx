@@ -34,7 +34,7 @@ const handleClickChange = (value) => setActiveIndex(value)
 const handleTabChange = (e, { activeIndex }) => setActiveIndex(activeIndex)
 
 React.useEffect(()=>{
-  console.log(props.data)
+  // console.log(props.data)
   data = props.data;
   setGameValue(props.data.game);
   setChangeNameStatusValue(props.data.changeNameStatus);

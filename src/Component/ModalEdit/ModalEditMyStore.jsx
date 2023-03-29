@@ -86,7 +86,7 @@ function ModalEditStore(props) {
             }) 
         .then((response) => response.json())
         .then(function (response) {
-            console.log(response)
+            // console.log(response)
             if(response.status === 200){
               window.location.reload();
             }else if(response.status === 201){

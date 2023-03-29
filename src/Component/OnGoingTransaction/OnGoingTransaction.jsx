@@ -53,7 +53,7 @@ function OnGoingTransaction(props){
     }
 
     function goToChatCustomer(){
-        console.log('json')
+        // console.log('json')
 
         const currentdate = new Date(); 
         const dateTime = "" + (currentdate.getMonth()+1) + "/"

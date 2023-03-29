@@ -8,7 +8,7 @@ function ListHeroDetailProduct(){
     let [hero , setHero] = React.useState([]);
     let [content , setContent] = React.useState();
     let { id } = useParams();
-    console.log(id)
+    // console.log(id)
     React.useEffect(()=>{
 
         fetch(`https://api-gconn.herokuapp.com/account?id=${id}`)
