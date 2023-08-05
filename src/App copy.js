@@ -3,18 +3,7 @@ import { useCookies } from 'react-cookie';
 import { Route, Routes } from "react-router-dom";
 import { io } from 'socket.io-client';
 import './App.css';
-import AddSellAccount from './Pages/AddSellAccount';
-import DetailTransaction from './Pages/DetailTransaction';
-import DetailProduct from './Pages/Detailproduct';
-import EditSellAccount from './Pages/EditSellAccount';
-import Favorite from './Pages/Favorite';
-import Home from './Pages/Home';
-import Market from './Pages/Market';
-import MyProfile from './Pages/MyProfile';
-import MyStore from './Pages/MyStore';
-import Payment from './Pages/Payment';
-import SignIn from './Pages/SignIn';
-import SignUp from './Pages/Signup';
+import { AddSellAccount, DetailProduct, DetailTransaction, EditSellAccount, Favorite, Home, Market, MyProfile, MyStore, Payment, SignIn, SignUp } from './Pages';
 
 export const SocketIO = React.createContext();
 
