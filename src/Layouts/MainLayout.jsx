@@ -1,9 +1,9 @@
 import React from "react";
 import { useCookies } from "react-cookie";
-import TopBar from "../Component/SayHello/SayHello";
 import BottomBar from "../Container/BottomBar/BottomBar";
 import LeftSideBar from "../Container/LeftSideBar/LeftSideBar";
 import RightSlideBar from "../Container/RightSlide/RightSlideBar";
+import TopBar from "../Container/TopBar/TopBar";
 
 export default function MainLayout({ children }) {
   const [cookies, setCookie, removeCookie] = useCookies();

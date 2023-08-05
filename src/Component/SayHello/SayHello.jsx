@@ -37,8 +37,7 @@ function TopBar(props) {
     <div
       className="say-hello"
       style={{
-        position: "fixed",
-        top: "15px",
+        paddingTop: "15px",
       }}
     >
       {props.login ? (

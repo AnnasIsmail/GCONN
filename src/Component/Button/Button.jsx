@@ -1,19 +1,30 @@
-import { useNavigate } from 'react-router-dom';
-import './Button.css';
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import styled from 'styled-components';
+import './Button.css';
 
-function Button(props){
+// Move the styled component definition outside of the Button function
+const ButtonComponent = styled.div`
+  height: auto;
+  width: auto;
+  font-size: 20px;
+  text-align: center;
+  cursor: pointer;
+  ${props => props.additionalStyle}
+`;
 
-    const navigasi = useNavigate();        
-    const NavigateTo =(to)=>{
-        navigasi(to)
-    }
+function Button({ text, additionalStyle, onclick }) {
+  const navigate = useNavigate();
 
-    return(
-        <div className={`button ${props.additionalClass}`} onClick={()=>NavigateTo(props.onclick)}>
-            {props.text}
-        </div>
-    );
+  const NavigateTo = (to) => {
+    navigate(to);
+  };
+
+  return (
+    <ButtonComponent additionalStyle={additionalStyle} onClick={() => NavigateTo(onclick)}>
+      {text}
+    </ButtonComponent>
+  );
 }
 
 export default Button;

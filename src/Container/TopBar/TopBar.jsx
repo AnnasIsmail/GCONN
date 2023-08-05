@@ -1,10 +1,42 @@
 import React from 'react';
 import { useCookies } from 'react-cookie';
+import styled from 'styled-components';
 import Button from "../../Component/Button/Button";
 import Profile from "../../Component/Profile/Profile";
 import SayHello from '../../Component/SayHello/SayHello';
 import SearchTextField from "../../Component/SearchTextField/SearchTextField";
 import './TopBar.css';
+
+const Container = styled.div`
+    position: fixed;
+    left: 0;
+    right: 0;
+    width: 75vw;
+    height: 80px;
+    top: 15px;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+
+    @media only screen and (max-width: 730px) {
+        width: 90vw;
+        height: 80px;
+        justify-content: space-between;
+    }
+`;
+
+const buttonStyle = `
+background: linear-gradient(18deg, rgba(28,52,173,0.23012955182072825) 0%, rgba(28,52,173,1) 100%);
+border-radius: 10px;
+padding: 5px 4vw;
+margin: auto 0;
+font-weight: normal;
+
+@media only screen and (max-width: 430px) {
+    display: none;
+}
+
+`;
 
 function TopBar(props){
     
@@ -57,18 +89,18 @@ function TopBar(props){
                 
             </div>
         :
-            (props.page === 'home-top-bar')?
-            <div className="top-bar">
-                <SayHello /><Button text='Log In' additionalClass='sign-in-button' onclick='/sign-in' /> 
-            </div>
-            :(props.page === 'market-top-bar')?
-            <div className="top-bar">
-                <SearchTextField /> <Button text='Log In' additionalClass='sign-in-button' onclick='/sign-in' /> 
-            </div>
-            :
-            <div className="top-bar">
+            // (props.page === 'home-top-bar')?
+            <Container>
+                <SayHello /><Button text='Log In' additionalStyle={buttonStyle} onclick='/sign-in' /> 
+            </Container>
+            // :(props.page === 'market-top-bar')?
+            // <div className="top-bar">
+            //     <SearchTextField /> <Button text='Log In' additionalClass='sign-in-button' onclick='/sign-in' /> 
+            // </div>
+            // :
+            // <div className="top-bar">
                 
-            </div>
+            // </div>
         }
         </div>
     );

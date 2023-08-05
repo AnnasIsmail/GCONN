@@ -4,8 +4,8 @@
     right: 0;
     width: 75vw;
     height: 80px;
+    top: 15px;
     margin: auto;
-    /* overflow: hidden; */
     display: flex;
     justify-content: space-between;
 }
