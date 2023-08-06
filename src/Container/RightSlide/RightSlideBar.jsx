@@ -40,23 +40,23 @@ const RightSlideBar = React.forwardRef((props, ref) => {
   }, [socket]);
 
   function getAllMessage() {
-    fetch("https://gconn-api-node-js.vercel.app/chat", {
-      method: "POST", // or 'PUT'
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ idUser: cookies.Cr787980 }),
-    })
-      .then((response) => response.json())
-      .then((json) => {
-        const dataSort = json.data.sort(function (a, b) {
-          return new Date(b.dateTime) - new Date(a.dateTime);
-        });
-        selAllChat(dataSort);
-        setAllProfile(json.dataCustomer);
-        setAllProfileSeller(json.dataSeller);
-        setAllProfileAdmin(json.dataAdmin);
-      });
+    // fetch("https://gconn-api-node-js.vercel.app/chat", {
+    //   method: "POST", // or 'PUT'
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    //   body: JSON.stringify({ idUser: cookies.Cr787980 }),
+    // })
+    //   .then((response) => response.json())
+    //   .then((json) => {
+    //     const dataSort = json.data.sort(function (a, b) {
+    //       return new Date(b.dateTime) - new Date(a.dateTime);
+    //     });
+    //     selAllChat(dataSort);
+    //     setAllProfile(json.dataCustomer);
+    //     setAllProfileSeller(json.dataSeller);
+    //     setAllProfileAdmin(json.dataAdmin);
+    //   });
   }
 
   React.useEffect(() => {
