@@ -8,16 +8,14 @@ import { SocketIO } from "../../App_";
 import FormatMoney from "../../Function/FormatMoney";
 import "./Produk.css";
 
-function Produk(props) {
+export default function Product({ data }) {
   const navigasi = useNavigate();
-  let [like, setLike] = React.useState(props.like);
+  let [like, setLike] = React.useState(false);
   const [cookies, setCookie, removeCookie] = useCookies();
   const socket = React.useRef(React.useContext(SocketIO));
   const [loadingChat, setLoadingChat] = React.useState(false);
-
   const [open, setOpen] = React.useState(false);
   const [result, setResult] = React.useState(false);
-
   const handleConfirm = () => {
     setResult(true);
     setOpen(false);
@@ -31,29 +29,24 @@ function Produk(props) {
     navigasi(to);
   };
 
-  function navigateToDetail() {
-    if (props.click !== false) {
-      NavigateTo(`/detailproduk${props.id}`);
-    }
-  }
   function clickFavorite() {
     if (like !== true) {
       fetch(`https://gconn-api-node-js.vercel.app/favoritesAdd`, {
         method: "POST",
         body: JSON.stringify({
           idUser: cookies.Cr787980,
-          idAccount: props.id,
+          idAccount: data.id,
         }),
         headers: {
           "Content-type": "application/json; charset=UTF-8",
         },
       }).then(() => setLike(true));
     } else {
-      // console.log(props.likeId)
+      // console.log(data.likeId)
       fetch(`https://gconn-api-node-js.vercel.app/favoritesDelete`, {
         method: "POST",
         body: JSON.stringify({
-          id: props.likeId,
+          id: data.likeId,
         }),
         headers: {
           "Content-type": "application/json; charset=UTF-8",
@@ -63,7 +56,7 @@ function Produk(props) {
   }
 
   function deleteProduct() {
-    fetch(`https://gconn-api-node-js.vercel.app/accountDetail/${props.id}`)
+    fetch(`https://gconn-api-node-js.vercel.app/accountDetail/${data.id}`)
       .then((response) => response.json())
       .then((json) => {
         if (json.data.idSeller !== cookies.Cr787980) {
@@ -71,7 +64,7 @@ function Produk(props) {
         } else {
           fetch(`https://gconn-api-node-js.vercel.app/accountDelete`, {
             method: "POST",
-            body: JSON.stringify({ idDelete: props.id }),
+            body: JSON.stringify({ idDelete: data.id }),
             headers: {
               "Content-type": "application/json; charset=UTF-8",
             },
@@ -108,8 +101,8 @@ function Produk(props) {
       },
       body: JSON.stringify({
         myID: cookies.Cr787980,
-        idSeller: props.idSeller,
-        accountID: props.id,
+        idSeller: data.idSeller,
+        accountID: data.id,
         role: "Seller",
         dateTime,
       }),
@@ -117,34 +110,37 @@ function Produk(props) {
       .then((response) => response.json())
       .then((json) => {
         socket.current.emit("goToDirectMessage", json);
-        props.goToChat(json);
+        data.goToChat(json);
         setLoadingChat(false);
       });
   }
 
   return (
     <div className="produk">
-      <Card style={{ width: "18rem" }} onClick={navigateToDetail}>
+      <Card
+        style={{ width: "18rem" }}
+        onClick={() => NavigateTo(`/detailproduk${data.id}`)}
+      >
         <Card.Img
           variant="top"
-          src={props.src}
+          src={data.photo && data.photo[0]}
           className="foto-produk"
           id="fotoProduk"
         />
         <Card.Body>
-          <Card.Text>{props.header}</Card.Text>
-          <Card.Subtitle>{props.game}</Card.Subtitle>
+          <Card.Text>{data.header}</Card.Text>
+          <Card.Subtitle>{data.game}</Card.Subtitle>
           <Card.Title>
-            <FormatMoney money={props.price} />{" "}
+            <FormatMoney money={data.price} />{" "}
           </Card.Title>
         </Card.Body>
       </Card>
-      {props.footer === false ? (
+      {data.footer === false ? (
         <> </>
-      ) : props.footer === "edit-product" ? (
+      ) : data.footer === "edit-product" ? (
         <div className="button-container edit-product">
           <Button
-            onClick={() => NavigateTo(`/editgamesell/${props.id}`)}
+            onClick={() => NavigateTo(`/editgamesell/${data.id}`)}
             animated="vertical"
           >
             <Button.Content hidden>Edit Product</Button.Content>
@@ -234,7 +230,7 @@ function Produk(props) {
           <Modal.Title>Delete Account</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          Are you sure you want to delete the account titled {props.header}?{" "}
+          Are you sure you want to delete the account titled {data.header}?{" "}
         </Modal.Body>
         <Modal.Footer>
           <Button primary onClick={handleCancel}>
@@ -248,5 +244,3 @@ function Produk(props) {
     </div>
   );
 }
-
-export default Produk;

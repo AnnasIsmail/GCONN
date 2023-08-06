@@ -4,7 +4,7 @@ import Moment from "react-moment";
 import { useNavigate, useParams } from "react-router-dom";
 import { Button, Dropdown, Icon, Image, List, Loader } from "semantic-ui-react";
 import { SocketIO } from "../../App_";
-import Produk from "../../Component/Produk/Produk";
+import Produk from "../../Component/Produk/Product";
 import FormatMoney from "../../Function/FormatMoney";
 import "./PaymentContainer.css";
 
