@@ -30,7 +30,6 @@ function DetailProductValorant(props) {
     })
       .then((response) => response.json())
       .then((res) => {
-        // console.log(res.data)
         setDataSeller(res.data);
       });
   }, []);

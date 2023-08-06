@@ -7,7 +7,7 @@ import SignIn from "../../Component/SignIn/SignIn";
 import SignUp from "../../Component/SignUp/SignUp";
 import AvailableGameContainer from "../AvailableGameContainer/AvailableGameContainer";
 import BillContainer from "../BillContainer/BillContainer";
-import DetailProductContainer from "../DetailProductContainer/DetailProductContainer";
+import DetailProductContainer from "../DetailProductContainer/DetailProduct";
 import MyProfileContainer from "../MyProfileContainer/MyProfileContainer";
 import MyStoreContainer from "../MyStoreContainer/MyStoreContainer";
 import PaymentContainer from "../PaymentContainer/PaymentContainer";
