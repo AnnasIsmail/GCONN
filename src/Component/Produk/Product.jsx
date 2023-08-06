@@ -2,20 +2,113 @@ import React from "react";
 import { Card } from "react-bootstrap";
 import Modal from "react-bootstrap/Modal";
 import { useCookies } from "react-cookie";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { Button, Icon } from "semantic-ui-react";
+import styled from "styled-components";
 import { SocketIO } from "../../App_";
 import FormatMoney from "../../Function/FormatMoney";
 import "./Produk.css";
 
+const Container = styled.div`
+  img {
+    height: 157px;
+    object-fit: cover;
+  }
+
+  .card {
+    background-color: #1c34ad !important;
+    border: none !important;
+    border-radius: 10px 10px 0 0;
+    width: auto !important;
+    cursor: pointer;
+  }
+
+  .card-body {
+    padding: 10px 10px 0 10px;
+    height: 111px;
+  }
+
+  .card-text {
+    min-height: 25px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    white-space: wrap;
+    word-break: break-all;
+    margin-bottom: 5px;
+    font-size: 16px;
+    font-weight: 450;
+    line-height: 1.2;
+  }
+
+  .card-title {
+    margin-bottom: 10px;
+    font-weight: 600;
+    font-size: 19px;
+    text-transform: capitalize;
+  }
+
+  .card-subtitle {
+    font-weight: 300;
+    padding: 2px 0 7px 0;
+  }
+
+  .button-container {
+    display: flex;
+    justify-content: space-around;
+    background-color: #1c34ad !important;
+    border-radius: 0 0 10px 10px;
+    padding: 0 10px 10px 10px;
+  }
+
+  .produk-chat {
+    background-color: #00072b7a !important;
+    min-height: 314px !important;
+  }
+
+  .produk-chat .card,
+  .produk-chat .button-container {
+    background-color: #00072b7a !important;
+  }
+
+  .button-container .btn :nth-child(1) {
+    margin: 0 !important;
+  }
+
+  .edit-product {
+    /* display: grid !important; */
+    grid-template-columns: 100%;
+  }
+
+  .edit-product .button {
+    width: 120px !important;
+  }
+
+  .button-container .button {
+    background-color: #2444e3;
+    color: #dcddde;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    width: 70px;
+    /* background: rgba(28, 52, 173, 0.77); */
+    z-index: inherit;
+  }
+
+  .like {
+    color: #ffe21f !important;
+  }
+`;
+
 export default function Product({ data }) {
-  const navigasi = useNavigate();
+  const navigate = useNavigate();
   let [like, setLike] = React.useState(false);
   const [cookies, setCookie, removeCookie] = useCookies();
   const socket = React.useRef(React.useContext(SocketIO));
   const [loadingChat, setLoadingChat] = React.useState(false);
   const [open, setOpen] = React.useState(false);
   const [result, setResult] = React.useState(false);
+  const pathName = useLocation().pathname;
   const handleConfirm = () => {
     setResult(true);
     setOpen(false);
@@ -26,7 +119,7 @@ export default function Product({ data }) {
   };
 
   const NavigateTo = (to) => {
-    navigasi(to);
+    navigate(to);
   };
 
   function clickFavorite() {
@@ -116,17 +209,12 @@ export default function Product({ data }) {
   }
 
   return (
-    <div className="produk">
+    <Container>
       <Card
         style={{ width: "18rem" }}
-        onClick={() => NavigateTo(`/detailproduk${data.id}`)}
+        onClick={() => NavigateTo(`/detail-product${data._id}`)}
       >
-        <Card.Img
-          variant="top"
-          src={data.photo && data.photo[0]}
-          className="foto-produk"
-          id="fotoProduk"
-        />
+        <Card.Img variant="top" src={data.photo && data.photo[0]} />
         <Card.Body>
           <Card.Text>{data.header}</Card.Text>
           <Card.Subtitle>{data.game}</Card.Subtitle>
@@ -135,9 +223,9 @@ export default function Product({ data }) {
           </Card.Title>
         </Card.Body>
       </Card>
-      {data.footer === false ? (
+      {pathName === false ? (
         <> </>
-      ) : data.footer === "edit-product" ? (
+      ) : pathName === "my-store" ? (
         <div className="button-container edit-product">
           <Button
             onClick={() => NavigateTo(`/editgamesell/${data.id}`)}
@@ -160,6 +248,7 @@ export default function Product({ data }) {
           {cookies.Cr787980 === undefined ? (
             <>
               <Button
+                disabled
                 animated="vertical"
                 onClick={() => NavigateTo(`/sign-in`)}
               >
@@ -175,6 +264,7 @@ export default function Product({ data }) {
                 </Button.Content>
               </Button>
               <Button
+                disabled
                 animated="vertical"
                 loading={loadingChat}
                 onClick={() => NavigateTo(`/sign-in`)}
@@ -241,6 +331,6 @@ export default function Product({ data }) {
           </Button>
         </Modal.Footer>
       </Modal>
-    </div>
+    </Container>
   );
 }

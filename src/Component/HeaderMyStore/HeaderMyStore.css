@@ -25,3 +25,21 @@
     font-size: 20px;
     font-weight: 400;
 }
+
+
+.header-my-store .button{
+    background-color: #2444E3;
+    color: #DCDDDE;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    z-index: inherit;
+}
+
+.header-my-store .button:hover{
+    background-color: #001ba3;
+    color: #DCDDDE;
+}
+
+.header-my-store .button:focus{
+    background-color: #02167e;
+    color: #DCDDDE;
+}
