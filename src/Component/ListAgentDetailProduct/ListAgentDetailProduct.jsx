@@ -1,15 +1,9 @@
 import React from "react";
-import { Label, Loader } from "semantic-ui-react";
+import { Header, Label, Loader } from "semantic-ui-react";
 import styled from "styled-components";
-import "./ListAgentDetailProduct.css";
 
 const Container = styled.div`
   margin-top: 20px;
-
-  h4 {
-    text-align: center;
-    margin-bottom: 10px;
-  }
 
   a {
     text-decoration: none;
@@ -20,6 +14,8 @@ const Container = styled.div`
     color: #dcddde;
     border: none;
     font-size: 15px;
+    text-align: center;
+    margin-bottom: 10px;
   }
 `;
 
@@ -50,6 +46,7 @@ const ContainerAgents = styled.div`
   .label {
     display: grid;
     grid-template-columns: 1fr 1fr;
+    align-items: center;
     justify-content: center;
   }
 
@@ -90,7 +87,9 @@ function ListAgentDetailProduct(props) {
 
   return agent.length !== 0 ? (
     <Container>
-      <h4>Agent</h4>
+      <Header as="h5" attached="top">
+        List Agent
+      </Header>
       <ContainerAgents>
         {loading ? (
           <Loader
@@ -105,7 +104,7 @@ function ListAgentDetailProduct(props) {
               if (index < props.data.length) {
                 return (
                   <Label key={index}>
-                    <img src={data.displayIconSmall} />
+                    <img src={data.displayIconSmall} alt={data.displayName} />
                     {data.displayName}
                   </Label>
                 );

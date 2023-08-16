@@ -11,6 +11,12 @@
     text-decoration: none;
 }
 
+.list-skin-detail-product .ui.attached.header{
+    background-color: #1935C2;
+    color: #DCDDDE;
+    border: none;
+    font-size: 15px;
+}
 .container-list-skin-detail-product{
     display: grid;
     /* grid-template-columns: repeat(auto-fit, minmax(150px , 1fr)); */
@@ -24,12 +30,6 @@
     border-radius: 0 0 5px 5px  ;
 }
 
-.list-skin-detail-product .ui.attached.header{
-    background-color: #1935C2;
-    color: #DCDDDE;
-    border: none;
-    font-size: 15px;
-}
 
 .container-list-skin-detail-product img{
     height: 35px;

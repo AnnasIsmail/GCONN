@@ -1,15 +1,9 @@
 import React from "react";
 import { Header, Loader, Segment } from "semantic-ui-react";
 import styled from "styled-components";
-import "./ListSkinDetailProduct.css";
 
 const Container = styled.div`
   margin-top: 20px;
-
-  h4 {
-    text-align: center;
-    margin-bottom: 10px;
-  }
 
   a {
     text-decoration: none;
@@ -20,6 +14,7 @@ const Container = styled.div`
     color: #dcddde;
     border: none;
     font-size: 15px;
+    text-align: center;
   }
 `;
 
@@ -117,6 +112,7 @@ function ListSkinDetailProduct(props) {
                           ? data.chromas[0].displayIcon
                           : data.chromas[0].fullRender
                       }
+                      alt={data.displayName}
                     />
                     {data.displayName}
                   </Segment>
