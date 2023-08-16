@@ -1,4 +1,4 @@
-import React from "react";
+import { useEffect, useState } from "react";
 import { Header, Loader, Segment } from "semantic-ui-react";
 import styled from "styled-components";
 
@@ -57,12 +57,11 @@ const ContainerSkins = styled.div`
 `;
 
 function ListSkinDetailProduct(props) {
-  let [content, setContent] = React.useState();
-  let [skin, setSkin] = React.useState([]);
-  let [allSkin, setAllSkin] = React.useState([]);
-  const [loading, setLoading] = React.useState(true);
+  let [skin, setSkin] = useState([]);
+  let [allSkin, setAllSkin] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-  React.useEffect(() => {
+  useEffect(() => {
     fetch(`https://valorant-api.com/v1/weapons/skins`)
       .then((response) => response.json())
       .then((res) => {
@@ -70,7 +69,7 @@ function ListSkinDetailProduct(props) {
       });
   }, []);
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (allSkin.length > 0) {
       props.data.forEach((data) => {
         let addArray = [];
