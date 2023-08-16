@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 import UpdateGame from "../../Component/UpdateGame/UpdateGame";
-import "./UpdateGameContainer.css";
 
 const Container = styled.div`
   background: linear-gradient(
@@ -12,17 +11,15 @@ const Container = styled.div`
   border-radius: 10px;
   height: calc(100vh - 90px);
   display: grid;
-  overflow: auto;
 
   h1 {
-    padding: 10px 0 5px 15px;
     font-size: 17px;
     margin: 0;
+    font-weight: 500;
     text-align: left;
   }
 
   div {
-    margin-top: 10px;
     width: 100%;
     border-radius: 15px;
     display: grid;
@@ -44,11 +41,24 @@ const Container = styled.div`
   }
 `;
 
+const Content = styled.div`
+  margin-top: 0;
+  overflow: auto;
+`;
+
+const Header = styled.h2`
+  font-size: 23px;
+  margin: 0;
+  padding: 10px 0 3px 15px;
+  font-weight: 600;
+  text-align: left;
+`;
+
 function UpdateGameContainer() {
   return (
     <Container>
-      <h1>Update Game</h1>
-      <div>
+      <Header>Update Game</Header>
+      <Content>
         <UpdateGame
           SrcImage="https://pbs.twimg.com/media/FmHfooEWYAATNBM?format=jpg&name=small"
           Header="A favorite map returns, plus changes to Ranked Rating (RR) and the ability to favorite weapon variants. Check out Patch Notes 6.0 here."
@@ -61,7 +71,7 @@ function UpdateGameContainer() {
           SrcImage="https://pbs.twimg.com/media/FlzR30iaAAMNvcc?format=jpg&name=small"
           Header={`Join our devs live on http://twitch.tv/VALORANT Monday and hear the latest on Lotus, new skins, and Omen's green thumb—hosted by`}
         />
-      </div>
+      </Content>
     </Container>
   );
 }
