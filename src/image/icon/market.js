@@ -1,9 +1,9 @@
+import React from 'react';
 import './icon.css';
 import market from './svg file/Shop.svg';
 import marketFill from './svg file/Shop_fill.svg';
-import React, { Component }  from 'react';
 
-function Market(props){
+function MarketIcon(props){
     let ret = <img src={market} alt='Market-Icon' />
     if(props.diKlik){
         ret = <img src={marketFill} alt='Market-Icon' />
@@ -13,4 +13,4 @@ function Market(props){
     );
 }
 
-export default Market;
+export default MarketIcon;

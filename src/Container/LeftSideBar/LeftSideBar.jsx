@@ -1,15 +1,8 @@
 import $ from "jquery";
-import React from "react";
-import { Link } from "react-router-dom";
+import { useEffect } from "react";
 import styled from "styled-components";
-import HomeIcon from "../../image/icon/home";
-import MarketIcon from "../../image/icon/market";
-import StarIcon from "../../image/icon/star";
-import StoreIcon from "../../image/icon/store";
+import LinkNav from "../../Component/LinkNav";
 import logoGconn from "../../image/logo-gconn-nobackground.png";
-
-// import NavbarAfterLogin from "../../Component/NavbarAfterLogin/NavbarAfterLogin";
-// import NavbarBeforeLogin from "../../Component/NavbarBeforeLogin/NavbarBeforeLogin";
 
 const Container = styled.div`
   background: rgba(28, 52, 173, 0.8);
@@ -40,51 +33,6 @@ const Content = styled.div`
   padding-bottom: 0.5rem;
   padding-top: 0.5rem;
   position: relative;
-
-  .main {
-    margin-top: 70px;
-    display: grid;
-    grid-template-columns: auto;
-    row-gap: 30px;
-  }
-
-  .main .link {
-    color: white;
-    display: grid;
-    grid-template-columns: auto 100px;
-    justify-content: center;
-    align-items: center;
-    font-size: 23px;
-    column-gap: 30px;
-    padding-left: 10px;
-    text-decoration: none;
-  }
-
-  .main .link h3 {
-    margin: 0;
-    font-weight: 400;
-    font-size: 20px;
-    margin-top: 5px;
-    width: fit-content;
-  }
-
-  .main .link:hover {
-    cursor: pointer;
-  }
-
-  .main hr {
-    max-height: 0.5px;
-    color: white;
-    opacity: 1;
-    margin: auto;
-    margin-left: 20px;
-    width: 45px;
-    overflow: hidden;
-  }
-
-  .main .klik h3 {
-    font-weight: 700;
-  }
 `;
 
 const Logo = styled.div`
@@ -118,38 +66,51 @@ const Logo = styled.div`
   }
 `;
 
-function LeftSideBar(props) {
-  let home = false;
-  let market = false;
-  let favorite = false;
-  let mystore = false;
-  React.useEffect(function () {
-    let hrNav = $(".hrNavbar");
-    let topBar = $(".top-bar");
-    let LeftSideBar = $("#LeftSideBar");
+const Main = styled.div`
+  margin-top: 70px;
+  display: grid;
+  grid-template-columns: auto;
+  row-gap: 30px;
 
-    LeftSideBar.hover(
-      function () {
-        $(this).animate({ width: "200px" }, 300);
-        hrNav.animate({ width: "160px" }, 300);
-        $(this).clearQueue();
-        hrNav.clearQueue();
-      },
-      function () {
-        $(this).animate({ width: "60px" }, 300);
-        hrNav.animate({ width: "30px" }, 300);
-        $(this).clearQueue();
-        hrNav.clearQueue();
-      }
-    );
+  hr {
+    max-height: 0.5px;
+    color: white;
+    opacity: 1;
+    margin: auto;
+    margin-left: 20px;
+    width: 30px;
+    overflow: hidden;
+  }
 
-    LeftSideBar.mouseleave(function () {
-      $(this).animate({ width: "60px" }, 300);
-      hrNav.animate({ width: "30px" }, 300);
-      $(this).clearQueue();
+  .klik h3 {
+    font-weight: 700;
+  }
+`;
+
+function LeftSideBar() {
+  useEffect(() => {
+    const hrNav = $(".hrNavbar");
+    const LeftSideBar = $("#LeftSideBar");
+    const animationDuration = 300;
+
+    const animateBars = (sidebarWidth, hrNavWidth) => {
+      LeftSideBar.animate({ width: sidebarWidth }, animationDuration);
+      hrNav.animate({ width: hrNavWidth }, animationDuration);
+      LeftSideBar.clearQueue();
       hrNav.clearQueue();
-    });
-  });
+    };
+
+    const handleMouseEnter = () => {
+      animateBars("200px", "160px");
+    };
+
+    const handleMouseLeave = () => {
+      animateBars("60px", "30px");
+    };
+
+    LeftSideBar.hover(handleMouseEnter, handleMouseLeave);
+    LeftSideBar.mouseleave(handleMouseLeave);
+  }, []);
 
   return (
     <Container id="LeftSideBar">
@@ -161,21 +122,33 @@ function LeftSideBar(props) {
             <h3>GAMES ACCOUNT MARKETPLACE</h3>
           </span>
         </Logo>
-        <div className="main">
-          <Link id="HomeAfter" className="link" to="/">
-            <HomeIcon diKlik={home} /> <h3>Home</h3>
-          </Link>
-          <Link id="MarketAfter" className="link" to="/market">
-            <MarketIcon diKlik={market} /> <h3>Market</h3>
-          </Link>
-          <Link id="FavoriteAfter" className="link" to="/favorite">
-            <StarIcon diKlik={favorite} /> <h3>Favourite</h3>
-          </Link>
+        <Main>
+          <LinkNav
+            path="/"
+            label="Home"
+            icon="fluent:home-32-regular"
+            iconActive="fluent:home-48-filled"
+          />
+          <LinkNav
+            path="/market"
+            label="Market"
+            icon="clarity:shopping-bag-line"
+            iconActive="clarity:shopping-bag-solid"
+          />
+          <LinkNav
+            path="/favorite"
+            label="Favorite"
+            icon="ph:star"
+            iconActive="ph:star-fill"
+          />
           <hr className="hrNavbar" />
-          <Link id="MyStoreAfter" className="link" to="/mystore">
-            <StoreIcon diKlik={mystore} /> <h3>My Store</h3>
-          </Link>
-        </div>
+          <LinkNav
+            path="/mystore"
+            label="My Store"
+            icon="clarity:store-line"
+            iconActive="clarity:store-solid"
+          />
+        </Main>
       </Content>
       {/* {props.login ? (
         <NavbarAfterLogin page={props.page} />

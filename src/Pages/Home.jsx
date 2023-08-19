@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import PhotoCarousel from "../Component/PhotoCarousel/PhotoCarousel";
 import UpdateGameContainer from "../Container/UpdateGameContainer/UpdateGameContainer";
@@ -22,6 +22,17 @@ const Container = styled.div`
 `;
 
 export default function Home() {
+  useEffect(() => {
+    let i = 12;
+    let j = 16;
+    for (i; i > j; i++) {
+      if (i % 2 === 1) {
+        console.log(i);
+      } else {
+        i--;
+      }
+    }
+  }, []);
   return (
     <Container>
       <PhotoCarousel />

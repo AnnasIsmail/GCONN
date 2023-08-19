@@ -1,7 +1,7 @@
+import React from 'react';
 import './icon.css';
 import login from './svg file/Log_In.svg';
 import loginFill from './svg file/Log_In_fill.svg';
-import React, { Component }  from 'react';
 
 function LogInIcon(props){
     let ret = <img src={login} alt='Login-Icon' />
