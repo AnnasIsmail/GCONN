@@ -1,8 +1,8 @@
-import { MainAPI, henrikdevAPI } from "./AxiosConfig";
+import { MainAPI, OfficialValorantAPI, henrikdevAPI } from "./AxiosConfig";
 
 // Function to get the appropriate Axios instance based on API type
 const getAxiosInstance = (API) => {
-  return API === "main" ? MainAPI : API === "hendrik" ? henrikdevAPI : null;
+  return API === "main" ? MainAPI : API === "valorant" ? OfficialValorantAPI : API === "hendrik" ? henrikdevAPI : null;
 };
 
 // Function to handle GET requests

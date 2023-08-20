@@ -1,11 +1,11 @@
 import React from "react";
 import styled from "styled-components";
-import PhotoCarousel from "../Component/PhotoCarousel/PhotoCarousel";
+import SkinsHomeContainer from "../Container/SkinsHomeContainer";
 import UpdateGameContainer from "../Container/UpdateGameContainer/UpdateGameContainer";
 
 const Container = styled.div`
   display: grid;
-  grid-template-columns: 1fr 350px;
+  grid-template-columns: calc(100% - 370px) 350px;
   grid-template-rows: 1fr;
   gap: 20px;
   padding-right: 10px;
@@ -24,7 +24,7 @@ const Container = styled.div`
 export default function Home() {
   return (
     <Container>
-      <PhotoCarousel />
+      <SkinsHomeContainer />
       <UpdateGameContainer />
     </Container>
   );
