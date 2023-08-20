@@ -1,7 +1,7 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
-import styled from 'styled-components';
-import './Button.css';
+import React from "react";
+import { useNavigate } from "react-router-dom";
+import styled from "styled-components";
+import "./Button.css";
 
 // Move the styled component definition outside of the Button function
 const ButtonComponent = styled.div`
@@ -10,7 +10,7 @@ const ButtonComponent = styled.div`
   font-size: 20px;
   text-align: center;
   cursor: pointer;
-  ${props => props.additionalStyle}
+  ${(props) => props.additionalStyle}
 `;
 
 function Button({ text, additionalStyle, onclick }) {
@@ -21,7 +21,10 @@ function Button({ text, additionalStyle, onclick }) {
   };
 
   return (
-    <ButtonComponent additionalStyle={additionalStyle} onClick={() => NavigateTo(onclick)}>
+    <ButtonComponent
+      additionalStyle={additionalStyle}
+      onClick={() => NavigateTo(onclick)}
+    >
       {text}
     </ButtonComponent>
   );

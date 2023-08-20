@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import { useCookies } from "react-cookie";
 import styled from "styled-components";
 import BottomBar from "../Container/BottomBar/BottomBar";
 import LeftSideBar from "../Container/LeftSideBar/LeftSideBar";
 import RightSlideBar from "../Container/RightSlide/RightSlideBar";
 import TopBar from "../Container/TopBar/TopBar";
+import { Context } from "../Function/Context";
 
 const MainLayoutComponent = styled.div`
   position: absolute;
@@ -25,6 +26,22 @@ const MainLayoutComponent = styled.div`
 `;
 
 export default function MainLayout({ children }) {
+  const [context, setContext] = useState({
+    login: false,
+    token: null,
+    user: null,
+    skins: null,
+    agents: null,
+    updateValorant: null,
+  });
+
+  const updateContextValue = (key, newValue) => {
+    setContext((prevState) => ({
+      ...prevState,
+      [key]: newValue,
+    }));
+  };
+
   const [cookies, setCookie, removeCookie] = useCookies();
   let login = false;
   if (cookies.Cr787980) {
@@ -35,12 +52,12 @@ export default function MainLayout({ children }) {
     chatRef.current.openDirectChat(data);
   };
   return (
-    <div>
-      <TopBar goToChat={goToChat} login={login} />
-      <LeftSideBar login={login} />
+    <Context.Provider value={{ context, updateContextValue }}>
+      <TopBar />
+      <LeftSideBar />
       <MainLayoutComponent>{children}</MainLayoutComponent>
-      <RightSlideBar ref={chatRef} login={login} />
-      <BottomBar login={login} />
-    </div>
+      <RightSlideBar />
+      <BottomBar />
+    </Context.Provider>
   );
 }

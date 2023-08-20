@@ -1,7 +1,8 @@
 import $ from "jquery";
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
 import styled from "styled-components";
 import LinkNav from "../../Component/LinkNav";
+import { Context } from "../../Function/Context";
 import logoGconn from "../../image/logo-gconn-nobackground.png";
 
 const Container = styled.div`
@@ -88,6 +89,7 @@ const Main = styled.div`
 `;
 
 function LeftSideBar() {
+  const { context, changeContext } = useContext(Context);
   useEffect(() => {
     const hrNav = $(".hrNavbar");
     const LeftSideBar = $("#LeftSideBar");
@@ -122,39 +124,64 @@ function LeftSideBar() {
             <h3>GAMES ACCOUNT MARKETPLACE</h3>
           </span>
         </Logo>
-        <Main>
-          <LinkNav
-            path="/"
-            label="Home"
-            icon="fluent:home-32-regular"
-            iconActive="fluent:home-48-filled"
-          />
-          <LinkNav
-            path="/market"
-            label="Market"
-            icon="clarity:shopping-bag-line"
-            iconActive="clarity:shopping-bag-solid"
-          />
-          <LinkNav
-            path="/favorite"
-            label="Favorite"
-            icon="ph:star"
-            iconActive="ph:star-fill"
-          />
-          <hr className="hrNavbar" />
-          <LinkNav
-            path="/mystore"
-            label="My Store"
-            icon="clarity:store-line"
-            iconActive="clarity:store-solid"
-          />
-        </Main>
+        {context.login ? (
+          <Main>
+            <LinkNav
+              path="/"
+              label="Home"
+              icon="fluent:home-32-regular"
+              iconActive="fluent:home-48-filled"
+            />
+            <LinkNav
+              path="/market"
+              label="Market"
+              icon="clarity:shopping-bag-line"
+              iconActive="clarity:shopping-bag-solid"
+            />
+            <LinkNav
+              path="/favorite"
+              label="Favorite"
+              icon="ph:star"
+              iconActive="ph:star-fill"
+            />
+            <hr className="hrNavbar" />
+            <LinkNav
+              path="/mystore"
+              label="My Store"
+              icon="clarity:store-line"
+              iconActive="clarity:store-solid"
+            />
+          </Main>
+        ) : (
+          <Main>
+            <LinkNav
+              path="/"
+              label="Home"
+              icon="fluent:home-32-regular"
+              iconActive="fluent:home-48-filled"
+            />
+            <LinkNav
+              path="/market"
+              label="Market"
+              icon="clarity:shopping-bag-line"
+              iconActive="clarity:shopping-bag-solid"
+            />
+            <hr className="hrNavbar" />
+            <LinkNav
+              path="/sign-in"
+              label="Login"
+              icon="clarity:sign-in-line"
+              iconActive="clarity:sign-in-solid"
+            />
+            <LinkNav
+              path="/sign-up"
+              label="Sign Up"
+              icon="bi:person-plus"
+              iconActive="bi:person-plus-fill"
+            />
+          </Main>
+        )}
       </Content>
-      {/* {props.login ? (
-        <NavbarAfterLogin page={props.page} />
-      ) : (
-        <NavbarBeforeLogin page={props.page} />
-      )} */}
     </Container>
   );
 }

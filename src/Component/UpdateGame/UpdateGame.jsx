@@ -1,3 +1,4 @@
+import moment from "moment";
 import React from "react";
 import styled from "styled-components";
 
@@ -6,7 +7,10 @@ const Container = styled.div`
   border-radius: 15px;
   padding: 15px;
   box-sizing: border-box;
-  cursor: pointer;
+
+  a {
+    color: white !important;
+  }
 
   img {
     width: 100%;
@@ -16,22 +20,6 @@ const Container = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-  }
-
-  h1 {
-    font-size: 17px;
-    text-align: justify;
-    padding: 5px 0;
-    margin: 0;
-    font-weight: 300;
-  }
-
-  h3 {
-    font-size: 15px;
-    text-align: left;
-    font-weight: 200;
-    vertical-align: sub;
-    height: 20px;
   }
 
   @media only screen and (max-width: 1100px) {
@@ -47,13 +35,43 @@ const Container = styled.div`
   }
 `;
 
-function UpdateGame(props) {
+const Title = styled.a`
+  font-size: 17px;
+  text-align: justify;
+  padding: 5px 0;
+  margin: 0;
+  font-weight: 700;
+  text-decoration: none;
+`;
+
+const Date = styled.p`
+  font-size: 15px;
+  text-align: left;
+  font-weight: 200;
+  vertical-align: sub;
+  height: 20px;
+  text-align: end;
+`;
+
+function UpdateGame({ title, image, date, url, external_url }) {
   return (
     <Container className="update-game">
-      <img src={props.SrcImage} alt="" />
+      <a href={url} target="_blank" rel="noopener noreferrer">
+        <img src={image} alt="" />
+      </a>
       <div>
-        <h1 className="header-update-game">{props.Header}</h1>
-        <h3 className="view-on-twitter">View On Twitter</h3>
+        <Title
+          href={url}
+          target="_blank"
+          className="header-update-game"
+          rel="noreferrer"
+        >
+          {title}
+        </Title>
+        <a href={external_url}>Another Link</a>
+        <Date className="view-on-twitter">
+          {moment(date).format("dddd, DD MMMM YYYY")}
+        </Date>
       </div>
     </Container>
   );

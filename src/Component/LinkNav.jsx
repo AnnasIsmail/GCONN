@@ -12,15 +12,16 @@ const StyledLink = styled(Link)`
   font-size: 23px;
   padding: 0 13px;
   text-decoration: none;
-  font-weight: ${({ isActive }) => (isActive ? "700" : "normal")};
+  font-weight: "normal";
 `;
 
 export default function LinkNav({ label, path, icon, iconActive }) {
   const location = useLocation();
+  const isActive = location.pathname === path;
   return (
-    <StyledLink to={path} isActive={location.pathname === path}>
+    <StyledLink to={path} style={{ fontWeight: isActive ? "700" : "normal" }}>
       <Icon
-        icon={location.pathname === path ? iconActive : icon}
+        icon={isActive ? iconActive : icon}
         style={{
           color: "white",
           fontSize: "35px",

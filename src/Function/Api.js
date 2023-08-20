@@ -1,7 +1,14 @@
-import axios from "./AxiosConfig";
+import { MainAPI, henrikdevAPI } from "./AxiosConfig";
+
+// Function to get the appropriate Axios instance based on API type
+const getAxiosInstance = (API) => {
+  return API === "main" ? MainAPI : API === "hendrik" ? henrikdevAPI : null;
+};
 
 // Function to handle GET requests
-export const get = async (url) => {
+export const get = async (url, API) => {
+  const axios = getAxiosInstance(API);
+
   try {
     const response = await axios.get(url);
     return response.data;
@@ -12,7 +19,9 @@ export const get = async (url) => {
 };
 
 // Function to handle POST requests
-export const post = async (url, data) => {
+export const post = async (url, data, API) => {
+  const axios = getAxiosInstance(API);
+
   try {
     const response = await axios.post(url, data);
     return response.data;
@@ -23,7 +32,9 @@ export const post = async (url, data) => {
 };
 
 // Function to handle PUT requests
-export const put = async (url, data) => {
+export const put = async (url, data, API) => {
+  const axios = getAxiosInstance(API);
+
   try {
     const response = await axios.put(url, data);
     return response.data;
@@ -34,7 +45,9 @@ export const put = async (url, data) => {
 };
 
 // Function to handle DELETE requests
-export const del = async (url) => {
+export const del = async (url, API) => {
+  const axios = getAxiosInstance(API);
+
   try {
     const response = await axios.delete(url);
     return response.data;

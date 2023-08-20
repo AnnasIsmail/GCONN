@@ -1,7 +1,12 @@
 import axios from 'axios';
 
-const AxiosConfig = axios.create({
+export const MainAPI = axios.create({
   baseURL: 'https://gconn-api-node-js.vercel.app',
 });
 
-export default AxiosConfig;
+export const henrikdevAPI = axios.create({
+  baseURL: 'https://api.henrikdev.xyz/valorant',
+});
+
+
+

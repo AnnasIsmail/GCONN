@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
 import styled from "styled-components";
 import UpdateGame from "../../Component/UpdateGame/UpdateGame";
+import { get } from "../../Function/Api";
+import { Context } from "../../Function/Context";
 
 const Container = styled.div`
   background: linear-gradient(
@@ -55,22 +57,32 @@ const Header = styled.h2`
 `;
 
 function UpdateGameContainer() {
+  const { context, updateContextValue } = useContext(Context);
+  const [updateGame, setUpdateGame] = useState([]);
+  useEffect(() => {
+    if (!context.UpdateGame) {
+      get("/v1/website/en-us", "hendrik").then((response) => {
+        setUpdateGame(response.data.slice(0, 5));
+        updateContextValue("updateValorant", response.data);
+      });
+    } else {
+      setUpdateGame(context.UpdateGame.slice(0, 5));
+    }
+  }, []);
   return (
     <Container>
-      <Header>Update Game</Header>
+      <Header>Valorant Update</Header>
       <Content>
-        <UpdateGame
-          SrcImage="https://pbs.twimg.com/media/FmHfooEWYAATNBM?format=jpg&name=small"
-          Header="A favorite map returns, plus changes to Ranked Rating (RR) and the ability to favorite weapon variants. Check out Patch Notes 6.0 here."
-        />
-        <UpdateGame
-          SrcImage="https://pbs.twimg.com/media/FmDkUyyWIAsxj8r?format=jpg&name=small"
-          Header="Are your ears ready for a REVELATION? Check out this Spotify playlist we put together to celebrate the launch of EP6 // ACT1."
-        />
-        <UpdateGame
-          SrcImage="https://pbs.twimg.com/media/FlzR30iaAAMNvcc?format=jpg&name=small"
-          Header={`Join our devs live on http://twitch.tv/VALORANT Monday and hear the latest on Lotus, new skins, and Omen's green thumb—hosted by`}
-        />
+        {updateGame.map((data, index) => (
+          <UpdateGame
+            key={index}
+            image={data.banner_url}
+            title={data.title}
+            date={data.date}
+            url={data.url}
+            external_url={data.external_link}
+          />
+        ))}
       </Content>
     </Container>
   );

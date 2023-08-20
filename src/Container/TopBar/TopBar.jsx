@@ -3,10 +3,8 @@ import { useCookies } from "react-cookie";
 import { useLocation } from "react-router-dom";
 import styled from "styled-components";
 import Button from "../../Component/Button/Button";
-import Profile from "../../Component/Profile/Profile";
 import SayHello from "../../Component/SayHello/SayHello";
 import SearchTextField from "../../Component/SearchTextField/SearchTextField";
-import { post } from "../../Function/Api";
 import "./TopBar.css";
 
 const Container = styled.div`
@@ -48,33 +46,33 @@ function TopBar(props) {
   const currentPath = location.pathname;
 
   React.useEffect(() => {
-    post("/userData", { _id: "64c4a7a68c805813e315e12f" })
-      .then((response) => console.log(response))
-      .catch((error) => console.error(error));
-    if (props.login) {
-      fetch("https://gconn-api-node-js.vercel.app/userData", {
-        method: "POST", // or 'PUT'
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ _id: cookies.Cr787980 }),
-      })
-        .then((response) => response.json())
-        .then(function (response) {
-          if (response.status === 200) {
-            setProfile(response.data);
-            setProfileComp(
-              <Profile
-                goToChat={(data) => props.goToChat(data)}
-                profile={response.data}
-              />
-            );
-          } else {
-            removeCookie("Cr787980");
-            // window.location.reload();
-          }
-        });
-    }
+    // post("/userData", { _id: "64c4a7a68c805813e315e12f" })
+    //   .then((response) => console.log(response))
+    // .catch((error) => console.error(error));
+    // if (props.login) {
+    //   fetch("https://gconn-api-node-js.vercel.app/userData", {
+    //     method: "POST", // or 'PUT'
+    //     headers: {
+    //       "Content-Type": "application/json",
+    //     },
+    //     body: JSON.stringify({ _id: cookies.Cr787980 }),
+    //   })
+    //     .then((response) => response.json())
+    //     .then(function (response) {
+    //       if (response.status === 200) {
+    //         setProfile(response.data);
+    //         setProfileComp(
+    //           <Profile
+    //             goToChat={(data) => props.goToChat(data)}
+    //             profile={response.data}
+    //           />
+    //         );
+    //       } else {
+    //         removeCookie("Cr787980");
+    //         // window.location.reload();
+    //       }
+    //     });
+    // }
   }, []);
 
   return (
