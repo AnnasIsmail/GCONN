@@ -55,7 +55,7 @@ const Date = styled.p`
 
 function UpdateGame({ title, image, date, url, external_url }) {
   return (
-    <Container className="update-game">
+    <Container>
       <a href={url} target="_blank" rel="noopener noreferrer">
         <img src={image} alt="" />
       </a>
@@ -69,9 +69,7 @@ function UpdateGame({ title, image, date, url, external_url }) {
           {title}
         </Title>
         <a href={external_url}>Another Link</a>
-        <Date className="view-on-twitter">
-          {moment(date).format("dddd, DD MMMM YYYY")}
-        </Date>
+        <Date>{moment(date).format("dddd, DD MMMM YYYY")}</Date>
       </div>
     </Container>
   );
