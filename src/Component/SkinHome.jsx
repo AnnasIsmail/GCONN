@@ -1,7 +1,7 @@
 import React from "react";
 import { Card } from "semantic-ui-react";
 
-export default function SkinsHome({ image, title, levels, chromas }) {
+export default function SkinHome({ image, title, levels, chromas }) {
   return (
     <Card
       style={{

@@ -2,7 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { Button, Checkbox, Form, Icon, Input, Label } from "semantic-ui-react";
 import styled from "styled-components";
-import UpdateGameContainer from "../Container/UpdateGameContainer/UpdateGameContainer";
+import UpdateGameContainer from "../Container/UpdateGameContainer";
 
 const Container = styled.div`
   display: grid;

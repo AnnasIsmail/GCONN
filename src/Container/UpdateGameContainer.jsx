@@ -1,8 +1,8 @@
 import React, { useContext, useEffect, useState } from "react";
 import styled from "styled-components";
-import UpdateGame from "../../Component/UpdateGame/UpdateGame";
-import { get } from "../../Function/Api";
-import { Context } from "../../Function/Context";
+import UpdateGame from "../Component/UpdateGame/UpdateGame";
+import { get } from "../Function/Api";
+import { Context } from "../Function/Context";
 
 const Container = styled.div`
   background: linear-gradient(

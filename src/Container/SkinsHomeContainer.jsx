@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import styled from "styled-components";
-import SkinsHome from "../Component/SkinsHome";
+import SkinsHome from "../Component/SkinHome";
 import { get } from "../Function/Api";
 import { Context } from "../Function/Context";
 import getRandomItems from "../Function/getRandomItems";
@@ -40,7 +40,6 @@ export default function SkinsHomeContainer() {
   const { context, updateContextValue } = useContext(Context);
   const [skins, setSkins] = useState([]);
   useEffect(() => {
-    console.log(context.skins);
     if (!context.skins) {
       get("/v1/weapons/skins", "valorant").then((response) => {
         setSkins(

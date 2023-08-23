@@ -3,7 +3,7 @@ import { useCookies } from "react-cookie";
 import { useNavigate } from "react-router-dom";
 import { Button, Form, Icon, Input, Label } from "semantic-ui-react";
 import styled from "styled-components";
-import UpdateGameContainer from "../Container/UpdateGameContainer/UpdateGameContainer";
+import UpdateGameContainer from "../Container/UpdateGameContainer";
 import { post } from "../Function/Api";
 
 const Container = styled.div`

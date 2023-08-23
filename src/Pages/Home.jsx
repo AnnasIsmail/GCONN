@@ -1,7 +1,8 @@
 import React from "react";
 import styled from "styled-components";
+import AgentsHomeContainer from "../Container/AgentsHomeContainer";
 import SkinsHomeContainer from "../Container/SkinsHomeContainer";
-import UpdateGameContainer from "../Container/UpdateGameContainer/UpdateGameContainer";
+import UpdateGameContainer from "../Container/UpdateGameContainer";
 
 const Container = styled.div`
   display: grid;
@@ -33,7 +34,7 @@ export default function Home() {
     <Container>
       <Content>
         <SkinsHomeContainer />
-        <SkinsHomeContainer />
+        <AgentsHomeContainer />
       </Content>
       <UpdateGameContainer />
     </Container>

@@ -18,8 +18,10 @@ const Container = styled.div`
   }
 
   div {
-    display: flex;
+    display: grid;
     flex-direction: column;
+    grid-auto-columns: 1fr;
+    width: 100%;
     justify-content: space-between;
   }
 
@@ -52,6 +54,7 @@ const Date = styled.p`
   vertical-align: sub;
   height: 20px;
   text-align: end;
+  width: 100%;
 `;
 
 function UpdateGame({ title, image, date, url, external_url }) {

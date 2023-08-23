@@ -14,7 +14,7 @@ import PaymentContainer from "../PaymentContainer/PaymentContainer";
 import ProdukContainer from "../ProdukContainer/ProductContainer";
 import ProdukFilterContainer from "../ProdukContainer/ProdukFilterContainer";
 import SellAccountContainer from "../SellAccountContainer/SellAccountContainer";
-import UpdateGameContainer from "../UpdateGameContainer/UpdateGameContainer";
+import UpdateGameContainer from "../UpdateGameContainer";
 import "./MainContainer.css";
 
 let data = {
