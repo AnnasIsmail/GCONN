@@ -5,8 +5,8 @@ import styled from "styled-components";
 const Container = styled.div`
   background-color: rgb(0, 7, 41);
   border-radius: 15px;
-  padding: 15px;
   box-sizing: border-box;
+  padding: 10px;
 
   a {
     color: white !important;
@@ -14,6 +14,7 @@ const Container = styled.div`
 
   img {
     width: 100%;
+    border-radius: 10px;
   }
 
   div {
@@ -60,12 +61,7 @@ function UpdateGame({ title, image, date, url, external_url }) {
         <img src={image} alt="" />
       </a>
       <div>
-        <Title
-          href={url}
-          target="_blank"
-          className="header-update-game"
-          rel="noreferrer"
-        >
+        <Title href={url} target="_blank" rel="noreferrer">
           {title}
         </Title>
         <a href={external_url}>Another Link</a>

@@ -22,11 +22,8 @@ const Container = styled.div`
   }
 
   div {
-    width: 100%;
-    border-radius: 15px;
     display: grid;
     gap: 10px;
-    padding: 5px;
   }
 
   div::-webkit-scrollbar {
@@ -44,8 +41,9 @@ const Container = styled.div`
 `;
 
 const Content = styled.div`
-  margin-top: 0;
   overflow: auto;
+  margin: 0 0 8px 8px;
+  padding-right: 8px;
 `;
 
 const Header = styled.h2`
@@ -60,13 +58,13 @@ function UpdateGameContainer() {
   const { context, updateContextValue } = useContext(Context);
   const [updateGame, setUpdateGame] = useState([]);
   useEffect(() => {
-    if (!context.UpdateGame) {
+    if (!context.updateValorant) {
       get("/v1/website/en-us", "hendrik").then((response) => {
         setUpdateGame(response.data.slice(0, 5));
         updateContextValue("updateValorant", response.data);
       });
     } else {
-      setUpdateGame(context.UpdateGame.slice(0, 5));
+      setUpdateGame(context.updateValorant.slice(0, 5));
     }
   }, []);
   return (

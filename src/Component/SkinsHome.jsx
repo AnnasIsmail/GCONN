@@ -9,13 +9,21 @@ export default function SkinsHome({ image, title, levels, chromas }) {
         backgroundColor: "rgb(0, 7, 41)",
         boxShadow: "none",
         borderRadius: "15px",
+        minHeight: "250px",
+        justifyContent: "space-between",
       }}
     >
-      <div>
+      <div
+        style={{
+          height: "160px",
+          display: "flex",
+          alignItems: "center",
+        }}
+      >
         <img
           src={image ? image : chromas[0].displayIcon}
           alt={title}
-          style={{ width: "100%", padding: "10px" }}
+          style={{ width: "100%", padding: "10px", maxHeight: "160px" }}
         />
       </div>
       <Card.Content
@@ -23,6 +31,7 @@ export default function SkinsHome({ image, title, levels, chromas }) {
           display: "flex",
           flexDirection: "column",
           placeContent: "flex-end",
+          maxHeight: "90px",
         }}
       >
         <Card.Header style={{ color: "white" }}>{title}</Card.Header>

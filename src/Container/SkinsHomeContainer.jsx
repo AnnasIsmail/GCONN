@@ -30,7 +30,9 @@ const Content = styled.div`
   display: flex;
   max-width: 100%;
   overflow: auto;
-  padding: 8px;
+  margin: 8px;
+  margin-bottom: 0px;
+  padding-bottom: 8px;
   gap: 8px;
 `;
 
@@ -47,7 +49,8 @@ export default function SkinsHomeContainer() {
               (obj) =>
                 !(
                   obj.displayName.startsWith("Standard") ||
-                  obj.displayName.startsWith("Random")
+                  obj.displayName.startsWith("Random") ||
+                  obj.displayName.startsWith("Melee")
                 )
             ),
             5

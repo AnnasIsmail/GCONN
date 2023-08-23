@@ -21,10 +21,20 @@ const Container = styled.div`
   }
 `;
 
+const Content = styled.div`
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+`;
+
 export default function Home() {
   return (
     <Container>
-      <SkinsHomeContainer />
+      <Content>
+        <SkinsHomeContainer />
+        <SkinsHomeContainer />
+      </Content>
       <UpdateGameContainer />
     </Container>
   );
