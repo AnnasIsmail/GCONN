@@ -1,9 +1,13 @@
 import React from "react";
 import { Card } from "semantic-ui-react";
+import ModalSkins from "./ModalSkins";
 
-export default function SkinHome({ image, title, levels, chromas }) {
+export default function SkinHome({ image, title, levels, chromas, data }) {
+  const [open, setOpen] = React.useState(false);
+
   return (
     <Card
+      onClick={() => setOpen(true)}
       style={{
         minWidth: "230px",
         backgroundColor: "rgb(0, 7, 41)",
@@ -11,6 +15,7 @@ export default function SkinHome({ image, title, levels, chromas }) {
         borderRadius: "15px",
         minHeight: "250px",
         justifyContent: "space-between",
+        textDecoration: "none",
       }}
     >
       <div
@@ -40,6 +45,7 @@ export default function SkinHome({ image, title, levels, chromas }) {
           {chromas.length} Chromas
         </Card.Meta>
       </Card.Content>
+      <ModalSkins open={open} name={data.displayName} />
     </Card>
   );
 }

@@ -83,6 +83,7 @@ export default function SkinsHomeContainer() {
             title={data.displayName}
             levels={data.levels}
             chromas={data.chromas}
+            data={data}
           />
         ))}
       </Content>
