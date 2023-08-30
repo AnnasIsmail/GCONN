@@ -33,6 +33,7 @@ export default function MainLayout({ children }) {
     skins: null,
     agents: null,
     updateValorant: null,
+    weapons: null,
   });
 
   const updateContextValue = (key, newValue) => {

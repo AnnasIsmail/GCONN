@@ -1,10 +1,29 @@
 import React, { useEffect, useState } from "react";
-import { Icon, Image, Modal } from "semantic-ui-react";
+import { Icon, Image, Label, Modal } from "semantic-ui-react";
 
-export default function ModalSkins({ open, name }) {
+function getCategoryFromString(str) {
+  const parts = str?.split("::");
+  if (parts?.length > 1) {
+    return parts[1];
+  }
+  return "";
+}
+
+export default function ModalSkins({
+  open,
+  name,
+  image,
+  chromas,
+  setOpen,
+  assetPath,
+  nameWeapon,
+  category,
+}) {
   const [isOpen, setIsOpen] = useState(open);
+  console.log(chromas);
   const closeModal = () => {
     setIsOpen(false);
+    setOpen(false);
   };
 
   useEffect(() => {
@@ -23,22 +42,59 @@ export default function ModalSkins({ open, name }) {
       dimmer="blurring"
     >
       <Modal.Header
-        style={{ display: "flex", justifyContent: "space-between" }}
+        style={{
+          backgroundColor: "rgb(0, 7, 41)",
+          display: "flex",
+          justifyContent: "space-between",
+          color: "white",
+        }}
       >
         {name}
         <Icon link name="close" onClick={closeModal} />
       </Modal.Header>
-      <Modal.Content image>
+      <Modal.Content
+        style={{
+          backgroundColor: "rgb(0, 7, 41)",
+          display: "grid",
+          gridTemplateColumns: "1fr 1fr",
+          justifyContent: "space-evenly",
+        }}
+      >
         <Image
           size="medium"
-          src="https://react.semantic-ui.com/images/wireframe/image-square.png"
+          src={image ? image : chromas[0].displayIcon}
           wrapped
         />
+        <Modal.Description
+          style={{
+            width: "300px",
+            padding: 0,
+          }}
+        ></Modal.Description>
         <Modal.Description>
-          <p>Would you like to upload this image?</p>
+          <h4>
+            {nameWeapon}
+            <Label
+              color="red"
+              style={{
+                padding: "4px 6px",
+                fontSize: 15,
+                marginLeft: 5,
+              }}
+            >
+              {getCategoryFromString(category)}
+            </Label>
+          </h4>
+          <p>Category: {getCategoryFromString(category)}</p>
         </Modal.Description>
       </Modal.Content>
-      <Modal.Actions>asd</Modal.Actions>
+      <Modal.Actions
+        style={{
+          backgroundColor: "rgb(0, 7, 41)",
+        }}
+      >
+        {assetPath}
+      </Modal.Actions>
     </Modal>
   );
 }

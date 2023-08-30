@@ -1,10 +1,29 @@
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Card } from "semantic-ui-react";
+import { Context } from "../Function/Context";
+import getWeaponsDetail from "../Function/getWeaponsDetail";
 import ModalSkins from "./ModalSkins";
 
-export default function SkinHome({ image, title, levels, chromas, data }) {
-  const [open, setOpen] = React.useState(false);
-
+export default function SkinHome({
+  image,
+  title,
+  levels,
+  chromas,
+  assetPath,
+  uuidWeapons,
+}) {
+  const { context, updateContextValue } = useContext(Context);
+  const [open, setOpen] = useState(false);
+  const [weapon, setWeapon] = useState({});
+  useEffect(() => {
+    if (open) {
+      console.log(uuidWeapons);
+      getWeaponsDetail(uuidWeapons, context, updateContextValue).then((res) => {
+        console.log("WEAPON DETAIL", res);
+        setWeapon(res);
+      });
+    }
+  }, [open]);
   return (
     <Card
       onClick={() => setOpen(true)}
@@ -45,7 +64,16 @@ export default function SkinHome({ image, title, levels, chromas, data }) {
           {chromas.length} Chromas
         </Card.Meta>
       </Card.Content>
-      <ModalSkins open={open} name={data.displayName} />
+      <ModalSkins
+        open={open}
+        name={title}
+        image={image}
+        chromas={chromas}
+        setOpen={() => setOpen(false)}
+        assetPath={assetPath}
+        nameWeapon={weapon.displayName}
+        category={weapon.category}
+      />
     </Card>
   );
 }

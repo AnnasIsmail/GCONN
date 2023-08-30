@@ -36,12 +36,12 @@ export default function AgentHome({ image, title, role, abilities }) {
       >
         <Card.Header style={{ color: "white" }}>{title}</Card.Header>
         <Card.Meta style={{ color: "white", opacity: 0.7 }}>
-          {role.displayName}
+          {role?.displayName}
         </Card.Meta>
         <Card.Description style={{ color: "white" }}>
           {abilities.map((data, index) => (
             <div>
-              {data.slot}: <b>{data.displayName}</b>
+              {data?.slot}: <b>{data?.displayName}</b>
             </div>
           ))}
         </Card.Description>

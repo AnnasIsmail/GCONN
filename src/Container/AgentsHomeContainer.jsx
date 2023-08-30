@@ -56,10 +56,10 @@ export default function AgentsHomeContainer() {
         {agents.map((data, index) => (
           <AgentHome
             key={index}
-            image={data.displayIcon}
-            title={data.displayName}
-            role={data.role}
-            abilities={data.abilities}
+            image={data?.displayIcon}
+            title={data?.displayName}
+            role={data?.role}
+            abilities={data?.abilities}
           />
         ))}
       </Content>

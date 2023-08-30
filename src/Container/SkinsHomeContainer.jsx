@@ -1,8 +1,8 @@
 import React, { useContext, useEffect, useState } from "react";
 import styled from "styled-components";
 import SkinsHome from "../Component/SkinHome";
-import { get } from "../Function/Api";
 import { Context } from "../Function/Context";
+import getAllSkins from "../Function/getAllSkins";
 import getRandomItems from "../Function/getRandomItems";
 
 const Container = styled.div`
@@ -40,37 +40,9 @@ export default function SkinsHomeContainer() {
   const { context, updateContextValue } = useContext(Context);
   const [skins, setSkins] = useState([]);
   useEffect(() => {
-    if (!context.skins) {
-      get("/v1/weapons/skins", "valorant").then((response) => {
-        setSkins(
-          getRandomItems(
-            response.data.filter(
-              (obj) =>
-                !(
-                  obj.displayName.startsWith("Standard") ||
-                  obj.displayName.startsWith("Random") ||
-                  obj.displayName.startsWith("Melee")
-                )
-            ),
-            5
-          )
-        );
-        updateContextValue("skins", response.data);
-      });
-    } else {
-      setSkins(
-        getRandomItems(
-          context.skins.filter(
-            (obj) =>
-              !(
-                obj.displayName.startsWith("Standard") ||
-                obj.displayName.startsWith("Random")
-              )
-          ),
-          5
-        )
-      );
-    }
+    getAllSkins(context, updateContextValue).then((res) => {
+      setSkins(getRandomItems(res, 5));
+    });
   }, []);
   return (
     <Container>
@@ -79,11 +51,12 @@ export default function SkinsHomeContainer() {
         {skins.map((data, index) => (
           <SkinsHome
             key={index}
-            image={data.displayIcon}
-            title={data.displayName}
-            levels={data.levels}
-            chromas={data.chromas}
-            data={data}
+            image={data?.displayIcon}
+            title={data?.displayName}
+            levels={data?.levels}
+            chromas={data?.chromas}
+            assetPath={data?.assetPath}
+            uuidWeapons={data?.uuidWeapons}
           />
         ))}
       </Content>
