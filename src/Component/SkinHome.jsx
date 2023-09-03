@@ -17,7 +17,6 @@ export default function SkinHome({
   const [weapon, setWeapon] = useState({});
   useEffect(() => {
     if (open) {
-      console.log(uuidWeapons);
       getWeaponsDetail(uuidWeapons, context, updateContextValue).then((res) => {
         console.log("WEAPON DETAIL", res);
         setWeapon(res);
@@ -70,9 +69,12 @@ export default function SkinHome({
         image={image}
         chromas={chromas}
         setOpen={() => setOpen(false)}
-        assetPath={assetPath}
         nameWeapon={weapon.displayName}
-        category={weapon.category}
+        category={weapon.shopData?.category}
+        shop={weapon.shopData}
+        levels={levels}
+        stats={weapon.weaponStats}
+        otherSkins={weapon.skins?.filter((data) => data.displayName !== title)}
       />
     </Card>
   );
