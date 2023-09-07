@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import styled from "styled-components";
-import UpdateGame from "../Component/UpdateGame/UpdateGame";
+import UpdateGame from "../Component/UpdateGame";
 import { get } from "../Function/Api";
 import { Context } from "../Function/Context";
 

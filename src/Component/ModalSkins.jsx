@@ -47,7 +47,6 @@ export default function ModalSkins({
       value: stats.adsStats[key],
     })
   );
-  console.log(stats);
   const [isOpen, setIsOpen] = useState(open);
   const closeModal = () => {
     setIsOpen(false);
@@ -218,16 +217,18 @@ export default function ModalSkins({
             }}
           >
             {nameWeapon}
-            <Label
-              color="red"
-              style={{
-                padding: "4px 6px",
-                fontSize: 15,
-                marginLeft: 5,
-              }}
-            >
-              {category}
-            </Label>
+            {category && (
+              <Label
+                color="red"
+                style={{
+                  padding: "4px 6px",
+                  fontSize: 15,
+                  marginLeft: 5,
+                }}
+              >
+                {category}
+              </Label>
+            )}
           </h4>
           <div
             style={{
@@ -237,49 +238,51 @@ export default function ModalSkins({
               gridTemplateColumns: "300px 1fr",
             }}
           >
-            <Card
-              style={{
-                backgroundColor: colorBackground,
-                color: "white",
-                margin: 0,
-              }}
-            >
-              <h5
+            {shop && (
+              <Card
                 style={{
-                  padding: "10px 0 0 10px ",
+                  backgroundColor: colorBackground,
+                  color: "white",
+                  margin: 0,
                 }}
               >
-                Shop
-              </h5>
-              <Image
-                src={shop?.newImage}
-                wrapped
-                ui={false}
-                style={{
-                  padding: "10px",
-                }}
-              />
-              <Card.Content>
-                <Card.Header style={{ color: "white", fontWeight: "bold" }}>
-                  {nameWeapon}
-                </Card.Header>
-                <Card.Meta>
-                  <span style={{ color: "white", opacity: 0.7 }}>
-                    {shop?.categoryText}
-                  </span>
-                </Card.Meta>
-                <Card.Description
+                <h5
                   style={{
-                    color: "white",
-                    display: "flex",
-                    fontSize: "20px",
+                    padding: "10px 0 0 10px ",
                   }}
                 >
-                  <Iconify icon="healthicons:dollar" height={25} />
-                  {shop?.cost}
-                </Card.Description>
-              </Card.Content>
-            </Card>
+                  Shop
+                </h5>
+                <Image
+                  src={shop?.newImage}
+                  wrapped
+                  ui={false}
+                  style={{
+                    padding: "10px",
+                  }}
+                />
+                <Card.Content>
+                  <Card.Header style={{ color: "white", fontWeight: "bold" }}>
+                    {nameWeapon}
+                  </Card.Header>
+                  <Card.Meta>
+                    <span style={{ color: "white", opacity: 0.7 }}>
+                      {shop?.categoryText}
+                    </span>
+                  </Card.Meta>
+                  <Card.Description
+                    style={{
+                      color: "white",
+                      display: "flex",
+                      fontSize: "20px",
+                    }}
+                  >
+                    <Iconify icon="healthicons:dollar" height={25} />
+                    {shop?.cost}
+                  </Card.Description>
+                </Card.Content>
+              </Card>
+            )}
             {stats && (
               <Card
                 style={{

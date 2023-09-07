@@ -27,7 +27,7 @@ export default function ProductContainer(props) {
   let footer = props.footer;
 
   function fetchData() {
-    get("/accounts")
+    get("/accounts", "main")
       .then((response) => {
         setLoading(false);
         setAccounts(response.data);
