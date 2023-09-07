@@ -18,7 +18,6 @@ export default function SkinHome({
   useEffect(() => {
     if (open) {
       getWeaponsDetail(uuidWeapons, context, updateContextValue).then((res) => {
-        console.log("WEAPON DETAIL", res);
         setWeapon(res);
       });
     }
@@ -58,10 +57,10 @@ export default function SkinHome({
         }}
       >
         <Card.Header style={{ color: "white" }}>{title}</Card.Header>
-        <Card.Meta style={{ color: "white" }}>{levels.length} Levels</Card.Meta>
         <Card.Meta style={{ color: "white" }}>
           {chromas.length} Chromas
         </Card.Meta>
+        <Card.Meta style={{ color: "white" }}>{levels.length} Levels</Card.Meta>
       </Card.Content>
       <ModalSkins
         open={open}

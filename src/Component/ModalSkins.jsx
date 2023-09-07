@@ -41,12 +41,6 @@ export default function ModalSkins({
   shop,
   stats,
 }) {
-  const formattedStats = Object.keys(stats?.adsStats ? stats.adsStats : {}).map(
-    (key) => ({
-      label: key.replace(/([A-Z])/g, " $1"),
-      value: stats.adsStats[key],
-    })
-  );
   const [isOpen, setIsOpen] = useState(open);
   const closeModal = () => {
     setIsOpen(false);
@@ -412,15 +406,27 @@ export default function ModalSkins({
         }}
       >
         <ContainerOtherSkins>
-          <h5
+          <div
             style={{
-              margin: 0,
-              paddingLeft: "10px",
-              paddingTop: "10px",
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "end",
             }}
           >
-            Other Skins
-          </h5>
+            <h5
+              style={{
+                margin: 0,
+                fontWeight: "bold",
+                paddingLeft: "10px",
+                paddingTop: "10px",
+              }}
+            >
+              Other Skins
+            </h5>
+            <h5 style={{ margin: 0, paddingRight: "20px" }}>
+              {otherSkins?.length} results
+            </h5>
+          </div>
           <OtherSkins>
             {otherSkins?.map((data, index) => (
               <SkinHome
