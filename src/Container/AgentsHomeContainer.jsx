@@ -1,8 +1,8 @@
 import React, { useContext, useEffect, useState } from "react";
 import styled from "styled-components";
 import AgentHome from "../Component/AgentHome";
-import { get } from "../Function/Api";
 import { Context } from "../Function/Context";
+import getAPIAgents from "../Function/getAPIAgents";
 import getRandomItems from "../Function/getRandomItems";
 
 const Container = styled.div`
@@ -40,14 +40,9 @@ export default function AgentsHomeContainer() {
   const { context, updateContextValue } = useContext(Context);
   const [agents, setAgents] = useState([]);
   useEffect(() => {
-    if (!context.agents) {
-      get("/v1/agents", "valorant").then((response) => {
-        setAgents(getRandomItems(response.data, 5));
-        updateContextValue("agents", response.data);
-      });
-    } else {
-      setAgents(getRandomItems(context.agents, 5));
-    }
+    getAPIAgents(context, updateContextValue).then((res) => {
+      setAgents(getRandomItems(res, 5));
+    });
   }, []);
   return (
     <Container>
@@ -60,6 +55,7 @@ export default function AgentsHomeContainer() {
             title={data?.displayName}
             role={data?.role}
             abilities={data?.abilities}
+            uuid={data.uuid}
           />
         ))}
       </Content>

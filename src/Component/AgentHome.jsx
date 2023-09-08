@@ -1,9 +1,22 @@
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Card } from "semantic-ui-react";
+import { Context } from "../Function/Context";
+import getAgentDetail from "../Function/getAgentDetail";
+import ModalAgent from "./ModalAgent";
 
-export default function AgentHome({ image, title, role, abilities }) {
+export default function AgentHome({ image, title, role, abilities, uuid }) {
+  const [open, setOpen] = useState(false);
+  const { context, updateContextValue } = useContext(Context);
+  useEffect(() => {
+    if (open) {
+      getAgentDetail(uuid, context, updateContextValue).then((res) => {
+        console.log(res);
+      });
+    }
+  }, [open]);
   return (
     <Card
+      onClick={() => setOpen(true)}
       style={{
         minWidth: "230px",
         backgroundColor: "rgb(0, 7, 41)",
@@ -46,6 +59,12 @@ export default function AgentHome({ image, title, role, abilities }) {
           ))}
         </Card.Description>
       </Card.Content>
+      <ModalAgent
+        open={open}
+        image={image}
+        name={title}
+        setOpen={() => setOpen(false)}
+      />
     </Card>
   );
 }

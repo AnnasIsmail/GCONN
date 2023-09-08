@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Card } from "semantic-ui-react";
 import { Context } from "../Function/Context";
-import getWeaponsDetail from "../Function/getWeaponsDetail";
+import getWeaponDetail from "../Function/getWeaponDetail";
 import ModalSkins from "./ModalSkins";
 
 export default function SkinHome({
@@ -17,7 +17,7 @@ export default function SkinHome({
   const [weapon, setWeapon] = useState({});
   useEffect(() => {
     if (open) {
-      getWeaponsDetail(uuidWeapons, context, updateContextValue).then((res) => {
+      getWeaponDetail(uuidWeapons, context, updateContextValue).then((res) => {
         setWeapon(res);
       });
     }
