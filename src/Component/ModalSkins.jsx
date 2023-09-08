@@ -333,9 +333,24 @@ export default function ModalSkins({
                       {stats?.altFireType && (
                         <li>Alt Fire Type: {stats?.altFireType}</li>
                       )}
-                      {stats?.altShotgunStats && (
-                        <li>Alt Shotgun Stats: {stats?.altShotgunStats}</li>
-                      )}
+                      {stats?.altShotgunStats &&
+                        (typeof stats.altShotgunStats === "string" ? (
+                          <li>Alt Shotgun Stats:{stats.altShotgunStats} </li>
+                        ) : (
+                          <li>
+                            Alt Shotgun Stats:
+                            <ul>
+                              <li>
+                                Burst Rate: {stats.altShotgunStats.burstRate}
+                              </li>
+                              <li>
+                                Shotgun Pellet Count:{" "}
+                                {stats.altShotgunStats.shotgunPelletCount}
+                              </li>
+                            </ul>
+                          </li>
+                        ))}
+
                       <li>
                         Damage Ranges:
                         <ul>
