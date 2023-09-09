@@ -6,14 +6,20 @@ import ModalAgent from "./ModalAgent";
 
 export default function AgentHome({ image, title, role, abilities, uuid }) {
   const [open, setOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(open);
   const { context, updateContextValue } = useContext(Context);
+  const [detailAgent, setDetailAgent] = useState({});
   useEffect(() => {
     if (open) {
       getAgentDetail(uuid, context, updateContextValue).then((res) => {
-        console.log(res);
+        setDetailAgent(res);
       });
     }
   }, [open]);
+
+  useEffect(() => {
+    setIsOpen(open);
+  }, [detailAgent]);
   return (
     <Card
       onClick={() => setOpen(true)}
@@ -24,6 +30,7 @@ export default function AgentHome({ image, title, role, abilities, uuid }) {
         borderRadius: "15px",
         minHeight: "250px",
         justifyContent: "space-between",
+        textDecoration: "none",
       }}
     >
       <div
@@ -60,10 +67,18 @@ export default function AgentHome({ image, title, role, abilities, uuid }) {
         </Card.Description>
       </Card.Content>
       <ModalAgent
-        open={open}
+        open={isOpen}
         image={image}
         name={title}
-        setOpen={() => setOpen(false)}
+        abilities={detailAgent?.abilities}
+        description={detailAgent?.description}
+        role={
+          detailAgent
+            ? detailAgent.role
+            : getAgentDetail(uuid, context, updateContextValue)
+        }
+        allRoles={context.roles}
+        setOpen={() => setIsOpen(false)}
       />
     </Card>
   );

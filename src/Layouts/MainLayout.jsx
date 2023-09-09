@@ -32,6 +32,7 @@ export default function MainLayout({ children }) {
     user: null,
     skins: null,
     agents: null,
+    roles: null,
     updateValorant: null,
     weapons: null,
   });
