@@ -35,6 +35,7 @@ export default function MainLayout({ children }) {
     roles: null,
     updateValorant: null,
     weapons: null,
+    ranks: null,
   });
 
   const updateContextValue = (key, newValue) => {
