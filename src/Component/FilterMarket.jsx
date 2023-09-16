@@ -11,8 +11,9 @@ import {
 import styled from "styled-components";
 import { Context } from "../Function/Context";
 import getAllRanks from "../Function/getAllRanks";
-import DropdownAgentValorant from "./DropdownAgentValorant/DropdownAgentValorant";
-import DropdownSkinValorant from "./DropdownSkinValorant/DropdownSkinValorant";
+import DropdownSkins from "./DropdownAgents";
+import DropdownRanks from "./DropdownRanks";
+import DropdownAgents from "./DropdownSkins";
 
 const Container = styled.div`
   box-shadow: var(--NN500, rgba(141, 150, 170, 0.4)) 0px 1px 6px 0px;
@@ -30,7 +31,7 @@ const Content = styled.div`
   // display: flex;
   // flex-wrap: wrap;
   display: grid;
-  grid-template-columns: auto auto auto auto auto;
+  grid-template-columns: auto auto auto auto;
   padding: 0 10px;
   gap: 10px;
 `;
@@ -56,6 +57,7 @@ export default function FilterMarket() {
   const { context, updateContextValue } = useContext(Context);
   const [loading, setLoading] = useState(true);
   const [ranks, setRanks] = useState([]);
+  const dataFilter = {};
 
   useEffect(() => {
     setVisible(filterOpen);
@@ -67,6 +69,30 @@ export default function FilterMarket() {
   useEffect(() => {
     fetchDataRanks();
   }, []);
+  const goFilter = () => {
+    console.log(dataFilter);
+  };
+  const onChangeCheckBox = (event, data) => {
+    if (data.checked) {
+      if (!dataFilter[data.name]) {
+        dataFilter[data.name] = [data.label];
+      } else {
+        dataFilter[data.name].push(data.label);
+      }
+    } else {
+      if (dataFilter[data.name]) {
+        dataFilter[data.name] = dataFilter[data.name].filter(
+          (item) => item !== data.label
+        );
+      }
+    }
+  };
+  const handlePriceChange = (event) => {
+    const { name, value } = event.target;
+    const newValue = parseInt(value);
+
+    dataFilter[name] = newValue;
+  };
 
   return (
     <Container>
@@ -106,28 +132,36 @@ export default function FilterMarket() {
             <Content>
               <Content.Section>
                 <span>Change Name Status</span>
-                <Checkbox label="Ready" />
-                <Checkbox label="Not Ready" />
-              </Content.Section>
-              <Content.Section>
+                <Checkbox
+                  label="Ready"
+                  onChange={onChangeCheckBox}
+                  name="changeNameStatus"
+                />
+                <Checkbox
+                  label="Not Ready"
+                  onChange={onChangeCheckBox}
+                  name="changeNameStatus"
+                />
                 <span>Region</span>
-                <Checkbox label="AP" />
-                <Checkbox label="EUROPA" />
-                <Checkbox label="USA" />
+                <Checkbox
+                  label="AP"
+                  onChange={onChangeCheckBox}
+                  name="region"
+                />
+                <Checkbox
+                  label="EUROPA"
+                  onChange={onChangeCheckBox}
+                  name="region"
+                />
+                <Checkbox
+                  label="USA"
+                  onChange={onChangeCheckBox}
+                  name="region"
+                />
               </Content.Section>
               <Content.Section style={{ minWidth: "250px" }}>
                 <span>Rank</span>
-                <div
-                  style={{
-                    display: "grid",
-                    gridTemplateColumns: "1fr 1fr",
-                    gap: "5px",
-                  }}
-                >
-                  {ranks.map((data, index) => (
-                    <Checkbox label={data.tierName} key={index} />
-                  ))}
-                </div>
+                <DropdownRanks sendData={(e) => (dataFilter.skins = e)} />
               </Content.Section>
               <Content.Section>
                 <span>Price</span>
@@ -139,8 +173,8 @@ export default function FilterMarket() {
                   <Label basic>Rp.</Label>
                   <input
                     type="number"
-                    id="minPriceFilter"
-                    name="minimum-price"
+                    name="minimum_price"
+                    onChange={handlePriceChange}
                   />
                   <Label>.00</Label>
                 </Input>
@@ -152,22 +186,28 @@ export default function FilterMarket() {
                   <Label basic>Rp.</Label>
                   <input
                     type="number"
-                    id="maxPriceFilter"
-                    name="maximum-price"
+                    name="maximum_price"
+                    onChange={handlePriceChange}
                   />
                   <Label>.00</Label>
                 </Input>
               </Content.Section>
-              <Content.Section style={{ minWidth: "250px" }}>
+              <Content.Section
+                style={{ minWidth: "250px", marginBottom: "10px" }}
+              >
                 <span>Skins</span>
-                <DropdownSkinValorant />
+                <DropdownSkins sendData={(e) => (dataFilter.skins = e)} />
                 <span>Agents</span>
-                <DropdownAgentValorant />
+                <DropdownAgents sendData={(e) => (dataFilter.agents = e)} />
               </Content.Section>
             </Content>
             <Action>
-              <Button color="red">Cancel</Button>
-              <Button color="blue">Filter</Button>
+              <Button color="red" onClick={() => setFilterOpen(false)}>
+                Cancel
+              </Button>
+              <Button color="blue" onClick={goFilter}>
+                Filter
+              </Button>
             </Action>
           </Accordion.Content>
         </Transition>
