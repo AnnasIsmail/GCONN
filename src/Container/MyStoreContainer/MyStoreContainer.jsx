@@ -5,7 +5,7 @@ import DoneTransaction from "../../Component/DoneTransaction/DoneTransaction";
 import HeaderMyStore from "../../Component/HeaderMyStore/HeaderMyStore";
 import NoData from "../../Component/NoData/NoData";
 import OnGoingTransaction from "../../Component/OnGoingTransaction/OnGoingTransaction";
-import ProdukContainer from "../ProdukContainer/ProductContainer";
+import ProdukContainer from "../ProductContainer";
 import "./../../Component/OrderCustomer/OrderCustomer.css";
 import "./MyStoreContainer.css";
 

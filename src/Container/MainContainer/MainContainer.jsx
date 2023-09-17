@@ -11,7 +11,7 @@ import DetailProductContainer from "../DetailProductContainer/DetailProduct";
 import MyProfileContainer from "../MyProfileContainer/MyProfileContainer";
 import MyStoreContainer from "../MyStoreContainer/MyStoreContainer";
 import PaymentContainer from "../PaymentContainer/PaymentContainer";
-import ProdukContainer from "../ProdukContainer/ProductContainer";
+import ProdukContainer from "../ProductContainer";
 import ProdukFilterContainer from "../ProdukContainer/ProdukFilterContainer";
 import SellAccountContainer from "../SellAccountContainer/SellAccountContainer";
 import UpdateGameContainer from "../UpdateGameContainer";

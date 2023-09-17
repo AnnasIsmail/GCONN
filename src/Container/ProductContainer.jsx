@@ -1,10 +1,11 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Loader } from "semantic-ui-react";
 import styled from "styled-components";
-import NoData from "../../Component/NoData/NoData";
-import Product from "../../Component/Produk/Product";
-import { get } from "../../Function/Api";
-import "./ProdukContainer.css";
+import NoData from "../Component/NoData/NoData";
+import Product from "../Component/Produk/Product";
+import { get } from "../Function/Api";
+import { Context } from "../Function/Context";
+import compareArraySimilarities from "../Function/compareArraySimilarities";
 
 const Container = styled.div`
   padding-top: 30px;
@@ -24,6 +25,7 @@ const ContainerNoData = styled.div`
 export default function ProductContainer(props) {
   const [loading, setLoading] = useState(true);
   const [accounts, setAccounts] = useState([]);
+  const { context, updateContextValue } = useContext(Context);
   let footer = props.footer;
 
   function fetchData() {
@@ -37,6 +39,17 @@ export default function ProductContainer(props) {
   useEffect(() => {
     fetchData();
   }, []);
+
+  useEffect(() => {
+    if (context.filterProducts && accounts) {
+      console.log(context.filterProducts);
+      accounts.map((data) => {
+        console.log(
+          compareArraySimilarities(data.skin, context.filterProducts.skins)
+        );
+      });
+    }
+  }, [context.filterProducts]);
 
   return loading ? (
     <Loader style={{ marginTop: 50 }} active inline="centered" size="huge" />

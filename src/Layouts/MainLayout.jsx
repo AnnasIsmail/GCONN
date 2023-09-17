@@ -36,6 +36,7 @@ export default function MainLayout({ children }) {
     updateValorant: null,
     weapons: null,
     ranks: null,
+    filterProducts: null,
   });
 
   const updateContextValue = (key, newValue) => {

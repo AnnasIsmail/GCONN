@@ -11,9 +11,9 @@ import {
 import styled from "styled-components";
 import { Context } from "../Function/Context";
 import getAllRanks from "../Function/getAllRanks";
-import DropdownSkins from "./DropdownAgents";
+import DropdownAgents from "./DropdownAgents";
 import DropdownRanks from "./DropdownRanks";
-import DropdownAgents from "./DropdownSkins";
+import DropdownSkins from "./DropdownSkins";
 
 const Container = styled.div`
   box-shadow: var(--NN500, rgba(141, 150, 170, 0.4)) 0px 1px 6px 0px;
@@ -70,7 +70,7 @@ export default function FilterMarket() {
     fetchDataRanks();
   }, []);
   const goFilter = () => {
-    console.log(dataFilter);
+    updateContextValue("filterProducts", dataFilter);
   };
   const onChangeCheckBox = (event, data) => {
     if (data.checked) {
