@@ -48,9 +48,9 @@ export default class DropdownRanks extends Component {
   fetchDataAgents = async (context, updateContextValue) => {
     const response = await getAllRanks(context, updateContextValue);
     const result = response.map((obj) => ({
-      text: obj.divisionName,
+      text: obj.tierName,
       key: obj.tier,
-      value: obj.divisionName,
+      value: obj.tierName,
     }));
     this.setState({ ranks: result });
   };

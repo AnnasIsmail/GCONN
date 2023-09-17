@@ -51,13 +51,15 @@ Content.Section = styled.div`
     color: white !important;
   }
 `;
+
+const dataFilter = {};
 export default function FilterMarket() {
   const [filterOpen, setFilterOpen] = useState(false);
   const [visible, setVisible] = useState(false);
   const { context, updateContextValue } = useContext(Context);
   const [loading, setLoading] = useState(true);
   const [ranks, setRanks] = useState([]);
-  const dataFilter = {};
+  const dataFilterChange = {};
 
   useEffect(() => {
     setVisible(filterOpen);
@@ -70,7 +72,14 @@ export default function FilterMarket() {
     fetchDataRanks();
   }, []);
   const goFilter = () => {
-    updateContextValue("filterProducts", dataFilter);
+    console.log(dataFilter);
+    const filter = {};
+    for (const key in dataFilter) {
+      if (dataFilter.hasOwnProperty(key)) {
+        filter[key] = dataFilter[key];
+      }
+    }
+    updateContextValue("filterProducts", filter);
   };
   const onChangeCheckBox = (event, data) => {
     if (data.checked) {
@@ -161,7 +170,7 @@ export default function FilterMarket() {
               </Content.Section>
               <Content.Section style={{ minWidth: "250px" }}>
                 <span>Rank</span>
-                <DropdownRanks sendData={(e) => (dataFilter.skins = e)} />
+                <DropdownRanks sendData={(e) => (dataFilter.rank = e)} />
               </Content.Section>
               <Content.Section>
                 <span>Price</span>
@@ -196,9 +205,9 @@ export default function FilterMarket() {
                 style={{ minWidth: "250px", marginBottom: "10px" }}
               >
                 <span>Skins</span>
-                <DropdownSkins sendData={(e) => (dataFilter.skins = e)} />
+                <DropdownSkins sendData={(e) => (dataFilter.skin = e)} />
                 <span>Agents</span>
-                <DropdownAgents sendData={(e) => (dataFilter.agents = e)} />
+                <DropdownAgents sendData={(e) => (dataFilter.agent = e)} />
               </Content.Section>
             </Content>
             <Action>

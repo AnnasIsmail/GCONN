@@ -5,7 +5,7 @@ import NoData from "../Component/NoData/NoData";
 import Product from "../Component/Produk/Product";
 import { get } from "../Function/Api";
 import { Context } from "../Function/Context";
-import compareArraySimilarities from "../Function/compareArraySimilarities";
+import filterProduct from "../Function/filterProduct";
 
 const Container = styled.div`
   padding-top: 30px;
@@ -25,6 +25,7 @@ const ContainerNoData = styled.div`
 export default function ProductContainer(props) {
   const [loading, setLoading] = useState(true);
   const [accounts, setAccounts] = useState([]);
+  const [accountsFiltered, setAccountsFiltered] = useState([]);
   const { context, updateContextValue } = useContext(Context);
   let footer = props.footer;
 
@@ -32,6 +33,7 @@ export default function ProductContainer(props) {
     get("/accounts", "main")
       .then((response) => {
         setLoading(false);
+        setAccountsFiltered(response.data);
         setAccounts(response.data);
       })
       .catch((error) => console.error(error));
@@ -41,15 +43,30 @@ export default function ProductContainer(props) {
   }, []);
 
   useEffect(() => {
-    if (context.filterProducts && accounts) {
-      console.log(context.filterProducts);
-      accounts.map((data) => {
-        console.log(
-          compareArraySimilarities(data.skin, context.filterProducts.skins)
-        );
-      });
+    const filter = context.filterProducts;
+    console.log(filter);
+    if (filter && accounts) {
+      filterAccount(filter);
     }
   }, [context.filterProducts]);
+
+  const filterAccount = async (filter) => {
+    const accountFiltered = [];
+    await accounts.map((data) => {
+      let notMatch = false;
+      const matchFilter = {};
+      for (const key in filter) {
+        if (filter.hasOwnProperty(key)) {
+          const result = filterProduct(key, filter[key], data);
+          if (!result) return (notMatch = true);
+          matchFilter[key] = result[key];
+        }
+      }
+      data.filter = matchFilter;
+      if (!notMatch) accountFiltered.push(data);
+    });
+    setAccountsFiltered(accountFiltered);
+  };
 
   return loading ? (
     <Loader style={{ marginTop: 50 }} active inline="centered" size="huge" />
@@ -59,7 +76,7 @@ export default function ProductContainer(props) {
     </ContainerNoData>
   ) : (
     <Container>
-      {accounts.map((data, index) => (
+      {accountsFiltered.map((data, index) => (
         <Product
           goToChat={(data) => props.goToChat(data)}
           key={index}

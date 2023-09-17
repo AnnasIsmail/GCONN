@@ -2,7 +2,7 @@
 const FormatMoney = ({money}) => {
   const integerAmount = parseInt(money, 10);
   if (isNaN(integerAmount)) {
-    throw new Error('Input must be Number!');
+    return 0;
   }
   const formattedNumber = new Intl.NumberFormat('id-ID', {
     style: 'currency',
