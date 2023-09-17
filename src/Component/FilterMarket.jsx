@@ -61,6 +61,12 @@ export default function FilterMarket() {
   const [ranks, setRanks] = useState([]);
   const dataFilterChange = {};
 
+  const [rank, setRank] = useState([]);
+
+  useEffect(() => {
+    console.log(rank);
+  }, [rank]);
+
   useEffect(() => {
     setVisible(filterOpen);
   }, [filterOpen]);
@@ -170,7 +176,11 @@ export default function FilterMarket() {
               </Content.Section>
               <Content.Section style={{ minWidth: "250px" }}>
                 <span>Rank</span>
-                <DropdownRanks sendData={(e) => (dataFilter.rank = e)} />
+                <DropdownRanks
+                  sendData={(e) => (dataFilter.rank = e)}
+                  value={rank}
+                  change={setRank}
+                />
               </Content.Section>
               <Content.Section>
                 <span>Price</span>
