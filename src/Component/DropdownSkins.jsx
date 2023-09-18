@@ -1,112 +1,47 @@
-import React, { Component } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Dropdown } from "semantic-ui-react";
 import { Context } from "../Function/Context";
 import getAllSkins from "../Function/getAllSkins";
 
-let value = [];
+export default function DropdownSkins({ value, change }) {
+  const { context, updateContextValue } = useContext(Context);
+  const [skins, setSkins] = useState([]);
 
-export default class DropdownSkins extends Component {
-  state = { value };
+  useEffect(() => {
+    fetchDataSkins(context, updateContextValue);
+  }, [context, updateContextValue]);
 
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      skins: [],
-    };
-  }
-
-  componentDidUpdate(prevProps, prevState) {
-    if (this.state.value !== prevState.value) {
-      this.props.sendData(this.state.value);
-    }
-  }
-
-  componentDidMount() {
-    const { context, updateContextValue } = this.context;
-    this.fetchDataSkins(context, updateContextValue);
-    // fetch(`https://valorant-api.com/v1/weapons/skins`)
-    //   .then((response) => response.json())
-    //   .then((res) => {
-    //     let addArray = [];
-    //     res.data.map((data, index) => {
-    //       if (data.displayName !== "Random Favorite Skin") {
-    //         let dataPush = {
-    //           key: data.uuid,
-    //           text: data.displayName,
-    //           value: data.uuid,
-    //         };
-    //         addArray.push(dataPush);
-    //       }
-    //     });
-    //     options = addArray;
-    //     this.setState({
-    //       options: addArray,
-    //     });
-    //   });
-  }
-
-  fetchDataSkins = async (context, updateContextValue) => {
+  const fetchDataSkins = async (context, updateContextValue) => {
     const response = await getAllSkins(context, updateContextValue);
     const result = response.map((obj) => ({
       text: obj.displayName,
       key: obj.uuid,
       value: obj.uuid,
     }));
-    this.setState({ skins: result });
+    setSkins(result);
   };
 
-  handleAddition = (e, { value }) => {
-    this.setState((prevState) => ({
-      skins: [{ text: value, value }, ...prevState.options],
-    }));
+  const handleAddition = (e, { value }) => {
+    setSkins((prevState) => [{ text: value, value }, ...prevState]);
   };
 
-  handleChange = (e, { value }) => this.setState({ value });
-  // sendData = (e, { value }) => {
-  //   this.setState({
-  //     value,
-  //   });
-  //   this.props.dataSelect(value, "skin");
-  // };
+  const handleChange = (e, { value }) => {
+    change(value);
+  };
 
-  // componentWillReceiveProps = () => {
-  //   if (this.props.checkUpdate) {
-  //     fetch(
-  //       `https://gconn-api-node-js.vercel.app/accountDetail/${this.props.checkUpdate._id}`
-  //     )
-  //       .then((response) => response.json())
-  //       .then((json) => {
-  //         this.setState({
-  //           value: json.data.skin,
-  //         });
-  //       });
-  //   }
-
-  //   if (this.props.advanceFilter) {
-  //     this.setState({
-  //       value: this.props.advanceFilter,
-  //     });
-  //   }
-  // };
-
-  render() {
-    return (
-      <Dropdown
-        options={this.state.skins}
-        placeholder="Choose Skins"
-        search
-        selection
-        fluid
-        multiple={true}
-        value={this.state.value}
-        onAddItem={this.handleAddition}
-        onChange={(e, { value }) => {
-          this.handleChange(e, { value });
-        }}
-      />
-    );
-  }
+  return (
+    <Dropdown
+      options={skins}
+      placeholder="Choose Skins"
+      search
+      selection
+      fluid
+      multiple={true}
+      value={value}
+      onAddItem={handleAddition}
+      onChange={(e, { value }) => {
+        handleChange(e, { value });
+      }}
+    />
+  );
 }
-
-DropdownSkins.contextType = Context;

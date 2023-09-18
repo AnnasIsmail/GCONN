@@ -10,7 +10,6 @@ import {
 } from "semantic-ui-react";
 import styled from "styled-components";
 import { Context } from "../Function/Context";
-import getAllRanks from "../Function/getAllRanks";
 import DropdownAgents from "./DropdownAgents";
 import DropdownRanks from "./DropdownRanks";
 import DropdownSkins from "./DropdownSkins";
@@ -52,63 +51,82 @@ Content.Section = styled.div`
   }
 `;
 
-const dataFilter = {};
 export default function FilterMarket() {
   const [filterOpen, setFilterOpen] = useState(false);
   const [visible, setVisible] = useState(false);
   const { context, updateContextValue } = useContext(Context);
-  const [loading, setLoading] = useState(true);
-  const [ranks, setRanks] = useState([]);
-  const dataFilterChange = {};
 
+  const [changeNameStatus, setChangeNameStatus] = useState([]);
+  const [region, setRegion] = useState([]);
   const [rank, setRank] = useState([]);
-
-  useEffect(() => {
-    console.log(rank);
-  }, [rank]);
+  const [minimum_price, setMinimum_price] = useState("");
+  const [maximum_price, setMaximum_price] = useState("");
+  const [skin, setSkin] = useState([]);
+  const [agent, setAgent] = useState([]);
 
   useEffect(() => {
     setVisible(filterOpen);
   }, [filterOpen]);
-  const fetchDataRanks = async () => {
-    const result = await getAllRanks(context, updateContextValue);
-    setRanks(result);
-  };
   useEffect(() => {
-    fetchDataRanks();
+    const filter = context.filterProducts;
+    if (filter) {
+      setChangeNameStatus(filter.changeNameStatus);
+      setRegion(filter.region);
+      setRank(filter.rank);
+      setMinimum_price(filter.minimum_price);
+      setMaximum_price(filter.maximum_price);
+      setSkin(filter.skin);
+      setAgent(filter.agent);
+      setFilterOpen(true);
+    }
   }, []);
   const goFilter = () => {
-    console.log(dataFilter);
-    const filter = {};
-    for (const key in dataFilter) {
-      if (dataFilter.hasOwnProperty(key)) {
-        filter[key] = dataFilter[key];
-      }
-    }
+    const filter = {
+      changeNameStatus,
+      region,
+      minimum_price,
+      maximum_price,
+      rank,
+      skin,
+      agent,
+    };
     updateContextValue("filterProducts", filter);
   };
   const onChangeCheckBox = (event, data) => {
-    if (data.checked) {
-      if (!dataFilter[data.name]) {
-        dataFilter[data.name] = [data.label];
+    setChangeNameStatus((prevChangeNameStatus) => {
+      if (data.checked) {
+        if (data.name === "changeNameStatus") {
+          return [...prevChangeNameStatus, data.label];
+        }
       } else {
-        dataFilter[data.name].push(data.label);
+        if (data.name === "changeNameStatus") {
+          return prevChangeNameStatus.filter((item) => item !== data.label);
+        }
       }
-    } else {
-      if (dataFilter[data.name]) {
-        dataFilter[data.name] = dataFilter[data.name].filter(
-          (item) => item !== data.label
-        );
+      return prevChangeNameStatus;
+    });
+
+    setRegion((prevRegion) => {
+      if (data.checked) {
+        if (data.name === "region") {
+          return [...prevRegion, data.label];
+        }
+      } else {
+        if (data.name === "region") {
+          return prevRegion.filter((item) => item !== data.label);
+        }
       }
-    }
+      return prevRegion;
+    });
   };
-  const handlePriceChange = (event) => {
-    const { name, value } = event.target;
-    const newValue = parseInt(value);
-
-    dataFilter[name] = newValue;
+  const handleminimum_priceChange = (event) => {
+    const value = event.target.value;
+    setMinimum_price(value !== "" ? parseInt(value, 10) : "");
   };
-
+  const handlemaximum_priceChange = (event) => {
+    const value = event.target.value;
+    setMaximum_price(value !== "" ? parseInt(value, 10) : "");
+  };
   return (
     <Container>
       <Accordion>
@@ -151,36 +169,37 @@ export default function FilterMarket() {
                   label="Ready"
                   onChange={onChangeCheckBox}
                   name="changeNameStatus"
+                  defaultChecked={changeNameStatus.includes("Ready")}
                 />
                 <Checkbox
                   label="Not Ready"
                   onChange={onChangeCheckBox}
                   name="changeNameStatus"
+                  defaultChecked={changeNameStatus.includes("Not Ready")}
                 />
                 <span>Region</span>
                 <Checkbox
                   label="AP"
                   onChange={onChangeCheckBox}
                   name="region"
+                  defaultChecked={region.includes("AP")}
                 />
                 <Checkbox
                   label="EUROPA"
                   onChange={onChangeCheckBox}
                   name="region"
+                  defaultChecked={region.includes("EUROPA")}
                 />
                 <Checkbox
                   label="USA"
                   onChange={onChangeCheckBox}
                   name="region"
+                  defaultChecked={region.includes("USA")}
                 />
               </Content.Section>
               <Content.Section style={{ minWidth: "250px" }}>
                 <span>Rank</span>
-                <DropdownRanks
-                  sendData={(e) => (dataFilter.rank = e)}
-                  value={rank}
-                  change={setRank}
-                />
+                <DropdownRanks value={rank} change={setRank} />
               </Content.Section>
               <Content.Section>
                 <span>Price</span>
@@ -193,7 +212,8 @@ export default function FilterMarket() {
                   <input
                     type="number"
                     name="minimum_price"
-                    onChange={handlePriceChange}
+                    value={minimum_price}
+                    onChange={handleminimum_priceChange}
                   />
                   <Label>.00</Label>
                 </Input>
@@ -206,7 +226,8 @@ export default function FilterMarket() {
                   <input
                     type="number"
                     name="maximum_price"
-                    onChange={handlePriceChange}
+                    value={maximum_price}
+                    onChange={handlemaximum_priceChange}
                   />
                   <Label>.00</Label>
                 </Input>
@@ -215,9 +236,9 @@ export default function FilterMarket() {
                 style={{ minWidth: "250px", marginBottom: "10px" }}
               >
                 <span>Skins</span>
-                <DropdownSkins sendData={(e) => (dataFilter.skin = e)} />
+                <DropdownSkins value={skin} change={setSkin} />
                 <span>Agents</span>
-                <DropdownAgents sendData={(e) => (dataFilter.agent = e)} />
+                <DropdownAgents value={agent} change={setAgent} />
               </Content.Section>
             </Content>
             <Action>

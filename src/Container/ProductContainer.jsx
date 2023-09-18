@@ -33,24 +33,27 @@ export default function ProductContainer(props) {
     get("/accounts", "main")
       .then((response) => {
         setLoading(false);
-        setAccountsFiltered(response.data);
         setAccounts(response.data);
+        const filter = context.filterProducts;
+        if (filter) {
+          filterAccount(response.data, filter);
+        } else {
+          setAccountsFiltered(response.data);
+        }
       })
       .catch((error) => console.error(error));
   }
   useEffect(() => {
     fetchData();
   }, []);
-
   useEffect(() => {
     const filter = context.filterProducts;
-    console.log(filter);
     if (filter && accounts) {
-      filterAccount(filter);
+      filterAccount(accounts, filter);
     }
   }, [context.filterProducts]);
 
-  const filterAccount = async (filter) => {
+  const filterAccount = async (accounts, filter) => {
     const accountFiltered = [];
     await accounts.map((data) => {
       let notMatch = false;

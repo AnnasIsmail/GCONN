@@ -3,22 +3,15 @@ import { Dropdown } from "semantic-ui-react";
 import { Context } from "../Function/Context";
 import getAllRanks from "../Function/getAllRanks";
 
-export default function DropdownRanks(props) {
-  const [value, setValue] = useState([]);
+export default function DropdownRanks({ value, change }) {
   const { context, updateContextValue } = useContext(Context);
   const [ranks, setRanks] = useState([]);
 
   useEffect(() => {
-    fetchDataAgents(context, updateContextValue);
+    fetchDataRanks(context, updateContextValue);
   }, [context, updateContextValue]);
 
-  useEffect(() => {
-    // if (value !== props.value) {
-    //   props.sendData(value);
-    // }
-  }, [value, props]);
-
-  const fetchDataAgents = async (context, updateContextValue) => {
+  const fetchDataRanks = async (context, updateContextValue) => {
     const response = await getAllRanks(context, updateContextValue);
     const result = response.map((obj) => ({
       text: obj.tierName,
@@ -33,7 +26,7 @@ export default function DropdownRanks(props) {
   };
 
   const handleChange = (e, { value }) => {
-    props.change(value);
+    change(value);
   };
 
   return (
@@ -44,7 +37,7 @@ export default function DropdownRanks(props) {
       selection
       fluid
       multiple={true}
-      value={props.value}
+      value={value}
       onAddItem={handleAddition}
       onChange={(e, { value }) => {
         handleChange(e, { value });
