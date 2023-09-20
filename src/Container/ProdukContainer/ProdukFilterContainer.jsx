@@ -1,6 +1,6 @@
 import React from "react";
 import { useCookies } from "react-cookie";
-import Produk from "../../Component/Produk/Product";
+import Product from "../../Component/Product";
 import "./ProdukContainer.css";
 
 let account = {};
@@ -112,7 +112,7 @@ function ProdukFilterContainer(props) {
     setContent(
       account.map((data, index) => {
         return (
-          <Produk
+          <Product
             goToChat={(data) => props.goToChat(data)}
             idSeller={data.idSeller}
             key={index}

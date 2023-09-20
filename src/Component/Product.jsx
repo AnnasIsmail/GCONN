@@ -1,13 +1,15 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import { Card } from "react-bootstrap";
 import Modal from "react-bootstrap/Modal";
 import { useCookies } from "react-cookie";
 import { useLocation, useNavigate } from "react-router-dom";
 import { Button, Icon } from "semantic-ui-react";
 import styled from "styled-components";
-import { SocketIO } from "../../App_";
-import FormatMoney from "../../Function/FormatMoney";
-import "./Produk.css";
+import { SocketIO } from "../App_";
+import { Context } from "../Function/Context";
+import FormatMoney from "../Function/FormatMoney";
+import getAgentDetail from "../Function/getAgentDetail";
+import getWeaponDetail from "../Function/getWeaponDetail";
 
 const Container = styled.div`
   img {
@@ -55,14 +57,6 @@ const Container = styled.div`
     padding: 2px 0 7px 0;
   }
 
-  .button-container {
-    display: flex;
-    justify-content: space-around;
-    background-color: #1c34ad !important;
-    border-radius: 0 0 10px 10px;
-    padding: 0 10px 10px 10px;
-  }
-
   .produk-chat {
     background-color: #00072b7a !important;
     min-height: 314px !important;
@@ -86,27 +80,49 @@ const Container = styled.div`
     width: 120px !important;
   }
 
-  .button-container .button {
-    background-color: #2444e3;
-    color: #dcddde;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    width: 70px;
-    /* background: rgba(28, 52, 173, 0.77); */
-    z-index: inherit;
-  }
-
   .like {
     color: #ffe21f !important;
   }
 `;
+const ButtonContainer = styled.div`
+  display: flex;
+  justify-content: space-around;
+
+  .button {
+    background-color: #2444e3;
+    color: #dcddde;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    width: 70px;
+    z-index: inherit;
+  }
+  .button:hover {
+    background-color: #2444e3;
+    color: #dcddde;
+  }
+  .btn :nth-child(1) {
+    margin: 0 !important;
+  }
+`;
+const Footer = styled.div`
+  background-color: #1c34ad !important;
+  border-radius: 0 0 10px 10px;
+  padding: 0 10px 10px 10px;
+`;
+const FilterMatch = styled.div`
+  padding: 10px 0 0 10px;
+`;
 
 export default function Product({ data }) {
   const navigate = useNavigate();
+  const { context, updateContextValue } = useContext(Context);
   let [like, setLike] = React.useState(false);
   const [cookies, setCookie, removeCookie] = useCookies();
   const socket = React.useRef(React.useContext(SocketIO));
   const [loadingChat, setLoadingChat] = React.useState(false);
   const [open, setOpen] = React.useState(false);
+  const [matchFilter, setmatchFilter] = useState(
+    Object.entries(data.filter).filter(([key, value]) => value !== undefined)
+  );
   const [result, setResult] = React.useState(false);
   const pathName = useLocation().pathname;
   const handleConfirm = () => {
@@ -117,7 +133,7 @@ export default function Product({ data }) {
     setResult(false);
     setOpen(false);
   };
-
+  console.log(data);
   const NavigateTo = (to) => {
     navigate(to);
   };
@@ -223,7 +239,7 @@ export default function Product({ data }) {
           </Card.Title>
         </Card.Body>
       </Card>
-      {pathName === false ? (
+      {/* {pathName === false ? (
         <> </>
       ) : pathName === "my-store" ? (
         <div className="button-container edit-product">
@@ -314,7 +330,67 @@ export default function Product({ data }) {
             </>
           )}
         </div>
-      )}
+      )} */}
+      <Footer>
+        <ButtonContainer>
+          <Button
+            disabled
+            animated="vertical"
+            onClick={() => NavigateTo(`/sign-in`)}
+          >
+            <Button.Content className={like === true ? "like" : ""} hidden>
+              Favorite
+            </Button.Content>
+            <Button.Content visible>
+              <Icon
+                inverted
+                color={like === true ? "yellow" : "grey"}
+                name="favorite"
+              />
+            </Button.Content>
+          </Button>
+          <Button
+            disabled
+            animated="vertical"
+            loading={loadingChat}
+            onClick={() => NavigateTo(`/sign-in`)}
+          >
+            <Button.Content hidden>Chat</Button.Content>
+            <Button.Content visible>
+              <Icon inverted color="grey" name="chat" />
+            </Button.Content>
+          </Button>
+          <Button animated="vertical">
+            <Button.Content hidden>Share</Button.Content>
+            <Button.Content visible>
+              <Icon inverted color="grey" name="share alternate" />
+            </Button.Content>
+          </Button>
+        </ButtonContainer>
+        {matchFilter && (
+          <FilterMatch>
+            <div style={{ fontWeight: "bold" }}>Filter Match</div>
+            {matchFilter.map(([key, value]) => (
+              <div key={key}>
+                <strong>{key}: </strong>
+                {key === "agent"
+                  ? value
+                      ?.map((agentId) =>
+                        getAgentDetail(agentId, context, updateContextValue)
+                      )
+                      .join(", ")
+                  : key === "skin"
+                  ? value
+                      ?.map((skinId) =>
+                        getWeaponDetail(skinId, context, updateContextValue)
+                      )
+                      .join(", ")
+                  : value}
+              </div>
+            ))}
+          </FilterMatch>
+        )}
+      </Footer>
       <Modal show={open} onHide={handleCancel} id="modal">
         <Modal.Header closeButton>
           <Modal.Title>Delete Account</Modal.Title>

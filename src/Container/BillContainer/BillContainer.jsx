@@ -3,7 +3,7 @@ import { useCookies } from "react-cookie";
 import { useNavigate, useParams } from "react-router-dom";
 import { Button, Input, Loader, Modal } from "semantic-ui-react";
 import { SocketIO } from "../../App_";
-import Produk from "../../Component/Produk/Product";
+import Product from "../../Component/Product";
 import FormatMoney from "../../Function/FormatMoney";
 import "../PaymentContainer/PaymentContainer.css";
 import "./BillContainer.css";
@@ -214,7 +214,7 @@ function BillContainer(props) {
         </div>
       ) : (
         <>
-          <Produk
+          <Product
             src={account.photo[0]}
             game={account.game}
             header={account.header}

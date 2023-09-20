@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { Loader } from "semantic-ui-react";
 import styled from "styled-components";
 import NoData from "../Component/NoData/NoData";
-import Product from "../Component/Produk/Product";
+import Product from "../Component/Product";
 import { get } from "../Function/Api";
 import { Context } from "../Function/Context";
 import filterProduct from "../Function/filterProduct";
@@ -11,7 +11,7 @@ const Container = styled.div`
   padding-top: 30px;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  grid-template-rows: repeat(auto-fit, 330px);
+  // grid-template-rows: repeat(auto-fit, 330px);
   gap: 10px;
   width: 100%;
   padding-right: 10px;
@@ -35,6 +35,7 @@ export default function ProductContainer(props) {
         setLoading(false);
         setAccounts(response.data);
         const filter = context.filterProducts;
+        console.log(response.data);
         if (filter) {
           filterAccount(response.data, filter);
         } else {
