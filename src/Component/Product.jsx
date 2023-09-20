@@ -381,36 +381,41 @@ export default function Product({ data, dataSkins, dataAgents }) {
             <div style={{ fontWeight: "bold", paddingBottom: "5px" }}>
               Filter Match
             </div>
-            {matchFilter.map(([key, value]) => (
-              <div key={key}>
-                <strong
-                  style={{
-                    textTransform: "capitalize",
-                  }}
-                >
-                  {key}:{" "}
-                </strong>
-                {key === "agent"
-                  ? value
-                      .map(
-                        (agentId) =>
-                          dataAgents?.find((data) => data.uuid === agentId)
-                            .displayName
-                      )
-                      .join(", ")
-                  : key === "skin"
-                  ? value
-                      .map(
-                        (skinId) =>
-                          dataSkins?.find((data) => data.uuid === skinId)
-                            .displayName
-                      )
-                      .join(", ")
-                  : Array.isArray(value)
-                  ? value.join(", ")
-                  : value}
-              </div>
-            ))}
+            {matchFilter
+              .filter(
+                ([key, value]) =>
+                  key !== "minimum_price" && key !== "maximum_price"
+              )
+              .map(([key, value]) => (
+                <div key={key}>
+                  <strong
+                    style={{
+                      textTransform: "capitalize",
+                    }}
+                  >
+                    {key === "changeNameStatus" ? "Change Name Status" : key}:{" "}
+                  </strong>
+                  {key === "agent"
+                    ? value
+                        .map(
+                          (agentId) =>
+                            dataAgents?.find((data) => data.uuid === agentId)
+                              .displayName
+                        )
+                        .join(", ")
+                    : key === "skin"
+                    ? value
+                        .map(
+                          (skinId) =>
+                            dataSkins?.find((data) => data.uuid === skinId)
+                              .displayName
+                        )
+                        .join(", ")
+                    : Array.isArray(value)
+                    ? value.join(", ")
+                    : value}
+                </div>
+              ))}
           </FilterMatch>
         )}
       </Footer>
