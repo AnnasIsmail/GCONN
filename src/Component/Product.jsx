@@ -147,6 +147,19 @@ export default function Product({ data, dataSkins, dataAgents }) {
         : undefined
     );
   }, [data.filter]);
+  useEffect(() => {
+    let checkFilter = 0;
+    if (matchFilter) {
+      matchFilter.forEach(([key, value]) => {
+        if (value) {
+          checkFilter += 1;
+        }
+      });
+      if (checkFilter === 0) {
+        setMatchFilter(undefined);
+      }
+    }
+  }, [matchFilter]);
   function clickFavorite() {
     if (like !== true) {
       fetch(`https://gconn-api-node-js.vercel.app/favoritesAdd`, {
