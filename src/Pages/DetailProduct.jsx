@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useCookies } from "react-cookie";
 import Moment from "react-moment";
 import { useNavigate, useParams } from "react-router-dom";
@@ -8,6 +8,7 @@ import ListAgentDetailProduct from "../Component/ListAgentDetailProduct/ListAgen
 import ListSkinDetailProduct from "../Component/ListSkinDetailProduct/ListSkinDetailProduct";
 import PhotoDetailProduct from "../Component/PhotoDetailProduct/PhotoDetailProduct";
 import { get, post } from "../Function/Api";
+import { Context } from "../Function/Context";
 import FormatMoney from "../Function/FormatMoney";
 
 const Container = styled.div`
@@ -57,7 +58,7 @@ const Container = styled.div`
 `;
 const Content = styled.div`
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1fr minmax(250px, 250px);
   gap: 10px;
   overflow-x: hidden;
 
@@ -81,7 +82,7 @@ const Content = styled.div`
   }
 `;
 
-const ContentRight = styled.div`
+const ContentMid = styled.div`
   padding: 0 10px;
   display: flex;
   flex-direction: column;
@@ -93,17 +94,18 @@ const ContentRight = styled.div`
     font-weight: bold;
   }
 `;
-
+const ContentRight = styled.div``;
 const ContainerButton = styled.div`
   width: 100%;
+  max-height: 100px;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   gap: 10px;
   margin: 0 auto;
-  margin-bottom: 80px;
-  margin-top: 20px;
+  margin-top: 10px;
 
-  .button {
+  .button,
+  .button:hover {
     background-color: #1935c2;
     color: #dcddde;
   }
@@ -130,6 +132,15 @@ const ContainerButton = styled.div`
   }
 `;
 
+const TextAreaAddNote = styled.textarea`
+  width: 100%;
+  padding: 5px;
+  border-radius: 5px;
+  background-color: #1935c2;
+  color: white;
+  border: none;
+`;
+
 export default function DetailProduct() {
   const id = useParams().id;
   const [data, setData] = useState({});
@@ -138,11 +149,12 @@ export default function DetailProduct() {
   const [cookies] = useCookies();
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
+  const { context, updateContextValue } = useContext(Context);
   const NavigateTo = (to) => {
     navigate(to);
   };
   useEffect(() => {
-    get(`/accountDetail/${id}`)
+    get(`/accountDetail/${id}`, "main")
       .then((response) => {
         setData(response.data);
         setIdSeller(response.data.idSeller);
@@ -153,7 +165,7 @@ export default function DetailProduct() {
 
   useEffect(() => {
     if (idSeller) {
-      post(`/sellerData`, { _id: idSeller })
+      post(`/sellerData`, { _id: idSeller }, "main")
         .then((response) => {
           setDataSeller(response.data);
         })
@@ -163,7 +175,6 @@ export default function DetailProduct() {
 
   return (
     <Container>
-      <h1>Valorant Account</h1>
       {loading ? (
         <Loader
           style={{ marginTop: 50 }}
@@ -211,50 +222,8 @@ export default function DetailProduct() {
                 </List.Item>
               </span>
             </div>
-            <ContainerButton>
-              <Button
-                animated="vertical"
-                disabled={cookies.Cr787980 === undefined ? true : false}
-                onClick={() => NavigateTo("/")}
-              >
-                <Button.Content hidden>Favorite</Button.Content>
-                <Button.Content visible>
-                  <Icon name="favorite" />
-                </Button.Content>
-              </Button>
-              <Button
-                animated="vertical"
-                disabled={cookies.Cr787980 === undefined ? true : false}
-              >
-                <Button.Content hidden>Chat</Button.Content>
-                <Button.Content visible>
-                  <Icon name="chat" />
-                </Button.Content>
-              </Button>
-              <Button animated="vertical">
-                <Button.Content hidden>Share</Button.Content>
-                <Button.Content visible>
-                  <Icon name="share alternate" />
-                </Button.Content>
-              </Button>
-              {data.status && (
-                <Button
-                  animated="fade"
-                  onClick={() =>
-                    cookies.Cr787980 !== undefined
-                      ? NavigateTo(`/detailproduk${id}/payment`)
-                      : NavigateTo(`/sign-in`)
-                  }
-                >
-                  <Button.Content visible>Buy Account</Button.Content>
-                  <Button.Content hidden>
-                    <Icon name="shopping cart" />
-                  </Button.Content>
-                </Button>
-              )}
-            </ContainerButton>
           </div>
-          <ContentRight>
+          <ContentMid>
             <div className="description">
               <h3>{data.header}</h3>
               <h2>
@@ -275,6 +244,43 @@ export default function DetailProduct() {
                 </>
               )}
             </div>
+          </ContentMid>
+          <ContentRight>
+            <TextAreaAddNote id="textarea" placeholder="Add Notes to Seller" />
+            <ContainerButton>
+              <Button
+                animated="vertical"
+                disabled={!context.login}
+                onClick={() => NavigateTo("/")}
+              >
+                <Button.Content hidden>Favorite</Button.Content>
+                <Button.Content visible>
+                  <Icon name="favorite" />
+                </Button.Content>
+              </Button>
+              <Button animated="vertical" disabled={!context.login}>
+                <Button.Content hidden>Chat</Button.Content>
+                <Button.Content visible>
+                  <Icon name="chat" />
+                </Button.Content>
+              </Button>
+              <Button animated="vertical">
+                <Button.Content hidden>Share</Button.Content>
+                <Button.Content visible>
+                  <Icon name="share alternate" />
+                </Button.Content>
+              </Button>
+              <Button
+                animated="fade"
+                onClick={() => NavigateTo(`/detailproduk${id}/payment`)}
+                disabled={!data.status || !context.login}
+              >
+                <Button.Content visible>Buy Account</Button.Content>
+                <Button.Content hidden>
+                  <Icon name="shopping cart" />
+                </Button.Content>
+              </Button>
+            </ContainerButton>
           </ContentRight>
         </Content>
       )}

@@ -17,7 +17,7 @@ body {
   color: white !important;
 }
 
-*{
+* {
   margin: 0;
   padding: 0;
   border: 0;
@@ -27,16 +27,36 @@ body {
 }
 
 .noselect {
-  -webkit-touch-callout: none; 
-  -webkit-user-select: none; 
-  -khtml-user-select: none; 
-  -moz-user-select: none; 
-  -ms-user-select: none; 
-  user-select: none; 
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
-h1,h2,h3,h4,h5,h6,p,b,a,div{
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+b,
+a,
+div,
+textarea {
   font-family: 'Poppins' !important;
+  outline: none;
+}
+
+textarea::placeholder {
+  color: #ffffffbb;
+}
+
+textarea:focus {
+  -webkit-appearance: none !important;
+  -webkit-box-shadow: 0 0 0 0 rgba(34, 36, 38, 0.35) inset;
 }
 
 ::-webkit-scrollbar {
@@ -44,13 +64,13 @@ h1,h2,h3,h4,h5,h6,p,b,a,div{
 }
 
 ::-webkit-scrollbar-track {
-  background: none !important; 
+  background: none !important;
 }
- 
+
 ::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.5) !important; 
+  background: rgba(255, 255, 255, 0.5) !important;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 255, 255, 0.9) !important;  
+  background: rgba(255, 255, 255, 0.9) !important;
 }
