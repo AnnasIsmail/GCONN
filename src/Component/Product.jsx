@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Card } from "react-bootstrap";
 import Modal from "react-bootstrap/Modal";
 import { useCookies } from "react-cookie";
@@ -8,8 +8,6 @@ import styled from "styled-components";
 import { SocketIO } from "../App_";
 import { Context } from "../Function/Context";
 import FormatMoney from "../Function/FormatMoney";
-import getAgentDetail from "../Function/getAgentDetail";
-import getWeaponDetail from "../Function/getWeaponDetail";
 
 const Container = styled.div`
   img {
@@ -112,7 +110,7 @@ const FilterMatch = styled.div`
   padding: 10px 0 0 10px;
 `;
 
-export default function Product({ data }) {
+export default function Product({ data, dataSkins, dataAgents }) {
   const navigate = useNavigate();
   const { context, updateContextValue } = useContext(Context);
   let [like, setLike] = React.useState(false);
@@ -120,8 +118,12 @@ export default function Product({ data }) {
   const socket = React.useRef(React.useContext(SocketIO));
   const [loadingChat, setLoadingChat] = React.useState(false);
   const [open, setOpen] = React.useState(false);
-  const [matchFilter, setmatchFilter] = useState(
-    Object.entries(data.filter).filter(([key, value]) => value !== undefined)
+  const [matchFilter, setMatchFilter] = useState(
+    data.filter
+      ? Object.entries(data.filter).filter(
+          ([key, value]) => value !== undefined
+        )
+      : undefined
   );
   const [result, setResult] = React.useState(false);
   const pathName = useLocation().pathname;
@@ -133,11 +135,18 @@ export default function Product({ data }) {
     setResult(false);
     setOpen(false);
   };
-  console.log(data);
   const NavigateTo = (to) => {
     navigate(to);
   };
-
+  useEffect(() => {
+    setMatchFilter(
+      data.filter
+        ? Object.entries(data.filter).filter(
+            ([key, value]) => value !== undefined
+          )
+        : undefined
+    );
+  }, [data.filter]);
   function clickFavorite() {
     if (like !== true) {
       fetch(`https://gconn-api-node-js.vercel.app/favoritesAdd`, {
@@ -369,22 +378,36 @@ export default function Product({ data }) {
         </ButtonContainer>
         {matchFilter && (
           <FilterMatch>
-            <div style={{ fontWeight: "bold" }}>Filter Match</div>
+            <div style={{ fontWeight: "bold", paddingBottom: "5px" }}>
+              Filter Match
+            </div>
             {matchFilter.map(([key, value]) => (
               <div key={key}>
-                <strong>{key}: </strong>
+                <strong
+                  style={{
+                    textTransform: "capitalize",
+                  }}
+                >
+                  {key}:{" "}
+                </strong>
                 {key === "agent"
                   ? value
-                      ?.map((agentId) =>
-                        getAgentDetail(agentId, context, updateContextValue)
+                      .map(
+                        (agentId) =>
+                          dataAgents?.find((data) => data.uuid === agentId)
+                            .displayName
                       )
                       .join(", ")
                   : key === "skin"
                   ? value
-                      ?.map((skinId) =>
-                        getWeaponDetail(skinId, context, updateContextValue)
+                      .map(
+                        (skinId) =>
+                          dataSkins?.find((data) => data.uuid === skinId)
+                            .displayName
                       )
                       .join(", ")
+                  : Array.isArray(value)
+                  ? value.join(", ")
                   : value}
               </div>
             ))}

@@ -6,6 +6,8 @@ import Product from "../Component/Product";
 import { get } from "../Function/Api";
 import { Context } from "../Function/Context";
 import filterProduct from "../Function/filterProduct";
+import getAPIAgents from "../Function/getAPIAgents";
+import getAllSkins from "../Function/getAllSkins";
 
 const Container = styled.div`
   padding-top: 30px;
@@ -27,6 +29,8 @@ export default function ProductContainer(props) {
   const [accounts, setAccounts] = useState([]);
   const [accountsFiltered, setAccountsFiltered] = useState([]);
   const { context, updateContextValue } = useContext(Context);
+  const [skins, setSkins] = useState([]);
+  const [agents, setAgents] = useState([]);
   let footer = props.footer;
 
   function fetchData() {
@@ -46,7 +50,21 @@ export default function ProductContainer(props) {
   }
   useEffect(() => {
     fetchData();
+    if (skins.length === 0) {
+      getSkins();
+    }
+    if (agents.length === 0) {
+      getAgents();
+    }
   }, []);
+  const getSkins = async () => {
+    const getSkins = await getAllSkins(context, updateContextValue);
+    setSkins(getSkins);
+  };
+  const getAgents = async () => {
+    const getAgents = await getAPIAgents(context, updateContextValue);
+    setAgents(getAgents);
+  };
   useEffect(() => {
     const filter = context.filterProducts;
     if (filter && accounts) {
@@ -85,6 +103,8 @@ export default function ProductContainer(props) {
           goToChat={(data) => props.goToChat(data)}
           key={index}
           data={data}
+          dataSkins={skins}
+          dataAgents={agents}
         />
       ))}
     </Container>
