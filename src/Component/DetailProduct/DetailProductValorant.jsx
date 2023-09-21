@@ -7,7 +7,7 @@ import { SocketIO } from "../../App_";
 import FormatMoney from "../../Function/FormatMoney";
 import ListAgentDetailProduct from "../ListAgentDetailProduct/ListAgentDetailProduct";
 import ListSkinDetailProduct from "../ListSkinDetailProduct/ListSkinDetailProduct";
-import PhotoDetailProduct from "../PhotoDetailProduct/PhotoDetailProduct";
+import PhotoDetailProduct from "../PhotoDetailProduct";
 import "./DetailProduct.css";
 
 function DetailProductValorant(props) {

@@ -1,9 +1,8 @@
 import React, { useContext, useEffect, useState } from "react";
 import styled from "styled-components";
-import SkinsHome from "../Component/SkinHome";
+import AgentHome from "../Component/AgentHome";
 import { Context } from "../Function/Context";
-import getAllSkins from "../Function/getAllSkins";
-import getRandomItems from "../Function/getRandomItems";
+import getAPIAgents from "../Function/getAPIAgents";
 
 const Container = styled.div`
   background: linear-gradient(
@@ -36,27 +35,34 @@ const Content = styled.div`
   gap: 8px;
 `;
 
-export default function SkinsHomeContainer({ style }) {
+export default function AgentsDetailProduct({ style, data }) {
   const { context, updateContextValue } = useContext(Context);
-  const [skins, setSkins] = useState([]);
+  const [agents, setAgents] = useState([]);
   useEffect(() => {
-    getAllSkins(context, updateContextValue).then((res) => {
-      setSkins(getRandomItems(res, 5));
-    });
+    const dataAgents = [];
+    getAPIAgents(context, updateContextValue)
+      .then((res) => {
+        data.forEach((uuid) => {
+          const dataAgent = res.find((data) => data.uuid === uuid);
+          dataAgents.push(dataAgent);
+        });
+      })
+      .then(() => {
+        setAgents(dataAgents);
+      });
   }, []);
   return (
     <Container style={style}>
-      <Header>Valorant Weapon Skins</Header>
+      <Header>Account Agents</Header>
       <Content>
-        {skins.map((data, index) => (
-          <SkinsHome
+        {agents.map((data, index) => (
+          <AgentHome
             key={index}
             image={data?.displayIcon}
             title={data?.displayName}
-            levels={data?.levels}
-            chromas={data?.chromas}
-            assetPath={data?.assetPath}
-            uuidWeapons={data?.uuidWeapons}
+            role={data?.role}
+            abilities={data?.abilities}
+            uuid={data.uuid}
           />
         ))}
       </Content>

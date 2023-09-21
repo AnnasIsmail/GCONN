@@ -3,7 +3,6 @@ import styled from "styled-components";
 import SkinsHome from "../Component/SkinHome";
 import { Context } from "../Function/Context";
 import getAllSkins from "../Function/getAllSkins";
-import getRandomItems from "../Function/getRandomItems";
 
 const Container = styled.div`
   background: linear-gradient(
@@ -12,7 +11,7 @@ const Container = styled.div`
     rgba(28, 52, 173, 1) 100%
   );
   border-radius: 10px;
-
+  overflow: hidden;
   .ui.card {
     margin: 0px;
   }
@@ -36,17 +35,27 @@ const Content = styled.div`
   gap: 8px;
 `;
 
-export default function SkinsHomeContainer({ style }) {
+export default function SkinsDetailProduct({ style, data }) {
   const { context, updateContextValue } = useContext(Context);
   const [skins, setSkins] = useState([]);
   useEffect(() => {
-    getAllSkins(context, updateContextValue).then((res) => {
-      setSkins(getRandomItems(res, 5));
-    });
+    if (data) {
+      const dataSkins = [];
+      getAllSkins(context, updateContextValue)
+        .then((res) => {
+          data.forEach((uuid) => {
+            const dataSkin = res.find((data) => data.uuid === uuid);
+            dataSkins.push(dataSkin);
+          });
+        })
+        .then(() => {
+          setSkins(dataSkins);
+        });
+    }
   }, []);
   return (
     <Container style={style}>
-      <Header>Valorant Weapon Skins</Header>
+      <Header>Account Weapon Skins</Header>
       <Content>
         {skins.map((data, index) => (
           <SkinsHome

@@ -39,7 +39,6 @@ export default function ProductContainer(props) {
         setLoading(false);
         setAccounts(response.data);
         const filter = context.filterProducts;
-        console.log(response.data);
         if (filter) {
           filterAccount(response.data, filter);
         } else {
