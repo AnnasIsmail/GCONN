@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Button, Checkbox, Form, Icon, Input, Label } from "semantic-ui-react";
+import { Checkbox, Form, Icon, Input, Label } from "semantic-ui-react";
 import styled from "styled-components";
+import validator from "validator";
 import UpdateGameContainer from "../Container/UpdateGameContainer";
 
 const Container = styled.div`
@@ -42,20 +43,12 @@ const Content = styled.div`
   color: white !important;
 }
 
-//  :nth-child(2) :nth-child(1) ,  :nth-child(3) :nth-child(1){
-//   border-radius: 12px !important;
-// }
 
- :nth-child(4) :nth-child(1) ,  :nth-child(7) :nth-child(1){
-  border-radius: 12px !important;
-  height: 45px;
-}
-
- :nth-child(7) {
+ :nth-child(8) {
   height: 35px;
 }
 
- :nth-child(7){
+ :nth-child(8){
   margin: 0 !important;
   display: flex;
 }
@@ -79,12 +72,16 @@ const Content = styled.div`
   font-weight: bold;
 }
 
- .password-sign-up :nth-child(1){
+.password-sign-up :nth-child(1){
   border-radius: 12px 0 0 12px !important;
 }
 
- .label{
+.password-sign-up .eye{
   border-radius: 0 12px 12px 0 !important;
+}
+
+ .label{
+  border-radius: 5px !important;
   display: grid;
   align-items: center;
   background-color: #2444E3;
@@ -101,13 +98,14 @@ const Content = styled.div`
   justify-content: space-around;
 }
 
- .container-button-sign-up .button{
+ .button{
   margin: 0;
   font-size: 18px;
   font-weight: 600;
   font-family: 'Poppins' !important;
   color: #DCDDDE;
   background-color: #2444E3;
+  width: 100%;
 }
 
  .ui.basic.red.label{
@@ -133,12 +131,6 @@ const Content = styled.div`
   }
 `;
 
-let username = "",
-  email = "",
-  password = "",
-  confirmPassword = "",
-  fullName = "";
-
 export default function SignIn() {
   const navigasi = useNavigate();
 
@@ -152,366 +144,264 @@ export default function SignIn() {
     password: "",
     confirmPassword: "",
   });
+  const [errors, setErrors] = useState({});
 
-  let [type, setType] = React.useState("password");
-  let [eye, setEye] = React.useState("eye slash");
+  const [type, setType] = React.useState("password");
+  const [eye, setEye] = React.useState("eye slash");
 
-  let [errorFieldFullName, setErrorFieldFullName] = React.useState();
-  let [errorFieldUsername, setErrorFieldUsername] = React.useState();
-  let [errorFieldEmail, setErrorFieldEmail] = React.useState();
-  let [errorFieldPassword, setErrorFieldPassword] = React.useState();
-  let [errorFieldConfirmPassword, setErrorFieldConfirmPassword] =
-    React.useState();
+  const handleChange = (e, { name, value }) => {
+    setFormData({ ...formData, [name]: value });
+  };
 
-  function changeValue(e) {
-    if (e.target.name === "full-name") {
-      fullName = e.target.value;
-    } else if (e.target.name === "username") {
-      username = e.target.value;
-    } else if (e.target.name === "email") {
-      email = e.target.value;
-    } else if (e.target.name === "password") {
-      password = e.target.value;
-    } else if (e.target.name === "confirm-password") {
-      confirmPassword = e.target.value;
-    }
-  }
+  const isValidFullName = (fullName) => {
+    const lowercaseRegex = /[a-z]/;
+    const uppercaseRegex = /[A-Z]/;
 
-  function error(text) {
-    return (error = (
-      <Label basic color="red" pointing="below">
-        {text === undefined ? "Please enter a value" : text}
-      </Label>
-    ));
-  }
+    const hasLowercase = lowercaseRegex.test(fullName);
+    const hasUppercase = uppercaseRegex.test(fullName);
 
-  function blur(e) {
-    if (e.target.name === "full-name") {
-      if (fullName === "") {
-        setErrorFieldFullName(error);
-      } else if (fullName.length < 5) {
-        setErrorFieldFullName(
-          error("Please enter a full name of at least 5 letters")
-        );
-      }
-    } else if (e.target.name === "username") {
-      if (username === "") {
-        setErrorFieldUsername(error);
-      } else if (username.length < 5) {
-        setErrorFieldUsername(error("Username must at least 5 letters"));
-      } else if (username.match(/^[0-9]+$/)) {
-        setErrorFieldUsername(error("Username must contain Lowercase a - z"));
-      } else if (username.match(/^[a-z]+$/)) {
-        setErrorFieldUsername(error("Username must contain numbers 0 - 9"));
-      }
-    } else if (e.target.name === "email") {
-      if (email === "") {
-        setErrorFieldEmail(error);
-      } else if (email.indexOf("@") === -1) {
-        setErrorFieldEmail(error("Please enter Email correctly"));
-      } else {
-        let validation = false;
-        let list = [".com", ".id", ".ac", ".ac.id", ".co.id"];
-
-        list.forEach((format) => {
-          if (email.lastIndexOf(format) !== -1) {
-            validation = true;
-          }
-        });
-
-        if (validation === false) {
-          setErrorFieldEmail(error("Please enter Email correctly"));
-        }
-      }
-    } else if (e.target.name === "password") {
-      if (password === "") {
-        setErrorFieldPassword(error);
-      } else if (password.length < 8) {
-        setErrorFieldPassword(error("Password must at least 8 letters"));
-      } else if (password.match(/^[A-Z0-9]+$/)) {
-        setErrorFieldPassword(error("Password must contain Lowercase a - z"));
-      } else if (password.match(/^[a-z0-9]+$/)) {
-        setErrorFieldPassword(error("Password must contain Uppercase A -Z"));
-      } else if (password.match(/^[a-zA-Z]+$/)) {
-        setErrorFieldPassword(error("Password must contain numbers 0 - 9"));
-      }
-    } else if (e.target.name === "confirm-password") {
-      if (confirmPassword === "") {
-        setErrorFieldConfirmPassword(error);
-      } else if (confirmPassword !== password) {
-        setErrorFieldConfirmPassword(
-          error("Password with Confirm Password must contain the same")
-        );
-        setErrorFieldPassword(
-          error("Password with Confirm Password must contain the same")
-        );
-      }
-    }
-  }
-
-  function focus(e) {
-    if (e.target.name === "full-name") {
-      setErrorFieldFullName();
-    } else if (e.target.name === "username") {
-      setErrorFieldUsername();
-    } else if (e.target.name === "email") {
-      setErrorFieldEmail();
-    } else if (e.target.name === "password") {
-      setErrorFieldPassword();
-    } else if (e.target.name === "confirm-password") {
-      setErrorFieldConfirmPassword();
-    }
-  }
-
-  function validationSignUp() {
-    let valid = true;
-    if (fullName === "") {
-      setErrorFieldFullName(error);
-      valid = false;
-    } else if (fullName.length < 5) {
-      setErrorFieldFullName(
-        error("Please enter a full name of at least 5 letters")
-      );
-      valid = false;
-    }
-    if (username === "") {
-      setErrorFieldUsername(error);
-      valid = false;
-    } else if (username.length < 5) {
-      setErrorFieldUsername(error("Username must at least 5 letters"));
-      valid = false;
-    } else if (username.match(/^[0-9]+$/)) {
-      setErrorFieldUsername(error("Username must contain Lowercase a - z"));
-      valid = false;
-    } else if (username.match(/^[a-z]+$/)) {
-      setErrorFieldUsername(error("Username must contain numbers 0 - 9"));
-      valid = false;
-    }
-    if (email === "") {
-      setErrorFieldEmail(error);
-      valid = false;
-    } else if (email.indexOf("@") === -1) {
-      setErrorFieldEmail(error("Please enter Email correctly"));
-      valid = false;
-    } else {
-      let validation = false;
-      let list = [".com", ".id", ".ac", ".ac.id", ".co.id"];
-
-      list.forEach((format) => {
-        if (email.lastIndexOf(format) !== -1) {
-          validation = true;
-        }
+    if (fullName.length < 10) {
+      setErrors({
+        fullName: "Full Name must be at least 10 characters long.",
       });
+    } else if (!hasLowercase) {
+      setErrors({
+        fullName: "Full Name must contain at least one lowercase letter.",
+      });
+      return false;
+    } else if (!hasUppercase) {
+      setErrors({
+        fullName: "Full Name must contain at least one uppercase letter.",
+      });
+      return false;
+    } else {
+      setErrors({ fullName: undefined });
+      return true;
+    }
+  };
 
-      if (validation === false) {
-        setErrorFieldEmail(error("Please enter Email correctly"));
-        valid = false;
+  const isValidUsername = (username) => {
+    const lowercaseRegex = /[a-z]/;
+    const uppercaseRegex = /[A-Z]/;
+    const numberRegex = /[0-9]/;
+
+    const hasLowercase = lowercaseRegex.test(username);
+    const hasUppercase = uppercaseRegex.test(username);
+    const hasNumber = numberRegex.test(username);
+
+    if (username.length < 10) {
+      setErrors({
+        username:
+          "Username must be at least 8 characters between 16 characters long.",
+      });
+    } else if (!hasLowercase) {
+      setErrors({
+        username: "Username must contain at least one lowercase letter.",
+      });
+      return false;
+    } else if (!hasUppercase) {
+      setErrors({
+        username: "Username must contain at least one uppercase letter.",
+      });
+      return false;
+    } else if (!hasNumber) {
+      setErrors({
+        username: "Username must contain at least one number.",
+      });
+      return false;
+    } else {
+      setErrors({ username: undefined });
+      return true;
+    }
+  };
+
+  const isValidEmail = (email) => {
+    const valid = validator.isEmail(email);
+    if (valid) {
+      setErrors({ email: undefined });
+      return true;
+    } else {
+      setErrors({ email: "Email is invalid." });
+      return false;
+    }
+  };
+
+  const isValidPassword = (password, confirmPassword) => {
+    if (password.length < 8 || password.length > 16) {
+      setErrors({
+        password: "Password must be between 8 and 16 characters long.",
+      });
+      return false;
+    }
+
+    const lowercaseRegex = /[a-z]/;
+    const uppercaseRegex = /[A-Z]/;
+    const numberRegex = /[0-9]/;
+
+    const hasLowercase = lowercaseRegex.test(password);
+    const hasUppercase = uppercaseRegex.test(password);
+    const hasNumber = numberRegex.test(password);
+
+    if (!hasLowercase) {
+      setErrors({
+        password: "Password must contain at least one lowercase letter.",
+      });
+      return false;
+    }
+    if (!hasUppercase) {
+      setErrors({
+        password: "Password must contain at least one uppercase letter.",
+      });
+      return false;
+    }
+
+    if (!hasNumber) {
+      setErrors({
+        password: "Password must contain at least one number.",
+      });
+      return false;
+    }
+
+    if (password !== confirmPassword) {
+      setErrors({
+        password: "Password and confirm password do not match.",
+        confirmPassword: "Password and confirm password do not match.",
+      });
+      return false;
+    }
+
+    setErrors({ password: undefined, confirmPassword: undefined });
+    return true;
+  };
+
+  const handleSubmit = async () => {
+    const { fullName, email, username, password, confirmPassword } = formData;
+    let isValid = true;
+
+    const fullNameValid = await isValidFullName(fullName);
+    if (!fullNameValid) {
+      isValid = false;
+    }
+
+    if (isValid) {
+      const usernameValid = await isValidUsername(username);
+      if (!usernameValid) {
+        isValid = false;
       }
     }
-    if (password === "") {
-      setErrorFieldPassword(error);
-      valid = false;
-    } else if (password.length < 8) {
-      setErrorFieldPassword(error("Password must at least 8 letters"));
-      valid = false;
-    } else if (password.match(/^[A-Z0-9]+$/)) {
-      setErrorFieldPassword(error("Password must contain Lowercase a - z"));
-      valid = false;
-    } else if (password.match(/^[a-z0-9]+$/)) {
-      setErrorFieldPassword(error("Password must contain Uppercase A -Z"));
-      valid = false;
-    } else if (password.match(/^[a-zA-Z]+$/)) {
-      setErrorFieldPassword(error("Password must contain numbers 0 - 9"));
-      valid = false;
-    }
-    if (confirmPassword === "") {
-      setErrorFieldConfirmPassword(error);
-      valid = false;
-    } else if (confirmPassword !== password) {
-      setErrorFieldConfirmPassword(
-        error("Password with Confirm Password must contain the same")
-      );
-      setErrorFieldPassword(
-        error("Password with Confirm Password must contain the same")
-      );
-      valid = false;
-    }
-    return valid;
-  }
 
-  function SignUp() {
-    let valid = validationSignUp();
-    if (valid == true) {
-      const currentdate = new Date();
-      const datetime =
-        "" +
-        (currentdate.getMonth() + 1) +
-        "/" +
-        currentdate.getDate() +
-        "/" +
-        currentdate.getFullYear() +
-        " " +
-        currentdate.getHours() +
-        ":" +
-        currentdate.getMinutes() +
-        ":" +
-        currentdate.getSeconds();
-      let dataLogin = {};
-      const credentials = {
-        fullName: document.getElementById("fullName").value,
-        username: document.getElementById("username").value,
-        email: document.getElementById("email").value,
-        password: document.getElementById("password").value,
-        lastOnline: datetime,
-        balance: 0,
-      };
-
-      fetch("https://gconn-api-node-js.vercel.app/register", {
-        method: "POST", // or 'PUT'
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(credentials),
-      })
-        .then((response) => response.json())
-        .then((json) => {
-          if (json.status === 200) {
-            fetch("https://gconn-api-node-js.vercel.app/registerSeller", {
-              method: "POST", // or 'PUT'
-              headers: {
-                "Content-Type": "application/json",
-              },
-              body: JSON.stringify({ username: json.data }),
-            })
-              .then((response) => response.json())
-              .then((json) => {
-                NavigateTo("/sign-in");
-              });
-          } else {
-            setErrorFieldUsername(
-              <Label basic color="red" pointing="below">
-                {json.data}
-              </Label>
-            );
-            setErrorFieldEmail(
-              <Label basic color="red" pointing="below">
-                {json.data}
-              </Label>
-            );
-          }
-        });
+    if (isValid) {
+      const emailValid = await isValidEmail(email);
+      if (!emailValid) {
+        isValid = false;
+      }
     }
-  }
 
-  const { fullName, email, username, password, confirmPassword } = formData;
+    if (isValid) {
+      const passwordValid = await isValidPassword(password, confirmPassword);
+      if (!passwordValid) {
+        isValid = false;
+      }
+    }
+
+    console.log(isValid);
+  };
 
   return (
     <Container>
       <UpdateGameContainer />
       <Content>
-        <Form>
-          <Form.Field>
-            <h1>Welcome to GCONN !</h1>
-            <h4>Please Sign-Up with your account!</h4>
-          </Form.Field>
-          <Form.Field onBlur={blur} onFocus={focus}>
-            {errorFieldFullName}
-            <Form.Input
-              onChange={changeValue}
-              id="fullName"
-              name="full-name"
-              icon="user"
+        <Form onSubmit={handleSubmit}>
+          <h1>Welcome to GCONN !</h1>
+          <h4>Please Sign-Up with your account!</h4>
+          <Form.Input
+            onChange={handleChange}
+            name="fullName"
+            icon="user"
+            error={errors.fullName}
+            iconPosition="left"
+            placeholder="Full Name"
+            style={{ borderRadius: "12px", overflow: "hidden" }}
+          />
+          <Form.Input
+            onChange={handleChange}
+            name="username"
+            error={errors.username}
+            icon="user"
+            iconPosition="left"
+            placeholder="Username"
+            style={{ borderRadius: "12px", overflow: "hidden" }}
+          />
+          <Form.Input
+            onChange={handleChange}
+            name="email"
+            error={errors.email}
+            icon="envelope"
+            iconPosition="left"
+            placeholder="Email"
+            style={{ borderRadius: "12px", overflow: "hidden" }}
+          />
+          <Form.Input
+            labelPosition="right"
+            type="password"
+            error={errors.password}
+            className="password-sign-up"
+          >
+            <Input
+              onChange={handleChange}
+              name="password"
+              type={type}
+              icon="lock"
               iconPosition="left"
-              placeholder="Full Name"
-              style={{ borderRadius: "12px", overflow: "hidden" }}
+              placeholder="Password"
             />
-          </Form.Field>
-          <Form.Field onBlur={blur} onFocus={focus}>
-            {errorFieldUsername}
-            <Form.Input
-              onChange={changeValue}
-              id="username"
-              name="username"
-              icon="user"
-              iconPosition="left"
-              placeholder="Username"
-            />
-          </Form.Field>
-          <Form.Field onBlur={blur} onFocus={focus}>
-            {errorFieldEmail}
-            <Form.Input
-              onChange={changeValue}
-              id="email"
-              name="email"
-              icon="envelope"
-              iconPosition="left"
-              placeholder="Email"
-            />
-          </Form.Field>
-          <Form.Field onBlur={blur} onFocus={focus}>
-            {errorFieldPassword}
-            <Form.Input labelPosition="right" type="text">
-              <Input
-                onChange={changeValue}
-                name="password"
-                id="password"
-                className="password-sign-up"
-                type={type}
-                icon="lock"
-                iconPosition="left"
-                placeholder="Password"
+            <Label className="eye">
+              <Icon
+                inverted
+                name={eye}
+                onClick={() => {
+                  setType(type === "password" ? "text" : "password");
+                  setEye(eye === "eye slash" ? "eye" : "eye slash");
+                }}
               />
-              <Label>
-                <Icon
-                  inverted
-                  name={eye}
-                  onClick={() => {
-                    setType(type === "password" ? "text" : "password");
-                    setEye(eye === "eye slash" ? "eye" : "eye slash");
-                  }}
-                />
-              </Label>
-            </Form.Input>
-          </Form.Field>
-          <Form.Field onBlur={blur} onFocus={focus}>
-            {errorFieldConfirmPassword}
-            <Form.Input labelPosition="right" type="text">
-              <Input
-                onChange={changeValue}
-                name="confirm-password"
-                id="confirmPassword"
-                className="password-sign-up"
-                type={type}
-                icon="lock"
-                iconPosition="left"
-                placeholder="Confirm Password"
+            </Label>
+          </Form.Input>
+          <Form.Input
+            labelPosition="right"
+            type="password"
+            error={errors.confirmPassword}
+            className="password-sign-up"
+          >
+            <Input
+              onChange={handleChange}
+              name="confirmPassword"
+              type={type}
+              icon="lock"
+              iconPosition="left"
+              placeholder="Confirm Password"
+            />
+            <Label className="eye">
+              <Icon
+                inverted
+                name={eye}
+                onClick={() => {
+                  setType(type === "password" ? "text" : "password");
+                  setEye(eye === "eye slash" ? "eye" : "eye slash");
+                }}
               />
-              <Label>
-                <Icon
-                  inverted
-                  name={eye}
-                  onClick={() => {
-                    setType(type === "password" ? "text" : "password");
-                    setEye(eye === "eye slash" ? "eye" : "eye slash");
-                  }}
-                />
-              </Label>
-            </Form.Input>
-          </Form.Field>
-          <Form.Field>
-            <Checkbox label="Please remind me the newest promotions and news" />
-          </Form.Field>
-          <Form.Field className="container-button-sign-up">
-            <Button type="submit" onClick={SignUp}>
-              Sign Up
-            </Button>
-          </Form.Field>
-          <Form.Field>
-            <h5>
-              Have an account?{" "}
-              <b onClick={() => NavigateTo("/sign-in")}>Log-in</b>!
-            </h5>
-          </Form.Field>
+            </Label>
+          </Form.Input>
+          <Checkbox label="Please remind me the newest promotions and news" />
+          <Form.Button
+            type="submit"
+            style={{ borderRadius: "12px", overflow: "hidden" }}
+          >
+            Sign Up
+          </Form.Button>
+          <h5>
+            Have an account?{" "}
+            <b onClick={() => NavigateTo("/sign-in")}>Log-in</b>!
+          </h5>
         </Form>
       </Content>
     </Container>
