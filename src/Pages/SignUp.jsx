@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button, Checkbox, Form, Icon, Input, Label } from "semantic-ui-react";
 import styled from "styled-components";
@@ -42,9 +42,9 @@ const Content = styled.div`
   color: white !important;
 }
 
- :nth-child(2) :nth-child(1) ,  :nth-child(3) :nth-child(1){
-  border-radius: 12px !important;
-}
+//  :nth-child(2) :nth-child(1) ,  :nth-child(3) :nth-child(1){
+//   border-radius: 12px !important;
+// }
 
  :nth-child(4) :nth-child(1) ,  :nth-child(7) :nth-child(1){
   border-radius: 12px !important;
@@ -145,6 +145,13 @@ export default function SignIn() {
   const NavigateTo = (to) => {
     navigasi(to);
   };
+  const [formData, setFormData] = useState({
+    fullName: "",
+    email: "",
+    username: "",
+    password: "",
+    confirmPassword: "",
+  });
 
   let [type, setType] = React.useState("password");
   let [eye, setEye] = React.useState("eye slash");
@@ -395,6 +402,9 @@ export default function SignIn() {
         });
     }
   }
+
+  const { fullName, email, username, password, confirmPassword } = formData;
+
   return (
     <Container>
       <UpdateGameContainer />
@@ -413,6 +423,7 @@ export default function SignIn() {
               icon="user"
               iconPosition="left"
               placeholder="Full Name"
+              style={{ borderRadius: "12px", overflow: "hidden" }}
             />
           </Form.Field>
           <Form.Field onBlur={blur} onFocus={focus}>
