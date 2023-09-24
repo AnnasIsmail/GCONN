@@ -1,7 +1,8 @@
 import axios from 'axios';
 
 export const MainAPI = axios.create({
-  baseURL: 'https://gconn-api-node-js.vercel.app',
+  baseURL: 'http://localhost:5000',
+  // baseURL: 'https://gconn-api-node-js.vercel.app',
 });
 
 export const OfficialValorantAPI = axios.create({
