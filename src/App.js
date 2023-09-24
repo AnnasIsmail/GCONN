@@ -3,7 +3,7 @@ import { Route, Routes } from "react-router-dom";
 // import { io } from 'socket.io-client';
 import './App.css';
 import MainLayout from './Layouts/MainLayout';
-import { AddSellAccount, DetailProduct, DetailTransaction, EditSellAccount, Favorite, Home, Market, MyProfile, MyStore, Payment, SignIn, SignUp } from './Pages';
+import { ActivateAccount, AddSellAccount, DetailProduct, DetailTransaction, EditSellAccount, Favorite, Home, Market, MyProfile, MyStore, Payment, SignIn, SignUp } from './Pages';
 
 // export const SocketIO = React.createContext();
 
@@ -22,8 +22,9 @@ function App() {
             <Route path='/my-profile' element={<MyProfile />} />
             <Route path='/add-sell-account' element={<AddSellAccount />} />
             <Route path='/edit-sell-account/:id' element={<EditSellAccount />} />
-            <Route path='sign-in' element={<SignIn />} />
-            <Route path='sign-up' element={<SignUp />} />
+            <Route path='/sign-in' element={<SignIn />} />
+            <Route path='/sign-up' element={<SignUp />} />
+            <Route path='/activate-account/:token' element={<ActivateAccount />} />
         </Routes>
       </MainLayout>
     // </SocketIO.Provider>

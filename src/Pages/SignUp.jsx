@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { Checkbox, Form, Icon, Input, Label } from "semantic-ui-react";
 import styled from "styled-components";
 import validator from "validator";
+import ModalSuccessRegister from "../Component/ModalSuccessRegister";
 import UpdateGameContainer from "../Container/UpdateGameContainer";
 import { post } from "../Function/Api";
 
@@ -100,7 +101,7 @@ const Content = styled.div`
   justify-content: space-around;
 }
 
- .button{
+ .button, .button:focus{
   margin: 0;
   font-size: 18px;
   font-weight: 600;
@@ -133,12 +134,10 @@ const Content = styled.div`
   }
 `;
 
-export default function SignIn() {
-  const navigasi = useNavigate();
+export default function SignUp() {
+  const navigate = useNavigate();
+  const navigateTo = (to) => navigate(to);
 
-  const NavigateTo = (to) => {
-    navigasi(to);
-  };
   const [formData, setFormData] = useState({
     fullName: "",
     email: "",
@@ -148,8 +147,10 @@ export default function SignIn() {
   });
   const [errors, setErrors] = useState({});
 
-  const [type, setType] = React.useState("password");
-  const [eye, setEye] = React.useState("eye slash");
+  const [type, setType] = useState("password");
+  const [eye, setEye] = useState("eye slash");
+  const [loading, setLoading] = useState(false);
+  const [open, setOpen] = useState(false);
 
   const handleChange = (e, { name, value }) => {
     setFormData({ ...formData, [name]: value });
@@ -191,7 +192,7 @@ export default function SignIn() {
     const hasUppercase = uppercaseRegex.test(username);
     const hasNumber = numberRegex.test(username);
 
-    if (username.length < 10) {
+    if (username.length < 8) {
       setErrors({
         username:
           "Username must be at least 8 characters between 16 characters long.",
@@ -229,9 +230,9 @@ export default function SignIn() {
   };
 
   const isValidPassword = (password, confirmPassword) => {
-    if (password.length < 8 || password.length > 16) {
+    if (password.length < 8) {
       setErrors({
-        password: "Password must be between 8 and 16 characters long.",
+        password: "Password must be more than 8 characters.",
       });
       return false;
     }
@@ -277,17 +278,20 @@ export default function SignIn() {
   };
 
   const handleSubmit = async () => {
+    setLoading(true);
     const { fullName, email, username, password, confirmPassword } = formData;
     let isValid = true;
 
     const fullNameValid = await isValidFullName(fullName);
     if (!fullNameValid) {
+      setLoading(false);
       isValid = false;
     }
 
     if (isValid) {
       const usernameValid = await isValidUsername(username);
       if (!usernameValid) {
+        setLoading(false);
         isValid = false;
       }
     }
@@ -295,6 +299,7 @@ export default function SignIn() {
     if (isValid) {
       const emailValid = await isValidEmail(email);
       if (!emailValid) {
+        setLoading(false);
         isValid = false;
       }
     }
@@ -302,14 +307,16 @@ export default function SignIn() {
     if (isValid) {
       const passwordValid = await isValidPassword(password, confirmPassword);
       if (!passwordValid) {
+        setLoading(false);
         isValid = false;
       }
     }
 
     if (isValid) {
+      setErrors({});
       const currentTime = moment().format("DD/MM/YYYY HH:mm:ss");
       post(
-        "register",
+        "user/register",
         {
           fullName,
           username,
@@ -321,7 +328,15 @@ export default function SignIn() {
         },
         "main"
       ).then((res) => {
-        console.log(res);
+        setLoading(false);
+        if (res.status === 201) {
+          setOpen(true);
+        } else if (res.status === 208) {
+          setErrors({
+            username: res.message,
+            email: res.message,
+          });
+        }
       });
     }
   };
@@ -478,15 +493,21 @@ export default function SignIn() {
           <Form.Button
             type="submit"
             style={{ borderRadius: "12px", overflow: "hidden" }}
+            loading={loading}
           >
             Sign Up
           </Form.Button>
           <h5>
             Have an account?{" "}
-            <b onClick={() => NavigateTo("/sign-in")}>Log-in</b>!
+            <b onClick={() => navigateTo("/sign-in")}>Log-in</b>!
           </h5>
         </Form>
       </Content>
+      <ModalSuccessRegister
+        name={formData.fullName}
+        open={open}
+        setOpen={() => setOpen(false)}
+      />
     </Container>
   );
 }
