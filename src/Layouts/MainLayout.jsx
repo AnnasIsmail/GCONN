@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useCookies } from "react-cookie";
+import { Loader } from "semantic-ui-react";
 import styled from "styled-components";
 import BottomBar from "../Container/BottomBar/BottomBar";
 import LeftSideBar from "../Container/LeftSideBar/LeftSideBar";
 import RightSlideBar from "../Container/RightSlide/RightSlideBar";
-import TopBar from "../Container/TopBar/TopBar";
+import TopBar from "../Container/TopBar";
+import { get } from "../Function/Api";
 import { Context } from "../Function/Context";
 
 const MainLayoutComponent = styled.div`
@@ -24,11 +26,15 @@ const MainLayoutComponent = styled.div`
     margin-bottom: 60px;
   }
 `;
-
+const Container = styled.div`
+  display: flex;
+  height: 100vh;
+  align-items: center;
+`;
 export default function MainLayout({ children }) {
+  const [cookies, setCookie, removeCookie] = useCookies();
   const [context, setContext] = useState({
     login: false,
-    token: null,
     user: null,
     skins: null,
     agents: null,
@@ -46,22 +52,32 @@ export default function MainLayout({ children }) {
     }));
   };
 
-  const [cookies, setCookie, removeCookie] = useCookies();
-  let login = false;
-  if (cookies.Cr787980) {
-    login = true;
-  }
-  const chatRef = React.useRef();
-  const goToChat = (data) => {
-    chatRef.current.openDirectChat(data);
-  };
+  useEffect(() => {
+    get("user/", "main", { authorization: cookies.token }).then((res) => {
+      updateContextValue("user", res.data);
+      updateContextValue("login", true);
+    });
+  }, []);
+
+  // const chatRef = React.useRef();
+  // const goToChat = (data) => {
+  //   chatRef.current.openDirectChat(data);
+  // };
   return (
     <Context.Provider value={{ context, updateContextValue }}>
-      <TopBar />
-      <LeftSideBar />
-      <MainLayoutComponent>{children}</MainLayoutComponent>
-      <RightSlideBar />
-      <BottomBar />
+      {!cookies.token || context.login ? (
+        <>
+          <MainLayoutComponent>{children}</MainLayoutComponent>
+          <TopBar />
+          <LeftSideBar />
+          <RightSlideBar />
+          <BottomBar />
+        </>
+      ) : (
+        <Container>
+          <Loader active inline="centered" size="huge" />;
+        </Container>
+      )}
     </Context.Provider>
   );
 }

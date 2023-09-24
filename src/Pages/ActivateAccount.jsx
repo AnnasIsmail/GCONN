@@ -23,7 +23,7 @@ export default function ActivateAccount() {
         if (res.status === 200) {
           const currentDate = new Date();
           currentDate.setDate(currentDate.getDate() + 1);
-          setCookie("token", token, { expires: currentDate });
+          setCookie("token", token, { expires: currentDate, path: "/" });
           navigateTo("/");
         } else if (res.status === 401) {
           navigateTo("/sign-in");

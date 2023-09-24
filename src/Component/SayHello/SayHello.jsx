@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
 import styled from "styled-components";
+import { Context } from "../../Function/Context";
 import "./SayHello.css";
 
-const SayHelloCSS = styled.div`
+const Container = styled.div`
   color: white;
   padding: 15px 0 0 0;
 
@@ -25,10 +26,17 @@ const SayHelloCSS = styled.div`
   }
 `;
 
-function TopBar(props) {
-  let [date, setDate] = React.useState(null);
-  let dateNow = () => {
-    let date = new Date();
+function TopBar() {
+  const { context, updateContextValue } = useContext(Context);
+  const [date, setDate] = useState(null);
+  const [login, setLogin] = useState(false);
+  const [profile, setProfile] = React.useState({});
+  useEffect(() => {
+    setLogin(context.login);
+    setProfile(context.user && context.user);
+  }, [context.user, context.login]);
+  const dateNow = () => {
+    const date = new Date();
     const month = [
       "JAN",
       "FEB",
@@ -50,23 +58,19 @@ function TopBar(props) {
     );
   };
 
-  React.useEffect(() => {
-    dateNow();
-  });
-
   setInterval(() => {
     dateNow();
   }, 1000);
 
-  const greeting = props.login
-    ? `Hi, ${props.profile.fullName}`
+  const greeting = login
+    ? `Hi, ${profile.fullName}`
     : "Hi, Beli Sekarang dapatkan Promonya.";
 
   return (
-    <SayHelloCSS>
+    <Container>
       <h1>{greeting}</h1>
       <h3>Date, Time : {date} </h3>
-    </SayHelloCSS>
+    </Container>
   );
 }
 

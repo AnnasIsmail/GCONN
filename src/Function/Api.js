@@ -6,11 +6,11 @@ const getAxiosInstance = (API) => {
 };
 
 // Function to handle GET requests
-export const get = async (url, API) => {
+export const get = async (url, API, headers) => {
   const axios = getAxiosInstance(API);
-
+  
   try {
-    const response = await axios.get(url);
+    const response = await axios.get(url, { headers });
     return response.data;
   } catch (error) {
     console.error('GET request error:', error);
@@ -19,11 +19,11 @@ export const get = async (url, API) => {
 };
 
 // Function to handle POST requests
-export const post = async (url, data, API) => {
+export const post = async (url, data, API, headers) => {
   const axios = getAxiosInstance(API);
 
   try {
-    const response = await axios.post(url, data);
+    const response = await axios.post(url, data, { headers });
     return response.data;
   } catch (error) {
     console.error('POST request error:', error);
@@ -32,11 +32,11 @@ export const post = async (url, data, API) => {
 };
 
 // Function to handle PUT requests
-export const put = async (url, data, API) => {
+export const put = async (url, data, API, headers) => {
   const axios = getAxiosInstance(API);
 
   try {
-    const response = await axios.put(url, data);
+    const response = await axios.put(url, data, { headers });
     return response.data;
   } catch (error) {
     console.error('PUT request error:', error);
@@ -45,11 +45,11 @@ export const put = async (url, data, API) => {
 };
 
 // Function to handle DELETE requests
-export const del = async (url, API) => {
+export const del = async (url, API, headers) => {
   const axios = getAxiosInstance(API);
 
   try {
-    const response = await axios.delete(url);
+    const response = await axios.delete(url, { headers });
     return response.data;
   } catch (error) {
     console.error('DELETE request error:', error);

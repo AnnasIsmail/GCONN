@@ -1,9 +1,9 @@
-.ui.secondary.inverted.pointing.menu{
+.ui.secondary.inverted.pointing.menu {
     overflow: auto;
     width: 70vw;
 }
 
-.profile{
+.profile {
     color: white;
     width: auto;
     display: grid;
@@ -14,23 +14,24 @@
     padding-top: 15px;
 }
 
-.profile:hover{
+.profile:hover {
     cursor: pointer;
 }
 
-.profile img:nth-child(1){
+.profile img:nth-child(1) {
     height: 60px;
     width: 60px;
     object-fit: cover;
     border-radius: 50%;
 }
 
-.profile img:nth-child(3){
+.profile img:nth-child(3) {
     width: 35px;
     margin: -5px 0 0 -3px;
 }
 
-.profile h1{
+
+.profile h1 {
     font-weight: 600;
     font-size: 20px;
     width: fit-content;
@@ -39,21 +40,16 @@
     text-transform: capitalize;
 }
 
-.profile h2{
+.profile h2 {
     font-size: 40px;
 }
 
-.profile .status{
+.profile .status {
     display: flex;
     align-items: baseline;
     gap: 5px;
     font-size: 15px;
     font-weight: 500;
-}
-
-
-.top-bar .ui.dropdown>.dropdown.icon:before{
-    display: none !important;
 }
 
 .top-bar .ui.dropdown .menu {
@@ -69,40 +65,39 @@
     margin-top: 4px;
 }
 
+#menuProfile {
+    background: rgba(255, 255, 255, 0.7);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(13.1px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid rgba(28, 52, 173, 0.32);
+
+    width: 254px !important;
+    z-index: 20;
+    position: absolute !important;
+    margin-top: 4px;
+}
+
 @media only screen and (max-width: 730px) {
-    .profile{
+    .profile {
         position: absolute;
         right: 0;
     }
 
-    .top-bar .ui.dropdown .menu{
+    .top-bar .ui.dropdown .menu {
         margin-left: -250px;
     }
-    
-    .profile .profile-responsive{
+
+    .profile .profile-responsive {
         overflow: hidden;
     }
 
-    @keyframes bukaProfile {
-        0%{
-            width: 0px;
-            max-width: 0px;
-            min-width: 0px;
-        }
-
-        100%{
-            width: auto;
-            max-width: auto;
-            min-width: auto;
-        }
-    }
-
-    .ui.secondary.inverted.pointing.menu{
+    .ui.secondary.inverted.pointing.menu {
         overflow: auto;
         width: 90vw;
     }
 
-    .my-profile-main-container{
+    .my-profile-main-container {
         width: 90vw;
     }
 }

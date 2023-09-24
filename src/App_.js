@@ -6,7 +6,7 @@ import BottomBar from './Container/BottomBar/BottomBar';
 import LeftSideBar from './Container/LeftSideBar/LeftSideBar';
 import MainContainer from './Container/MainContainer/MainContainer';
 import RightSlideBar from './Container/RightSlide/RightSlideBar';
-import TopBar from './Container/TopBar/TopBar';
+import TopBar from './Container/TopBar';
 
 export const SocketIO = React.createContext();
 
