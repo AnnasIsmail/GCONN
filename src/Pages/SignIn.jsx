@@ -155,7 +155,6 @@ export default function SignIn() {
   const { context, updateContextValue } = useContext(Context);
 
   const handleChange = (e, { name, value }) => {
-    console.log("masuk");
     setFormData({ ...formData, [name]: value });
   };
 
@@ -183,17 +182,15 @@ export default function SignIn() {
       .then((res) => {
         setLoading(false);
         if (res.status === 200) {
-          const data = res.data;
           const currentDate = new Date();
           currentDate.setDate(currentDate.getDate() + 1);
           updateContextValue("user", res.data);
           updateContextValue("login", true);
-          setCookie("token", data.token, { expires: currentDate, path: "/" });
+          setCookie("token", res.token, { expires: currentDate, path: "/" });
           navigateTo("/");
         } else if (res.status === 401) {
           setErrors({ username: res.message, password: res.message });
         }
-        console.log(res);
       })
       .catch((res) => {
         setLoading(false);
@@ -201,7 +198,6 @@ export default function SignIn() {
           username: res.response.data.message,
           password: res.response.data.message,
         });
-        console.log(res);
       });
   };
 

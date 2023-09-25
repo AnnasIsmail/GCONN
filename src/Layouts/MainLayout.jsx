@@ -54,10 +54,14 @@ export default function MainLayout({ children }) {
 
   useEffect(() => {
     if (cookies.token) {
-      get("user/", "main", { authorization: cookies.token }).then((res) => {
-        updateContextValue("user", res.data);
-        updateContextValue("login", true);
-      });
+      get("user/", "main", { authorization: cookies.token })
+        .then((res) => {
+          updateContextValue("user", res.data);
+          updateContextValue("login", true);
+        })
+        .catch(() => {
+          removeCookie("token");
+        });
     }
   }, []);
 
