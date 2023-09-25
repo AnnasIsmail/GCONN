@@ -101,7 +101,7 @@ const Content = styled.div`
   justify-content: space-around;
 }
 
- .button, .button:focus{
+ .button, .button:hover, .button:focus{
   margin: 0;
   font-size: 18px;
   font-weight: 600;

@@ -1,10 +1,12 @@
-import React from "react";
+import moment from "moment";
+import React, { useContext, useState } from "react";
 import { useCookies } from "react-cookie";
 import { useNavigate } from "react-router-dom";
-import { Button, Form, Icon, Input, Label } from "semantic-ui-react";
+import { Form, Icon, Input, Label } from "semantic-ui-react";
 import styled from "styled-components";
 import UpdateGameContainer from "../Container/UpdateGameContainer";
 import { post } from "../Function/Api";
+import { Context } from "../Function/Context";
 
 const Container = styled.div`
   display: grid;
@@ -47,13 +49,9 @@ const Content = styled.div`
     color: white !important;
   }
 
-  :nth-child(2) :nth-child(1) {
+  :nth-child(1) :nth-child(3),
+  :nth-child(1) :nth-child(4) {
     border-radius: 12px !important;
-  }
-
-  :nth-child(4) :nth-child(1) {
-    border-radius: 12px !important;
-    height: 45px;
   }
 
   h1 {
@@ -98,13 +96,14 @@ const Content = styled.div`
     justify-content: space-around;
   }
 
-  .container-button-sign-in :nth-child(1) {
+  :nth-child(5) :nth-child(1) {
     color: #dcddde;
     background-color: #2444e3;
     margin: 0;
     font-size: 18px;
     font-weight: 600;
     font-family: "Poppins" !important;
+    width: 100%;
   }
 
   .ui.basic.red.label {
@@ -141,144 +140,123 @@ const Content = styled.div`
   }
 `;
 
-let username = "",
-  password = "";
-export default function SignUp() {
-  const [errorFieldUsername, setErrorFieldUsername] = React.useState();
-  const [errorFieldPassword, setErrorFieldPassword] = React.useState();
-
-  function blur(e) {
-    let error = (
-      <Label basic color="red" pointing="below">
-        Please enter a value
-      </Label>
-    );
-    if (e.target.name === "username") {
-      if (username === "") {
-        setErrorFieldUsername(error);
-      }
-    } else if (e.target.name === "password") {
-      if (password === "") {
-        setErrorFieldPassword(error);
-      }
-    }
-  }
-
+export default function SignIn() {
+  const [errors, setErrors] = useState({});
   const [cookies, setCookie, removeCookie] = useCookies();
-  const navigasi = useNavigate();
-  const today = new Date();
-  const nextYear = new Date();
-  nextYear.setDate(today.getDate() + 3600);
+  const navigate = useNavigate();
+  const navigateTo = (to) => navigate(to);
+  const [type, setType] = useState("password");
+  const [eye, setEye] = useState("eye slash");
+  const [loading, setLoading] = useState(false);
+  const [formData, setFormData] = useState({
+    username: "",
+    password: "",
+  });
+  const { context, updateContextValue } = useContext(Context);
 
-  const NavigateTo = (to) => {
-    navigasi(to);
+  const handleChange = (e, { name, value }) => {
+    console.log("masuk");
+    setFormData({ ...formData, [name]: value });
   };
 
-  let [type, setType] = React.useState("password");
-  let [eye, setEye] = React.useState("eye slash");
-
-  function changeValue(e) {
-    if (e.target.name === "username") {
-      username = e.target.value;
-    } else if (e.target.name === "password") {
-      password = e.target.value;
+  const handleSubmit = async () => {
+    setErrors({});
+    setLoading(true);
+    const { username, password } = formData;
+    if (username.length === 0 || password.length === 0) {
+      return setErrors(
+        username.length === 0
+          ? { username: "Username please fill in" }
+          : { password: "Password please fill in" }
+      );
     }
-  }
-
-  function login() {
-    let dataLogin = {};
-    console.log(".");
-    const credentials = {
-      username: document.getElementById("username").value,
-      password: document.getElementById("password").value,
-    };
-
-    post("/login", JSON.stringify(credentials))
-      .then(function (response) {
-        // console.log(response)
-        if (response.status === 200) {
-          setCookie("Cr787980", response.data._id, {
-            expires: nextYear,
-            path: "/",
-          });
-          NavigateTo("/");
-          window.location.reload();
-        } else {
-          setErrorFieldUsername(
-            <Label basic color="red" pointing="below">
-              {response.data}
-            </Label>
-          );
+    const lastLogin = moment().format("DD/MM/YYYY HH:mm:ss");
+    post(
+      "user/login",
+      {
+        username,
+        password,
+        lastLogin,
+      },
+      "main"
+    )
+      .then((res) => {
+        setLoading(false);
+        if (res.status === 200) {
+          const data = res.data;
+          const currentDate = new Date();
+          currentDate.setDate(currentDate.getDate() + 1);
+          updateContextValue("user", res.data);
+          updateContextValue("login", true);
+          setCookie("token", data.token, { expires: currentDate, path: "/" });
+          navigateTo("/");
+        } else if (res.status === 401) {
+          setErrors({ username: res.message, password: res.message });
         }
+        console.log(res);
       })
-      .catch(function (error) {
-        console.log(error);
+      .catch((res) => {
+        setLoading(false);
+        setErrors({
+          username: res.response.data.message,
+          password: res.response.data.message,
+        });
+        console.log(res);
       });
-  }
+  };
 
-  function focus(e) {
-    if (e.target.name === "username") {
-      setErrorFieldUsername();
-    } else if (e.target.name === "password") {
-      setErrorFieldPassword();
-    }
-  }
   return (
     <Container>
       <UpdateGameContainer />
       <Content>
-        <Form action={login}>
-          <Form.Field>
-            <h1>Welcome to GCONN !</h1>
-            <h4>Please log-in with your account!</h4>
-          </Form.Field>
-          <Form.Field onBlur={blur} onFocus={focus}>
-            {errorFieldUsername}
+        <Form onSubmit={handleSubmit}>
+          <h1>Welcome to GCONN !</h1>
+          <h4>Please log-in with your account!</h4>
+          <Form.Input
+            onChange={handleChange}
+            name="username"
+            error={errors.username}
+            icon="user"
+            iconPosition="left"
+            placeholder="Username"
+            style={{ borderRadius: "12px", overflow: "hidden" }}
+          />
+          <Form.Input
+            labelPosition="right"
+            type="password"
+            error={errors.password}
+            className="password-sign-in"
+          >
             <Input
-              name="username"
-              icon="user"
-              id="username"
-              onChange={changeValue}
+              onChange={handleChange}
+              name="password"
+              type={type}
+              icon="lock"
               iconPosition="left"
-              placeholder="Username"
+              placeholder="Password"
             />
-          </Form.Field>
-          <Form.Field onBlur={blur} onFocus={focus}>
-            {errorFieldPassword}
-            <Input labelPosition="right" type="text">
-              <Input
-                type={type}
-                name="password"
-                id="password"
-                onChange={changeValue}
-                className="password-sign-in"
-                icon="lock"
-                iconPosition="left"
-                placeholder="Password"
+            <Label className="eye">
+              <Icon
+                inverted
+                name={eye}
+                onClick={() => {
+                  setType(type === "password" ? "text" : "password");
+                  setEye(eye === "eye slash" ? "eye" : "eye slash");
+                }}
               />
-              <Label>
-                <Icon
-                  inverted
-                  name={eye}
-                  onClick={() => {
-                    setType(type === "password" ? "text" : "password");
-                    setEye(eye === "eye slash" ? "eye" : "eye slash");
-                  }}
-                />
-              </Label>
-            </Input>
-          </Form.Field>
-          <Form.Field className="container-button-sign-in">
-            <Button type="submit" onClick={() => login()}>
-              Log In
-            </Button>
-          </Form.Field>
-          <Form.Field>
-            <h5>
-              Don’t have an account?{" "}
-              <b onClick={() => NavigateTo("/sign-up")}>Sign-up</b>!
-            </h5>
-          </Form.Field>
+            </Label>
+          </Form.Input>
+          <Form.Button
+            type="submit"
+            loading={loading}
+            style={{ borderRadius: "12px", overflow: "hidden" }}
+          >
+            Log In
+          </Form.Button>
+          <h5>
+            Don’t have an account?{" "}
+            <b onClick={() => navigateTo("/sign-up")}>Sign-up</b>!
+          </h5>
         </Form>
       </Content>
     </Container>

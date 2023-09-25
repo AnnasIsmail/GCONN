@@ -53,10 +53,12 @@ export default function MainLayout({ children }) {
   };
 
   useEffect(() => {
-    get("user/", "main", { authorization: cookies.token }).then((res) => {
-      updateContextValue("user", res.data);
-      updateContextValue("login", true);
-    });
+    if (cookies.token) {
+      get("user/", "main", { authorization: cookies.token }).then((res) => {
+        updateContextValue("user", res.data);
+        updateContextValue("login", true);
+      });
+    }
   }, []);
 
   // const chatRef = React.useRef();
