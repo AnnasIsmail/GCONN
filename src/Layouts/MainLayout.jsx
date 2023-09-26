@@ -56,6 +56,9 @@ export default function MainLayout({ children }) {
     if (cookies.token) {
       get("user/", "main", { authorization: cookies.token })
         .then((res) => {
+          if (!res.data) {
+            return removeCookie("token");
+          }
           updateContextValue("user", res.data);
           updateContextValue("login", true);
         })

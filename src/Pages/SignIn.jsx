@@ -153,7 +153,9 @@ export default function SignIn() {
     password: "",
   });
   const { context, updateContextValue } = useContext(Context);
-
+  if (context.login && context.user) {
+    navigateTo("/");
+  }
   const handleChange = (e, { name, value }) => {
     setFormData({ ...formData, [name]: value });
   };

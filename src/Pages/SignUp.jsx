@@ -1,5 +1,5 @@
 import moment from "moment";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Checkbox, Form, Icon, Input, Label } from "semantic-ui-react";
 import styled from "styled-components";
@@ -7,6 +7,7 @@ import validator from "validator";
 import ModalSuccessRegister from "../Component/ModalSuccessRegister";
 import UpdateGameContainer from "../Container/UpdateGameContainer";
 import { post } from "../Function/Api";
+import { Context } from "../Function/Context";
 
 const Container = styled.div`
   display: grid;
@@ -137,7 +138,10 @@ const Content = styled.div`
 export default function SignUp() {
   const navigate = useNavigate();
   const navigateTo = (to) => navigate(to);
-
+  const { context, updateContextValue } = useContext(Context);
+  if (context.login && context.user) {
+    navigateTo("/");
+  }
   const [formData, setFormData] = useState({
     fullName: "",
     email: "",
@@ -340,70 +344,6 @@ export default function SignUp() {
       });
     }
   };
-
-  // function SignUp() {
-  //   let valid = validationSignUp();
-  //   if (valid == true) {
-  //     const currentdate = new Date();
-  //     const datetime =
-  //       "" +
-  //       (currentdate.getMonth() + 1) +
-  //       "/" +
-  //       currentdate.getDate() +
-  //       "/" +
-  //       currentdate.getFullYear() +
-  //       " " +
-  //       currentdate.getHours() +
-  //       ":" +
-  //       currentdate.getMinutes() +
-  //       ":" +
-  //       currentdate.getSeconds();
-  //     let dataLogin = {};
-  //     const credentials = {
-  //       fullName: document.getElementById("fullName").value,
-  //       username: document.getElementById("username").value,
-  //       email: document.getElementById("email").value,
-  //       password: document.getElementById("password").value,
-  //       lastOnline: datetime,
-  //       balance: 0,
-  //     };
-
-  //     fetch("https://gconn-api-node-js.vercel.app/register", {
-  //       method: "POST", // or 'PUT'
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //       },
-  //       body: JSON.stringify(credentials),
-  //     })
-  //       .then((response) => response.json())
-  //       .then((json) => {
-  //         if (json.status === 200) {
-  //           fetch("https://gconn-api-node-js.vercel.app/registerSeller", {
-  //             method: "POST", // or 'PUT'
-  //             headers: {
-  //               "Content-Type": "application/json",
-  //             },
-  //             body: JSON.stringify({ username: json.data }),
-  //           })
-  //             .then((response) => response.json())
-  //             .then((json) => {
-  //               NavigateTo("/sign-in");
-  //             });
-  //         } else {
-  //           setErrorFieldUsername(
-  //             <Label basic color="red" pointing="below">
-  //               {json.data}
-  //             </Label>
-  //           );
-  //           setErrorFieldEmail(
-  //             <Label basic color="red" pointing="below">
-  //               {json.data}
-  //             </Label>
-  //           );
-  //         }
-  //       });
-  //   }
-  // }
 
   return (
     <Container>
