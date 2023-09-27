@@ -6,8 +6,8 @@ import BottomBar from "../Container/BottomBar/BottomBar";
 import LeftSideBar from "../Container/LeftSideBar/LeftSideBar";
 import RightSlideBar from "../Container/RightSlide/RightSlideBar";
 import TopBar from "../Container/TopBar";
-import { get } from "../Function/Api";
 import { Context } from "../Function/Context";
+import getUserData from "../Function/getUserData";
 
 const MainLayoutComponent = styled.div`
   position: absolute;
@@ -54,17 +54,9 @@ export default function MainLayout({ children }) {
 
   useEffect(() => {
     if (cookies.token) {
-      get("user/", "main", { authorization: cookies.token })
-        .then((res) => {
-          if (!res.data) {
-            return removeCookie("token");
-          }
-          updateContextValue("user", res.data);
-          updateContextValue("login", true);
-        })
-        .catch(() => {
-          removeCookie("token");
-        });
+      getUserData(context, updateContextValue, cookies.token).catch(() => {
+        removeCookie("token");
+      });
     }
   }, []);
 

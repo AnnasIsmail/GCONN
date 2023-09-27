@@ -178,7 +178,7 @@ export default function Profile(props) {
         <Dropdown.Item
           icon="edit"
           text="My Profile"
-          onClick={() => navigateTo("/myprofile")}
+          onClick={() => navigateTo("/my-profile")}
         />
         <Dropdown.Divider />
         <Dropdown.Header icon="shopping bag" content="Seller" />

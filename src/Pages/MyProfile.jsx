@@ -1,7 +1,128 @@
-import React from 'react'
+import React, { useContext, useEffect, useState } from "react";
+import { useCookies } from "react-cookie";
+import { useNavigate } from "react-router-dom";
+import { Loader, Tab } from "semantic-ui-react";
+import styled from "styled-components";
+import DoneTransaction from "../Component/DoneTransaction/DoneTransaction";
+import HeaderMyProfile from "../Component/HeaderMyProfile";
+import NoData from "../Component/NoData/NoData";
+import OnGoingTransaction from "../Component/OnGoingTransaction/OnGoingTransaction";
+import { get } from "../Function/Api";
+import { Context } from "../Function/Context";
+import getUserData from "../Function/getUserData";
 
+const Container = styled.div`
+  display: grid;
+  grid-template-rows: auto auto max-content;
+`;
 export default function MyProfile() {
+  const navigate = useNavigate();
+  const navigateTo = (to) => navigate(to);
+  const [loadingProfile, setLoadingProfile] = useState(true);
+  const [loadingTransaction, setLoadingTransaction] = useState(true);
+  const [profile, setProfile] = React.useState({});
+  const [dataOngoing, setDataOngoing] = useState([]);
+  const [dataDone, setDataDone] = useState([]);
+  const [cookies, setCookie, removeCookie] = useCookies();
+  const { context, updateContextValue } = useContext(Context);
+  if (!context.login && !context.user) {
+    navigateTo("/");
+  }
+
+  useEffect(() => {
+    if (cookies.token && context.user) {
+      getUserData(context, updateContextValue, cookies.token)
+        .then((res) => {
+          console.log(res);
+          setLoadingProfile(false);
+          setProfile(res);
+        })
+        .catch(() => {
+          removeCookie("token");
+        });
+      get(`transaction/user/${context.user._id}`, "main", {
+        authorization: cookies.token,
+      }).then((res) => {
+        setLoadingTransaction(false);
+        console.log(res);
+      });
+    }
+  }, []);
+
+  let panes = [
+    {
+      menuItem: "Ongoing Transaction",
+      render: () => (
+        <>
+          {dataOngoing.length > 0 ? (
+            <>
+              {dataOngoing.map((data, index) => (
+                <OnGoingTransaction data={data} key={index} />
+              ))}
+            </>
+          ) : (
+            <NoData
+              description="No Ongoing Transaction"
+              goto="/market"
+              button="Go To Market"
+            />
+          )}
+        </>
+      ),
+    },
+    {
+      menuItem: "Done",
+      render: () => (
+        <>
+          {dataDone.length > 0 ? (
+            <>
+              {dataDone.map((data, index) => (
+                <DoneTransaction data={data} key={index} />
+              ))}
+            </>
+          ) : (
+            <NoData
+              description="No Transaction Completed"
+              goto="/market"
+              button="Go To Market"
+            />
+          )}
+        </>
+      ),
+    },
+  ];
   return (
-    <div>MyProfile</div>
-  )
+    <Container>
+      {loadingProfile ? (
+        <Loader
+          style={{ marginTop: 50 }}
+          active
+          inline="centered"
+          size="huge"
+        />
+      ) : (
+        <HeaderMyProfile profile={profile} />
+      )}
+
+      {loadingTransaction ? (
+        <Loader
+          style={{ marginTop: 50 }}
+          active
+          inline="centered"
+          size="huge"
+        />
+      ) : (
+        <Tab
+          menu={{
+            secondary: true,
+            pointing: true,
+            inverted: true,
+            attached: false,
+            tabular: false,
+          }}
+          panes={panes}
+        />
+      )}
+    </Container>
+  );
 }
