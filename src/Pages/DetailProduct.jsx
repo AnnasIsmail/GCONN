@@ -7,9 +7,10 @@ import styled from "styled-components";
 import PhotoDetailProduct from "../Component/PhotoDetailProduct";
 import AgentsDetailProduct from "../Container/AgentsDetailProduct";
 import SkinsDetailProduct from "../Container/SkinsDetailProduct";
-import { get, post } from "../Function/Api";
+import { get } from "../Function/Api";
 import { Context } from "../Function/Context";
 import FormatMoney from "../Function/FormatMoney";
+import getSellerData from "../Function/getSellerData";
 
 const Container = styled.div`
   width: 100%;
@@ -176,9 +177,9 @@ export default function DetailProduct() {
 
   useEffect(() => {
     if (idSeller) {
-      post(`/sellerData`, { _id: idSeller }, "main")
+      getSellerData(idSeller, cookies.token)
         .then((response) => {
-          setDataSeller(response.data);
+          setDataSeller(response);
         })
         .catch((error) => console.error(error));
     }
@@ -288,7 +289,7 @@ export default function DetailProduct() {
                   </Button>
                   <Button
                     animated="fade"
-                    onClick={() => NavigateTo(`/detailproduk${id}/payment`)}
+                    onClick={() => NavigateTo(`/detail-product${id}/payment`)}
                     disabled={!data.status || !context.login}
                     style={{
                       backgroundColor: "#1935c2",
