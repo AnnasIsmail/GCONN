@@ -10,6 +10,7 @@ import SkinsDetailProduct from "../Container/SkinsDetailProduct";
 import { get } from "../Function/Api";
 import { Context } from "../Function/Context";
 import FormatMoney from "../Function/FormatMoney";
+import checkSRCPhoto from "../Function/checkSRCPhoto";
 import getSellerData from "../Function/getSellerData";
 
 const Container = styled.div`
@@ -19,11 +20,11 @@ const Container = styled.div`
     rgba(28, 52, 173, 0.23012955182072825) 0%,
     rgba(28, 52, 173, 1) 100%
   );
-  position: relative;
   box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border: 1px solid rgba(255, 255, 255, 0.18);
+  position: relative;
 
   padding: 20px;
   border-radius: 15px;
@@ -217,11 +218,7 @@ export default function DetailProduct() {
                 <Seller>
                   <Image
                     className="pp-seller"
-                    src={
-                      dataSeller.photo !== undefined
-                        ? dataSeller.photo
-                        : "https://react.semantic-ui.com/images/wireframe/image.png"
-                    }
+                    src={checkSRCPhoto(dataSeller.photo)}
                     size="tiny"
                   />{" "}
                   <span>

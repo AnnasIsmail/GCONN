@@ -24,14 +24,13 @@ const ContainerNoData = styled.div`
   height: 80px;
 `;
 
-export default function ProductContainer(props) {
+export default function ProductContainer() {
   const [loading, setLoading] = useState(true);
   const [accounts, setAccounts] = useState([]);
   const [accountsFiltered, setAccountsFiltered] = useState([]);
   const { context, updateContextValue } = useContext(Context);
   const [skins, setSkins] = useState([]);
   const [agents, setAgents] = useState([]);
-  let footer = props.footer;
 
   function fetchData() {
     get("/accounts", "main")
@@ -99,7 +98,6 @@ export default function ProductContainer(props) {
     <Container>
       {accountsFiltered.map((data, index) => (
         <Product
-          goToChat={(data) => props.goToChat(data)}
           key={index}
           data={data}
           dataSkins={skins}

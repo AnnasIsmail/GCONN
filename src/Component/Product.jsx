@@ -19,7 +19,6 @@ const Container = styled.div`
     background-color: #1c34ad !important;
     border: none !important;
     border-radius: 10px 10px 0 0;
-    width: auto !important;
     cursor: pointer;
   }
 
@@ -105,12 +104,19 @@ const Footer = styled.div`
   background-color: #1c34ad !important;
   border-radius: 0 0 10px 10px;
   padding: 0 10px 10px 10px;
+  ${({ visible }) => !visible && `display: none;`}
 `;
 const FilterMatch = styled.div`
   padding: 10px 0 0 10px;
 `;
 
-export default function Product({ data, dataSkins, dataAgents }) {
+export default function Product({
+  data,
+  dataSkins,
+  dataAgents,
+  footer = true,
+  style,
+}) {
   const navigate = useNavigate();
   const { context, updateContextValue } = useContext(Context);
   let [like, setLike] = React.useState(false);
@@ -247,12 +253,13 @@ export default function Product({ data, dataSkins, dataAgents }) {
   }
 
   return (
-    <Container>
-      <Card
-        style={{ width: "18rem" }}
-        onClick={() => NavigateTo(`/detail-product${data._id}`)}
-      >
-        <Card.Img variant="top" src={data.photo && data.photo[0]} />
+    <Container style={style}>
+      <Card onClick={() => NavigateTo(`/detail-product${data._id}`)}>
+        <Card.Img
+          variant="top"
+          style={{ height: "auto" }}
+          src={data.photo && data.photo[0]}
+        />
         <Card.Body>
           <Card.Text>{data.header}</Card.Text>
           <Card.Subtitle>{data.game}</Card.Subtitle>
@@ -353,10 +360,10 @@ export default function Product({ data, dataSkins, dataAgents }) {
           )}
         </div>
       )} */}
-      <Footer>
+      <Footer visible={footer}>
         <ButtonContainer>
           <Button
-            disabled
+            disabled={!context.login}
             animated="vertical"
             onClick={() => NavigateTo(`/sign-in`)}
           >
@@ -372,7 +379,7 @@ export default function Product({ data, dataSkins, dataAgents }) {
             </Button.Content>
           </Button>
           <Button
-            disabled
+            disabled={!context.login}
             animated="vertical"
             loading={loadingChat}
             onClick={() => NavigateTo(`/sign-in`)}
