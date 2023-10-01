@@ -163,7 +163,7 @@ function OnGoingTransaction(props) {
               <button onClick={goToChat}>Chat Seller</button>
             )}
             <button
-              onClick={() => NavigateTo(`/detaiTransaksi${props.data._id}`)}
+              onClick={() => NavigateTo(`/detail-transaction${props.data._id}`)}
             >
               Detail Transaction
             </button>
