@@ -98,7 +98,10 @@ const Menu = styled(Dropdown.Menu)`
 `;
 export default function Profile(props) {
   const navigate = useNavigate();
-  const navigateTo = (to) => navigate(to);
+  const navigateTo = (to) => {
+    setIsOpen(false);
+    navigate(to);
+  };
   const { context, updateContextValue } = useContext(Context);
   const [profile, setProfile] = useState({});
   const [isOpen, setIsOpen] = useState(false);
@@ -123,17 +126,18 @@ export default function Profile(props) {
     }
 
     function handleDocumentClick(e) {
-      if (!profileRef.current.contains(e.target) && window.innerWidth < 730) {
+      if (profileRef.current && !profileRef.current.contains(e.target)) {
         setProfileWidth(0);
+        setIsOpen(false);
       }
     }
 
     window.addEventListener("resize", handleWindowResize);
-    document.addEventListener("mouseup", handleDocumentClick);
+    document.addEventListener("mousedown", handleDocumentClick);
 
     return () => {
       window.removeEventListener("resize", handleWindowResize);
-      document.removeEventListener("mouseup", handleDocumentClick);
+      document.removeEventListener("mousedown", handleDocumentClick);
     };
   }, []);
 
