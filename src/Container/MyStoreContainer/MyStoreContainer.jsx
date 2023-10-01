@@ -1,10 +1,10 @@
 import React from "react";
 import { useCookies } from "react-cookie";
 import { Loader, Tab } from "semantic-ui-react";
-import DoneTransaction from "../../Component/DoneTransaction/DoneTransaction";
+import DoneTransaction from "../../Component/DoneTransaction";
 import HeaderMyStore from "../../Component/HeaderMyStore/HeaderMyStore";
 import NoData from "../../Component/NoData/NoData";
-import OnGoingTransaction from "../../Component/OnGoingTransaction/OnGoingTransaction";
+import OnGoingTransaction from "../../Component/OnGoingTransaction";
 import ProdukContainer from "../ProductContainer";
 import "./../../Component/OrderCustomer/OrderCustomer.css";
 import "./MyStoreContainer.css";

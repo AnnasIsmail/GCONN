@@ -3,10 +3,10 @@ import { useCookies } from "react-cookie";
 import { useNavigate } from "react-router-dom";
 import { Loader, Tab } from "semantic-ui-react";
 import styled from "styled-components";
-import DoneTransaction from "../Component/DoneTransaction/DoneTransaction";
+import DoneTransaction from "../Component/DoneTransaction";
 import HeaderMyProfile from "../Component/HeaderMyProfile";
 import NoData from "../Component/NoData/NoData";
-import OnGoingTransaction from "../Component/OnGoingTransaction/OnGoingTransaction";
+import OnGoingTransaction from "../Component/OnGoingTransaction";
 import { get } from "../Function/Api";
 import { Context } from "../Function/Context";
 import getUserData from "../Function/getUserData";
@@ -41,33 +41,37 @@ export default function MyProfile() {
         });
       get(`transaction/user/${context.user._id}`, "main", {
         authorization: cookies.token,
-      }).then((res) => {
-        const dataOngoing = [];
-        const dataDone = [];
+      })
+        .then((res) => {
+          const dataOngoing = [];
+          const dataDone = [];
 
-        res.data.forEach((data) => {
-          switch (data.status) {
-            case "Waiting For Payment":
-            case "Waiting for Seller to Respond":
-            case "Seller Already Sent Credentials":
-            case "Waiting for Seller to Send Credentials":
-            case "Waiting for the seller to accept the cancellation":
-            case "Waiting for admin's decision":
-              dataOngoing.push(data);
-              break;
-            case "Transaction Failed":
-            case "Done":
-              dataDone.push(data);
-              break;
-            default:
-              break;
-          }
+          res.data.forEach((data) => {
+            switch (data.status) {
+              case "Waiting For Payment":
+              case "Waiting for Seller to Respond":
+              case "Seller Already Sent Credentials":
+              case "Waiting for Seller to Send Credentials":
+              case "Waiting for the seller to accept the cancellation":
+              case "Waiting for admin's decision":
+                dataOngoing.push(data);
+                break;
+              case "Transaction Failed":
+              case "Done":
+                dataDone.push(data);
+                break;
+              default:
+                break;
+            }
+          });
+
+          setDataOngoing(dataOngoing);
+          setDataDone(dataDone);
+          setLoadingTransaction(false);
+        })
+        .catch(() => {
+          return setLoadingTransaction(false);
         });
-
-        setDataOngoing(dataOngoing);
-        setDataDone(dataDone);
-        setLoadingTransaction(false);
-      });
     }
   }, []);
 
