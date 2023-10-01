@@ -33,7 +33,6 @@ export default function MyProfile() {
     if (cookies.token && context.user) {
       getUserData(context, updateContextValue, cookies.token)
         .then((res) => {
-          console.log(res);
           setLoadingProfile(false);
           setProfile(res);
         })

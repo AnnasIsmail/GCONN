@@ -109,6 +109,7 @@ export default function Profile(props) {
   const [cookies, setCookie, removeCookie] = useCookies();
   const [profileWidth, setProfileWidth] = useState(0);
   const profileRef = useRef(null);
+  const dropdownRef = useRef(null);
 
   useEffect(() => {
     setProfile(context.user && context.user);
@@ -126,9 +127,14 @@ export default function Profile(props) {
     }
 
     function handleDocumentClick(e) {
-      if (profileRef.current && !profileRef.current.contains(e.target)) {
-        setProfileWidth(0);
-        setIsOpen(false);
+      if (profileRef.current && dropdownRef.current.ref.current) {
+        if (
+          !profileRef?.current.contains(e.target) &&
+          !dropdownRef.current.ref.current.contains(e.target)
+        ) {
+          setProfileWidth(0);
+          setIsOpen(false);
+        }
       }
     }
 
@@ -175,7 +181,12 @@ export default function Profile(props) {
   );
 
   return (
-    <Dropdown className="noselect" trigger={profileContainer} open={isOpen}>
+    <Dropdown
+      ref={dropdownRef}
+      className="noselect"
+      trigger={profileContainer}
+      open={isOpen}
+    >
       <Menu>
         <Dropdown.Header icon="user" content="Profile" />
         <Dropdown.Divider />
