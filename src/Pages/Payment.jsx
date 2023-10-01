@@ -1,11 +1,19 @@
+import moment from "moment";
 import { useContext, useEffect, useState } from "react";
 import { useCookies } from "react-cookie";
 import Moment from "react-moment";
 import { useNavigate, useParams } from "react-router-dom";
-import { Button, Dropdown, Image, List, Loader } from "semantic-ui-react";
+import {
+  Button,
+  Dropdown,
+  Image,
+  List,
+  Loader,
+  Message,
+} from "semantic-ui-react";
 import styled from "styled-components";
 import Product from "../Component/Product";
-import { get } from "../Function/Api";
+import { get, post } from "../Function/Api";
 import { Context } from "../Function/Context";
 import FormatMoney from "../Function/FormatMoney";
 import checkSRCPhoto from "../Function/checkSRCPhoto";
@@ -44,7 +52,7 @@ const Content = styled.div`
 `;
 const Seller = styled.div`
   display: flex;
-  margin: 10px 5px;
+  margin: 25px 5px;
 
   span {
     margin-top: 10px;
@@ -102,6 +110,7 @@ const PaymentType = [
     value: "BRI Virtual Account",
   },
 ];
+
 export default function Payment() {
   const { context, updateContextValue } = useContext(Context);
   const [cookies] = useCookies();
@@ -112,7 +121,8 @@ export default function Payment() {
   const [product, setProduct] = useState(false);
   const [dataSeller, setDataSeller] = useState({});
   const [idSeller, setIdSeller] = useState(false);
-  const [paymentMethod, setPaymentMethod] = useState("Please Choose Payment");
+  const [error, setError] = useState(false);
+  const [payment, setPayment] = useState("Please Choose Payment");
   if (!context.login && !context.user) {
     navigateTo("/");
   }
@@ -135,6 +145,39 @@ export default function Payment() {
         .catch((error) => console.error(error));
     }
   }, [idSeller]);
+
+  const createTransaction = () => {
+    setError(false);
+    const paymentMethods = {
+      "Permata Virtual Account": "permata",
+      "BCA Virtual Account": "bca",
+      "BNI Virtual Account": "bni",
+      "BRI Virtual Account": "bri",
+      "Mandiri Bill Payment": "mandiri",
+    };
+    const paymentMethod = paymentMethods[payment];
+    if (!paymentMethod) {
+      return setError(true);
+    }
+    const dateTime = moment().format("DD/MM/YYYY HH:mm:ss");
+    const dataPayment = {
+      idUser: context.user._id,
+      idSeller,
+      idAccount: id,
+      dateTime,
+      status: "Waiting For Payment",
+      namePayment: payment,
+      paymentMethod,
+      totalTransaction: product.price,
+    };
+    post("transaction/create", dataPayment, "main", {
+      authorization: cookies.token,
+    }).then((res) => {
+      if (res.data[0]) {
+        navigateTo(`/detail-transaction${res.data[0]._id}`);
+      }
+    });
+  };
 
   return (
     <Container>
@@ -196,10 +239,20 @@ export default function Payment() {
           </Seller>
           <PaymentTypeComponent>
             <h6>Choose Payment Type</h6>
+            {error && (
+              <Message negative>
+                <Message.Header>Please Choose Payment Method</Message.Header>
+              </Message>
+            )}
             <Dropdown
+              minCharacters
+              error={error}
               clearable
               options={PaymentType}
-              onChange={(e) => setPaymentMethod(e.target.innerText)}
+              onChange={(e) => {
+                setPayment(e.target.innerText);
+                setError(false);
+              }}
               selection
               placeholder="None"
             />
@@ -221,14 +274,14 @@ export default function Payment() {
             <Button
               animated="fade"
               style={{ opacity: 1, backgroundColor: "#1935c2", color: "white" }}
+              onClick={createTransaction}
             >
               <Button.Content visible>Check Out</Button.Content>
-              {paymentMethod === "Please Choose Payment" ||
-              paymentMethod === "" ? (
+              {payment === "Please Choose Payment" || payment === "" ? (
                 <Button.Content hidden>Please Choose Payment</Button.Content>
               ) : (
                 <Button.Content hidden>
-                  <FormatMoney money={product.price} /> with {paymentMethod}
+                  <FormatMoney money={product.price} /> with {payment}
                 </Button.Content>
               )}
             </Button>
