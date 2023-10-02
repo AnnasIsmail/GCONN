@@ -10,7 +10,6 @@ import SkinsDetailProduct from "../Container/SkinsDetailProduct";
 import { get } from "../Function/Api";
 import { Context } from "../Function/Context";
 import FormatMoney from "../Function/FormatMoney";
-import getSellerData from "../Function/getSellerData";
 
 const Container = styled.div`
   width: 100%;
@@ -166,24 +165,26 @@ export default function DetailProduct() {
     navigate(to);
   };
   useEffect(() => {
-    get(`/accountDetail/${id}`, "main")
+    get(`/account/${id}`, "main")
       .then((response) => {
         setData(response.data);
+        console.log(response.data);
+        setDataSeller(response.data.sellerData);
         setIdSeller(response.data.idSeller);
         setLoading(false);
       })
       .catch((error) => console.error(error));
   }, []);
 
-  useEffect(() => {
-    if (idSeller) {
-      getSellerData(idSeller, cookies.token)
-        .then((response) => {
-          setDataSeller(response);
-        })
-        .catch((error) => console.error(error));
-    }
-  }, [idSeller]);
+  // useEffect(() => {
+  //   if (idSeller) {
+  //     getSellerData(idSeller, cookies.token)
+  //       .then((response) => {
+  //         setDataSeller(response);
+  //       })
+  //       .catch((error) => console.error(error));
+  //   }
+  // }, [idSeller]);
 
   return (
     <Container>

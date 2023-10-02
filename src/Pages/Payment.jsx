@@ -17,7 +17,6 @@ import { get, post } from "../Function/Api";
 import { Context } from "../Function/Context";
 import FormatMoney from "../Function/FormatMoney";
 import checkSRCPhoto from "../Function/checkSRCPhoto";
-import getSellerData from "../Function/getSellerData";
 
 const Container = styled.div`
   background: linear-gradient(
@@ -117,7 +116,7 @@ export default function Payment() {
   const navigate = useNavigate();
   const { id } = useParams();
   const navigateTo = (to) => navigate(to);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [product, setProduct] = useState(false);
   const [dataSeller, setDataSeller] = useState({});
   const [idSeller, setIdSeller] = useState(false);
@@ -128,25 +127,17 @@ export default function Payment() {
   }
 
   useEffect(() => {
-    get(`/accountDetail/${id}`, "main")
+    get(`/account/${id}`, "main")
       .then((response) => {
         setProduct(response.data);
         setIdSeller(response.data.idSeller);
+        setDataSeller(response.data.sellerData);
       })
       .catch((error) => console.error(error));
   }, []);
 
-  useEffect(() => {
-    if (idSeller) {
-      getSellerData(idSeller, cookies.token)
-        .then((response) => {
-          setDataSeller(response);
-        })
-        .catch((error) => console.error(error));
-    }
-  }, [idSeller]);
-
   const createTransaction = () => {
+    setLoading(true);
     setError(false);
     const paymentMethods = {
       "Permata Virtual Account": "permata",
@@ -172,11 +163,16 @@ export default function Payment() {
     };
     post("transaction/create", dataPayment, "main", {
       authorization: cookies.token,
-    }).then((res) => {
-      if (res.data[0]) {
-        navigateTo(`/detail-transaction${res.data[0]._id}`);
-      }
-    });
+    })
+      .then((res) => {
+        setLoading(false);
+        if (res.data[0]) {
+          navigateTo(`/detail-transaction${res.data[0]._id}`);
+        }
+      })
+      .catch(() => {
+        setLoading(false);
+      });
   };
 
   return (
@@ -248,10 +244,15 @@ export default function Payment() {
               minCharacters
               error={error}
               clearable
+              closeOnChange
               options={PaymentType}
               onChange={(e) => {
-                setPayment(e.target.innerText);
-                setError(false);
+                if (e._reactName === "onClick") {
+                  setPayment(e.target.innerText);
+                  setError(false);
+                } else {
+                  setError(true);
+                }
               }}
               selection
               placeholder="None"
@@ -275,6 +276,7 @@ export default function Payment() {
               animated="fade"
               style={{ opacity: 1, backgroundColor: "#1935c2", color: "white" }}
               onClick={createTransaction}
+              loading={loading}
             >
               <Button.Content visible>Check Out</Button.Content>
               {payment === "Please Choose Payment" || payment === "" ? (
