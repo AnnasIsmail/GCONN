@@ -90,7 +90,7 @@ const ButtonContainer = styled.div`
     color: #dcddde;
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
     width: 70px;
-    z-index: inherit;
+    z-index: 0 !important;
   }
   .button:hover {
     background-color: #2444e3;
