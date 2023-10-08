@@ -25,9 +25,13 @@ export default function MyProfile() {
   const [dataDone, setDataDone] = useState([]);
   const [cookies, setCookie, removeCookie] = useCookies();
   const { context, updateContextValue } = useContext(Context);
-  if (!context.login && !context.user) {
-    navigateTo("/");
-  }
+
+  useEffect(() => {
+    if (!context.login && !context.user) {
+      console.log("masuk");
+      navigateTo("/");
+    }
+  });
 
   useEffect(() => {
     if (cookies.token && context.user) {

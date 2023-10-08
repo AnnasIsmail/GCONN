@@ -122,9 +122,13 @@ export default function Payment() {
   const [idSeller, setIdSeller] = useState(false);
   const [error, setError] = useState(false);
   const [payment, setPayment] = useState("Please Choose Payment");
-  if (!context.login && !context.user) {
-    navigateTo("/");
-  }
+
+  useEffect(() => {
+    if (!context.login && !context.user) {
+      console.log("masuk");
+      navigateTo("/");
+    }
+  });
 
   useEffect(() => {
     get(`/account/${id}`, "main")
