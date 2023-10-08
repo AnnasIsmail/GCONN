@@ -68,6 +68,9 @@ export default function ProductContainer() {
     if (filter && accounts) {
       filterAccount(accounts, filter);
     }
+    if (!filter && accounts) {
+      setAccountsFiltered(accounts);
+    }
   }, [context.filterProducts]);
 
   const filterAccount = async (accounts, filter) => {
