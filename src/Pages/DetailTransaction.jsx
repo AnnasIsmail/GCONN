@@ -4,6 +4,7 @@ import { useCookies } from "react-cookie";
 import { useNavigate, useParams } from "react-router-dom";
 import { Button, Loader, Segment } from "semantic-ui-react";
 import styled from "styled-components";
+import ActionDetailTransaction from "../Component/ActionDetailTransaction";
 import CountdownTimer from "../Component/CountdownTimer";
 import Product from "../Component/Product";
 import { get } from "../Function/Api";
@@ -44,21 +45,29 @@ const Text = styled.span`
 `;
 export default function DetailTransaction() {
   const { context, updateContextValue } = useContext(Context);
+  const navigate = useNavigate();
+  const navigateTo = (to) => navigate(to);
   const [cookies, setCookie, removeCookie] = useCookies();
   const [transaction, setTransaction] = useState({});
-  const navigate = useNavigate();
+  const [isSeller, setIsSeller] = useState(false);
+  const [status, setStatus] = useState(null);
   const { id } = useParams();
-  const navigateTo = (to) => navigate(to);
   const [loading, setLoading] = useState(true);
-  if (!context.login && !context.user) {
-    navigateTo("/");
-  }
+
+  useEffect(() => {
+    if (!context.login && !context.user) {
+      console.log("masuk");
+      navigateTo("/");
+    }
+  });
 
   useEffect(() => {
     get(`transaction/${id}`, "main", { authorization: cookies.token }).then(
       (res) => {
         setLoading(false);
         setTransaction(res.data);
+        setIsSeller(res.data.idSeller === context.user._id);
+        setStatus(res.data.status);
       }
     );
   }, []);
@@ -146,6 +155,7 @@ export default function DetailTransaction() {
             Store:
             <h5>{transaction.seller.sellerName}</h5>
           </Text>
+          <ActionDetailTransaction isSeller={isSeller} status={status} />
         </Content>
       )}
     </Container>
