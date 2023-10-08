@@ -80,6 +80,19 @@ export default function FilterMarket() {
       setFilterOpen(true);
     }
   }, []);
+  useEffect(() => {
+    const filter = context.filterProducts;
+    if (!filter) {
+      setChangeNameStatus([]);
+      setRegion([]);
+      setRank([]);
+      setMinimum_price("");
+      setMaximum_price("");
+      setSkin([]);
+      setAgent([]);
+    }
+  }, [context.filterProducts]);
+
   const goFilter = () => {
     const filter = {
       changeNameStatus,
@@ -242,7 +255,13 @@ export default function FilterMarket() {
               </Content.Section>
             </Content>
             <Action>
-              <Button color="red" onClick={() => setFilterOpen(false)}>
+              <Button
+                color="red"
+                onClick={() => {
+                  setFilterOpen(false);
+                  updateContextValue("filterProducts", undefined);
+                }}
+              >
                 Cancel
               </Button>
               <Button color="blue" onClick={goFilter}>
