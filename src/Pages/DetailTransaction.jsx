@@ -56,18 +56,21 @@ export default function DetailTransaction() {
 
   useEffect(() => {
     if (!context.login && !context.user) {
-      console.log("masuk");
       navigateTo("/");
     }
   });
 
+  const setAllData = (data) => {
+    setLoading(false);
+    setTransaction(data);
+    setIsSeller(data.idSeller === context.user._id);
+    setStatus(data.status);
+  };
+
   useEffect(() => {
     get(`transaction/${id}`, "main", { authorization: cookies.token }).then(
       (res) => {
-        setLoading(false);
-        setTransaction(res.data);
-        setIsSeller(res.data.idSeller === context.user._id);
-        setStatus(res.data.status);
+        setAllData(res.data);
       }
     );
   }, []);
@@ -98,8 +101,9 @@ export default function DetailTransaction() {
             data={transaction.accountData}
             footer={false}
           />
-          {transaction.status === "Waiting For Payment" &&
-            transaction.response_midtrans.payment_type === "bank_transfer" && (
+          {(transaction.status === "Waiting For Payment" &&
+            transaction.response_midtrans.payment_type === "bank_transfer") ||
+            (transaction.response_midtrans.payment_type === "echannel" && (
               <Segment
                 raised
                 style={{
@@ -114,28 +118,69 @@ export default function DetailTransaction() {
                     />
                   </h4>
                 </Text>
-                <Text>
-                  <span>
-                    Virtual Account Number
-                    <h5>
-                      {transaction.response_midtrans.va_numbers[0].va_number}
-                    </h5>
-                  </span>
-                  <Button
-                    onClick={() =>
-                      copyTextToClipboard(
-                        transaction.response_midtrans.va_numbers[0].va_number
-                      )
-                    }
-                    inverted
-                  >
-                    <h5>
-                      Copy <Icon icon="fluent:copy-16-regular" />
-                    </h5>
-                  </Button>
-                </Text>
+                {transaction.paymentMethod === "Mandiri Bill Payment" ? (
+                  <>
+                    <Text>
+                      <span>
+                        Biller Code
+                        <h5>{transaction.response_midtrans.biller_code}</h5>
+                      </span>
+                      <Button
+                        onClick={() =>
+                          copyTextToClipboard(
+                            transaction.response_midtrans.biller_code
+                          )
+                        }
+                        inverted
+                      >
+                        <h5>
+                          Copy <Icon icon="fluent:copy-16-regular" />
+                        </h5>
+                      </Button>
+                    </Text>
+                    <Text>
+                      <span>
+                        Bill Key
+                        <h5>{transaction.response_midtrans.bill_key}</h5>
+                      </span>
+                      <Button
+                        onClick={() =>
+                          copyTextToClipboard(
+                            transaction.response_midtrans.bill_key
+                          )
+                        }
+                        inverted
+                      >
+                        <h5>
+                          Copy <Icon icon="fluent:copy-16-regular" />
+                        </h5>
+                      </Button>
+                    </Text>
+                  </>
+                ) : (
+                  <Text>
+                    <span>
+                      Virtual Account Number
+                      <h5>
+                        {transaction.response_midtrans.va_numbers[0].va_number}
+                      </h5>
+                    </span>
+                    <Button
+                      onClick={() =>
+                        copyTextToClipboard(
+                          transaction.response_midtrans.va_numbers[0].va_number
+                        )
+                      }
+                      inverted
+                    >
+                      <h5>
+                        Copy <Icon icon="fluent:copy-16-regular" />
+                      </h5>
+                    </Button>
+                  </Text>
+                )}
               </Segment>
-            )}
+            ))}
           <Text>
             Transaction ID:
             <h5>{transaction.response_midtrans.order_id}</h5>
@@ -155,7 +200,12 @@ export default function DetailTransaction() {
             Store:
             <h5>{transaction.seller.sellerName}</h5>
           </Text>
-          <ActionDetailTransaction isSeller={isSeller} status={status} />
+          <ActionDetailTransaction
+            isSeller={isSeller}
+            status={status}
+            id={id}
+            setAllData={setAllData}
+          />
         </Content>
       )}
     </Container>
