@@ -1,6 +1,8 @@
 import React from "react";
+import { useCookies } from "react-cookie";
 import { Button } from "semantic-ui-react";
 import styled from "styled-components";
+import { post } from "../Function/Api";
 
 const ButtonContainer = styled.div`
   display: grid;
@@ -36,7 +38,21 @@ const ButtonContainer = styled.div`
     z-index: inherit;
   }
 `;
-export default function ActionDetailTransaction({ isSeller, status }) {
+export default function ActionDetailTransaction({
+  isSeller,
+  status,
+  id,
+  setAllData,
+}) {
+  const [cookies, setCookie, removeCookie] = useCookies();
+  const hitAPI = (endpoint, body) => {
+    console.log(body);
+    post(endpoint, body, "main", {
+      authorization: cookies.token,
+    }).then((res) => {
+      setAllData(res.data);
+    });
+  };
   return isSeller ? (
     status === "Waiting For Payment" ? (
       <ButtonContainer>
@@ -74,7 +90,15 @@ export default function ActionDetailTransaction({ isSeller, status }) {
   ) : status === "Waiting For Payment" ? (
     <ButtonContainer>
       <Button>Cancel Transaction</Button>
-      <Button>Check Payment Status</Button>
+      <Button
+        onClick={() =>
+          hitAPI("transaction/check_payment", {
+            id,
+          })
+        }
+      >
+        Check Payment Status
+      </Button>
     </ButtonContainer>
   ) : status === "Waiting for Seller to Respond" ? (
     <ButtonContainer>
